@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "baseUrl": "./",
+    "paths": {
+      "@style/*": ["src/style/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@containers/*": ["src/containers/*"],
+      "@config/*": ["src/config/*"],
+      "@components/*": ["src/components/*"]
+    }
+  }
+}
