@@ -9,7 +9,7 @@ Join verified thrift savings groups, contribute securely, and receive payouts in
 git clone https://github.com/kaf-lamed-beyt/vultifier.git
 ```
 
-- Create a new branch with a name relecting what you intend to work on
+- Create a new branch with a name reflecting what you intend to work on
 
 ```shell
 git checkout -b <branch-name>
@@ -40,30 +40,6 @@ pnpm run dev
 
 - When you're done with your changes, send a PR to the dev branch.
 
-## Reviewing an open PR
-
-To review an open PR locally &mdash; on your machine, follow the steps below
-
-Fetch the PR branch: Use the PR number to fetch the branch:
-
-```bash
-git fetch origin pull/<PR_NUMBER>/head:<BRANCH_NAME>
-```
-
-Replace:
-- `<PR_NUMBER>` with the Pull Request number.
-- `<BRANCH_NAME>` with a name you'd like to give the branch locally.
-
-For example:
-```bash
-git fetch origin pull/42/head:dev
-```
-
-Check out the fetched branch:
-
-```bash
-git checkout dev
-```
 
 ## Tools
 

@@ -11,11 +11,11 @@ import {
   MenuButton,
   Avatar,
   Button,
-  MenuList
+  MenuList,
 } from "@chakra-ui/react";
 import { SectionContainer, UserMenu } from "@components/ui";
+import { MotionBox } from "@config/motion";
 import { Hero } from "@containers/home/hero";
-import { UserRound } from "lucide-react";
 
 const NAV_ITEMS = ["features", "FAQs", "Contact us"].map((item) => ({
   name: item,
@@ -26,7 +26,11 @@ const NAV_ITEMS = ["features", "FAQs", "Contact us"].map((item) => ({
 export const Header = () => {
   return (
     <Box className="hero">
-      <Box className="grid" />
+      <MotionBox
+        className="grid"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1.8, opacity: 1, transition: { duration: 0.4 } }}
+      />
 
       <SectionContainer>
         <Box
@@ -35,12 +39,17 @@ export const Header = () => {
           display="flex"
           justifyContent="space-between"
           alignItems="center"
-          mt="2rem"
+          mt={{ lg: "2rem", md: "0" }}
         >
           <HStack gap="2rem">
             <Image src="/img/logo.svg" alt="vultifier logo" />
 
-            <Flex justifyContent="space-between" alignItems="center" gap="2rem">
+            <Flex
+              display={{ base: "none", lg: "flex" }}
+              justifyContent="space-between"
+              alignItems="center"
+              gap="2rem"
+            >
               {NAV_ITEMS.map((item) => {
                 return (
                   <List>

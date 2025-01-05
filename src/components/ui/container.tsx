@@ -8,10 +8,10 @@ export const SectionContainer = ({
   return (
     <Container
       maxW={{
-        base: "100%",
-        md: "100%",
-        lg: "95%",
-        xl: "1600px",
+        base: "96%",
+        md: "96%",
+        lg: "97%",
+        xl: "1200px",
       }}
       px="0"
     >
