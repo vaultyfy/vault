@@ -12,7 +12,8 @@
       "@layouts/*": ["src/layouts/*"],
       "@containers/*": ["src/containers/*"],
       "@config/*": ["src/config/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   }
 }

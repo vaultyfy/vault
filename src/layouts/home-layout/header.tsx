@@ -6,16 +6,11 @@ import {
   List,
   ListItem,
   Flex,
-  Menu,
-  MenuItem,
-  MenuButton,
-  Avatar,
-  Button,
-  MenuList,
 } from "@chakra-ui/react";
 import { SectionContainer, UserMenu } from "@components/ui";
 import { MotionBox } from "@config/motion";
 import { Hero } from "@containers/home/hero";
+import { UseDomContentLoaded } from "@hooks/index";
 
 const NAV_ITEMS = ["features", "FAQs", "Contact us"].map((item) => ({
   name: item,
@@ -24,12 +19,18 @@ const NAV_ITEMS = ["features", "FAQs", "Contact us"].map((item) => ({
 }));
 
 export const Header = () => {
+  const { contentLoaded } = UseDomContentLoaded();
+
   return (
     <Box className="hero">
       <MotionBox
         className="grid"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1.8, opacity: 1, transition: { duration: 0.4 } }}
+        initial={{ scale: 1 }}
+        animate={
+          contentLoaded
+            ? { scale: 1.8, transition: { delay: 2, duration: 0.6 } }
+            : { scale: 1 }
+        }
       />
 
       <SectionContainer>
