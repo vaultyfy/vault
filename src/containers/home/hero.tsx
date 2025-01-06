@@ -12,7 +12,7 @@ export const TRANSITION = {
   ease: "easeOut",
 };
 
-const textVariants = {
+export const textVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: (delay: number) => ({
     opacity: 1,

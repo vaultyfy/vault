@@ -53,12 +53,8 @@ export const Header = () => {
             >
               {NAV_ITEMS.map((item) => {
                 return (
-                  <List>
-                    <ListItem
-                      textTransform="capitalize"
-                      fontWeight="500"
-                      key={item.id}
-                    >
+                  <List key={item.id}>
+                    <ListItem textTransform="capitalize" fontWeight="500">
                       {item.name}
                     </ListItem>
                   </List>
