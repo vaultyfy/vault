@@ -1,6 +1,6 @@
 import React from "react";
 
-export const UseDomContentLoaded = () => {
+export const useDomContentLoaded = () => {
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
 
   React.useEffect(() => {

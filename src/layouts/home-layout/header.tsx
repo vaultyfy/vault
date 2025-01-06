@@ -10,7 +10,7 @@ import {
 import { SectionContainer, UserMenu } from "@components/ui";
 import { MotionBox } from "@config/motion";
 import { Hero } from "@containers/home/hero";
-import { UseDomContentLoaded } from "@hooks/index";
+import { useDomContentLoaded } from "@hooks/index";
 
 const NAV_ITEMS = ["features", "FAQs", "Contact us"].map((item) => ({
   name: item,
@@ -19,7 +19,7 @@ const NAV_ITEMS = ["features", "FAQs", "Contact us"].map((item) => ({
 }));
 
 export const Header = () => {
-  const { contentLoaded } = UseDomContentLoaded();
+  const { contentLoaded } = useDomContentLoaded();
 
   return (
     <Box className="hero">
@@ -28,7 +28,7 @@ export const Header = () => {
         initial={{ scale: 1 }}
         animate={
           contentLoaded
-            ? { scale: 1.8, transition: { delay: 2, duration: 0.6 } }
+            ? { scale: 1.8, transition: { duration: 0.6 } }
             : { scale: 1 }
         }
       />
