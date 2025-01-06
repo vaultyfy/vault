@@ -76,7 +76,11 @@ const SellingPoint = ({ icon, text }: SellingPointProps) => {
         <Image src={icon} />
       </Box>
       <Box width="100%">
-        <Text fontSize="18px" color="var(--dark)" fontWeight="400">
+        <Text
+          fontSize={{ lg: "18px", md: "18px", base: "16px" }}
+          color="var(--dark)"
+          fontWeight="400"
+        >
           {text}
         </Text>
       </Box>
@@ -142,8 +146,8 @@ export const FinancialGoals = () => {
                 custom={0.2}
                 fontFamily="var(--poppins)"
                 fontWeight="500"
-                lineHeight="30px"
-                fontSize="20px"
+                lineHeight={{ lg: "30px", base: "24px", md: "30px" }}
+                fontSize={{ lg: "20px", base: "16px", md: "20px" }}
                 color="#fff"
               >
                 Get matched with the right thrift team and achieve your
@@ -191,6 +195,7 @@ export const FinancialGoals = () => {
               bottom=".5%"
               right="1%"
               initial="hidden"
+              boxSize={{ lg: "initial", base: "140px" }}
               whileInView="visible"
               variants={coinVariant}
               viewport={{ once: true, amount: 0.8 }}

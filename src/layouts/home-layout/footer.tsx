@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   Text,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { Icon } from "@components/icon";
 import { SectionContainer } from "@components/ui";
@@ -26,8 +27,8 @@ const CONTACT_ITEMS = [
 ];
 
 export const Footer = () => {
-  const isMobile = useMediaQuery({ query: "max-width: 576px" });
-  const isTablet = useMediaQuery({ query: "max-width: 992px" });
+  const isMobile = useMediaQuery({ query: "(max-width: 576px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 992px)" });
 
   const isSmallViewPort = isMobile || isTablet;
 
@@ -41,7 +42,7 @@ export const Footer = () => {
   }));
 
   return (
-    <Box background="var(--main)" py="6em">
+    <Box background="var(--main)" py={{ lg: "6em", base: "2em", md: "3em" }}>
       <SectionContainer>
         <Flex
           justifyContent="space-between"
@@ -49,23 +50,27 @@ export const Footer = () => {
           mb="5em"
           gap="2em"
         >
-          <Flex
-            justifyContent="space-between"
+          <SimpleGrid
+            columns={{ lg: 3, md: 3, base: 2 }}
+            gap="3em"
             color="#fff"
-            width={{ lg: "40%", base: "100%", md: "100%" }}
-            flexWrap={{ lg: "nowrap", md: "wrap", base: "wrap" }}
+            width={{ lg: "56%", base: "100%", md: "100%" }}
           >
-            <Flex flexFlow="column" gap=".4em">
-              <Text fontSize="20px" fontWeight="500" lineHeight="30px">
+            <Flex flexFlow="column" gap="1.2em">
+              <Text
+                fontSize={{ lg: "20px", base: "16px", md: "16px" }}
+                fontWeight={{ lg: "500", md: "400", base: "400" }}
+                lineHeight="30px"
+              >
                 Company
               </Text>
-              <Flex flexFlow="column" gap=".4em">
+              <Flex flexFlow="column" gap="1em">
                 {COMPANY_ITEMS.map((item, index) => {
                   return (
                     <List key={index}>
                       <ListItem
-                        fontSize={{ lg: "18px", md: "16px", base: "14px" }}
-                        fontWeight="400"
+                        fontSize={{ lg: "16px", md: "16px", base: "14px" }}
+                        fontWeight="300"
                       >
                         {item.name}
                       </ListItem>
@@ -75,18 +80,22 @@ export const Footer = () => {
               </Flex>
             </Flex>
 
-            <Flex flexFlow="column" gap=".4em">
-              <Text fontSize="20px" fontWeight="500" lineHeight="30px">
+            <Flex flexFlow="column" gap="1.2em">
+              <Text
+                fontSize={{ lg: "20px", base: "16px", md: "16px" }}
+                fontWeight={{ lg: "500", md: "400", base: "400" }}
+                lineHeight="30px"
+              >
                 Contact
               </Text>
-              <Flex flexFlow="column" gap=".4em">
+              <Flex flexFlow="column" gap="1em">
                 {CONTACT_ITEMS.map((item, index) => {
                   return (
                     <List key={index}>
                       <ListItem
-                        fontWeight="400"
+                        fontWeight="300"
                         lineHeight="24px"
-                        fontSize={{ lg: "18px", md: "16px", base: "14px" }}
+                        fontSize={{ lg: "16px", md: "16px", base: "14px" }}
                       >
                         {item}
                       </ListItem>
@@ -96,23 +105,27 @@ export const Footer = () => {
               </Flex>
             </Flex>
 
-            <Flex flexFlow="column" gap=".4em">
-              <Text fontSize="20px" fontWeight="500" lineHeight="30px">
+            <Flex flexFlow="column" gap="1.2em">
+              <Text
+                fontSize={{ lg: "20px", base: "16px", md: "16px" }}
+                fontWeight={{ lg: "500", md: "400", base: "400" }}
+                lineHeight="30px"
+              >
                 Address
               </Text>
-              <Flex flexFlow="column" gap=".4em">
+              <Flex flexFlow="column" gap="1em">
                 <List>
                   <ListItem
-                    fontWeight="400"
+                    fontWeight="300"
                     lineHeight="24px"
-                    fontSize={{ lg: "18px", md: "16px", base: "14px" }}
+                    fontSize={{ lg: "16px", md: "16px", base: "14px" }}
                   >
-                    Lagos
+                    Lagos... some address
                   </ListItem>
                 </List>
               </Flex>
             </Flex>
-          </Flex>
+          </SimpleGrid>
 
           <Box
             height="241px"
@@ -123,9 +136,17 @@ export const Footer = () => {
           ></Box>
         </Flex>
 
-        <Divider color="var(--pale-grey)" my="4em" />
+        <Divider
+          color="var(--pale-grey)"
+          my={{ lg: "4em", md: "2em", base: "2em" }}
+        />
 
-        <Box my="6em" display="flex" flexFlow="column" gap="4em">
+        <Box
+          my={{ lg: "6em", base: "2em", md: "4em" }}
+          display="flex"
+          flexFlow="column"
+          gap={{ lg: "4em", base: "2em", md: "4em" }}
+        >
           <Flex justifyContent="space-between">
             <HStack
               gap={{ lg: "1.4em", md: "1em", base: ".6em" }}
@@ -134,8 +155,8 @@ export const Footer = () => {
               <Image src="/vultifier-set.svg" />
               <Text
                 fontWeight="600"
-                fontSize="24px"
-                lineHeight="36px"
+                fontSize={{ lg: "24px", md: "20px", base: "" }}
+                lineHeight={{ lg: "36px", base: "24px", md: "30px" }}
                 color="#fff"
               >
                 Vultifier, 2024.
@@ -154,6 +175,9 @@ export const Footer = () => {
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
+                    _hover={{
+                      cursor: "pointer",
+                    }}
                   >
                     <Icon name={item.name} />
                   </Box>
