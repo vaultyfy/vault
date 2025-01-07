@@ -11,7 +11,7 @@ export const HomeLayout = ({ children }: Readonly<HomeLayoutProps>) => {
   return (
     <>
       <Header />
-      <Box height="fit-content" py=".2rem">
+      <Box height="fit-content" py=".2rem" pb="2rem">
         {children}
       </Box>
       <Footer />
