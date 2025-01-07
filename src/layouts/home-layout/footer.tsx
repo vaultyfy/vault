@@ -149,14 +149,17 @@ export const Footer = () => {
               gap={{ lg: "1.4em", md: "1em", base: ".6em" }}
               alignItems="center"
             >
-              <Image src="/vultifier-set.svg" />
+              <Image
+                src="/img/vaulty-foot.svg"
+                boxSize={{ lg: "initial", md: "initial", base: "30px" }}
+              />
               <Text
                 fontWeight="600"
                 fontSize={{ lg: "24px", md: "20px", base: "" }}
                 lineHeight={{ lg: "36px", base: "24px", md: "30px" }}
                 color="#fff"
               >
-                Vultifier, 2024.
+                Vaultyfy, 2024.
               </Text>
             </HStack>
 

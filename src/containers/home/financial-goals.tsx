@@ -207,7 +207,7 @@ export const FinancialGoals = () => {
           width={{ lg: "40%", base: "100%", md: "70%" }}
           display="flex"
           flexFlow="column"
-          gap={{lg: "1.4rem", base: "1rem"}}
+          gap={{ lg: "1.4rem", base: "1rem" }}
           alignItems="center"
           justifyContent="center"
           mx="auto"

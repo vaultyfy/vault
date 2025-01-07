@@ -203,6 +203,7 @@ export const SystemMatching = () => {
                   xl: "550px",
                   lg: "100%",
                   md: "350px",
+                  base: "100%"
                 }}
               />
             </Box>

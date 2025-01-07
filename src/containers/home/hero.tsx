@@ -82,7 +82,7 @@ export const Hero = () => {
   return (
     <SectionContainer>
       <Flex
-        mt={{ xl: "12rem", lg: "8rem", md: "1rem", base: "1rem" }}
+        mt={{ xl: "12rem", lg: "5em", md: "1rem", base: "1rem" }}
         justifyContent="space-between"
         flexWrap={{ base: "wrap", md: "wrap", lg: "nowrap" }}
       >

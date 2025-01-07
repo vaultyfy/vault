@@ -82,8 +82,8 @@ export const FlexibleContributions = () => {
             viewport={{ once: true, amount: 0.5 }}
             position="absolute"
             custom={0.2}
-            top={{ xl: "-9px", lg: "22px", base: "-23.5px", md: "-19px" }}
-            boxSize={{ xl: "615px", lg: "500px", base: "430px", md: "340px" }}
+            top={{ xl: "-9px", lg: "22px", base: "-1px", md: "-19px" }}
+            boxSize={{ xl: "615px", lg: "500px", base: "100%", md: "340px" }}
             borderBottomLeftRadius="49.1%"
             borderBottomRightRadius="49.1%"
           />
