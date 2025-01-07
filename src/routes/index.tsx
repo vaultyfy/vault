@@ -12,7 +12,7 @@ function HomeComponent() {
   return (
     <>
       <MetaData
-        pageTitle="Vultifier &mdash; Home"
+        pageTitle="Vaultyfy &mdash; Home"
         previewImage=""
         url="vultifier.vercel.app"
       />

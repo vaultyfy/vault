@@ -65,8 +65,8 @@ const SellingPoint = ({ icon, text }: SellingPointProps) => {
       px=".8em"
     >
       <Box
-        width="66px"
-        height="58px"
+        width={{ lg: "66px", md: "66px", base: "60px" }}
+        height={{ lg: "58px", md: "58px", base: "50px" }}
         borderRadius="50%"
         background="var(--main)"
         display="flex"
@@ -77,7 +77,7 @@ const SellingPoint = ({ icon, text }: SellingPointProps) => {
       </Box>
       <Box width="100%">
         <Text
-          fontSize={{ lg: "18px", md: "18px", base: "16px" }}
+          fontSize={{ lg: "18px", md: "16px", base: "15px" }}
           color="var(--dark)"
           fontWeight="400"
         >
@@ -207,7 +207,7 @@ export const FinancialGoals = () => {
           width={{ lg: "40%", base: "100%", md: "70%" }}
           display="flex"
           flexFlow="column"
-          gap="1.4rem"
+          gap={{lg: "1.4rem", base: "1rem"}}
           alignItems="center"
           justifyContent="center"
           mx="auto"

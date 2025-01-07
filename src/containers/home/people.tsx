@@ -28,12 +28,14 @@ const childVariants = {
   expanded: ({ x, y, scale = 1 }: Variants) => ({
     x: x * 1.3,
     y: y * 1.3,
+    opacity: 0,
     scale,
     transition: TRANSITION,
   }),
   collapsed: {
     x: 0,
     y: 0,
+    opacity: 1,
     scale: 1,
     transition: TRANSITION,
   },
@@ -65,7 +67,7 @@ export const People = () => {
         cursor: "pointer",
       }}
       mx="auto"
-      mt={{ lg: "initial", base: ".4em" }}
+      mt={{ lg: "initial", base: ".6em" }}
     >
       <MotionImage
         layoutId="person-6"

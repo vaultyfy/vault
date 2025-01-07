@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@components/icon";
 import { SectionContainer } from "@components/ui";
-import { useMediaQuery } from "react-responsive";
+import { useMobileScreens } from "@hooks/mobile-screen";
 
 const COMPANY_ITEMS = ["About Us", "How it works", "Features", "Faq"].map(
   (item) => ({
@@ -27,10 +27,7 @@ const CONTACT_ITEMS = [
 ];
 
 export const Footer = () => {
-  const isMobile = useMediaQuery({ query: "(max-width: 576px)" });
-  const isTablet = useMediaQuery({ query: "(max-width: 992px)" });
-
-  const isSmallViewPort = isMobile || isTablet;
+  const { isSmallViewPort } = useMobileScreens();
 
   const SOCIAL = [
     isSmallViewPort ? "insta-mob" : "instagram",
