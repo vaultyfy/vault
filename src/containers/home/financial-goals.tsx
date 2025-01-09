@@ -8,7 +8,7 @@ interface SellingPointProps {
   text: string;
 }
 
-const coinVariant = {
+export const coinVariant = {
   hidden: { opacity: 0, x: -30, scale: 1, y: 20, transform: "rotate(-20deg)" },
   visible: {
     opacity: 1,
