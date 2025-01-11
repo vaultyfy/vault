@@ -13,6 +13,7 @@ export const cashVariant = {
       duration: 0.3,
       delay,
       ease: "easeOut",
+      type: "spring",
     },
   }),
 };

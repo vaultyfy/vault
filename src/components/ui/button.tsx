@@ -108,7 +108,7 @@ export const SecondaryButton = ({ text, variant, show }: SecondaryBtnProps) => {
       borderRadius="4px"
       height="58px"
       width="178px"
-      background={variant === "light" ? "var(--primary)" : "var(--main)"}
+      background="var(--primary)"
       whileTap={{
         marginLeft: ".5em",
         marginTop: ".3em",
@@ -121,9 +121,7 @@ export const SecondaryButton = ({ text, variant, show }: SecondaryBtnProps) => {
       <MotionBox
         fontWeight="500"
         fontSize="14px"
-        background={
-          variant === "light" ? "var(--white-fade)" : "var(--primary)"
-        }
+        background={variant === "light" ? "var(--white-fade)" : "var(--main)"}
         color={variant === "light" ? "var(--dark)" : "var(--white-fade)"}
         as="button"
         mt="-.3em"

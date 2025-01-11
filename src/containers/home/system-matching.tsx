@@ -6,7 +6,7 @@ import {
   Flex,
   HStack,
 } from "@chakra-ui/react";
-import { PrimaryButton, SectionContainer } from "@components/ui";
+import { PrimaryButton, SectionContainer, SectionTitle } from "@components/ui";
 import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { textVariants } from "./hero";
 import { useMobileScreens } from "@hooks/mobile-screen";
@@ -67,24 +67,7 @@ export const SystemMatching = () => {
               mt={{ lg: "-12em", base: "-10em" }}
               width={{ lg: "50%", base: "100%" }}
             >
-              <MotionText
-                fontFamily="var(--clash-grotesk-600)"
-                textTransform="capitalize"
-                lineHeight={{
-                  xl: "70px",
-                  lg: "55px",
-                  md: "46px",
-                  base: "40px",
-                }}
-                variants={textVariants}
-                whileInView="visible"
-                initial="hidden"
-                viewport={{ once: true, amount: 0.5 }}
-                textAlign={{ lg: "left", md: "left", base: "center" }}
-                fontSize={{ xl: "70px", lg: "58px", md: "45px", base: "48px" }}
-              >
-                smart matching system
-              </MotionText>
+              <SectionTitle title="smart matching system" />
 
               <MotionBox
                 initial={{ opacity: 0, y: -40, x: 30 }}
@@ -169,14 +152,14 @@ export const SystemMatching = () => {
                 xl: "2%",
                 lg: "2%",
                 md: "-5%",
-                base: "13%",
+                base: "19%",
               }}
             >
               <MotionImage
                 src="/img/person-7.svg"
                 position="absolute"
                 top="-12%"
-                left={{ xl: "initial", lg: "-15%", md: "2%" }}
+                left={{ xl: "-13%", lg: "-15%", md: "2%" }}
                 initial={{ y: 30, x: 40, scale: 0.5, opacity: 0 }}
                 whileInView={{
                   y: 0,
@@ -198,12 +181,12 @@ export const SystemMatching = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
                 src="/img/vaultify-explore.svg"
-                boxSize={{
-                  "2xl": "650px",
+                height={{
+                  "2xl": "850px",
                   xl: "550px",
                   lg: "100%",
                   md: "350px",
-                  base: "100%"
+                  base: "500px",
                 }}
               />
             </Box>

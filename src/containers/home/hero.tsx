@@ -82,6 +82,7 @@ export const Hero = () => {
   return (
     <SectionContainer>
       <Flex
+        position="relative"
         mt={{ xl: "12rem", lg: "5em", md: "1rem", base: "1rem" }}
         justifyContent="space-between"
         flexWrap={{ base: "wrap", md: "wrap", lg: "nowrap" }}

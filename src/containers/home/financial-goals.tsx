@@ -20,6 +20,7 @@ export const coinVariant = {
       duration: 0.3,
       ease: "easeIn",
       bounce: 0.8,
+      type: "spring",
     },
   },
 };

@@ -121,9 +121,9 @@ export const HowItWorks = () => {
         alignItems="center"
         mt={{ lg: "6em", base: "3em", md: "4em" }}
         gap={{ lg: "8em", md: "6em", base: "2em" }}
-        flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap" }}
+        flexWrap={{ lg: "nowrap", md: "wrap", base: "wrap" }}
       >
-        <Flex gap="1.2em" flexFlow="column">
+        <Flex gap="1.2em" flexFlow="column" mx="auto">
           <Flex flexFlow="column" gap=".8em">
             <MotionText
               fontFamily="var(--clash-grotesk-600)"
@@ -154,7 +154,7 @@ export const HowItWorks = () => {
 
           <MotionBox
             bgGradient="var(--main-gradient)"
-            height="480px"
+            height={{lg: "480px", md: "480px", base: "440px"}}
             borderRadius="25px"
             display="flex"
             justifyContent="center"
@@ -179,7 +179,7 @@ export const HowItWorks = () => {
 
         <Box
           position="relative"
-          display={{ lg: "block", md: "block", base: "none" }}
+          display={{ lg: "block", md: "none", base: "none" }}
         >
           <MotionImage src="/img/path.svg" />
 

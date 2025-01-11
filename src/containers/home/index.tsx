@@ -1,3 +1,4 @@
+import { Faq } from "./faq"
 import { FinancialGoals } from "./financial-goals"
 import { FlexibleContributions } from "./flexible-contributions"
 import { GetMoreDone } from "./get-more-done"
@@ -13,6 +14,7 @@ export const Home = () => {
       <SystemMatching />
       <HowItWorks />
       <GetMoreDone />
+      <Faq />
     </>
   )
 }
