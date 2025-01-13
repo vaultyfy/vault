@@ -148,7 +148,7 @@ export const GetMoreDone = () => {
                 initial={{ opacity: 0, transform: "rotate(0deg)" }}
                 whileInView={{
                   opacity: 1,
-                  transform: `rotate(${isMobile ? 0 : 3}deg)`,
+                  transform: `rotate(${isMobile ? 0 : -3}deg)`,
                   transition: {
                     duration: 0.4,
                     ease: "easeOut",

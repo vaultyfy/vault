@@ -12,6 +12,7 @@ import {
 import { Icon } from "@components/icon";
 import { SectionContainer } from "@components/ui";
 import { useMobileScreens } from "@hooks/mobile-screen";
+import { BetweenHorizonalStartIcon } from "lucide-react";
 
 const COMPANY_ITEMS = ["About Us", "How it works", "Features", "Faq"].map(
   (item) => ({
@@ -117,7 +118,7 @@ export const Footer = () => {
                     lineHeight="24px"
                     fontSize={{ lg: "16px", md: "16px", base: "14px" }}
                   >
-                    Lagos... some address
+                    Lagos
                   </ListItem>
                 </List>
               </Flex>
@@ -125,12 +126,58 @@ export const Footer = () => {
           </SimpleGrid>
 
           <Box
-            height="241px"
+            height="fit-content"
             width="420px"
             borderRadius="24px"
             border="1.49px solid #FFFFFF3D"
             background="var(--pale-grey)"
-          ></Box>
+            px="1.8em"
+            py="1.6em"
+            display="flex"
+            flexFlow="column"
+            gap="1.6em"
+          >
+            <HStack justifyContent="space-between" alignItems="center">
+              <HStack gap=".8em">
+                <Box
+                  boxSize="60px"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  borderRadius="100%"
+                  background="var(--white-fade)"
+                >
+                  <Image src="/favicon.svg" />
+                </Box>
+
+                <Flex flexFlow="column" gap=".2em">
+                  <Text
+                    fontWeight="500"
+                    color="#fff"
+                    fontSize="20px"
+                    lineHeight="30px"
+                  >
+                    Vaultify
+                  </Text>
+                  <Text color="#FFFFFFCC" fontSize="16px" fontWeight="400">
+                    @vaultify
+                  </Text>
+                </Flex>
+              </HStack>
+
+              <Icon name="twitter" />
+            </HStack>
+
+            <Text
+              fontSize={{ lg: "20px", md: "16px", base: "14px" }}
+              fontWeight="400"
+              lineHeight={{ lg: "30px", md: "26px", base: "21px" }}
+              color="#fff"
+            >
+              We just announced new feature that would help you increase your
+              experience of using Vultifier!
+            </Text>
+          </Box>
         </Flex>
 
         <Divider

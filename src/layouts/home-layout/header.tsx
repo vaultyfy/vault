@@ -14,7 +14,6 @@ import { Hero } from "@containers/home/hero";
 import { MobileNav } from "@containers/home/mobile-nav";
 import { useDomContentLoaded } from "@hooks/index";
 import React from "react";
-import { AnimatePresence } from "motion/react";
 
 const NAV_ITEMS = ["features", "FAQs", "Contact us"].map((item) => ({
   name: item,
@@ -55,11 +54,7 @@ export const Header = () => {
               zIndex="2"
             >
               <Box
-                onClick={() => {
-                  console.log("Menu icon clicked");
-                  console.log("state", isMenuOpen);
-                  openMenu(true);
-                }}
+                onClick={() => openMenu(true)}
                 _hover={{ cursor: "pointer" }}
                 display={{ lg: "none", md: "none", base: "block" }}
               >

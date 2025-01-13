@@ -1,6 +1,7 @@
 import { Box, Flex, Image, List, ListItem } from "@chakra-ui/react";
 import { MotionBox } from "@config/motion";
 import { X } from "@phosphor-icons/react";
+import { Link } from "@tanstack/react-router";
 
 const NAV_ITEMS = ["Contact us", "FAQs", "features"].map((item) => ({
   name: item,
@@ -8,20 +9,19 @@ const NAV_ITEMS = ["Contact us", "FAQs", "features"].map((item) => ({
   href: `#${item.replaceAll(" ", "-").toLowerCase()}`,
 }));
 
-export const MobileNav = ({
-  isOpen,
-  onClose,
-}: {
-  onClose: () => void;
+export interface MobileNavProps {
   isOpen: boolean;
-}) => {
+  onClose: () => void;
+}
+
+export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
   return (
     <MotionBox
       initial={{ height: 0, opacity: 0 }}
       animate={
         isOpen
           ? {
-              height: "320px",
+              height: "340px",
               opacity: 1,
               transition: {
                 ease: "easeOut",
@@ -43,8 +43,7 @@ export const MobileNav = ({
       width="100%"
       display="flex"
       flexDirection="column"
-      alignItems="center"
-      py="3em"
+      py="1.4em"
       background="var(--white-fade)"
     >
       <Box
@@ -65,14 +64,25 @@ export const MobileNav = ({
       >
         <X color="var(--main)" size="18" />
       </Box>
-      <Image src="/img/logo.svg" mb="2rem" />
-      <Flex flexDirection="column" gap="2rem" alignItems="center">
-        {NAV_ITEMS.map((item) => (
-          <List key={item.id} as="a" href={item.href}>
+      <Image src="/img/logo.svg" mb="2rem" height="35px" />
+      <List>
+        <Flex flexDirection="column" gap=".8rem" width="80%" mx="auto">
+          {NAV_ITEMS.map((item) => (
             <ListItem
+              as="a"
+              key={item.id}
+              href={item.href}
+              textAlign="center"
+              height="45px"
+              alignItems="center"
+              display="flex"
+              justifyContent="center"
+              borderBottom="1px solid #8181816B"
               cursor="pointer"
               textTransform="capitalize"
-              fontWeight="500"
+              fontWeight="400"
+              fontSize="14px"
+              color="var(--dark)"
               _hover={{
                 cursor: "pointer",
               }}
@@ -80,9 +90,30 @@ export const MobileNav = ({
             >
               {item.name}
             </ListItem>
-          </List>
-        ))}
-      </Flex>
+          ))}
+
+          <Link to="/auth/login" preload="intent">
+            <ListItem
+              height="45px"
+              alignItems="center"
+              display="flex"
+              justifyContent="center"
+              textAlign="center"
+              mt=".2em"
+              cursor="pointer"
+              textTransform="capitalize"
+              fontWeight="400"
+              fontSize="14px"
+              color="var(--dark)"
+              _hover={{
+                cursor: "pointer",
+              }}
+            >
+              login
+            </ListItem>
+          </Link>
+        </Flex>
+      </List>
     </MotionBox>
   );
 };
