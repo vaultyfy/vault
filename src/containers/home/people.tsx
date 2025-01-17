@@ -73,74 +73,74 @@ export const People = () => {
         layoutId="person-6"
         src="/img/person-6.svg"
         position="absolute"
-        top="39%"
-        left="40%"
+        top={{ lg: "39%", md: "39%", base: "41%" }}
+        left={{ lg: "40%", md: "40%", base: "42%" }}
         alt="Woman with curly hair smiling in a colorful blouse"
         custom={{ x: 0, y: 0, scale: 0.9 }}
         variants={childVariants}
-        boxSize={{ md: "80px", base: "88px", lg: "initial" }}
+        boxSize={{ md: "80px", base: "70px", lg: "initial" }}
       />
       <MotionImage
         layoutId="people-ring"
         src="/img/people-ring.svg"
         custom={{ x: 0, y: 0, scale: 1.2 }}
         variants={childVariants}
-        boxSize={{ md: "220px", base: "80%", lg: "initial" }}
+        boxSize={{ md: "220px", base: "70%", lg: "initial" }}
       />
       <MotionImage
         src="/img/person-1.svg"
         position="absolute"
-        top="0"
-        left="0"
+        top={{ lg: "0", md: "0", base: "11%" }}
+        left={{ lg: "0", md: "0", base: "12%" }}
         alt="Man with an afro with a yellow vest"
         layoutId="person-1"
         custom={{ x: -30, y: -10 }}
         variants={childVariants}
-        boxSize={{ md: "130px", base: "150px", lg: "initial" }}
+        boxSize={{ md: "130px", base: "100px", lg: "initial" }}
       />
       <MotionImage
         src="/img/person-2.svg"
         position="absolute"
-        top="3%"
-        right="20%"
+        top={{ lg: "3%", md: "3%", base: "14%" }}
+        right={{ lg: "20%", md: "20%", base: "20%" }}
         alt="Woman of african descent in a colorful blouse"
         layoutId="person-2"
         custom={{ x: 28, y: -20 }}
         variants={childVariants}
-        boxSize={{ md: "100px", base: "100px", lg: "initial" }}
+        boxSize={{ md: "100px", base: "75px", lg: "initial" }}
       />
       <MotionImage
         src="/img/person-3.svg"
         position="absolute"
-        top="35%"
-        right="-2%"
+        top={{ lg: "35%", md: "35%", base: "42%" }}
+        right={{ lg: "-2%", md: "-2%", base: "4%" }}
         alt="Woman with braids"
         layoutId="person-3"
         variants={childVariants}
         custom={{ x: 15, y: 15 }}
-        boxSize={{ md: "110px", base: "125px", lg: "initial" }}
+        boxSize={{ md: "110px", base: "85px", lg: "initial" }}
       />
       <MotionImage
         src="/img/person-4.svg"
         position="absolute"
-        bottom="2%"
-        right="34%"
+        bottom={{lg: "2%", md: "2%", base: "10%"}}
+        right={{lg: "34%", md: "34%", base: "40%"}}
         alt="Fresh kid painted his hair white/brown"
         layoutId="person-4"
         custom={{ x: 0, y: 30 }}
         variants={childVariants}
-        boxSize={{ md: "98px", base: "115px", lg: "initial" }}
+        boxSize={{ md: "98px", base: "78px", lg: "initial" }}
       />
       <MotionImage
         src="/img/person-5.svg"
         position="absolute"
         top="49%"
-        left="1%"
+        left={{lg: "1%", md: "1%", base: "3%"}}
         alt="Man with beard putting on a beanie"
         layoutId="person-5"
         custom={{ x: -40, y: 20 }}
         variants={childVariants}
-        boxSize={{ md: "98px", base: "115px", lg: "initial" }}
+        boxSize={{ md: "98px", base: "80px", lg: "initial" }}
       />
     </MotionBox>
   );
