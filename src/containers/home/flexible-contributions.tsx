@@ -80,7 +80,7 @@ export const FlexibleContributions = () => {
             variants={cashVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
             position="absolute"
             custom={0.2}
             top={{ xl: "-9px", lg: "22px", base: "-1px", md: "-19px" }}

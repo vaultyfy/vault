@@ -21,7 +21,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
       animate={
         isOpen
           ? {
-              height: "340px",
+              height: "280px",
               opacity: 1,
               transition: {
                 ease: "easeOut",
@@ -64,9 +64,8 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
       >
         <X color="var(--main)" size="18" />
       </Box>
-      <Image src="/img/logo.svg" mb="2rem" height="35px" />
       <List>
-        <Flex flexDirection="column" gap=".8rem" width="80%" mx="auto">
+        <Flex flexDirection="column" gap=".8rem" mt="1em" width="80%" mx="auto">
           {NAV_ITEMS.map((item) => (
             <ListItem
               as="a"
