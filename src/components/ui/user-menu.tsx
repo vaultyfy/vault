@@ -7,6 +7,7 @@ import {
   Button,
   Text,
 } from "@chakra-ui/react";
+import { Link } from "@tanstack/react-router";
 import { ChevronDown, UserRound } from "lucide-react";
 
 export const UserMenu = () => {
@@ -24,7 +25,7 @@ export const UserMenu = () => {
           background: "var(--white-fade)",
         }}
         _active={{
-          background: "var(--white-fade)"
+          background: "var(--white-fade)",
         }}
       >
         <Avatar
@@ -43,35 +44,41 @@ export const UserMenu = () => {
         flexFlow="column"
         gap=".6rem"
       >
-        <MenuItem
-          as={Button}
-          background="var(--main)"
-          borderRadius="30px"
-          height="26px"
-          color="#fff"
-          textTransform="capitalize"
-          _hover={{
-            background: "var(--main)",
-          }}
-          fontWeight="normal"
-          fontSize="12px"
-        >
-          login
-        </MenuItem>
-        <MenuItem
-          as={Button}
-          background="#fff"
-          borderRadius="30px"
-          height="26px"
-          textTransform="capitalize"
-          _hover={{
-            background: "#fff",
-          }}
-          fontWeight="normal"
-          fontSize="12px"
-        >
-          <Text className="main-accent">dashboard</Text>
-        </MenuItem>
+        <Link to="/auth/login">
+          <MenuItem
+            as={Button}
+            background="var(--main)"
+            borderRadius="30px"
+            height="26px"
+            color="#fff"
+            textTransform="capitalize"
+            _hover={{
+              background: "var(--main)",
+            }}
+            fontWeight="normal"
+            fontSize="12px"
+          >
+            login
+          </MenuItem>
+        </Link>
+
+        {/* this shouldn't be visible when user is not auth'd  */}
+        <Link to="/dashboard">
+          <MenuItem
+            as={Button}
+            background="#fff"
+            borderRadius="30px"
+            height="26px"
+            textTransform="capitalize"
+            _hover={{
+              background: "#fff",
+            }}
+            fontWeight="normal"
+            fontSize="12px"
+          >
+            <Text className="main-accent">dashboard</Text>
+          </MenuItem>
+        </Link>
       </MenuList>
     </Menu>
   );

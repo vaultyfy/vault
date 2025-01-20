@@ -1,6 +1,4 @@
-import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Helmet } from "react-helmet-async";
 import { MetaData } from "@components/metadata";
 
 export const Route = createFileRoute("/about")({

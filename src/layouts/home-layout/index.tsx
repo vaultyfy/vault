@@ -3,11 +3,11 @@ import { Footer } from "./footer";
 import { Header } from "./header";
 import { Box, Container } from "@chakra-ui/react";
 
-interface HomeLayoutProps {
+export interface LayoutProps {
   children: React.ReactNode;
 }
 
-export const HomeLayout = ({ children }: Readonly<HomeLayoutProps>) => {
+export const HomeLayout = ({ children }: Readonly<LayoutProps>) => {
   return (
     <>
       <Header />
