@@ -34,25 +34,25 @@ const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
     id: crypto.randomUUID(),
     icon: <Icon name="payouts" />,
     name: "payments",
-    path: "/",
+    path: "/dashboard/payments",
   },
   {
     id: crypto.randomUUID(),
     icon: <Icon name="profile-2user" />,
     name: "my groups",
-    path: "/",
+    path: "/dashboard/groups",
   },
   {
     id: crypto.randomUUID(),
     icon: <Icon name="global-search" />,
     name: "explore",
-    path: "/",
+    path: "/dashboard/explore",
   },
   {
     id: crypto.randomUUID(),
     icon: <Gear size="24" color="#fff" />,
     name: "settings",
-    path: "/",
+    path: "/dashboard/settings",
   },
 ];
 
@@ -129,7 +129,7 @@ export const Sidebar = () => {
             bgGradient={MAIN_GRADIENT}
             bgClip="text"
           >
-            N500,700:00
+            N500,700
           </Text>
         </Flex>
 

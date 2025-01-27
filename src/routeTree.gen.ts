@@ -14,7 +14,10 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
+import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
+import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardGroupsImport } from './routes/dashboard/groups'
+import { Route as DashboardExploreImport } from './routes/dashboard/explore'
 import { Route as AuthLoginImport } from './routes/auth/login'
 
 // Create/Update Routes
@@ -37,9 +40,27 @@ const DashboardIndexRoute = DashboardIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DashboardSettingsRoute = DashboardSettingsImport.update({
+  id: '/dashboard/settings',
+  path: '/dashboard/settings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardPaymentsRoute = DashboardPaymentsImport.update({
+  id: '/dashboard/payments',
+  path: '/dashboard/payments',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DashboardGroupsRoute = DashboardGroupsImport.update({
   id: '/dashboard/groups',
   path: '/dashboard/groups',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardExploreRoute = DashboardExploreImport.update({
+  id: '/dashboard/explore',
+  path: '/dashboard/explore',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,11 +95,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/explore': {
+      id: '/dashboard/explore'
+      path: '/dashboard/explore'
+      fullPath: '/dashboard/explore'
+      preLoaderRoute: typeof DashboardExploreImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/groups': {
       id: '/dashboard/groups'
       path: '/dashboard/groups'
       fullPath: '/dashboard/groups'
       preLoaderRoute: typeof DashboardGroupsImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/payments': {
+      id: '/dashboard/payments'
+      path: '/dashboard/payments'
+      fullPath: '/dashboard/payments'
+      preLoaderRoute: typeof DashboardPaymentsImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/dashboard/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/': {
@@ -97,7 +139,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth/login': typeof AuthLoginRoute
+  '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 
@@ -105,7 +150,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth/login': typeof AuthLoginRoute
+  '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 
@@ -114,21 +162,43 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth/login': typeof AuthLoginRoute
+  '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/auth/login' | '/dashboard/groups' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth/login'
+    | '/dashboard/explore'
+    | '/dashboard/groups'
+    | '/dashboard/payments'
+    | '/dashboard/settings'
+    | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/auth/login' | '/dashboard/groups' | '/dashboard'
+  to:
+    | '/'
+    | '/about'
+    | '/auth/login'
+    | '/dashboard/explore'
+    | '/dashboard/groups'
+    | '/dashboard/payments'
+    | '/dashboard/settings'
+    | '/dashboard'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/auth/login'
+    | '/dashboard/explore'
     | '/dashboard/groups'
+    | '/dashboard/payments'
+    | '/dashboard/settings'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -137,7 +207,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AuthLoginRoute: typeof AuthLoginRoute
+  DashboardExploreRoute: typeof DashboardExploreRoute
   DashboardGroupsRoute: typeof DashboardGroupsRoute
+  DashboardPaymentsRoute: typeof DashboardPaymentsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
@@ -145,7 +218,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AuthLoginRoute: AuthLoginRoute,
+  DashboardExploreRoute: DashboardExploreRoute,
   DashboardGroupsRoute: DashboardGroupsRoute,
+  DashboardPaymentsRoute: DashboardPaymentsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
@@ -162,7 +238,10 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/auth/login",
+        "/dashboard/explore",
         "/dashboard/groups",
+        "/dashboard/payments",
+        "/dashboard/settings",
         "/dashboard/"
       ]
     },
@@ -175,8 +254,17 @@ export const routeTree = rootRoute
     "/auth/login": {
       "filePath": "auth/login.tsx"
     },
+    "/dashboard/explore": {
+      "filePath": "dashboard/explore.tsx"
+    },
     "/dashboard/groups": {
       "filePath": "dashboard/groups.tsx"
+    },
+    "/dashboard/payments": {
+      "filePath": "dashboard/payments.tsx"
+    },
+    "/dashboard/settings": {
+      "filePath": "dashboard/settings.tsx"
     },
     "/dashboard/": {
       "filePath": "dashboard/index.tsx"
