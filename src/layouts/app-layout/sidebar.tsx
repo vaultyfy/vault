@@ -15,6 +15,7 @@ import { MAIN_GRADIENT } from "@utils/constants";
 import { Icon } from "@components/icon";
 import { Link, useLocation } from "@tanstack/react-router";
 import { FileRouteTypes } from "src/routeTree.gen";
+import { useCurrentPath } from "@hooks/current-path";
 
 export type SidenavItems = {
   id: string;
@@ -57,8 +58,7 @@ const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
 ];
 
 export const Sidebar = () => {
-  const location = useLocation();
-  const pathname = location.pathname;
+  const pathname = useCurrentPath();
 
   return (
     <Box
@@ -145,7 +145,7 @@ export const Sidebar = () => {
                     px="1.4em"
                     height="54px"
                     borderRadius="8px"
-                    gap={{"2xl": "1.4em", xl: "1em", lg: "1em"}}
+                    gap={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
                     textTransform="capitalize"
                     color="#fff"
                     background={

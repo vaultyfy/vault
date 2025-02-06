@@ -18,6 +18,7 @@ import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardGroupsImport } from './routes/dashboard/groups'
 import { Route as DashboardExploreImport } from './routes/dashboard/explore'
+import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as AuthLoginImport } from './routes/auth/login'
 
 // Create/Update Routes
@@ -64,6 +65,12 @@ const DashboardExploreRoute = DashboardExploreImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthSignupRoute = AuthSignupImport.update({
+  id: '/auth/signup',
+  path: '/auth/signup',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AuthLoginRoute = AuthLoginImport.update({
   id: '/auth/login',
   path: '/auth/login',
@@ -93,6 +100,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/login'
       fullPath: '/auth/login'
       preLoaderRoute: typeof AuthLoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/explore': {
@@ -139,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -150,6 +165,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -162,6 +178,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -175,6 +192,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth/login'
+    | '/auth/signup'
     | '/dashboard/explore'
     | '/dashboard/groups'
     | '/dashboard/payments'
@@ -185,6 +203,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth/login'
+    | '/auth/signup'
     | '/dashboard/explore'
     | '/dashboard/groups'
     | '/dashboard/payments'
@@ -195,6 +214,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth/login'
+    | '/auth/signup'
     | '/dashboard/explore'
     | '/dashboard/groups'
     | '/dashboard/payments'
@@ -207,6 +227,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AuthLoginRoute: typeof AuthLoginRoute
+  AuthSignupRoute: typeof AuthSignupRoute
   DashboardExploreRoute: typeof DashboardExploreRoute
   DashboardGroupsRoute: typeof DashboardGroupsRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
@@ -218,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AuthLoginRoute: AuthLoginRoute,
+  AuthSignupRoute: AuthSignupRoute,
   DashboardExploreRoute: DashboardExploreRoute,
   DashboardGroupsRoute: DashboardGroupsRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
@@ -238,6 +260,7 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/auth/login",
+        "/auth/signup",
         "/dashboard/explore",
         "/dashboard/groups",
         "/dashboard/payments",
@@ -253,6 +276,9 @@ export const routeTree = rootRoute
     },
     "/auth/login": {
       "filePath": "auth/login.tsx"
+    },
+    "/auth/signup": {
+      "filePath": "auth/signup.tsx"
     },
     "/dashboard/explore": {
       "filePath": "dashboard/explore.tsx"
