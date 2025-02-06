@@ -104,7 +104,7 @@ export const LoginPage = () => {
                     placeholder="Password"
                   />
 
-                  <Link href="/auth/forgot-password">
+                  <Link to="/auth/forgot-password">
                     <Text
                       float="right"
                       color="var(--grey)"
