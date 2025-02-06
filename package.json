@@ -6,17 +6,25 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "dev": "vite --port=3001",
-    "build": "vite build",
+    "build": "cross-env TSC_COMPILE_ON_ERROR=true vite build",
     "serve": "vite preview",
     "start": "vite",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepare": "husky",
+    "format": "prettier . --write && git add --all",
+    "prebuild-commit": "tsc --noEmit --incremental"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@tanstack/router-plugin": "^1.95.0",
     "@types/node": "^22.10.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",
+    "cross-env": "^7.0.3",
+    "husky": "^9.1.7",
+    "prettier": "^3.4.2",
     "sass-embedded": "^1.83.1",
     "vite": "^6.0.3",
     "vite-tsconfig-paths": "^5.1.4"
