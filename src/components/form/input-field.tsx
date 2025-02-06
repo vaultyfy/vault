@@ -19,7 +19,6 @@ interface InputProps {
   labelInfo?: string;
   labelColor?: string;
   required?: boolean;
-  username?: boolean;
   password?: boolean;
   placeholder?: string;
   size?: string;

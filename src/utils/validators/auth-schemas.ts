@@ -3,6 +3,11 @@ import * as Yup from "yup";
 export const signupSchema = Yup.object().shape({
   fullname: Yup.string().required("Name is required"),
   email: Yup.string().email("Email is invalid").required("Email is required"),
+  username: Yup.string()
+      .required("Username is required")
+      .min(6, "Username must be at least 6 characters")
+      .max(20, "Username must be less than 20 characters")
+      .matches(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
     .matches(/[a-zA-Z]/, "Password must contain at least one letter")

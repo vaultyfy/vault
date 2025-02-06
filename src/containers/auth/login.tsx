@@ -14,7 +14,7 @@ import { MetaData } from "@components/metadata";
 import { cookieOptions, HEADER_API_KEY } from "@utils/constants";
 import { useToastContext } from "@hooks/context";
 import { setCookie } from "cookies-next";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { auth } from "@utils/endpoints";
 
 export const LoginPage = () => {

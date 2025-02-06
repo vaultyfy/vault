@@ -4,15 +4,11 @@ import {InputField} from "@components/form";
 import {Form, Formik} from "formik";
 import {schema} from "@utils/validators";
 
+
 export default function Signup() {
 
-    const handleSubmit = (values: { email: string; username: string; password: string; }) => {
-        // Handle form submission
-        console.log(values);
-    };
 
     return (
-        <>
             <Center>
                 <Formik
                     initialValues={{
@@ -21,7 +17,9 @@ export default function Signup() {
                         password: "",
                     }}
                     validationSchema={schema.signUp}
-                    onSubmit={handleSubmit}
+                    onSubmit={(values) => {
+                        console.log(values);
+                    }}
                 >
                     {(formik) => (
                         <Form>
@@ -51,12 +49,8 @@ export default function Signup() {
                                         f
                                     </Stack>
                                     <InputField type="email" name="email" placeholder="Email" />
-                                    <InputField
-                                        username
-                                        type="username"
-                                        name="username"
-                                        placeholder="Username"
-                                    />
+                                    <InputField type="username" name="username" placeholder="Username"/>
+
                                     <InputField
                                         password
                                         type="password"
@@ -108,6 +102,5 @@ export default function Signup() {
                     )}
                 </Formik>
             </Center>
-        </>
     );
 };
