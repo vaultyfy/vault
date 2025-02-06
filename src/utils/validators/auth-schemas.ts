@@ -19,8 +19,6 @@ export const signupSchema = Yup.object().shape({
     .matches(/[a-z]/, "Password must contain at least one lowercase letter")
     .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
     .required("Password is required"),
-  passcode: Yup.string().max(8, "Passcode must not excced 8 digits"),
-  phoneNumber: Yup.number().required("Phone number is required"),
 });
 
 export const signInSchema = Yup.object().shape({
