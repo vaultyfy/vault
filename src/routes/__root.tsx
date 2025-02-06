@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import { ToastProvider } from "@context/toast-provider";
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
@@ -17,7 +18,9 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <Outlet />
+      <ToastProvider>
+        <Outlet />
+      </ToastProvider>
       <React.Suspense>
         <TanStackRouterDevtools position="bottom-right" />
       </React.Suspense>

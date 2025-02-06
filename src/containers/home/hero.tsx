@@ -2,8 +2,6 @@ import { Box, Button, ButtonGroup, Flex, Image, Text } from "@chakra-ui/react";
 import { PrimaryButton, SectionContainer } from "@components/ui";
 import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { useDomContentLoaded } from "@hooks/dom-content-loaded";
-import { ArrowRight } from "@phosphor-icons/react";
-import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { People } from "./people";
 

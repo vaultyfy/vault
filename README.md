@@ -1,4 +1,4 @@
-## Vultifier
+## Vaultyfy
 
 ![hero](/vultifier.png)
 
@@ -113,3 +113,4 @@ export const checkout = async (params: CheckoutParams) => {
 export * from "./endpoints";
 export * from "./cookie";
 ```
+donut-progress
