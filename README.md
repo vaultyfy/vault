@@ -64,16 +64,19 @@ This section contains how we structure the movement of files around in the codeb
 
 ```ts
 export const auth = {
-  signup: `${BASE_URL}/accounts/register/`,
-  login: `${BASE_URL}/accounts/login/`,
-  logout: `${BASE_URL}/accounts/logout/`,
-  refresh: `${BASE_URL}/accounts/refresh/`,
-  user: {
-    address: `${BASE_URL}/accounts/address/`,
+  customer: {
+    profile: `${BASE_URL}/customer/auth/profile`,
+    addDeviceToken: `${BASE_URL}/customer/auth/add-deviceToken`,
+    signup: `${BASE_URL}/customer/auth/signup-customer`,
+    verifyOtp: `${BASE_URL}/customer/auth/verify-otp`,
+    resendOtp: `${BASE_URL}/customer/auth/resend-otp`,
+    forgotPassword: `${BASE_URL}/customer/auth/forgot-password`,
+    verifyResetPasswordOtp: `${BASE_URL}/customer/auth/verify-reset-password-otp`,
+    resetPassword: `${BASE_URL}/customer/auth/reset-password`,
+    login: `${BASE_URL}/customer/auth/login`
   },
-  reset_password: `${BASE_URL}/password_reset/`,
-  reset_pwd_confirm: `${BASE_URL}/password_reset/confirm/`,
-} as const;
+  ...
+} as const
 ```
 
 So, an example request becomes something like so:

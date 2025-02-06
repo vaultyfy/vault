@@ -23,7 +23,7 @@ export const LoginPage = () => {
   return (
     <>
       <MetaData
-        pageTitle="Sign In &mdash; Livenormad"
+        pageTitle="Sign In &mdash; Vaultyfy"
         url="livenormad.com"
         previewImage="/img/preview.png"
         description="Over 3000+ unique pieces of home decor from around the globe"
@@ -39,7 +39,7 @@ export const LoginPage = () => {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(async () => {
               try {
-                const response = await fetch(auth.customer.login, {
+                const response = await fetch(`https://vaultyfy-backend.onrender.com/api/v1/vultyfy/v1/customer/auth/login`, {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json",
@@ -104,7 +104,7 @@ export const LoginPage = () => {
                     placeholder="Password"
                   />
 
-                  <Link href="/auth/forgot-password">
+                  <Link to="/auth/forgot-password">
                     <Text
                       float="right"
                       color="var(--grey)"
