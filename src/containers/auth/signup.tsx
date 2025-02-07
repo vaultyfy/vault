@@ -11,6 +11,7 @@ export default function Signup() {
     const {openToast} = useToastContext();
 
 
+
     return (
         <Center>
             <Formik
@@ -22,14 +23,14 @@ export default function Signup() {
                 validationSchema={schema.signUp}
                 onSubmit={async (values, {setSubmitting}) => {
                     try {
-
+                          const { username, ...requestBody } = values;
                         const response = await fetch(`https://vaultyfy-backend.onrender.com/api/v1/vultyfy/v1/customer/auth/signup-customer`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
                                 ...HEADER_API_KEY,
                             },
-                            body: JSON.stringify(values),
+                            body: JSON.stringify(requestBody),
                         });
 
                         const data = await response.json();
