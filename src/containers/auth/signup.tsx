@@ -21,9 +21,7 @@ export default function Signup() {
                 }}
                 validationSchema={schema.signUp}
                 onSubmit={async (values, {setSubmitting}) => {
-                    console.log(values, "Submitting signup data");
                     try {
-                        console.log(values, "Submitting signup data");
 
                         const response = await fetch(`https://vaultyfy-backend.onrender.com/api/v1/vultyfy/v1/customer/auth/signup-customer`, {
                             method: "POST",
@@ -33,11 +31,8 @@ export default function Signup() {
                             },
                             body: JSON.stringify(values),
                         });
-                        console.log(response,"response");
 
                         const data = await response.json();
-                        console.log(data,"response data");
-
                         if (response.ok) {
                             setCookie("tees", JSON.stringify(data), {
                                 ...cookieOptions,
