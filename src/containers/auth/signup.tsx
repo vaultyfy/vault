@@ -21,6 +21,7 @@ export default function Signup() {
                 }}
                 validationSchema={schema.signUp}
                 onSubmit={async (values, {setSubmitting}) => {
+                    console.log(values, "Submitting signup data");
                     try {
                         console.log(values, "Submitting signup data");
 
@@ -32,8 +33,10 @@ export default function Signup() {
                             },
                             body: JSON.stringify(values),
                         });
+                        console.log(response,"response");
 
                         const data = await response.json();
+                        console.log(data,"response data");
 
                         if (response.ok) {
                             setCookie("tees", JSON.stringify(data), {
