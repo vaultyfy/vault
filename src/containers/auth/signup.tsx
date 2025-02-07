@@ -3,9 +3,9 @@ import {Link} from "@tanstack/react-router";
 import {InputField} from "@components/form";
 import {Form, Formik} from "formik";
 import {schema} from "@utils/validators";
-import {HEADER_API_KEY} from "@utils/constants";
+import {cookieOptions, HEADER_API_KEY} from "@utils/constants";
 import {useToastContext} from "@hooks/context";
-
+import {setCookie} from "cookies-next";
 
 export default function Signup() {
     const {openToast} = useToastContext();
@@ -21,8 +21,9 @@ export default function Signup() {
                 }}
                 validationSchema={schema.signUp}
                 onSubmit={async (values, {setSubmitting}) => {
-                    console.log("Submitting form with values:", values);
                     try {
+                        console.log(values, "Submitting signup data");
+
                         const response = await fetch(`https://vaultyfy-backend.onrender.com/api/v1/vultyfy/v1/customer/auth/signup-customer`, {
                             method: "POST",
                             headers: {
@@ -35,15 +36,19 @@ export default function Signup() {
                         const data = await response.json();
 
                         if (response.ok) {
-                            openToast("Account created successfully!", "success");
+                            setCookie("tees", JSON.stringify(data), {
+                                ...cookieOptions,
+                            });
+                            openToast("Signup successful!", "success");
                         } else {
                             openToast(data.non_field_errors || "Signup failed", "error");
                         }
                     } catch (error) {
                         console.error("Signup error:", error);
                         openToast("An error occurred. Please try again.", "error");
+                    } finally {
+                        setSubmitting(false);
                     }
-                    setSubmitting(false);
                 }}
             >
                 {(formik) => (
