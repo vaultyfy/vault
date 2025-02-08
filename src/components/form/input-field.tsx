@@ -55,7 +55,7 @@ export const InputField = ({
     background: "#fff",
     height: height || "55px",
     borderRadius: inputBorderRadius,
-    border: "1px solid var(--grey)",
+    // border: "1px solid var(--grey)",
     transition: "border-color 0.2s ease",
   };
 

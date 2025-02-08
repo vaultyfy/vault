@@ -11,3 +11,6 @@ export const cookieOptions = {
   sameSite: "strict",
   secure: process.env.NODE_ENV === "production",
 } as Partial<OptionsType>;
+
+
+export const TOKEN_KEY = "t";
