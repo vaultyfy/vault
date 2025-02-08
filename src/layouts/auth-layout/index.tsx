@@ -87,7 +87,18 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
                     bgPosition={index !== 0 ? "center" : ""}
                     position="absolute"
                     left={index === 0 ? "-120px" : ""}
-                    bottom={index === 0 ? "-150px" : ""}
+                    bottom={
+                      index === 0
+                        ? {
+                            "2xl": "-150px",
+                            xl: "-200px",
+                            lg: "-80px",
+                            md: "-80px",
+                            sm: "-50px",
+                            base: "-80px",
+                          }
+                        : ""
+                    }
                   />
 
                   <Box
@@ -99,9 +110,21 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
                     justifyContent="center"
                     flexFlow="column"
                     gap=".8em"
-                    top="10%"
+                    top={{
+                      "2xl": "10%",
+                      xl: "10%",
+                      lg: "4%",
+                      md: "6%",
+                      base: "4%",
+                    }}
                     textAlign="center"
-                    maxWidth="400px"
+                    width={{
+                      "2xl": "400px",
+                      xl: "70%",
+                      lg: "80%",
+                      md: "80%",
+                      base: "80%",
+                    }}
                   >
                     <Text
                       fontSize={{ lg: "34px", md: "28px", base: "24px" }}

@@ -11,11 +11,12 @@ import { Formik, Form } from "formik";
 import { schema } from "@utils/validators";
 import { InputField } from "@components/form";
 import { MetaData } from "@components/metadata";
-import { cookieOptions, HEADER_API_KEY } from "@utils/constants";
+import { cookieOptions, HEADER_API_KEY, TOKEN_KEY } from "@utils/constants";
 import { useToastContext } from "@hooks/context";
 import { setCookie } from "cookies-next";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { auth } from "@utils/endpoints";
+import { LoginResponse, Response } from "@utils/types";
 
 export const LoginPage = () => {
   const { openToast } = useToastContext();
@@ -39,11 +40,10 @@ export const LoginPage = () => {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(async () => {
               try {
-                const response = await fetch(`https://vaultyfy-backend.onrender.com/api/v1/vultyfy/v1/customer/auth/login`, {
+                const request = await fetch(auth.customer.login, {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json",
-                    ...HEADER_API_KEY,
                   },
                   body: JSON.stringify({
                     email: values.email,
@@ -51,14 +51,19 @@ export const LoginPage = () => {
                   }),
                 });
 
-                const data = await response.json();
+                const response: Response<LoginResponse> = await request.json();
 
-                if (response.ok && data) {
-                  setCookie("tees", JSON.stringify(data), {
-                    ...cookieOptions,
-                  });
+                if (request.ok && response) {
+                  setCookie(
+                    TOKEN_KEY,
+                    JSON.stringify(response.payload?.token),
+                    {
+                      ...cookieOptions,
+                    },
+                  );
+                  openToast(response.message, "success");
                 } else {
-                  openToast(data.non_field_errors || "Login failed", "error");
+                  openToast(response.message || "Login failed", "error");
                 }
               } catch (error) {
                 console.error("Login error:", error);

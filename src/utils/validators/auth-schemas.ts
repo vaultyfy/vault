@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const signupSchema = Yup.object().shape({
-  fullname: Yup.string().required("Name is required"),
+  fullname: Yup.string().required("Name cannot be blank"),
   email: Yup.string().email("Email is invalid").required("Email is required"),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
@@ -15,6 +15,8 @@ export const signupSchema = Yup.object().shape({
     .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
     .required("Password is required"),
 });
+
+export type SignupFormValues = Yup.InferType<typeof signupSchema>;
 
 export const signInSchema = Yup.object().shape({
   email: Yup.string().email("Email is invalid").required("Email is required"),
