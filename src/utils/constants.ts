@@ -14,3 +14,12 @@ export const cookieOptions = {
 
 
 export const TOKEN_KEY = "t";
+
+export type State =
+  | "idle"
+  | "loading"
+  | "resendingOtp"
+  | "verifyingOtp"
+  | "error"
+  | "success"
+  | "deleting"

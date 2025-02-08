@@ -1,10 +1,9 @@
 export type Response<T = any> = {
-  success: boolean,
-  payload: T | null,
-  message: string
-  status: number
-}
-
+  success: boolean;
+  payload: T | null;
+  message: string;
+  status: number;
+};
 
 export type LoginResponse = {
   token: string;
@@ -12,6 +11,10 @@ export type LoginResponse = {
   KycAction: any | null;
   Kycpercentage: string;
 };
+
+export interface SignupResponse extends Omit<Response, "payload"> {
+  payload: User;
+}
 
 export type User = {
   id: number;
