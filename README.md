@@ -116,36 +116,3 @@ export const checkout = async (params: CheckoutParams) => {
 export * from "./endpoints";
 export * from "./cookie";
 ```
-
-// later stuff
-{
-  "success": true,
-  "message": "customer registered successfully,please check email provided for the otpCode",
-  "payload": {
-    "id": 2,
-    "name": "Dodo Boy",
-    "deviceToken": "",
-    "address": "",
-    "phoneNumber": "",
-    "altrnatePhoneNumber": "",
-    "email": "belac335@gmail.com",
-    "password": "$2b$12$obw8Hejvys1qpJATWF2T6u.dmxaBosEk.pwA6tKQbt8bg9IpXmqp2",
-    "profilePicture": "",
-    "resetPasswordToken": "",
-    "resetPasswordTokenExpTime": null,
-    "createdAT": "2025-02-06T21:33:16.190Z",
-    "updatedAT": null,
-    "customerID": "VTFC3YEZ51",
-    "isVerified": false,
-    "role": "Customer",
-    "KycAction": null,
-    "Kycpercentage": "0.00",
-    "kycStatus": {},
-    "my_transactions": [],
-    "participations": [],
-    "created_groups": [],
-    "contributions": []
-  },
-  "status": 200
-}
-donut-progress
