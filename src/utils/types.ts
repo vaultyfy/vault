@@ -15,6 +15,14 @@ export type LoginResponse = {
 export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
+export type ForgotPasswordResponse = {
+  success: boolean;
+  message: string;
+  status: number;
+  token: string;
+  user: User;
+};
+
 
 export type User = {
   id: number;

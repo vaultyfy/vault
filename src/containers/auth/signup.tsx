@@ -69,7 +69,6 @@ export default function Signup() {
                 openToast("Signup failed", "error");
               }
             } catch (error) {
-              console.error("Signup error:", error);
               openToast("An error occurred. Please try again.", "error");
             } finally {
               setSubmitting(false);
