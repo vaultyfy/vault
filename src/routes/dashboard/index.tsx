@@ -18,6 +18,8 @@ function RouteComponent() {
       <AppLayout>
         <Dashboard />
       </AppLayout>
+
+      {/* <Dashboard /> */}
     </>
   );
 }

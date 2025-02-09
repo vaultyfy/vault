@@ -16,6 +16,7 @@ import { Icon } from "@components/icon";
 import { Link, useLocation } from "@tanstack/react-router";
 import { FileRouteTypes } from "src/routeTree.gen";
 import { useCurrentPath } from "@hooks/current-path";
+import { DonutProgress } from "@components/ui";
 
 export type SidenavItems = {
   id: string;
@@ -65,6 +66,10 @@ export const Sidebar = () => {
       height="100vh"
       background="var(--main)"
       width={{ "2xl": "13%", xl: "13%", lg: "20%" }}
+      display={{ base: "none", lg: "block" }}
+      // position={"sticky"}
+      // top="0"
+      // overflow={"auto"}
     >
       <Center mt="1em">
         <Image src="/img/logo-light.svg" />
@@ -72,7 +77,14 @@ export const Sidebar = () => {
 
       <Center flexFlow="column" my="1.2em" gap=".6em">
         <Flex flexFlow="column">
-          <Image src="/img/sample-avatar.svg" />
+          {/* <Image src="/img/sample-avatar.svg" /> */}
+          <DonutProgress
+            percentage={100}
+            avatarSrc="/img/user-default-avatar.svg"
+            thickness="3px"
+            size="150px"
+            avatarSize="79px"
+          />
           <Text
             textAlign="center"
             fontSize="16px"
