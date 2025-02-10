@@ -6,9 +6,7 @@ import {schema} from "@utils/validators";
 import {Link} from "@tanstack/react-router";
 import {InputField} from "@components/form";
 import {auth} from "@utils/endpoints";
-import {ForgotPasswordResponse, Response} from "@utils/types";
-import {setCookie} from "cookies-next";
-import {cookieOptions, TOKEN_KEY} from "@utils/constants";
+import {Response} from "@utils/types";
 import {useToastContext} from "@hooks/context";
 
 export default function ForgotPassword(){
@@ -17,10 +15,9 @@ export default function ForgotPassword(){
     return(
         <>
             <MetaData
-                pageTitle="Sign Up &mdash; Vaultyfy"
-                url="livenormad.com"
-                previewImage="/img/preview.png"
-                description="Over 3000+ unique pieces of home decor from around the globe"
+                pageTitle="Forgot Password &mdash; Vaultyfy"
+                url="vultifier.vercel.app"
+                previewImage=""
             />
 
             <Center>
@@ -31,29 +28,16 @@ export default function ForgotPassword(){
                     validationSchema={schema.forgotPassword}
                     onSubmit={async (values, { setSubmitting }) => {
                         try {
-                            console.log(values, "hello me");
-
                             const request = await fetch(auth.customer.forgotPassword, {
                                 method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
+                                headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ email: values.email }),
                             });
-
-                            const response: Response<ForgotPasswordResponse> = await request.json();
-
-                            if (request.ok && response) {
-                                if (response.payload?.token) {
-                                    setCookie(TOKEN_KEY, JSON.stringify(response.payload.token), {
-                                        ...cookieOptions,
-                                    });
-                                }
-
-                                openToast(response.message || "Check your email for reset link", "success");
-                            } else {
-                                openToast(response.message || "Forgot Password failed", "error");
-                            }
+                            const response: Response = await request.json();
+                            openToast(
+                                response.message || "Check your email for reset link",
+                                request.ok ? "success" : "error"
+                            );
                         } catch (error) {
                             openToast("An error occurred. Please try again.", "error");
                         }
