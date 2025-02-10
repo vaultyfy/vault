@@ -4,7 +4,7 @@ import { Sidebar } from "./sidebar";
 
 export const AppLayout = ({ children }: Readonly<LayoutProps>) => {
   return (
-    <Flex minH="100dvh" border="3px solid red">
+    <Flex minH="100dvh">
       <Sidebar />
 
       <Box width="100%">{children}</Box>
