@@ -14,20 +14,20 @@ import { MetaData } from "@components/metadata";
 import { cookieOptions, TOKEN_KEY } from "@utils/constants";
 import { useToastContext } from "@hooks/context";
 import { setCookie } from "cookies-next";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { auth } from "@utils/endpoints";
 import { LoginResponse, Response } from "@utils/types";
 
 export const LoginPage = () => {
   const { openToast } = useToastContext();
+  const navigate = useNavigate();
 
   return (
     <>
       <MetaData
         pageTitle="Sign In &mdash; Vaultyfy"
-        url="livenormad.com"
         previewImage="/img/preview.png"
-        description="Over 3000+ unique pieces of home decor from around the globe"
+        url="vultifier.vercel.app"
       />
 
       <Center>
@@ -53,7 +53,7 @@ export const LoginPage = () => {
 
                 const response: Response<LoginResponse> = await request.json();
 
-                if (request.ok && response) {
+                if (request.ok) {
                   setCookie(
                     TOKEN_KEY,
                     JSON.stringify(response.payload?.token),
@@ -62,6 +62,7 @@ export const LoginPage = () => {
                     },
                   );
                   openToast(response.message, "success");
+                  navigate({ to: "/dashboard" });
                 } else {
                   openToast(response.message || "Login failed", "error");
                 }
