@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import ForgotPassword from "@containers/auth/forgot-password";
-import { Box, Center} from "@chakra-ui/react";
+import {AuthLayout} from "@layouts/auth-layout";
 
 export const Route = createFileRoute("/auth/forgot-password")({
   component: RouteComponent,
@@ -8,10 +8,8 @@ export const Route = createFileRoute("/auth/forgot-password")({
 
 function RouteComponent() {
   return (
-      <Box height="100vh" display="flex" justifyContent="center">
-          <Center>
-              <ForgotPassword />
-          </Center>
-      </Box>
+      <AuthLayout>
+          <ForgotPassword />
+      </AuthLayout>
   );
 }
