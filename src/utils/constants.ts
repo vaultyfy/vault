@@ -11,3 +11,15 @@ export const cookieOptions = {
   sameSite: "strict",
   secure: process.env.NODE_ENV === "production",
 } as Partial<OptionsType>;
+
+
+export const TOKEN_KEY = "t";
+
+export type State =
+  | "idle"
+  | "loading"
+  | "resendingOtp"
+  | "verifyingOtp"
+  | "error"
+  | "success"
+  | "deleting"

@@ -58,7 +58,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
               ) : status === "info" ? (
                 <Info size="20" color="var(--primary-600)" />
               ) : (
-                <CheckCircle size="20" color="var(--success-600)" />
+                <CheckCircle size="20" color="var(--success-700)" />
               )}
               <Text
                 my="auto"
@@ -93,7 +93,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
             </Flex>
           </Box>
         ),
-        duration: 10000,
+        duration: 3000,
         isClosable: true,
         position: "top-right",
       });

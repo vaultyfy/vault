@@ -12,17 +12,15 @@ export interface TextProps extends ChakraProps {
 
 export const HeaderText = ({ family, value, align }: TextProps) => {
   return (
-    <Text
-      fontWeight="600"
-      fontSize="21px"
-      lineHeight="30px"
-      fontFamily={family}
-      textAlign={align || "center"}
-    >
+    <Text fontSize="34px" fontFamily="var(--clash-grotesk-600)">
       {value}
     </Text>
   );
 };
+
+<Text fontSize="34px" fontFamily="var(--clash-grotesk-600)">
+  Create account
+</Text>;
 
 export const ParagraphText = ({
   weight,
@@ -39,15 +37,11 @@ export const ParagraphText = ({
       fontSize="14px"
       lineHeight="20px"
       textAlign={align || "left"}
-      color={color || "var(--neutral)"}
+      color={color || "var(--input-placeholder)"}
       {...props}
     >
       {value}{" "}
-      <Box
-        color={spanColor || "var(--neutral)"}
-        as="span"
-        fontWeight={weight || "700"}
-      >
+      <Box color={spanColor || "#000"} as="span" fontWeight="700">
         {spanText}
       </Box>
     </Text>
