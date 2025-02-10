@@ -3,6 +3,7 @@ export type Response<T = any> = {
   payload: T | null;
   message: string;
   status: number;
+  errors?: string[] | string
 };
 
 export type LoginResponse = {
