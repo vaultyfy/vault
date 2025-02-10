@@ -8,7 +8,7 @@ export const Route = createFileRoute("/auth/forgot-password")({
 
 function RouteComponent() {
   return (
-      <AuthLayout>
+      <AuthLayout currentRoute="/auth/forgot-password">
           <ForgotPassword />
       </AuthLayout>
   );

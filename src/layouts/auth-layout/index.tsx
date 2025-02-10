@@ -1,10 +1,11 @@
 import {Box, Flex, Text} from "@chakra-ui/react";
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import {useLocation} from "@tanstack/react-router";
+import {FileRouteTypes} from "../../routeTree.gen";
 
 interface AuthLayoutProps {
     children: React.ReactNode;
+    currentRoute?: FileRouteTypes["fullPaths"];
 }
 
 interface CarouselSlide {
@@ -34,11 +35,11 @@ const slides: CarouselSlide[] = [
     },
 ];
 
-export const AuthLayout = ({children}: AuthLayoutProps) => {
+export const AuthLayout = ({ children,currentRoute }: AuthLayoutProps) => {
     const [emblaRef, emblaApi] = useEmblaCarousel({loop: true});
     const [selectedIndex, setSelectedIndex] = React.useState(0);
-    const location = useLocation();
-    const isForgotPassword = location.pathname === "/auth/forgot-password";
+    const isForgotPassword = currentRoute === "/auth/forgot-password";
+
 
     const onSelect = React.useCallback(() => {
         if (!emblaApi) return;
