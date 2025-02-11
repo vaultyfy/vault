@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import { Link } from "@tanstack/react-router";
 import { InputField } from "@components/form";
 import { Form, Formik } from "formik";
@@ -87,9 +80,9 @@ export default function Signup() {
                     />
                   </Link>
 
-                  <Box width="380px">
+                  <Box width={{ lg: "380px", md: "100%", base: "100%" }}>
                     <Stack direction="column" gap="0">
-                      <HeaderText value="Create and account" />
+                      <HeaderText value="Create account" />
                       <Text
                         fontSize="16px"
                         color="var(--dark)"
