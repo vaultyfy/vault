@@ -7,18 +7,23 @@ import {
   Button,
   Text,
 } from "@chakra-ui/react";
+import { useAuthContext } from "@hooks/context";
+import { useMobileScreens } from "@hooks/mobile-screen";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, UserRound } from "lucide-react";
 
 export const UserMenu = () => {
+  const { isSmallViewPort } = useMobileScreens();
+  const { user } = useAuthContext();
+
   return (
     <Menu autoSelect={false}>
       <MenuButton
         rightIcon={<ChevronDown color="var(--text-1)" />}
-        width="96px"
+        width={{ lg: "96px", md: "90px", base: "84px" }}
         borderRadius="36px"
         as={Button}
-        height="51px"
+        height={{ lg: "51px", base: "40px", md: "46px" }}
         border="1px solid var(--fade-border)"
         background="var(--white-fade)"
         _hover={{
@@ -30,10 +35,10 @@ export const UserMenu = () => {
       >
         <Avatar
           ml="-.4rem"
-          boxSize="35px"
+          boxSize={{ lg: "35px", md: "30px", base: "28px" }}
           bg="var(--main)"
           border="2px solid var(--primary)"
-          icon={<UserRound />}
+          icon={<UserRound size={isSmallViewPort ? "20px" : ""} />}
         />
       </MenuButton>
 
@@ -44,7 +49,7 @@ export const UserMenu = () => {
         flexFlow="column"
         gap=".6rem"
       >
-        <Link to="/auth/login">
+        <Link to={isSmallViewPort ? "/auth" : "/auth/login"}>
           <MenuItem
             as={Button}
             background="var(--main)"
@@ -62,23 +67,24 @@ export const UserMenu = () => {
           </MenuItem>
         </Link>
 
-        {/* this shouldn't be visible when user is not auth'd  */}
-        <Link to="/dashboard">
-          <MenuItem
-            as={Button}
-            background="#fff"
-            borderRadius="30px"
-            height="26px"
-            textTransform="capitalize"
-            _hover={{
-              background: "#fff",
-            }}
-            fontWeight="normal"
-            fontSize="12px"
-          >
-            <Text className="main-accent">dashboard</Text>
-          </MenuItem>
-        </Link>
+        {user && (
+          <Link to="/dashboard">
+            <MenuItem
+              as={Button}
+              background="#fff"
+              borderRadius="30px"
+              height="26px"
+              textTransform="capitalize"
+              _hover={{
+                background: "#fff",
+              }}
+              fontWeight="normal"
+              fontSize="12px"
+            >
+              <Text className="main-accent">dashboard</Text>
+            </MenuItem>
+          </Link>
+        )}
       </MenuList>
     </Menu>
   );

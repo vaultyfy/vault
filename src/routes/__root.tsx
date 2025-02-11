@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { ToastProvider } from "@context/toast-provider";
+import { AuthProvider } from "@context/auth-provider";
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
@@ -19,7 +20,9 @@ function RootComponent() {
   return (
     <>
       <ToastProvider>
-        <Outlet />
+        <AuthProvider>
+          <Outlet />
+        </AuthProvider>
       </ToastProvider>
       <React.Suspense>
         <TanStackRouterDevtools position="bottom-right" />
