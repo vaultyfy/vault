@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
+import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardGroupsImport } from './routes/dashboard/groups'
@@ -39,6 +40,12 @@ const IndexRoute = IndexImport.update({
 const DashboardIndexRoute = DashboardIndexImport.update({
   id: '/dashboard/',
   path: '/dashboard/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthIndexRoute = AuthIndexImport.update({
+  id: '/auth/',
+  path: '/auth/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -151,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsImport
       parentRoute: typeof rootRoute
     }
+    '/auth/': {
+      id: '/auth/'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/': {
       id: '/dashboard/'
       path: '/dashboard'
@@ -173,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 
@@ -186,6 +201,7 @@ export interface FileRoutesByTo {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 
@@ -200,6 +216,7 @@ export interface FileRoutesById {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/auth/': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 
@@ -215,6 +232,7 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
+    | '/auth'
     | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -227,6 +245,7 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
+    | '/auth'
     | '/dashboard'
   id:
     | '__root__'
@@ -239,6 +258,7 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
+    | '/auth/'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -253,6 +273,7 @@ export interface RootRouteChildren {
   DashboardGroupsRoute: typeof DashboardGroupsRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
+  AuthIndexRoute: typeof AuthIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
@@ -266,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardGroupsRoute: DashboardGroupsRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
+  AuthIndexRoute: AuthIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
@@ -288,6 +310,7 @@ export const routeTree = rootRoute
         "/dashboard/groups",
         "/dashboard/payments",
         "/dashboard/settings",
+        "/auth/",
         "/dashboard/"
       ]
     },
@@ -317,6 +340,9 @@ export const routeTree = rootRoute
     },
     "/dashboard/settings": {
       "filePath": "dashboard/settings.tsx"
+    },
+    "/auth/": {
+      "filePath": "auth/index.tsx"
     },
     "/dashboard/": {
       "filePath": "dashboard/index.tsx"

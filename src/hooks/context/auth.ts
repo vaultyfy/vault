@@ -1,14 +1,14 @@
 import React from "react";
-import { ToastContextValues, ToastContext } from "@context/toast-provider";
+import { AuthContextValues, AuthContext } from "@context/auth-provider";
 
-export const useToastContext = () => {
-  const context = React.useContext(ToastContext);
+export const useAuthContext = () => {
+  const context = React.useContext(AuthContext);
 
   if (context === null) {
     throw new Error(
-      "Toast context is missing. You probably forgot to wrap the component depending on toast in <ToastProvider />"
+      "Auth context is missing. You probably forgot to wrap the component depending on toast in <AuthProvider />",
     );
   }
 
-  return context as ToastContextValues;
+  return context as AuthContextValues;
 };
