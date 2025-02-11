@@ -46,10 +46,8 @@ export const OTPScreen = () => {
     }
   };
 
-  const onPinChange = (index: number, value: string) => {
-    const newPin = [...pin];
-    newPin[index] = value;
-    setPin(newPin);
+  const onPinChange = (value: string) => {
+    setPin(value.split(""));
   };
 
   const verifyEmail = async () => {
@@ -81,21 +79,12 @@ export const OTPScreen = () => {
     if (isPinComplete) verifyEmail();
   }, [pin]);
 
-  const pinFields = pin.map((_, index) => (
-    <PinInputField
-      key={index}
-      height="60px"
-      width="50px"
-      borderRadius="4px"
-      border="1px solid var(--input-outline)"
-      opacity={state === "verifyingOtp" ? 0.5 : 1}
-      background="#fff"
-      _hover={{ border: "2px solid var(--primary)", cursor: "pointer" }}
-      _focusVisible={{ border: "1px solid var(--primary)" }}
-      onChange={(e) => onPinChange(index, e.target.value)}
-      disabled={state === "verifyingOtp"}
-    />
-  ));
+  const handlePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const pastedText = e.clipboardData.getData("text");
+    const pastedValue = pastedText.slice(0, 6);
+    setPin(pastedValue.split(""));
+  };
 
   return (
     <Box
@@ -117,9 +106,28 @@ export const OTPScreen = () => {
       </Text>
 
       <Box my="1em">
-        <HStack spacing={4} justifyContent="center">
-          <PinInput otp placeholder="" isDisabled={state === "verifyingOtp"}>
-            {pinFields}
+        <HStack spacing={4} justifyContent="center" onPaste={handlePaste}>
+          <PinInput
+            otp
+            placeholder=""
+            isDisabled={state === "verifyingOtp"}
+            value={pin.join("")}
+            onChange={onPinChange}
+          >
+            {Array(6).fill("").map((_, index) => (
+              <PinInputField
+                key={index}
+                height="60px"
+                width="50px"
+                borderRadius="4px"
+                border="1px solid var(--input-outline)"
+                opacity={state === "verifyingOtp" ? 0.5 : 1}
+                background="#fff"
+                _hover={{ border: "2px solid var(--primary)", cursor: "pointer" }}
+                _focusVisible={{ border: "1px solid var(--primary)" }}
+                disabled={state === "verifyingOtp"}
+              />
+            ))}
           </PinInput>
         </HStack>
 
