@@ -39,6 +39,10 @@ export const AuthLayout = ({ children,currentRoute }: AuthLayoutProps) => {
     const [emblaRef, emblaApi] = useEmblaCarousel({loop: true});
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     const isForgotPassword = currentRoute === "/auth/forgot-password";
+    const isOTPPage = currentRoute === "/auth/otp";
+    const hasSentResetLink = typeof window !== "undefined" && localStorage.getItem("resetLinkSent") === "true";
+
+
 
 
     const onSelect = React.useCallback(() => {
@@ -62,7 +66,7 @@ export const AuthLayout = ({ children,currentRoute }: AuthLayoutProps) => {
 
     return (
         <Flex px="1em" py=".6em">
-            {!isForgotPassword && (
+            {!isForgotPassword && (!isOTPPage || !hasSentResetLink) ? (
                 <Box
                     height="98vh"
                     width={{lg: "60%", md: "100%", base: "100%"}}
@@ -176,10 +180,10 @@ export const AuthLayout = ({ children,currentRoute }: AuthLayoutProps) => {
                         ))}
                     </Flex>
                 </Box>
-            )}
+            ): null}
 
             <Box
-                width={{lg: isForgotPassword ? "100%" : "60%", md: "100%", base: "100%"}}
+                width={{lg: hasSentResetLink ? "100%" : "60%", md: "100%", base: "100%"}}
                 height="100vh"
                 display="flex"
                 justifyContent="center"

@@ -19,6 +19,7 @@ import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardGroupsImport } from './routes/dashboard/groups'
 import { Route as DashboardExploreImport } from './routes/dashboard/explore'
 import { Route as AuthSignupImport } from './routes/auth/signup'
+import { Route as AuthOtpImport } from './routes/auth/otp'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
 
@@ -72,6 +73,12 @@ const AuthSignupRoute = AuthSignupImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthOtpRoute = AuthOtpImport.update({
+  id: '/auth/otp',
+  path: '/auth/otp',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AuthLoginRoute = AuthLoginImport.update({
   id: '/auth/login',
   path: '/auth/login',
@@ -114,6 +121,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/login'
       fullPath: '/auth/login'
       preLoaderRoute: typeof AuthLoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/otp': {
+      id: '/auth/otp'
+      path: '/auth/otp'
+      fullPath: '/auth/otp'
+      preLoaderRoute: typeof AuthOtpImport
       parentRoute: typeof rootRoute
     }
     '/auth/signup': {
@@ -168,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
@@ -181,6 +196,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
@@ -195,6 +211,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/explore': typeof DashboardExploreRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
@@ -210,6 +227,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth/forgot-password'
     | '/auth/login'
+    | '/auth/otp'
     | '/auth/signup'
     | '/dashboard/explore'
     | '/dashboard/groups'
@@ -222,6 +240,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth/forgot-password'
     | '/auth/login'
+    | '/auth/otp'
     | '/auth/signup'
     | '/dashboard/explore'
     | '/dashboard/groups'
@@ -234,6 +253,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth/forgot-password'
     | '/auth/login'
+    | '/auth/otp'
     | '/auth/signup'
     | '/dashboard/explore'
     | '/dashboard/groups'
@@ -248,6 +268,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthLoginRoute: typeof AuthLoginRoute
+  AuthOtpRoute: typeof AuthOtpRoute
   AuthSignupRoute: typeof AuthSignupRoute
   DashboardExploreRoute: typeof DashboardExploreRoute
   DashboardGroupsRoute: typeof DashboardGroupsRoute
@@ -261,6 +282,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthLoginRoute: AuthLoginRoute,
+  AuthOtpRoute: AuthOtpRoute,
   AuthSignupRoute: AuthSignupRoute,
   DashboardExploreRoute: DashboardExploreRoute,
   DashboardGroupsRoute: DashboardGroupsRoute,
@@ -283,6 +305,7 @@ export const routeTree = rootRoute
         "/about",
         "/auth/forgot-password",
         "/auth/login",
+        "/auth/otp",
         "/auth/signup",
         "/dashboard/explore",
         "/dashboard/groups",
@@ -302,6 +325,9 @@ export const routeTree = rootRoute
     },
     "/auth/login": {
       "filePath": "auth/login.tsx"
+    },
+    "/auth/otp": {
+      "filePath": "auth/otp.tsx"
     },
     "/auth/signup": {
       "filePath": "auth/signup.tsx"

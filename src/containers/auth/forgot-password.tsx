@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { schema } from "@utils/validators";
-import { Link } from "@tanstack/react-router";
+import {Link, useNavigate} from "@tanstack/react-router";
 import { InputField } from "@components/form";
 import { auth } from "@utils/endpoints";
 import { Response } from "@utils/types";
@@ -19,6 +19,8 @@ import { useToastContext } from "@hooks/context";
 
 export default function ForgotPassword() {
   const { openToast } = useToastContext();
+  const navigate = useNavigate();
+
 
   return (
     <>
@@ -46,6 +48,11 @@ export default function ForgotPassword() {
                 response.message || "Check your email for reset link",
                 request.ok ? "success" : "error",
               );
+
+              if (request.ok) {
+                localStorage.setItem("resetLinkSent", "true"); // Store state for AuthLayout
+                navigate({ to: "/auth/otp", search: { from: "forgot-password" } });
+              }
             } catch (error) {
               openToast("An error occurred. Please try again.", "error");
             }
