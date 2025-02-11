@@ -129,7 +129,6 @@ export default function Signup() {
                       color="var(--dark)"
                       py=".4em"
                       fontSize={{ lg: "16px", md: "16px", base: "14px" }}
-                      textTransform="capitalize"
                     >
                       Already have an account?{" "}
                       <Link to="/auth/login">
