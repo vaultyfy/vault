@@ -34,7 +34,8 @@ export const AuthCarousel = ({ currentRoute }: AuthCarouselProps) => {
   }, [emblaApi, onSelect]);
 
   React.useEffect(() => {
-    if (!isSmallViewPort) navigate({ to: "/auth/login" });
+    if (!isSmallViewPort && currentRoute === "/auth")
+      navigate({ to: "/auth/login" });
   }, [isSmallViewPort]);
 
   return (

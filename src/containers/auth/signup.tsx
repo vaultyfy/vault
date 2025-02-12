@@ -56,9 +56,9 @@ export default function Signup() {
                 setOtpScreen(true);
                 typeof window !== "undefined" &&
                   localStorage.setItem("email", email);
-                openToast("Signup successful!", "success");
+                openToast(response.message || "Signup successful!", "success");
               } else {
-                openToast("Signup failed", "error");
+                openToast(response.message || "Signup failed", "error");
               }
             } catch (error) {
               openToast("An error occurred. Please try again.", "error");

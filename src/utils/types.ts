@@ -3,11 +3,11 @@ export type Response<T = any> = {
   payload: T | null;
   message: string;
   status: number;
-  errors?: string[] | string
+  errors?: string[] | string;
 };
 
 export type LoginResponse = {
-  token: string;
+  token: { token: string };
   user: User;
   KycAction: any | null;
   Kycpercentage: string;
