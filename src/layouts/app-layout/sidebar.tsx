@@ -68,7 +68,7 @@ export const Sidebar = () => {
       left={0}
       height="100vh"
       background="var(--main)"
-      width={{ "2xl": "13%", xl: "13%", lg: "20%" }}
+      // width={{ "2xl": "13%", xl: "13%", lg: "20%" }}
       minW="256px"
       display={{ base: "none", lg: "block" }}
       overflowY="auto"

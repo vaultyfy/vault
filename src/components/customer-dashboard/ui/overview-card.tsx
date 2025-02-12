@@ -20,7 +20,7 @@ interface Props {
   bgColor?: string;
   cardGradient?: string;
   hasProgress?: boolean;
-  ProgressLevel?: number;
+  progressLevel?: number;
   progressColor?: string;
   cardIcon: string;
   cardTitle: string;
@@ -38,7 +38,7 @@ export const OverviewCard: React.FC<Props> = ({
   bgColor,
   cardGradient,
   hasProgress,
-  ProgressLevel,
+  progressLevel,
   progressColor,
   cardIcon,
   cardTitle,
@@ -88,6 +88,8 @@ export const OverviewCard: React.FC<Props> = ({
                   bgColor={"var(--overview-card-secondary)"}
                   rounded="20px"
                   color="#fff"
+                  _hover="var(--overview-card-secondary)"
+                  _focus="var(--overview-card-secondary)"
                 >
                   Month
                 </MenuButton>
@@ -119,17 +121,19 @@ export const OverviewCard: React.FC<Props> = ({
           {hasProgress && (
             <HStack spacing={"0.5rem"}>
               <Progress
-                flex={1}
-                value={ProgressLevel}
+                value={progressLevel}
+                flex="1"
+                min={0}
+                rounded="10px"
+                max={100}
                 sx={{
-                  "& circle": { stroke: "url(var(--main-gradient))" },
-                  "& div[role=progressbar]": {
-                    background: "url(var(--main-gradient))",
+                  track: {
+                    bg: "#42545F", // Set the track background color
                   },
-                  "& .chakra-progress__track": { backgroundColor: "#42545F" },
+                  filledTrack: {
+                    bgGradient: "var(--main-gradient)", // Example gradient
+                  },
                 }}
-                bgGradient="var(--main-gradient)"
-                rounded={"10px"}
               />
 
               {paidMonths && (

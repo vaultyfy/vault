@@ -73,7 +73,7 @@ export const Dashboard = () => {
           </Text>
           <Flex columnGap="1rem" alignItems={"center"}>
             <Button
-              bgColor=" hsla(174, 77%, 46%, 0.07)"
+              bgColor="var(--button-secondary-lighten)"
               width={"180px"}
               height="52px"
               rounded="8px"
@@ -121,7 +121,7 @@ export const Dashboard = () => {
               amount={"500k"}
               hasFilter={true}
               hasProgress={true}
-              ProgressLevel={40}
+              progressLevel={40}
               progressColor="var(--main-gradient)"
               iconBg="var(--overview-card-secondary)"
               bgColor="var(--main)"
@@ -138,7 +138,7 @@ export const Dashboard = () => {
               amount={"500k"}
               hasFilter={true}
               hasProgress={true}
-              ProgressLevel={40}
+              progressLevel={40}
               progressColor="var(--main-gradient)"
               iconBg="var(--overview-card-secondary)"
               bgColor="var(--main)"
@@ -155,7 +155,7 @@ export const Dashboard = () => {
               cardTitle="Rewards & milestones"
               hasFilter={true}
               hasProgress={true}
-              ProgressLevel={40}
+              progressLevel={40}
               progressColor="var(--main-gradient)"
               iconBg="var(--overview-card-secondary)"
               bgColor="var(--main)"
