@@ -37,25 +37,24 @@ export const SLIDES: CarouselSlide[] = [
 ];
 
 export const AuthLayout = ({ children, currentRoute }: AuthLayoutProps) => {
-  const isOTPPage = currentRoute === "/auth/otp";
-  const hasSentResetLink =
-    typeof window !== "undefined" &&
-    localStorage.getItem("resetLinkSent") === "true";
-
   return (
     <Flex px="1em" py=".6em">
       <AuthCarousel currentRoute={currentRoute} />
 
       <Box
         width={{
-          lg: currentRoute === "/auth/forgot-password" ? "100%" : "60%",
+          lg: ["/auth/forgot-password", "/auth/reset-password"].includes(
+            String(currentRoute),
+          )
+            ? "100%"
+            : "60%",
           md: "100%",
           base: "100%",
         }}
-        height="100vh"
+        height={{ lg: "100vh", md: "100vh", base: "100%" }}
         display="flex"
         justifyContent="center"
-        alignItems="center"
+        alignItems={{ lg: "center", md: "center", base: "start" }}
       >
         {children}
       </Box>

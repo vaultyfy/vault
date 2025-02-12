@@ -8,7 +8,7 @@ import { auth } from "@utils/endpoints";
 import React from "react";
 import { MetaData } from "@components/metadata";
 import { HeaderText } from "@components/typography";
-import { OTPScreen } from "./otp";
+import { OtpScreen } from "./otp";
 import { SignupResponse } from "@utils/types";
 import { SignupFormValues } from "@utils/validators/auth-schemas";
 
@@ -26,7 +26,7 @@ export default function Signup() {
       />
 
       {otpScreen ? (
-        <OTPScreen />
+        <OtpScreen />
       ) : (
         <Formik<SignupFormValues>
           initialValues={{
@@ -56,9 +56,9 @@ export default function Signup() {
                 setOtpScreen(true);
                 typeof window !== "undefined" &&
                   localStorage.setItem("email", email);
-                openToast("Signup successful!", "success");
+                openToast(response.message || "Signup successful!", "success");
               } else {
-                openToast("Signup failed", "error");
+                openToast(response.message || "Signup failed", "error");
               }
             } catch (error) {
               openToast("An error occurred. Please try again.", "error");

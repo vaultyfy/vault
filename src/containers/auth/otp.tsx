@@ -13,11 +13,11 @@ import { setCookie } from "cookies-next";
 import { useToastContext } from "@hooks/context";
 import { useNavigate } from "@tanstack/react-router";
 import { resendOtp, verifyOtp, verifyResetOtp } from "src/mutations";
-import { HeaderText, ParagraphText } from "@components/typography";
+import { HeaderText } from "@components/typography";
 import { useCurrentPath } from "@hooks/current-path";
 import { Response } from "@utils/types";
 
-export const OTPScreen = () => {
+export const OtpScreen = () => {
   const { openToast } = useToastContext();
   const [state, setState] = React.useState<State>("idle");
   const navigate = useNavigate({ from: "/auth/signup" });
@@ -61,9 +61,18 @@ export const OTPScreen = () => {
       const response: Omit<Response, "payload"> = await request?.json();
 
       if (request?.ok) {
-        localStorage.removeItem("email");
+        // we still need the email field in the payload when users try to reset their password
+        // so we should only remove email from LS on other routes except forgot password
+        pathname !== "/auth/forgot-password" &&
+          localStorage.removeItem("email");
+
         openToast(response.message || "Email verified successfully", "success");
-        navigate({ to: "/auth/login" });
+        navigate({
+          to:
+            pathname === "/auth/forgot-password"
+              ? "/auth/reset-password"
+              : "/auth/signup",
+        });
       } else {
         openToast(response.message, "error");
       }
@@ -114,20 +123,25 @@ export const OTPScreen = () => {
             value={pin.join("")}
             onChange={onPinChange}
           >
-            {Array(6).fill("").map((_, index) => (
-              <PinInputField
-                key={index}
-                height="60px"
-                width="50px"
-                borderRadius="4px"
-                border="1px solid var(--input-outline)"
-                opacity={state === "verifyingOtp" ? 0.5 : 1}
-                background="#fff"
-                _hover={{ border: "2px solid var(--primary)", cursor: "pointer" }}
-                _focusVisible={{ border: "1px solid var(--primary)" }}
-                disabled={state === "verifyingOtp"}
-              />
-            ))}
+            {Array(6)
+              .fill("")
+              .map((_, index) => (
+                <PinInputField
+                  key={index}
+                  height="60px"
+                  width="50px"
+                  borderRadius="4px"
+                  border="1px solid var(--input-outline)"
+                  opacity={state === "verifyingOtp" ? 0.5 : 1}
+                  background="#fff"
+                  _hover={{
+                    border: "2px solid var(--primary)",
+                    cursor: "pointer",
+                  }}
+                  _focusVisible={{ border: "1px solid var(--primary)" }}
+                  disabled={state === "verifyingOtp"}
+                />
+              ))}
           </PinInput>
         </HStack>
 
