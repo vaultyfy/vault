@@ -6,8 +6,14 @@ export const AppLayout = ({ children }: Readonly<LayoutProps>) => {
   return (
     <Flex minH="100dvh">
       <Sidebar />
-
-      <Box width="100%">{children}</Box>
+      <Box
+        marginLeft={{ lg: "256px", base: 0 }}
+        width="100%"
+        minH="100vh"
+        border="2px solid black"
+      >
+        {children}
+      </Box>
     </Flex>
   );
 };

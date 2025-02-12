@@ -18,10 +18,6 @@ export const HeaderText = ({ family, value, align }: TextProps) => {
   );
 };
 
-<Text fontSize="34px" fontFamily="var(--clash-grotesk-600)">
-  Create account
-</Text>;
-
 export const ParagraphText = ({
   weight,
   value,

@@ -1,11 +1,14 @@
 import { Box, Text } from "@chakra-ui/react";
 
-interface Props {
+interface NotificationProps {
   children: React.ReactNode;
   time: string;
 }
 
-export const NotificationContainer: React.FC<Props> = ({ children, time }) => {
+export const NotificationContainer = ({
+  children,
+  time,
+}: NotificationProps) => {
   return (
     <Box
       p="1.5rem"

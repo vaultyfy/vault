@@ -42,7 +42,7 @@ export const CalendarPopover = ({
     >
       <PopoverTrigger>
         <Button
-          bgColor={"var(--button-secondary)"}
+          bgGradient="var(--main-gradient-lighten)"
           boxSize={"50px"}
           rounded="full"
           display="flex"

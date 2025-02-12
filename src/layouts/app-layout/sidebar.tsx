@@ -63,21 +63,34 @@ export const Sidebar = () => {
 
   return (
     <Box
+      position="fixed"
+      top={0}
+      left={0}
       height="100vh"
       background="var(--main)"
       width={{ "2xl": "13%", xl: "13%", lg: "20%" }}
+      minW="256px"
       display={{ base: "none", lg: "block" }}
-      // position={"sticky"}
-      // top="0"
-      // overflow={"auto"}
+      overflowY="auto"
+      css={{
+        "&::-webkit-scrollbar": {
+          width: "4px",
+        },
+        "&::-webkit-scrollbar-track": {
+          width: "4px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "var(--white-fade-8)",
+          borderRadius: "24px",
+        },
+      }}
     >
       <Center mt="1em">
-        <Image src="/img/logo-light.svg" />
+        <Image src="/img/logo-light.svg" alt="Logo" />
       </Center>
 
       <Center flexFlow="column" my="1.2em" gap=".6em">
         <Flex flexFlow="column">
-          {/* <Image src="/img/sample-avatar.svg" /> */}
           <DonutProgress
             percentage={100}
             avatarSrc="/img/user-default-avatar.svg"
@@ -146,43 +159,41 @@ export const Sidebar = () => {
         </Flex>
 
         <Flex gap=".8em" flexFlow="column" mt="2em" width="100%" px=".8em">
-          {SIDEBAR_NAV_ITEMS.map((item) => {
-            return (
-              <List key={item.id}>
-                <Link to={item.path}>
-                  <ListItem
-                    listStyleType="none"
-                    display="flex"
-                    alignItems="center"
-                    px="1.4em"
-                    height="54px"
-                    borderRadius="8px"
-                    gap={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
-                    textTransform="capitalize"
-                    color="#fff"
-                    background={
-                      pathname === item.path ? "var(--white-fade-8)" : ""
-                    }
-                    transition="all .3s ease-out"
-                    _hover={{
-                      cursor: "pointer",
-                      background: "var(--white-fade-8)",
-                    }}
+          {SIDEBAR_NAV_ITEMS.map((item) => (
+            <List key={item.id}>
+              <Link to={item.path}>
+                <ListItem
+                  listStyleType="none"
+                  display="flex"
+                  alignItems="center"
+                  px="1.4em"
+                  height="54px"
+                  borderRadius="8px"
+                  gap={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
+                  textTransform="capitalize"
+                  color="#fff"
+                  background={
+                    pathname === item.path ? "var(--white-fade-8)" : ""
+                  }
+                  transition="all .3s ease-out"
+                  _hover={{
+                    cursor: "pointer",
+                    background: "var(--white-fade-8)",
+                  }}
+                >
+                  {item.icon}
+                  <Text
+                    fontSize="16px"
+                    fontWeight={pathname === item.path ? "500" : "400"}
+                    lineHeight="19px"
+                    whiteSpace="nowrap"
                   >
-                    {item.icon}
-                    <Text
-                      fontSize="16px"
-                      fontWeight={pathname === item.path ? "500" : "400"}
-                      lineHeight="19px"
-                      whiteSpace="nowrap"
-                    >
-                      {item.name}
-                    </Text>
-                  </ListItem>
-                </Link>
-              </List>
-            );
-          })}
+                    {item.name}
+                  </Text>
+                </ListItem>
+              </Link>
+            </List>
+          ))}
         </Flex>
       </Center>
     </Box>

@@ -25,10 +25,8 @@ const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export const Calendar: React.FC<Props> = ({ width }) => {
   const [date, setDate] = useState<Date | null>(null);
-  //   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
-  //   const initialFocusRef = useRef<HTMLButtonElement>(null);
 
   const formattedDate = date ? format(date, "PP") : "Select date";
 
@@ -154,8 +152,6 @@ export const Calendar: React.FC<Props> = ({ width }) => {
                 isPast ? "gray.400" : isCurrentMonth ? "black" : "gray.300"
               }
               _hover={{ background: isPast ? "none" : "var(--coral-400)" }}
-              // isDisabled={isPast}
-              // onClick={() => handleDateChange(d)}
             >
               <Text fontSize={"13px"} fontFamily={"var(--poppins)"}>
                 {d.getDate()}

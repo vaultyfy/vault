@@ -12,12 +12,34 @@ import {
 import { schema } from "@utils/validators";
 import { generateNoOfCycles, generateNoOfDays } from "@utils/misc";
 
-interface Props {
+interface CreatedGroupModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const CreateGroupModal: React.FC<Props> = ({ isOpen, onClose }) => {
+const CONTRIBUTION_FREQUENCY: Option[] = [
+  {
+    label: "Daily",
+    value: "daily",
+  },
+  {
+    label: "Weekly",
+    value: "weekly",
+  },
+  {
+    label: "Monthly",
+    value: "monthly",
+  },
+  {
+    label: "Yearly",
+    value: "yearly",
+  },
+];
+
+export const CreateGroupModal = ({
+  isOpen,
+  onClose,
+}: CreatedGroupModalProps) => {
   const initialValues = {
     groupName: "",
     startDate: "",
@@ -28,24 +50,6 @@ export const CreateGroupModal: React.FC<Props> = ({ isOpen, onClose }) => {
     noOfCycles: "",
     noOfContributors: "",
   };
-  const contributionFrequency: Option[] = [
-    {
-      label: "Daily",
-      value: "daily",
-    },
-    {
-      label: "Weekly",
-      value: "weekly",
-    },
-    {
-      label: "Monthly",
-      value: "monthly",
-    },
-    {
-      label: "Yearly",
-      value: "yearly",
-    },
-  ];
 
   return (
     <ModalLayout
@@ -64,7 +68,7 @@ export const CreateGroupModal: React.FC<Props> = ({ isOpen, onClose }) => {
       >
         {(formik) => {
           return (
-            <Box as={Form}>
+            <Form>
               <VStack spacing="14px" width="100%">
                 <HStack spacing="8px" width="100%" alignItems="stretch">
                   <Box flex={1}>
@@ -123,7 +127,7 @@ export const CreateGroupModal: React.FC<Props> = ({ isOpen, onClose }) => {
                       name="contributionFrequency"
                       label="Contribution Frequency"
                       placeholder="Daily"
-                      options={contributionFrequency}
+                      options={CONTRIBUTION_FREQUENCY}
                       fontSize="14px"
                       labelSize="12px"
                       background="var(--white)"
@@ -219,7 +223,7 @@ export const CreateGroupModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   Submit request
                 </Button>
               </Flex>
-            </Box>
+            </Form>
           );
         }}
       </Formik>

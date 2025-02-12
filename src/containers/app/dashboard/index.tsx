@@ -73,7 +73,7 @@ export const Dashboard = () => {
           </Text>
           <Flex columnGap="1rem" alignItems={"center"}>
             <Button
-              bgColor={"var(--button-secondary)"}
+              bgColor=" hsla(174, 77%, 46%, 0.07)"
               width={"180px"}
               height="52px"
               rounded="8px"

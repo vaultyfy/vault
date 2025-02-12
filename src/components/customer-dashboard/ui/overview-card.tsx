@@ -83,9 +83,11 @@ export const OverviewCard: React.FC<Props> = ({
                 <MenuButton
                   as={Button}
                   rightIcon={<ChevronDown color="#f8f8f8" size={14} />}
-                  px="10px"
+                  px="16px"
                   py="8px"
                   bgColor={"var(--overview-card-secondary)"}
+                  rounded="20px"
+                  color="#fff"
                 >
                   Month
                 </MenuButton>
@@ -96,9 +98,9 @@ export const OverviewCard: React.FC<Props> = ({
               </Menu>
             ) : (
               <Box
-                px="10px"
+                px="16px"
                 py="8px"
-                rounded="4px"
+                rounded="20px"
                 bgColor={cardGradient || "transparent"}
                 shadow={"lg"}
               >
@@ -126,8 +128,10 @@ export const OverviewCard: React.FC<Props> = ({
                   },
                   "& .chakra-progress__track": { backgroundColor: "#42545F" },
                 }}
+                bgGradient="var(--main-gradient)"
                 rounded={"10px"}
               />
+
               {paidMonths && (
                 <Box
                   bgColor="var(--overview-card-secondary)"

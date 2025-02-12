@@ -6,7 +6,7 @@ import {
   signupSchema,
 } from "./auth-schemas";
 
-import { createGroupSchema } from "./mutation-form-schemas";
+import { createGroupSchema } from "./create-group";
 
 export const schema = {
   login: signInSchema,
