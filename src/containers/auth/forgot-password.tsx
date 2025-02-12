@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { schema } from "@utils/validators";
-import {Link, useNavigate} from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { InputField } from "@components/form";
 import { auth } from "@utils/endpoints";
 import { Response } from "@utils/types";
@@ -19,8 +19,7 @@ import { useToastContext } from "@hooks/context";
 
 export default function ForgotPassword() {
   const { openToast } = useToastContext();
-  const navigate = useNavigate();
-
+  const [otpScreen, setOtpScreen] = React.useState<boolean>(false);
 
   return (
     <>
@@ -44,14 +43,15 @@ export default function ForgotPassword() {
                 body: JSON.stringify({ email: values.email }),
               });
               const response: Response = await request.json();
-              openToast(
-                response.message || "Check your email for reset link",
-                request.ok ? "success" : "error",
-              );
 
               if (request.ok) {
-                localStorage.setItem("resetLinkSent", "true"); // Store state for AuthLayout
-                navigate({ to: "/auth/otp", search: { from: "forgot-password" } });
+                openToast(
+                  response.message || "Check your for the OTP",
+                  "success",
+                );
+                setOtpScreen(true);
+              } else {
+                openToast(response.message || "Something went wrong. Please try again!", "error")
               }
             } catch (error) {
               openToast("An error occurred. Please try again.", "error");
