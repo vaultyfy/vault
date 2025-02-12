@@ -13,7 +13,7 @@ import { setCookie } from "cookies-next";
 import { useToastContext } from "@hooks/context";
 import { useNavigate } from "@tanstack/react-router";
 import { resendOtp, verifyOtp, verifyResetOtp } from "src/mutations";
-import { HeaderText, ParagraphText } from "@components/typography";
+import { HeaderText } from "@components/typography";
 import { useCurrentPath } from "@hooks/current-path";
 import { Response } from "@utils/types";
 
@@ -75,7 +75,7 @@ export const OTPScreen = () => {
   };
 
   React.useEffect(() => {
-    const isPinComplete = pin.every((value) => value !== "");
+    const isPinComplete = pin.length === 6 && pin.every((value) => value !== "");
     if (isPinComplete) verifyEmail();
   }, [pin]);
 
@@ -83,7 +83,8 @@ export const OTPScreen = () => {
     e.preventDefault();
     const pastedText = e.clipboardData.getData("text");
     const pastedValue = pastedText.slice(0, 6);
-    setPin(pastedValue.split(""));
+    const newPin = Array.from({ length: 6 }, (_, i) => pastedValue[i] || "");
+    setPin(newPin);
   };
 
   return (
