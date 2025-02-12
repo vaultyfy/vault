@@ -13,9 +13,9 @@ export type ToastContextValues = {
   openToast: (message: string, status: ToastStatus) => void;
 };
 
-const createToastContext = () =>
-  React.createContext<ToastContextValues | null>(null);
-export const ToastContext = createToastContext();
+export const ToastContext = React.createContext<ToastContextValues | null>(
+  null,
+);
 
 export const ToastProvider = ({ children }: ToastProviderProps) => {
   const toast = useToast();
@@ -93,7 +93,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
             </Flex>
           </Box>
         ),
-        duration: 3000,
+        duration: 5000,
         isClosable: true,
         position: "top-right",
       });

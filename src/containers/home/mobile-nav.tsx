@@ -1,5 +1,6 @@
 import { Box, Flex, Image, List, ListItem } from "@chakra-ui/react";
 import { MotionBox } from "@config/motion";
+import { useMobileScreens } from "@hooks/mobile-screen";
 import { X } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
 
@@ -15,6 +16,8 @@ export interface MobileNavProps {
 }
 
 export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
+  const { isSmallViewPort } = useMobileScreens();
+
   return (
     <MotionBox
       initial={{ height: 0, opacity: 0 }}
@@ -91,7 +94,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
             </ListItem>
           ))}
 
-          <Link to="/auth/login" preload="intent">
+          <Link to={isSmallViewPort ? "/auth" : "/auth/login"} preload="intent">
             <ListItem
               height="45px"
               alignItems="center"

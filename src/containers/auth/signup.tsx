@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import { Link } from "@tanstack/react-router";
 import { InputField } from "@components/form";
 import { Form, Formik } from "formik";
@@ -64,12 +56,11 @@ export default function Signup() {
                 setOtpScreen(true);
                 typeof window !== "undefined" &&
                   localStorage.setItem("email", email);
-                openToast("Signup successful!", "success");
+                openToast(response.message || "Signup successful!", "success");
               } else {
-                openToast("Signup failed", "error");
+                openToast(response.message || "Signup failed", "error");
               }
             } catch (error) {
-              console.error("Signup error:", error);
               openToast("An error occurred. Please try again.", "error");
             } finally {
               setSubmitting(false);
@@ -89,9 +80,9 @@ export default function Signup() {
                     />
                   </Link>
 
-                  <Box width="380px">
+                  <Box width={{ lg: "380px", md: "100%", base: "100%" }}>
                     <Stack direction="column" gap="0">
-                      <HeaderText value="Create and account" />
+                      <HeaderText value="Create account" />
                       <Text
                         fontSize="16px"
                         color="var(--dark)"
@@ -138,7 +129,6 @@ export default function Signup() {
                       color="var(--dark)"
                       py=".4em"
                       fontSize={{ lg: "16px", md: "16px", base: "14px" }}
-                      textTransform="capitalize"
                     >
                       Already have an account?{" "}
                       <Link to="/auth/login">

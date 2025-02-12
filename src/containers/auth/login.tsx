@@ -11,7 +11,7 @@ import { Formik, Form } from "formik";
 import { schema } from "@utils/validators";
 import { InputField } from "@components/form";
 import { MetaData } from "@components/metadata";
-import { cookieOptions, HEADER_API_KEY, TOKEN_KEY } from "@utils/constants";
+import { cookieOptions, TOKEN_KEY } from "@utils/constants";
 import { useToastContext } from "@hooks/context";
 import { setCookie } from "cookies-next";
 import { Link, useNavigate } from "@tanstack/react-router";
@@ -56,7 +56,7 @@ export const LoginPage = () => {
                 if (request.ok) {
                   setCookie(
                     TOKEN_KEY,
-                    JSON.stringify(response.payload?.token),
+                    JSON.stringify(response.payload?.token.token),
                     {
                       ...cookieOptions,
                     },

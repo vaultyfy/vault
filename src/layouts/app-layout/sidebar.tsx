@@ -7,7 +7,6 @@ import {
   List,
   ListItem,
   Text,
-  UnorderedList,
 } from "@chakra-ui/react";
 import { GradientIcon } from "@components/icon";
 import { Gear, SealCheck } from "@phosphor-icons/react";
@@ -85,9 +84,11 @@ export const Sidebar = () => {
         },
       }}
     >
-      <Center mt="1em">
-        <Image src="/img/logo-light.svg" alt="Logo" />
-      </Center>
+      <Link to="/">
+        <Center mt="1em">
+          <Image src="/img/logo-light.svg" />
+        </Center>
+      </Link>
 
       <Center flexFlow="column" my="1.2em" gap=".6em">
         <Flex flexFlow="column">
