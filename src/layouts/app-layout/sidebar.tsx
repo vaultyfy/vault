@@ -15,7 +15,7 @@ import { Icon } from "@components/icon";
 import { Link, useLocation } from "@tanstack/react-router";
 import { FileRouteTypes } from "src/routeTree.gen";
 import { useCurrentPath } from "@hooks/current-path";
-import { DonutProgress } from "@components/ui";
+import { CircleProgress } from "@components/ui";
 
 export type SidenavItems = {
   id: string;
@@ -67,8 +67,7 @@ export const Sidebar = () => {
       left={0}
       height="100vh"
       background="var(--main)"
-      // width={{ "2xl": "13%", xl: "13%", lg: "20%" }}
-      minW="256px"
+      width={{ "2xl": "13%", xl: "13%", lg: "20%" }}
       display={{ base: "none", lg: "block" }}
       overflowY="auto"
       css={{
@@ -91,14 +90,8 @@ export const Sidebar = () => {
       </Link>
 
       <Center flexFlow="column" my="1.2em" gap=".6em">
-        <Flex flexFlow="column">
-          <DonutProgress
-            percentage={100}
-            avatarSrc="/img/user-default-avatar.svg"
-            thickness="3px"
-            size="150px"
-            avatarSize="79px"
-          />
+        <Flex flexFlow="column" gap=".6em">
+          <CircleProgress progress={65} size={150} strokeWidth={5} />
           <Text
             textAlign="center"
             fontSize="16px"

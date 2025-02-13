@@ -26,17 +26,18 @@ import {
   OverviewCard,
   NotificationPopover,
   CalendarPopover,
-} from "@components/customer-dashboard/ui";
+} from "@components/customer/ui";
 import { CirclePlus, CalendarDays, Bell } from "lucide-react";
 import { Icon } from "@components/icon";
 import { ChevronDown } from "lucide-react";
-import { ActivitiesTable } from "@components/customer-dashboard/tables";
+import { ActivitiesTable } from "@components/customer/tables";
 import { useState } from "react";
-import { CreateGroupModal } from "@components/customer-dashboard/modals/create-group";
+import { CreateGroupModal } from "@layouts/modal-layout/create-group";
 
 export const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
+
   return (
     <>
       <Box
@@ -327,6 +328,7 @@ export const Dashboard = () => {
                 </MenuList>
               </Menu>
             </HStack>
+            {/* you should've just called TableContainer here. why <Box as={TableContainer} />?? */}
             <Box as={TableContainer} w="full" mt="2rem">
               <ActivitiesTable />
             </Box>
