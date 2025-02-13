@@ -40,7 +40,9 @@ export const AuthCarousel = ({ currentRoute }: AuthCarouselProps) => {
 
   return (
     <>
-      {currentRoute === "/auth/reset-password" ? null : (
+      {["/auth/reset-password", "/auth/forgot-password"].includes(
+        String(currentRoute),
+      ) ? null : (
         <>
           <Box
             height={isSmallViewPort ? "100vh" : "98vh"}
