@@ -43,14 +43,18 @@ export const AuthLayout = ({ children, currentRoute }: AuthLayoutProps) => {
 
       <Box
         width={{
-          lg: currentRoute === "/auth/forgot-password" ? "100%" : "60%",
+          lg: ["/auth/forgot-password", "/auth/reset-password"].includes(
+            String(currentRoute),
+          )
+            ? "100%"
+            : "60%",
           md: "100%",
           base: "100%",
         }}
-        height="100vh"
+        height={{ lg: "100vh", md: "100vh", base: "100%" }}
         display="flex"
         justifyContent="center"
-        alignItems="center"
+        alignItems={{ lg: "center", md: "center", base: "start" }}
       >
         {children}
       </Box>

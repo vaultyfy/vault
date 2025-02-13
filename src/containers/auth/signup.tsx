@@ -8,7 +8,7 @@ import { auth } from "@utils/endpoints";
 import React from "react";
 import { MetaData } from "@components/metadata";
 import { HeaderText } from "@components/typography";
-import { OTPScreen } from "./otp";
+import { OtpScreen } from "./otp";
 import { SignupResponse } from "@utils/types";
 import { SignupFormValues } from "@utils/validators/auth-schemas";
 
@@ -26,7 +26,7 @@ export default function Signup() {
       />
 
       {otpScreen ? (
-        <OTPScreen />
+        <OtpScreen />
       ) : (
         <Formik<SignupFormValues>
           initialValues={{
