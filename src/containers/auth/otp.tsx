@@ -17,7 +17,7 @@ import { HeaderText } from "@components/typography";
 import { useCurrentPath } from "@hooks/current-path";
 import { Response } from "@utils/types";
 
-export const OTPScreen = () => {
+export const OtpScreen = () => {
   const { openToast } = useToastContext();
   const [state, setState] = React.useState<State>("idle");
   const navigate = useNavigate({ from: "/auth/signup" });
@@ -61,9 +61,18 @@ export const OTPScreen = () => {
       const response: Omit<Response, "payload"> = await request?.json();
 
       if (request?.ok) {
-        localStorage.removeItem("email");
+        // we still need the email field in the payload when users try to reset their password
+        // so we should only remove email from LS on other routes except forgot password
+        pathname !== "/auth/forgot-password" &&
+          localStorage.removeItem("email");
+
         openToast(response.message || "Email verified successfully", "success");
-        navigate({ to: "/auth/login" });
+        navigate({
+          to:
+            pathname === "/auth/forgot-password"
+              ? "/auth/reset-password"
+              : "/auth/login",
+        });
       } else {
         openToast(response.message, "error");
       }

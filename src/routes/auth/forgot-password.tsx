@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import ForgotPassword from "@containers/auth/forgot-password";
-import {AuthLayout} from "@layouts/auth-layout";
+import { AuthLayout } from "@layouts/auth-layout";
+import { ForgotPassword } from "@containers/auth";
 
 export const Route = createFileRoute("/auth/forgot-password")({
   component: RouteComponent,
@@ -8,8 +8,8 @@ export const Route = createFileRoute("/auth/forgot-password")({
 
 function RouteComponent() {
   return (
-      <AuthLayout currentRoute="/auth/forgot-password">
-          <ForgotPassword />
-      </AuthLayout>
+    <AuthLayout currentRoute="/auth/forgot-password">
+      <ForgotPassword />
+    </AuthLayout>
   );
 }

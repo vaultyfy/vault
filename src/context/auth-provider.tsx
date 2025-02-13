@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     };
 
     obtainUserProfile();
-  }, [openToast, pathname]);
+  }, []);
 
   const values: AuthContextValues = {
     user: state.user,
