@@ -98,11 +98,7 @@ export const Dashboard = () => {
           </Flex>
         </Flex>
         <Flex gap="10px" flexWrap={"wrap"} mt={"2rem"}>
-          <Box
-            // width={{ base: "180px", lg: "252px" }}
-            flex={1}
-            minHeight={"210px"}
-          >
+          <Box flex={1} minHeight={"210px"}>
             <OverviewCard
               cardIcon={"calendar"}
               cardTitle="Wallet balance"
@@ -111,11 +107,7 @@ export const Dashboard = () => {
               cardGradient="var(--main-gradient)"
             />
           </Box>
-          <Box
-            // width={{ base: "180px", lg: "252px" }}
-            flex={1}
-            minHeight={"210px"}
-          >
+          <Box flex={1} minHeight={"210px"}>
             <OverviewCard
               cardIcon={"time-is-money"}
               cardTitle="Wallet balance"
@@ -128,29 +120,17 @@ export const Dashboard = () => {
               bgColor="var(--main)"
             />
           </Box>
-          <Box
-            // width={{ base: "180px", lg: "252px" }}
-            flex={1}
-            minHeight={"210px"}
-          >
+          <Box flex={1} minHeight={"210px"}>
             <OverviewCard
               cardIcon={"piggy-bank"}
-              cardTitle="Remaining Contribution"
-              amount={"500k"}
+              cardTitle="Total expected return"
+              amount={"5M"}
               hasFilter={true}
-              hasProgress={true}
-              progressLevel={40}
-              progressColor="var(--main-gradient)"
               iconBg="var(--overview-card-secondary)"
               bgColor="var(--main)"
-              paidMonths={3}
             />
           </Box>
-          <Box
-            // width={{ base: "180px", lg: "252px" }}
-            flex={1}
-            minHeight={"210px"}
-          >
+          <Box flex={1} minHeight={"210px"}>
             <OverviewCard
               cardIcon={"trophy"}
               cardTitle="Rewards & milestones"
@@ -187,7 +167,6 @@ export const Dashboard = () => {
           <Box
             width={{ base: "100%", lg: "40%" }}
             shadow={"lg"}
-            // bgColor="#ffffff"
             p="18px"
             minH={"480px"}
             rounded={"lg"}
@@ -235,6 +214,7 @@ export const Dashboard = () => {
                     fontWeight={"400"}
                     _hover={"none"}
                     _focus={"none"}
+                    _active={"none"}
                   >
                     Month
                   </MenuButton>

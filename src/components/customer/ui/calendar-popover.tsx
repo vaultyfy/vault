@@ -25,8 +25,6 @@ interface Props {
   iconColor?: string;
 }
 
-const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
 export const CalendarPopover = ({
   height = "40px",
   borderColor,
@@ -34,12 +32,7 @@ export const CalendarPopover = ({
   iconColor,
 }: Props) => {
   return (
-    <Popover
-      //   isOpen={isOpen}
-      //   onClose={() => setIsOpen(false)}
-      //   initialFocusRef={initialFocusRef}
-      placement="bottom-start"
-    >
+    <Popover placement="bottom-start">
       <PopoverTrigger>
         <Button
           bgGradient="var(--main-gradient-lighten)"
@@ -50,6 +43,7 @@ export const CalendarPopover = ({
           alignItems={"center"}
           _hover={"var(--button-secondary)"}
           _focus={"var(--button-secondary)"}
+          _active={"var(--button-secondary)"}
         >
           <Box boxSize="27px" position={"relative"}>
             <CalendarDays color="#292d32" size={27} />

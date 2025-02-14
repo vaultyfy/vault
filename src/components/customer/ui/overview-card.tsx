@@ -10,11 +10,12 @@ import {
   MenuItem,
   Menu,
   Text,
-  Progress,
   Flex,
 } from "@chakra-ui/react";
 import { Icon } from "@components/icon";
+import { CurrencyNgn } from "@phosphor-icons/react";
 import { ChevronDown } from "lucide-react";
+import { CustomProgress } from "@components/ui";
 
 interface Props {
   bgColor?: string;
@@ -85,17 +86,36 @@ export const OverviewCard: React.FC<Props> = ({
                   rightIcon={<ChevronDown color="#f8f8f8" size={14} />}
                   px="16px"
                   py="8px"
-                  bgColor={"var(--overview-card-secondary)"}
+                  bgColor="var(--overview-card-secondary)"
                   rounded="20px"
                   color="#fff"
-                  _hover="var(--overview-card-secondary)"
-                  _focus="var(--overview-card-secondary)"
+                  _hover={{
+                    bgColor: "var(--overview-card-secondary)",
+                    color: "#fff",
+                  }}
+                  _focus={{
+                    bgColor: "var(--overview-card-secondary)",
+                    color: "#fff",
+                  }}
+                  _active={{
+                    bgColor: "var(--overview-card-secondary)",
+                    color: "#fff",
+                  }}
                 >
-                  Month
+                  month
                 </MenuButton>
-                <MenuList px="10px" py="8px">
-                  <MenuItem>Month</MenuItem>
-                  <MenuItem>Year</MenuItem>
+                <MenuList
+                  px="10px"
+                  py="8px"
+                  border="none"
+                  bgColor="var(--overview-card-secondary)"
+                >
+                  <MenuItem bgColor="transparent" color="#ffffff">
+                    month
+                  </MenuItem>
+                  <MenuItem bgColor="transparent" color="#ffffff">
+                    year
+                  </MenuItem>
                 </MenuList>
               </Menu>
             ) : (
@@ -120,22 +140,7 @@ export const OverviewCard: React.FC<Props> = ({
           </HStack>
           {hasProgress && (
             <HStack spacing={"0.5rem"}>
-              <Progress
-                value={progressLevel}
-                flex="1"
-                min={0}
-                rounded="10px"
-                max={100}
-                sx={{
-                  track: {
-                    bg: "#42545F", // Set the track background color
-                  },
-                  filledTrack: {
-                    bgGradient: "var(--main-gradient)", // Example gradient
-                  },
-                }}
-              />
-
+              <CustomProgress value={progressLevel!} />
               {paidMonths && (
                 <Box
                   bgColor="var(--overview-card-secondary)"
@@ -155,7 +160,12 @@ export const OverviewCard: React.FC<Props> = ({
               )}
             </HStack>
           )}
-          <Box h="fit-content" color="#fff" minH="79.5px">
+          <VStack
+            h="fit-content"
+            color="#fff"
+            minH="79.5px"
+            alignItems="space-between"
+          >
             <Text
               as="p"
               fontFamily={"var(--poppins)"}
@@ -165,30 +175,33 @@ export const OverviewCard: React.FC<Props> = ({
               {cardTitle}
             </Text>
             {amount && (
-              <Text
-                as="h4"
-                mt="1rem"
-                fontFamily={"var(--clash-grotesk-700)"}
-                fontSize="28px"
-              >
-                N{amount}
-              </Text>
+              <Flex alignItems="center">
+                <CurrencyNgn size={28} color="#ffffff" weight="duotone" />
+                <Text
+                  as="h4"
+                  fontFamily="var(--clash-grotesk-700)"
+                  fontSize="28px"
+                >
+                  {amount}
+                </Text>
+              </Flex>
             )}
             {cycle && (
               <Text
                 as="h4"
-                mt="1rem"
-                fontFamily={"var(--ClashGrotesk-Variable)"}
+                display="flex"
+                alignItems="center"
+                fontFamily="var(--clash-grotesk-variable)"
                 fontWeight={700}
-                fontSize="19px"
+                fontSize="28px"
               >
-                {cycle}{" "}
-                <Text as="span" fontWeight={200}>
+                {cycle}
+                <Box as="sub" fontWeight={200}>
                   cycle completed
-                </Text>
+                </Box>
               </Text>
             )}
-          </Box>
+          </VStack>
         </VStack>
       </CardBody>
     </Card>

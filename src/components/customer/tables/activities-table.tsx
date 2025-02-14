@@ -30,16 +30,12 @@ export const ActivitiesTable = () => {
       </Thead>
       <Tbody>
         {Array.from({ length: 4 }).map((_, i) => (
-          <Tr>
+          <Tr key={i}>
             <Td>
               <AvatarGroup size="md" max={3}>
                 <Avatar name="Ryan Florence" src="/img/person-1.svg" />
                 <Avatar name="Segun Adebayo" src="/img/person-2.svg" />
                 <Avatar name="Kent Dodds" src="/img/person-3.svg" />
-                {/* <Avatar
-                          name="Kent Dodds"
-                          src="/public/img/person-4.svg"
-                        /> */}
               </AvatarGroup>
             </Td>
             <Td>

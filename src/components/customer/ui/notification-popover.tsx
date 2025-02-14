@@ -30,6 +30,7 @@ export const NotificationPopover = () => {
           alignItems={"center"}
           _hover={{ bgColor: "var(--button-secondary)" }}
           _focus={{ bgColor: "var(--button-secondary)" }}
+          _active={{ bgColor: "var(--button-secondary)" }}
         >
           <Box boxSize="27px" position={"relative"}>
             <Bell color="#292d32" size="27" />

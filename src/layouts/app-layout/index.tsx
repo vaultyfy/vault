@@ -4,14 +4,9 @@ import { Sidebar } from "./sidebar";
 
 export const AppLayout = ({ children }: Readonly<LayoutProps>) => {
   return (
-    <Flex minH="100dvh">
+    <Flex minH="100dvh" bgColor="#ffffff">
       <Sidebar />
-      <Box
-        marginLeft={{ lg: "256px", base: 0 }}
-        width="100%"
-        minH="100vh"
-        border="2px solid black"
-      >
+      <Box marginLeft={{ lg: "256px", base: 0 }} width="100%" minH="100vh">
         {children}
       </Box>
     </Flex>
