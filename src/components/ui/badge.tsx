@@ -26,6 +26,7 @@ const getStatusStyles = (status: GlobalStatus) => {
   //       border: "1px solid var(--gray-700)",
   //     };
   // }
+  //  NOTE:: i just added this remaining status for future usage
 
   const statusStyles: Record<GlobalStatus, { background: string; color: string; border: string }> = {
     successful: {
