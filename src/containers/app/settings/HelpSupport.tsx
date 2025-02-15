@@ -5,8 +5,9 @@ export default function HelpSupport(){
   const [isActive, setIsActive] = useState(false);
 
   return(
-    <Box width="53%" px={{ base: "1rem", lg: "1rem" }} py="0.5rem">
+    <Box width="100%" px={{ base: "1rem", lg: "1rem" }} py="0.5rem">
       <Flex gap={6} alignItems="flex-start">
+        <Flex width={'529px'}>
         <Box
           flex="1"
           border="1px solid #dceefb"
@@ -28,6 +29,7 @@ export default function HelpSupport(){
             Contact our support and learn more about our terms of services
           </Text>
         </Box>
+        </Flex>
       </Flex>
     </Box>
   )

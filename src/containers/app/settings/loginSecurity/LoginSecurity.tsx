@@ -11,6 +11,7 @@ export default function LoginSecurity(){
 
 
       <Flex gap={6} alignItems="flex-start">
+        <Flex width={'529px'}>
         <Box
           flex="1"
           border="1px solid #dceefb"
@@ -32,6 +33,7 @@ export default function LoginSecurity(){
             Update your password and secure your account
           </Text>
         </Box>
+        </Flex>
 
         <Box flex="1">
           {isActive && <LoginSecurityCard />}

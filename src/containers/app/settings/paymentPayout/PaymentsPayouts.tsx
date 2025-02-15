@@ -57,7 +57,7 @@ const PaymentsPayouts = () => {
   return (
     <Box width="100%" px={{ base: "1rem", lg: "1rem" }}>
       <Flex gap={6} alignItems="flex-start">
-        {/* Clickable Box */}
+        <Flex width={'529px'}>
         <Box
           flex="1"
           border="1px solid #dceefb"
@@ -82,6 +82,7 @@ const PaymentsPayouts = () => {
             Review payments, payouts, coupons, and gift cards
           </Text>
         </Box>
+        </Flex>
 
         {/* Display PaymentsPayoutsCard Only When Active */}
         <Box flex="1">

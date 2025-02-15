@@ -9,8 +9,8 @@ export default function PersonalInfo(){
   return (
     <Box width="100%" px={{ base: "1rem", lg: "1rem" }} py="0.5rem">
 
-
       <Flex gap={6} alignItems="flex-start">
+        <Flex width={'529px'}>
         <Box
           flex="1"
           border="1px solid #dceefb"
@@ -32,6 +32,7 @@ export default function PersonalInfo(){
             Provide personal details for full verification
           </Text>
         </Box>
+        </Flex>
 
         <Box flex="1">
           {isActive && <PersonalInfoCard />}

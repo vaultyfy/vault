@@ -54,7 +54,7 @@ const PaymentsPayoutsCard = () => {
   };
 
   return (
-    <Box width="100%">
+    <Box width="482px">
       <Text fontSize="24px" fontWeight="600" mb={4} color={"#1C1C1C"}>
         Payment & Payouts
       </Text>
