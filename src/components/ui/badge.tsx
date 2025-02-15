@@ -1,8 +1,7 @@
 import { Badge, Box, Text } from "@chakra-ui/react";
 
 
-export type GlobalStatus = "sucessful"
-
+export type GlobalStatus = "successful" | "pending" | "failed" | "inactive" | "active";
 export interface StatusProps {
   dot?: boolean;
   width?: string;
@@ -12,32 +11,60 @@ export interface StatusProps {
 }
 
 const getStatusStyles = (status: GlobalStatus) => {
-  switch (status) {
-    case "sucessful":
-      return {
-        background: "var(--success-50)",
-        color: "var(--success-700)",
-        border: "1px solid var(--success-700)",
-      };
+  // switch (status) {
+  //   case "sucessful":
+  //     return {
+  //       background: "var(--success-50)",
+  //       color: "var(--success-700)",
+  //       border: "1px solid var(--success-700)",
+  //     };
+  //
+  //   default:
+  //     return {
+  //       background: "var(--gray-100)",
+  //       color: "var(--gray-700)",
+  //       border: "1px solid var(--gray-700)",
+  //     };
+  // }
 
-    default:
-      return {
-        background: "var(--gray-100)",
-        color: "var(--gray-700)",
-        border: "1px solid var(--gray-700)",
-      };
-  }
+  const statusStyles: Record<GlobalStatus, { background: string; color: string; border: string }> = {
+    successful: {
+      background: "var(--success-50)",
+      color: "var(--success-700)",
+      border: "1px solid var(--success-700)",
+    },
+    pending: {
+      background: "var(--warning-50)",
+      color: "var(--warning-700)",
+      border: "1px solid var(--warning-700)",
+    },
+    failed: {
+      background: "var(--error-50)",
+      color: "var(--error-700)",
+      border: "1px solid var(--error-700)",
+    },
+    inactive: {
+      background: "var(--gray-100)",
+      color: "var(--gray-700)",
+      border: "1px solid var(--gray-700)",
+    },
+    active: {
+      background: "var(--primary-50)",
+      color: "var(--primary-700)",
+      border: "1px solid var(--primary-700)",
+    },
+  };
+
+  return statusStyles[status] || statusStyles.inactive;
 };
 
-export const Status = ({
-  width,
-  status,
-  dot = true,
-  active = false,
-  onClick,
-}: StatusProps) => {
-  const statusText: GlobalStatus = status;
-  const styles = getStatusStyles(statusText);
+export const Status = ({width, status, dot = true, active = false, onClick,}: StatusProps) => {
+  // const statusText: GlobalStatus = status;
+
+  //NOTE:: This extra variable (statusText) is unnecessary because status is already typed as GlobalStatus (from StatusProps).
+  // Instead of creating a new variable just to pass it to getStatusStyles(), I directly used status
+
+  const styles = getStatusStyles(status);
 
   return (
     <Badge
@@ -75,10 +102,13 @@ export const Status = ({
         pr=".2em"
         textTransform="capitalize"
       >
-        {statusText?.includes("_")
-          ? statusText?.replaceAll("_", " ").toLowerCase()
-          : statusText}
+        {status?.includes("_")
+          ? status?.replaceAll("_", " ").toLowerCase()
+          : status}
       </Text>
     </Badge>
   );
 };
+
+
+
