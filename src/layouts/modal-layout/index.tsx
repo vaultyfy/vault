@@ -7,6 +7,7 @@ import {
   ModalCloseButton,
   Text,
   ChakraProps,
+  Box,
 } from "@chakra-ui/react";
 
 interface ModalLayoutProps extends ChakraProps {
@@ -30,6 +31,7 @@ interface ModalLayoutProps extends ChakraProps {
   radius?: string;
   focusRef?: any;
   px?: string;
+  py?: string;
   closeBtnSize?: string;
   noCloseButton?: boolean;
   background?: string;
@@ -40,6 +42,7 @@ interface ModalLayoutProps extends ChakraProps {
 export const ModalLayout = ({
   size,
   px,
+  py = "0",
   title,
   onClose,
   isOpen,
@@ -71,7 +74,7 @@ export const ModalLayout = ({
       <ModalContent
         background={background || "#fff"}
         borderRadius={noRadius ? "none" : radius || "16px"}
-        py={noCloseButton ? "0em" : "0"}
+        py={noCloseButton ? "0em" : py}
         height="fit-content"
         px={px || "1.4em"}
       >
@@ -83,13 +86,12 @@ export const ModalLayout = ({
             fontSize="20px"
             lineHeight="20px"
             textTransform="capitalize"
-            // px="1.4em"
+            px={noCloseButton ? ".4em" : ".8em"}
           >
             {title}
             <Text
               as="span"
               display="block"
-              py=".3em"
               fontWeight="400"
               fontSize="12px"
               lineHeight="15px"

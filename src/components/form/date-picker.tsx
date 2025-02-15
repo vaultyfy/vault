@@ -32,17 +32,16 @@ import { FormikProps } from "formik";
 interface DatePickerProps {
   formik: FormikProps<any>;
   fieldName: string;
-  onDateChange: (date: Date) => void;
+  // onDateChange: (date: Date) => void;
   inputField?: {
     label?: string;
     isActive?: boolean;
     placeholder?: string;
-    logo?: React.ReactElement;
+    icon?: React.ReactElement;
   };
   height?: string;
   borderColor?: string;
   color?: string;
-  iconColor?: string;
   iconPlacement?: "left" | "right";
 }
 
@@ -51,14 +50,13 @@ const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export const DatePicker = ({
   formik,
   fieldName,
-  onDateChange,
+  // onDateChange,
   inputField = {
     isActive: false,
   },
   height = "40px",
   borderColor,
   color,
-  iconColor,
   iconPlacement = "left",
 }: DatePickerProps) => {
   const [date, setDate] = useState<Date | null>(null);
@@ -71,7 +69,7 @@ export const DatePicker = ({
       setDate(newDate);
       setIsOpen(false);
       formik.setFieldValue(fieldName, newDate);
-      onDateChange(newDate);
+      // onDateChange(newDate);
     }
   };
 
@@ -129,8 +127,8 @@ export const DatePicker = ({
           <Box>
             <ParagraphText
               value={inputField?.label ?? "start date"}
-              color="var(--neutral)"
-              weight="400"
+              color="var(--grey)"
+              weight="500"
               textTransform="capitalize"
             />
             <HStack
@@ -142,31 +140,21 @@ export const DatePicker = ({
               display="flex"
               spacing={1}
               onClick={() => setIsOpen(true)}
-              mt={1}
+              mt={2}
               height={height}
             >
-              {(iconPlacement === "left" && inputField?.logo) || (
-                <CalendarBlank
-                  size={20}
-                  color={iconColor || "var(--neutral-300)"}
-                />
-              )}
+              {iconPlacement === "left" && inputField?.icon && inputField?.icon}
               <ParagraphText
-                // value={formattedDate ? "yyyy/ md/ dd" : formattedDate}
                 value={
-                  formattedDate !== "Select date"
-                    ? formattedDate
-                    : "yyyy/ mm/ dd"
+                  formattedDate !== "Select date" ? formattedDate : "dd-mm-yyyy"
                 }
-                color={color || "var(--neutral-300)"}
+                color={color || "var(--grey)"}
                 weight="400"
+                flex={1}
               />
-              {(iconPlacement === "right" && inputField?.logo) || (
-                <CalendarBlank
-                  size={20}
-                  color={iconColor || "var(--neutral-300)"}
-                />
-              )}
+              {iconPlacement === "right" &&
+                inputField?.icon &&
+                inputField?.icon}
             </HStack>
           </Box>
         ) : (
@@ -218,7 +206,7 @@ export const DatePicker = ({
           <SimpleGrid columns={7} spacing={2}>
             {generateDates(
               currentMonth.getFullYear(),
-              currentMonth.getMonth()
+              currentMonth.getMonth(),
             ).map(({ date: d, isCurrentMonth, isPast }) => (
               <Button
                 key={d.toISOString()}

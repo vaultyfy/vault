@@ -32,7 +32,6 @@ import { Icon } from "@components/icon";
 import { ChevronDown } from "lucide-react";
 import { ActivitiesTable } from "@components/customer/tables";
 import { useState } from "react";
-import { CreateGroupModal } from "@layouts/modal-layout/create-group";
 
 export const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,63 +39,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      <Box
-        width={{ base: "100%", xl: "90%" }}
-        minH={"100dvh"}
-        px={{ base: "0.5rem", lg: "0" }}
-        pl={{ lg: "1.5rem" }}
-        py={"2.5rem"}
-      >
-        <Flex
-          justifyContent="space-between"
-          mb={"1rem"}
-          display={{ base: "none", lg: "flex" }}
-        >
-          <Text
-            as="h2"
-            fontFamily={"var(--clash-grotesk-500)"}
-            fontSize={"32px"}
-          >
-            Welcome back{" "}
-            <Text
-              as="span"
-              color="transparent"
-              sx={{
-                background: "var(--main-gradient)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-              fontFamily={"var(--clash-grotesk-600)"}
-            >
-              Tom
-            </Text>
-          </Text>
-          <Flex columnGap="1rem" alignItems={"center"}>
-            <Button
-              bgColor="var(--button-secondary-lighten)"
-              width={"180px"}
-              height="52px"
-              rounded="8px"
-              px="9px"
-              py="13px"
-              leftIcon={<CirclePlus color="#292d32" size="24" />}
-              fontFamily={"var(--poppins)"}
-              fontWeight="medium"
-              fontSize={"14px"}
-              _hover={"var(--button-secondary)"}
-              _focus={"var(--button-secondary)"}
-              onClick={() => setIsOpen(true)}
-            >
-              Create group
-            </Button>
-            {/* would have to make this into a reusable component */}
-            <HStack columnGap="1rem">
-              <CalendarPopover />
-              <NotificationPopover />
-            </HStack>
-          </Flex>
-        </Flex>
+      <Box width="100%" minH={"100dvh"}>
         <Flex gap="10px" flexWrap={"wrap"} mt={"2rem"}>
           <Box flex={1} minHeight={"210px"}>
             <OverviewCard
@@ -317,7 +260,6 @@ export const Dashboard = () => {
       </Box>
 
       {/* create group modal */}
-      <CreateGroupModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

@@ -10,6 +10,8 @@ import {
   DatePicker,
 } from "@components/form";
 import { schema } from "@utils/validators";
+import { CalendarBlank } from "@phosphor-icons/react";
+import { Icon } from "@components/icon";
 import { generateNoOfCycles, generateNoOfDays } from "@utils/misc";
 
 interface CreatedGroupModalProps {
@@ -58,9 +60,10 @@ export const CreateGroupModal = ({
       title="Create Group"
       size="xl"
       px="14px"
+      py="32px"
     >
       <Formik
-        initialValues={{}}
+        initialValues={initialValues}
         validationSchema={schema.createGroup}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
@@ -82,14 +85,29 @@ export const CreateGroupModal = ({
                     />
                   </Box>
                   <Box flex={1}>
-                    <InputField
-                      name={"tick"}
-                      label="Ticket Name"
-                      labelColor="var(--grey)"
-                      placeholder="Enter the ticket name"
+                    <DatePicker
+                      formik={formik}
+                      fieldName="startDate"
+                      color="var(--grey)"
+                      inputField={{
+                        isActive: true,
+                        label: "start date",
+                        placeholder: "yyyy/ mm/ dd",
+                        icon: <Icon name="calendar-dots" />,
+                      }}
+                      iconPlacement="right"
                       height="50px"
-                      my="0"
+                      borderColor={
+                        formik.touched.startDate && formik.errors.startDate
+                          ? "var(--deep-red)"
+                          : "rgb(226, 232, 240)"
+                      }
                     />
+                    {formik.touched.startDate && formik.errors.startDate && (
+                      <Box color="var(--deep-red)" mt={2}>
+                        {formik.errors.startDate}
+                      </Box>
+                    )}
                   </Box>
                 </HStack>
                 <Box w="full">
@@ -133,6 +151,7 @@ export const CreateGroupModal = ({
                       background="var(--white)"
                       caretColor="var(--text-1)"
                       labelColor="var(--grey)"
+                      outlineColor="rgb(226, 232, 240)"
                     />
                   </Box>
                   <Box flex={1}>
@@ -146,6 +165,7 @@ export const CreateGroupModal = ({
                       caretColor="var(--text-1)"
                       labelColor="var(--grey)"
                       labelSize="12px"
+                      outlineColor="rgb(226, 232, 240)"
                     />
                   </Box>
                   <Box flex={1}>
@@ -159,6 +179,7 @@ export const CreateGroupModal = ({
                       background="var(--white)"
                       caretColor="var(--text-1)"
                       labelColor="var(--grey)"
+                      outlineColor="rgb(226, 232, 240)"
                     />
                   </Box>
                 </HStack>

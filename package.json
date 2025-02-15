@@ -37,6 +37,7 @@
     "@tanstack/router-devtools": "^1.95.0",
     "cookies-next": "^5.1.0",
     "date-fns": "^4.1.0",
+    "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "formik": "^2.4.6",
     "framer-motion": "^11.0.18",

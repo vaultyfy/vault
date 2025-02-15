@@ -5,3 +5,4 @@ export * from "./text";
 export * from "./circle-progress";
 export * from "./badge";
 export * from "./custom-progress";
+export * from "./carousel";

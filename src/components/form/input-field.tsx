@@ -191,7 +191,7 @@ export const TextAreaField = ({
           fontSize="sm"
           placeholder={placeholder}
           borderRadius={radius ? radius : "9px"}
-          border="1px solid var(--input-outline)"
+          border="1px solid  #E2E8F0"
           className={meta.touched && meta.error ? "shake" : ""}
           _placeholder={{
             fontWeight: "400",
