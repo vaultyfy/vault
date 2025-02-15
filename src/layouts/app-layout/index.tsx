@@ -1,13 +1,14 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { LayoutProps } from "@layouts/home-layout";
 import { Sidebar } from "./sidebar";
 
 export const AppLayout = ({ children }: Readonly<LayoutProps>) => {
   return (
-    <Flex height="100vh">
+    <Flex minH="100dvh" bgColor="#ffffff">
       <Sidebar />
-
-      <Box width="80%">{children}</Box>
+      <Box marginLeft={{ lg: "256px", base: 0 }} width="100%" minH="100vh">
+        {children}
+      </Box>
     </Flex>
   );
 };
