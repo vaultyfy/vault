@@ -4,7 +4,6 @@ import {
   Flex,
   HStack,
   Button,
-  Center,
   Menu,
   MenuButton,
   MenuList,
@@ -12,31 +11,13 @@ import {
   Tabs,
   TabList,
   TableContainer,
-  TableCaption,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Table,
-  Avatar,
-  AvatarGroup,
 } from "@chakra-ui/react";
-import {
-  OverviewCard,
-  NotificationPopover,
-  CalendarPopover,
-} from "@components/customer/ui";
-import { CirclePlus, CalendarDays, Bell } from "lucide-react";
-import { Icon } from "@components/icon";
+import { OverviewCard } from "@components/customer/ui";
 import { ChevronDown } from "lucide-react";
 import { ActivitiesTable } from "@components/customer/tables";
 import { useState } from "react";
 
 export const Dashboard = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const onClose = () => setIsOpen(false);
-
   return (
     <>
       <Box width="100%" minH={"100dvh"}>

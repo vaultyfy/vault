@@ -1,4 +1,12 @@
-import { Box, SimpleGrid, Text, Flex, Button } from "@chakra-ui/react";
+import { useState } from "react";
+import {
+  Box,
+  SimpleGrid,
+  Text,
+  Flex,
+  Button,
+  IconButton,
+} from "@chakra-ui/react";
 import { FilterDatePicker, FilterInput } from "@components/form";
 import { GroupCard } from "@components/customer/ui";
 import { Carousel } from "@components/ui";
@@ -6,7 +14,9 @@ import { EmblaOptionsType } from "embla-carousel";
 import { Icon } from "@components/icon";
 import { Formik, Form } from "formik";
 import { schema } from "@utils/validators";
-import { interval } from "date-fns";
+import { useMobileScreens } from "@hooks/mobile-screen";
+import { FunnelSimple } from "@phosphor-icons/react";
+import { ExploreFilter } from "@layouts/modal-layout/explore-filter";
 
 const carouselSettings: EmblaOptionsType = {
   loop: true,
@@ -22,6 +32,8 @@ const initialValues = {
 };
 
 export const Explore = () => {
+  const { isMobile } = useMobileScreens();
+  const [isMobileFilter, setIsMobileFilter] = useState(false);
   return (
     <Box width="100%" minH="100dvh">
       <Text as="p" fontSize="24px" color="var(--text-1)" mb="0.5rem">
@@ -39,12 +51,17 @@ export const Explore = () => {
       >
         <Carousel options={carouselSettings}>
           {Array.from({ length: 5 }).map((_, index) => (
-            <GroupCard key={index} cardGradient="var(--main-gradient)" />
+            <GroupCard key={index} hasGradient={true} link="my-group" />
           ))}
         </Carousel>
       </Box>
 
-      <Box w="100%">
+      <Box
+        w="100%"
+        sx={
+          isMobile ? { display: "flex", justifyContent: "space-between" } : {}
+        }
+      >
         <Text
           fontFamily="var(--poppins)"
           color="var(--text-1)"
@@ -53,79 +70,93 @@ export const Explore = () => {
         >
           More Groups
         </Text>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={schema.exploreFilters}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
-          }}
-        >
-          {(formik) => (
-            <Flex
-              as={Form}
-              px="8px"
-              minHeight="54px"
-              rounded="5px"
-              bgColor="#f6f6f6"
-              alignItems="center"
-              gap="0.5em"
-            >
-              <Box flex={1}>
-                <FilterInput
-                  name="members"
-                  title="members"
-                  icon={<Icon name="users" />}
-                  placeholder="10"
-                  height="36px"
-                />
-              </Box>
-              <Box flex={1}>
-                <FilterDatePicker
-                  formik={formik}
-                  fieldName="startDate"
-                  title="Start dates"
-                  placeholder="06-10-2025"
-                  icon={<Icon name="calendar-dots" />}
-                  height="36px"
-                />
-              </Box>
-              <Box flex={1}>
-                <FilterInput
-                  name="payout"
-                  title="Pay-outs"
-                  icon={<Icon name="money-send" />}
-                  placeholder="100,000"
-                  height="36px"
-                />
-              </Box>
-              <Box flex={1}>
-                <FilterInput
-                  name="interval"
-                  title="Interval"
-                  icon={<Icon name="timer" />}
-                  placeholder="weekly"
-                  height="36px"
-                />
-              </Box>
-              <Button
-                width="107px"
-                px="10px"
-                py="8px"
-                bgColor="var(--main)"
-                fontFamily="var(--poppins)"
-                fontWeight="medium"
-                fontSize="11px"
-                color="#ffffff"
-                _hover={{ bgColor: "var(--main)" }}
-                _active={{ bgColor: "var(--main)" }}
-                _focus={{ bgColor: "var(--main)" }}
-                isLoading={formik.isSubmitting}
+        {!isMobile ? (
+          <Formik
+            initialValues={initialValues}
+            validationSchema={schema.exploreFilters}
+            onSubmit={(values, { setSubmitting }) => {
+              console.log(values);
+            }}
+          >
+            {(formik) => (
+              <Flex
+                as={Form}
+                px="8px"
+                minHeight="54px"
+                rounded="5px"
+                bgColor="#f6f6f6"
+                alignItems="center"
+                gap="0.5em"
               >
-                Apply
-              </Button>
-            </Flex>
-          )}
-        </Formik>
+                <Box flex={1}>
+                  <FilterInput
+                    name="members"
+                    title="members"
+                    icon={<Icon name="users" />}
+                    placeholder="10"
+                    height="36px"
+                  />
+                </Box>
+                <Box flex={1}>
+                  <FilterDatePicker
+                    formik={formik}
+                    fieldName="startDate"
+                    title="Start dates"
+                    placeholder="06-10-2025"
+                    icon={<Icon name="calendar-dots" />}
+                    height="36px"
+                  />
+                  {formik.touched.startDate && formik.errors.startDate && (
+                    <Box color="var(--deep-red)" mt={2}>
+                      {formik.errors.startDate}
+                    </Box>
+                  )}
+                </Box>
+                <Box flex={1}>
+                  <FilterInput
+                    name="payout"
+                    title="Pay-outs"
+                    icon={<Icon name="money-send" />}
+                    placeholder="100,000"
+                    height="36px"
+                  />
+                </Box>
+                <Box flex={1}>
+                  <FilterInput
+                    name="interval"
+                    title="Interval"
+                    icon={<Icon name="timer" />}
+                    placeholder="weekly"
+                    height="36px"
+                  />
+                </Box>
+                <Button
+                  width="107px"
+                  px="10px"
+                  py="8px"
+                  bgColor="var(--main)"
+                  fontFamily="var(--poppins)"
+                  fontWeight="medium"
+                  fontSize="11px"
+                  color="#ffffff"
+                  _hover={{ bgColor: "var(--main)" }}
+                  _active={{ bgColor: "var(--main)" }}
+                  _focus={{ bgColor: "var(--main)" }}
+                  isLoading={formik.isSubmitting}
+                >
+                  Apply
+                </Button>
+              </Flex>
+            )}
+          </Formik>
+        ) : (
+          <IconButton
+            aria-label="filter"
+            icon={<FunnelSimple size={24} />}
+            rounded="full"
+            onClick={() => setIsMobileFilter(true)}
+          />
+        )}
       </Box>
 
       {/* Grid Section */}
@@ -137,11 +168,16 @@ export const Explore = () => {
         mt="17px"
       >
         {Array.from({ length: 5 }).map((_, index) => (
-          <Box height="240px" flex={1} key={index}>
+          <Box minHeight="240px" flex={1} key={index}>
             <GroupCard />
           </Box>
         ))}
       </SimpleGrid>
+
+      <ExploreFilter
+        isOpen={isMobileFilter}
+        onClose={() => setIsMobileFilter(false)}
+      />
     </Box>
   );
 };

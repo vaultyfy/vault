@@ -84,12 +84,6 @@ export const FilterInput = ({
           bgColor="#ffffff"
           width="auto"
           height={height}
-          sx={{
-            borderRight: "none",
-            "&:not(:first-of-type)": {
-              borderLeftWidth: 0,
-            },
-          }}
         >
           <Text
             color="#575757"
@@ -179,7 +173,7 @@ export const FilterDatePicker = ({
     }
   };
 
-  const formattedDate = date ? format(date, "PP") : "";
+  const formattedDate = date ? format(date, "dd-MM-yyyy") : "";
 
   const generateDates = (year: number, month: number) => {
     const firstDay = new Date(year, month, 1);
@@ -235,14 +229,13 @@ export const FilterDatePicker = ({
               pl="2.5rem"
               bgColor="#ffffff"
               width="auto"
-              boxShadow="none"
-              outline="none"
               height={height}
             >
               <Text
-                color="#64748B"
-                fontSize="14px"
-                fontWeight="400"
+                color="#575757"
+                fontSize="11px"
+                borderRight="none"
+                fontWeight="medium"
                 whiteSpace="nowrap"
               >
                 {title}

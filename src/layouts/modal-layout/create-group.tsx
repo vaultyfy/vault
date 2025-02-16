@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { HStack, VStack, Box, Button, Text, Flex } from "@chakra-ui/react";
 import { ModalLayout } from "@layouts/modal-layout";
 import { Formik, Form } from "formik";
@@ -10,7 +9,6 @@ import {
   DatePicker,
 } from "@components/form";
 import { schema } from "@utils/validators";
-import { CalendarBlank } from "@phosphor-icons/react";
 import { Icon } from "@components/icon";
 import { generateNoOfCycles, generateNoOfDays } from "@utils/misc";
 

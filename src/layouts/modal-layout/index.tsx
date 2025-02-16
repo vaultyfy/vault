@@ -8,7 +8,9 @@ import {
   Text,
   ChakraProps,
   Box,
+  IconButton,
 } from "@chakra-ui/react";
+import { XCircle } from "@phosphor-icons/react";
 
 interface ModalLayoutProps extends ChakraProps {
   title?: string;
