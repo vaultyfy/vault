@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   Box, Flex, Text, VStack, Button, Icon, HStack, useBreakpointValue, Image
 } from "@chakra-ui/react";
-import { Star, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { UserMenu } from "@components/ui";
 
@@ -23,7 +23,7 @@ const faqs = [
 
 const HelpSupportCard = () => {
   const [selected, setSelected] = useState(0);
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue({ base: true, lg: false });
 
   return (
     <Box
@@ -36,26 +36,38 @@ const HelpSupportCard = () => {
       px={{ base: "4", md: "8" }}
     >
 
-      <Flex justify={'space-between'} align="center" px="6" py="4">
-        <Flex as="nav" gap={4}>
-          <Link to="/">
-            <Image
-              src="/img/logo.svg"
-              alt="Vaultyfy logo"
-              height="41px"
-              width="151px"
-            />
-          </Link>
-          {isMobile ? (
-            <Icon as={Menu} boxSize={6} />
-          ) : (
-            <HStack spacing="8">
-              <Text fontSize="18px" fontWeight={'400'} color="#000000" cursor="pointer">Features</Text>
-              <Text fontSize="18px" fontWeight={'400'} color="#000000" cursor="pointer">FAQs</Text>
-              <Text fontSize="18px" fontWeight={'400'} color="#000000" cursor="pointer">Contact us</Text>
-            </HStack>
-          )}
-        </Flex>
+      <Flex
+        justify="space-between"
+        align="center"
+        px="4"
+        py="3"
+        bg="white"
+        position="sticky"
+        top="0"
+        zIndex="1000"
+        borderBottom={{ base: "1px solid #E5E5E5", lg: "none" }} // Hide border on lg screens
+      >
+        {/* ✅ Mobile: Logo & Menu Icon */}
+        {isMobile ? (
+          <HStack spacing="3">
+            <Icon as={Menu} boxSize="24px" color="black" cursor="pointer" />
+            <Link to="/">
+              <Image src="/img/logo.svg" alt="Vaultyfy logo" height="32px" />
+            </Link>
+          </HStack>
+        ) : (
+          // ✅ Large Screens: Logo + Nav Links in Same Flex
+          <Flex align="center" gap={4}>
+            <Link to="/">
+              <Image src="/img/logo.svg" alt="Vaultyfy logo" height="32px" />
+            </Link>
+            <Text fontSize="18px" fontWeight="400" color="#000000" cursor="pointer">Features</Text>
+            <Text fontSize="18px" fontWeight="400" color="#000000" cursor="pointer">FAQs</Text>
+            <Text fontSize="18px" fontWeight="400" color="#000000" cursor="pointer">Contact us</Text>
+          </Flex>
+        )}
+
+        {/* ✅ User Avatar (Always Visible) */}
         <UserMenu />
       </Flex>
 
@@ -68,7 +80,6 @@ const HelpSupportCard = () => {
         wrap="wrap"
         mt="10"
       >
-
         <Box w={{ base: "100%", md: "45%" }} maxWidth="500px" p="4" pt={{ base: "0", md: "2" }}>
           <Text fontSize="40px" fontWeight="600" color={'#1C1C1C'} mt="-30px">Help & Support</Text>
           <Text fontSize="36px" fontWeight="600" color={'#1C1C1C'} mt="6" mb={'2'}>FAQ</Text>
@@ -101,7 +112,6 @@ const HelpSupportCard = () => {
             ))}
           </VStack>
         </Box>
-
 
         <Box w={{ base: "100%", md: "50%" }} maxWidth="600px" p="4">
           <Text fontSize="24px" fontWeight="600" color="#1CCFBD" mb="4">Answers</Text>
@@ -146,3 +156,6 @@ const HelpSupportCard = () => {
 };
 
 export default HelpSupportCard;
+
+
+

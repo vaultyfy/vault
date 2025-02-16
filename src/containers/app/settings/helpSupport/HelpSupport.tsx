@@ -4,11 +4,11 @@ import {useNavigate, useRouter} from "@tanstack/react-router";
 
 export default function HelpSupport(){
   const [isActive, setIsActive] = useState(false);
-  const navigate = useNavigate(); // TanStack Router navigation
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setIsActive(!isActive);
-    navigate({ to: "/settings/help-support" }); // Ensure route is correct
+    navigate({ to: "/settings/help-support" });
   };
 
   return(
@@ -23,8 +23,6 @@ export default function HelpSupport(){
           cursor="pointer"
           bg={isActive ? "#F0FAFC" : "transparent"}
           onClick={handleClick}
-
-          // onClick={() => setIsActive(!isActive)}
         >
           <Image
             src="/img/support.svg"
@@ -33,8 +31,8 @@ export default function HelpSupport(){
             width="32px"
             mb={'10px'}
           />
-          <Text fontSize="20px" fontWeight="bold" mb={2}>Help & Support</Text>
-          <Text fontSize="14px" color="gray.600">
+          <Text fontSize="18px" fontWeight="500" color={'#222222'} mb={2}>Help & Support</Text>
+          <Text fontSize="14px" fontWeight={400}  color="#717171">
             Contact our support and learn more about our terms of services
           </Text>
         </Box>
