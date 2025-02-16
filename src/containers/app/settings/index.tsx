@@ -4,7 +4,7 @@ import { CalendarPopover, NotificationPopover } from "@components/customer/ui";
 import PersonalInfo from "@containers/app/settings/personalInfo/PersonalInfo";
 import PaymentsPayouts from "@containers/app/settings/paymentPayout/PaymentsPayouts";
 import LoginSecurity from "@containers/app/settings/loginSecurity/LoginSecurity";
-import HelpSupport from "@containers/app/settings/HelpSupport";
+import HelpSupport from "@containers/app/settings/helpSupport/HelpSupport";
 
 export const Settings = () => {
   return (
