@@ -39,4 +39,14 @@ export type User = {
   resetPasswordTokenExpTime: null | string;
   role: string;
   updatedAT: string;
+  my_wallet: Wallet
+};
+
+export type Wallet = {
+  balance: string | number;
+  createdAT: string;
+  id: number;
+  isActive: boolean;
+  updatedAT: string;
+  walletAddrress: string;
 };

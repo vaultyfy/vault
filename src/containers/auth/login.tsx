@@ -54,13 +54,9 @@ export const LoginPage = () => {
                 const response: Response<LoginResponse> = await request.json();
 
                 if (request.ok) {
-                  setCookie(
-                    TOKEN_KEY,
-                    JSON.stringify(response.payload?.token.token),
-                    {
-                      ...cookieOptions,
-                    },
-                  );
+                  setCookie(TOKEN_KEY, response.payload?.token.token, {
+                    ...cookieOptions,
+                  });
                   openToast(response.message, "success");
                   navigate({ to: "/dashboard" });
                 } else {
