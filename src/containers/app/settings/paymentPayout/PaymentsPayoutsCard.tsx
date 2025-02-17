@@ -122,7 +122,6 @@ const PaymentsPayoutsCard = () => {
 
             <Divider my={2} />
 
-            {/* Bank Name Dropdown */}
             <Box py={3}>
               <Text fontSize="14px" fontWeight="400" color="#818181">
                 Bank name
