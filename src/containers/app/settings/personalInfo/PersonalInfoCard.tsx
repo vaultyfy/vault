@@ -1,4 +1,5 @@
 import { Box, Text, Divider, Link, Flex, Image } from "@chakra-ui/react";
+import React from "react";
 
 interface UserDetail {
   label: string;
