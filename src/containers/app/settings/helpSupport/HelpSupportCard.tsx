@@ -142,7 +142,16 @@ const HelpSupportCard = () => {
           <Box mt="4" bg="#19191A05" p="4" borderRadius="14px">
             <Flex justify="space-between" align="center">
               <Text fontSize="18px" fontWeight={400} color={'#000000'}>Still have questions? Contact us directly</Text>
-              <Button bg="#102634" fontWeight={500} fontSize={'14px'} color="white" px="4" borderRadius={'36px'}>Contact us</Button>
+              <Button bg="#102634"
+                      fontWeight={500}
+                      fontSize={'14px'}
+                      color="white"
+                      px="4"
+                      borderRadius={'36px'}
+                      _hover={{ bg: "#102634" }}
+                      _active={{ bg: "#102634" }}
+                      _focus={{ boxShadow: "none" }}
+              >Contact us</Button>
             </Flex>
           </Box>
         </Box>

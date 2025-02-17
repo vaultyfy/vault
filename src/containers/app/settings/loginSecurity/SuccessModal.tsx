@@ -21,9 +21,8 @@ const SuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
         textAlign="center"
         maxW="350px"
       >
-        {/* Checkmark Icon */}
-        <Center>
 
+        <Center>
           <Image
             src="/img/check-crcle.svg"
             alt="Vaultyfy logo"
@@ -33,7 +32,7 @@ const SuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 
         </Center>
 
-        {/* Success Message */}
+
         <ModalHeader fontSize="20px" fontWeight="bold" color="#1C1C1C">
           Successful
         </ModalHeader>
@@ -44,13 +43,16 @@ const SuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
           </Text>
         </ModalBody>
 
-        {/* Button */}
         <Center>
           <Button
             bg="#102634"
             color="white"
             borderRadius="36px"
+            cursor={'pointer'}
             width="131px"
+            _hover={{ bg: "#102634" }}
+            _active={{ bg: "#102634" }}
+            _focus={{ boxShadow: "none" }}
             onClick={onClose}
           >
             Got It

@@ -29,7 +29,7 @@ const LoginSecurityCard = () => {
     confirmPassword: false,
   });
 
-  // Handle input change
+
   const handleChange = (field: keyof PasswordFields, value: string) => {
     setPasswords((prev) => ({
       ...prev,
@@ -37,7 +37,6 @@ const LoginSecurityCard = () => {
     }));
   };
 
-  // Toggle edit mode
   const toggleEdit = (field: keyof PasswordFields) => {
     setEditMode((prev) => ({
       ...prev,
@@ -58,7 +57,7 @@ const LoginSecurityCard = () => {
         bg="white"
         boxShadow="sm"
       >
-        {/* Password Fields */}
+
         {Object.keys(passwords).map((field) => (
           <Box key={field} py={4}>
             <Text fontSize="14px" fontWeight="400" color="#818181">
@@ -106,9 +105,9 @@ const LoginSecurityCard = () => {
           bg="#102634"
           color="white"
           borderRadius="36px"
-          _hover={{ bg: "#102634" }} // Keeps the background color unchanged on hover
-          _active={{ bg: "#102634" }} // Prevents active click effect
-          _focus={{ boxShadow: "none" }} // Removes focus outline
+          _hover={{ bg: "#102634" }} //this keeps the background color unchanged on hover
+          _active={{ bg: "#102634" }} //this Prevents active click effect
+          _focus={{ boxShadow: "none" }} //this Removes focus outline
           onClick={() => setIsModalOpen(true)}
         >
           Save settings
