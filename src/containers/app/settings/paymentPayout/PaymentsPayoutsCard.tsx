@@ -128,7 +128,7 @@ const PaymentsPayoutsCard = () => {
                 Bank name
               </Text>
               <Flex justify="space-between" align="center" cursor="pointer">
-                <Text fontSize="18px" fontWeight="bold" color={"#1C1C1C"}>
+                <Text fontSize="18px" fontWeight="400" color={"#1C1C1C"}>
                   {payment.bankName}
                 </Text>
                 <Image
