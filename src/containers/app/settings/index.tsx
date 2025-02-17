@@ -16,12 +16,13 @@ import PersonalInfoCard
   from "@containers/app/settings/personalInfo/PersonalInfoCard";
 import React, {useState} from "react";
 import {NotificationPopover} from "@components/customer/ui/notification-popover";
+import {CalendarPopover} from "@components/customer/ui/calendar-popover";
 
 
 
 export const Settings = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
-  const [isActive, setIsActive] = useState("Personal info");
+  const [isActive, setIsActive] = useState("");
 
   return (
     <Box width="100%" height="100vh" display="flex" flexDirection="column">
