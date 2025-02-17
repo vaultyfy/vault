@@ -20,7 +20,6 @@ import {
 interface Props {
   width?: string;
 }
-
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export const Calendar: React.FC<Props> = ({ width }) => {
