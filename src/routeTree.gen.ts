@@ -15,6 +15,7 @@ import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
+import { Route as SettingsHelpSupportImport } from './routes/settings/help-support'
 import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardGroupsImport } from './routes/dashboard/groups'
@@ -47,6 +48,12 @@ const DashboardIndexRoute = DashboardIndexImport.update({
 const AuthIndexRoute = AuthIndexImport.update({
   id: '/auth/',
   path: '/auth/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SettingsHelpSupportRoute = SettingsHelpSupportImport.update({
+  id: '/settings/help-support',
+  path: '/settings/help-support',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -172,6 +179,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsImport
       parentRoute: typeof rootRoute
     }
+    '/settings/help-support': {
+      id: '/settings/help-support'
+      path: '/settings/help-support'
+      fullPath: '/settings/help-support'
+      preLoaderRoute: typeof SettingsHelpSupportImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/': {
       id: '/auth/'
       path: '/auth'
@@ -202,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/settings/help-support': typeof SettingsHelpSupportRoute
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -217,6 +232,7 @@ export interface FileRoutesByTo {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/settings/help-support': typeof SettingsHelpSupportRoute
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -233,6 +249,7 @@ export interface FileRoutesById {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/settings/help-support': typeof SettingsHelpSupportRoute
   '/auth/': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -250,6 +267,7 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
+    | '/settings/help-support'
     | '/auth'
     | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
@@ -264,6 +282,7 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
+    | '/settings/help-support'
     | '/auth'
     | '/dashboard'
   id:
@@ -278,6 +297,7 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
+    | '/settings/help-support'
     | '/auth/'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -294,6 +314,7 @@ export interface RootRouteChildren {
   DashboardGroupsRoute: typeof DashboardGroupsRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
+  SettingsHelpSupportRoute: typeof SettingsHelpSupportRoute
   AuthIndexRoute: typeof AuthIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
@@ -309,6 +330,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardGroupsRoute: DashboardGroupsRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
+  SettingsHelpSupportRoute: SettingsHelpSupportRoute,
   AuthIndexRoute: AuthIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
@@ -333,6 +355,7 @@ export const routeTree = rootRoute
         "/dashboard/groups",
         "/dashboard/payments",
         "/dashboard/settings",
+        "/settings/help-support",
         "/auth/",
         "/dashboard/"
       ]
@@ -366,6 +389,9 @@ export const routeTree = rootRoute
     },
     "/dashboard/settings": {
       "filePath": "dashboard/settings.tsx"
+    },
+    "/settings/help-support": {
+      "filePath": "settings/help-support.tsx"
     },
     "/auth/": {
       "filePath": "auth/index.tsx"

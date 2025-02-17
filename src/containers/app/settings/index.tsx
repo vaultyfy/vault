@@ -21,6 +21,7 @@ import PaymentsPayouts from "@containers/app/settings/paymentPayout/PaymentsPayo
 import PaymentsPayoutsCard from "@containers/app/settings/paymentPayout/PaymentsPayoutsCard";
 import LoginSecurityCard from "@containers/app/settings/loginSecurity/LoginSecurityCard";
 import LoginSecurity from "@containers/app/settings/loginSecurity/LoginSecurity";
+import HelpSupport from "@containers/app/settings/helpSupport/HelpSupport";
 
 
 
@@ -82,6 +83,7 @@ export const Settings = () => {
           <PersonalInfo onClick={setIsActive} isActive={isActive === "Personal info"}/>
           <PaymentsPayouts onClick={setIsActive} isActive={isActive === "Payments Payout"} />
           <LoginSecurity onClick={setIsActive} isActive={isActive === "Login Security"} />
+          <HelpSupport />
 
         </Flex>
         <Box flex="1">
