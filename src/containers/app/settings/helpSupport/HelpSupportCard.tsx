@@ -45,9 +45,8 @@ const HelpSupportCard = () => {
         position="sticky"
         top="0"
         zIndex="1000"
-        borderBottom={{ base: "1px solid #E5E5E5", lg: "none" }} // Hide border on lg screens
+        borderBottom={{ base: "1px solid #E5E5E5", lg: "none" }}
       >
-        {/* ✅ Mobile: Logo & Menu Icon */}
         {isMobile ? (
           <HStack spacing="3">
             <Icon as={Menu} boxSize="24px" color="black" cursor="pointer" />
@@ -56,7 +55,6 @@ const HelpSupportCard = () => {
             </Link>
           </HStack>
         ) : (
-          // ✅ Large Screens: Logo + Nav Links in Same Flex
           <Flex align="center" gap={4}>
             <Link to="/">
               <Image src="/img/logo.svg" alt="Vaultyfy logo" height="32px" />
@@ -67,11 +65,9 @@ const HelpSupportCard = () => {
           </Flex>
         )}
 
-        {/* ✅ User Avatar (Always Visible) */}
+
         <UserMenu />
       </Flex>
-
-      {/* Main Content */}
       <Flex
         direction={{ base: "column", md: "row" }}
         justify="space-between"
