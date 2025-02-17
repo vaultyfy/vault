@@ -151,8 +151,7 @@ export const Calendar: React.FC<Props> = ({ width }) => {
               color={
                 isPast ? "gray.400" : isCurrentMonth ? "black" : "gray.300"
               }
-              _hover={{ background: isPast ? "none" : "var(--coral-400)" }}
-            >
+              _hover={{ background: isPast ? "none" : "var(--coral-400)" }}>
               <Text fontSize={"13px"} fontFamily={"var(--poppins)"}>
                 {d.getDate()}
               </Text>
