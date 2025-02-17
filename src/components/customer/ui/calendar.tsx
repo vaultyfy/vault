@@ -110,6 +110,7 @@ export const Calendar: React.FC<Props> = ({ width }) => {
               bgColor: "transparent",
             }}
           />
+
           <Text fontWeight="500">{format(currentYear, "yyyy")}</Text>
           <IconButton
             aria-label="Next year"
@@ -121,6 +122,7 @@ export const Calendar: React.FC<Props> = ({ width }) => {
               bgColor: "transparent",
             }}
           />
+
         </Flex>
       </Flex>
 
