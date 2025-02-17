@@ -69,7 +69,7 @@ const PaymentsPayoutsCard = () => {
             bg="white"
             boxShadow="sm"
           >
-            {/* Remove Button */}
+
             <Flex justify="flex-end" align="center" mb={4}>
               <Flex align="center" gap={1}>
                 <Image
@@ -90,7 +90,6 @@ const PaymentsPayoutsCard = () => {
               </Flex>
             </Flex>
 
-            {/* Account Name */}
             <Box py={3}>
               <Text fontSize="14px" fontWeight="400" color="#818181">
                 Account name
@@ -107,7 +106,6 @@ const PaymentsPayoutsCard = () => {
 
             <Divider my={2} />
 
-            {/* Account Number */}
             <Box py={3}>
               <Text fontSize="14px" fontWeight="400" color="#818181">
                 Bank account number

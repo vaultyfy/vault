@@ -7,11 +7,6 @@ interface PaymentsPayoutsProps {onClick:(str:string)=>void, isActive:boolean}
 
 const PaymentsPayouts = ({onClick,isActive}:PaymentsPayoutsProps) => {
 
-  const defaultPaymentData = {
-    accountName: "Akinlolu Daniel",
-    accountNumber: "0233850785",
-    bankName: "GT Bank",
-  };
 
   return (
     <Box width="100%" px={{ base: "1rem", lg: "1rem" }}>
