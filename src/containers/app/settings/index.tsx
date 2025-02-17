@@ -17,12 +17,14 @@ import PersonalInfoCard
 import React, {useState} from "react";
 import {NotificationPopover} from "@components/customer/ui/notification-popover";
 import {CalendarPopover} from "@components/customer/ui/calendar-popover";
+import PaymentsPayouts from "@containers/app/settings/paymentPayout/PaymentsPayouts";
+import PaymentsPayoutsCard from "@containers/app/settings/paymentPayout/PaymentsPayoutsCard";
 
 
 
 export const Settings = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
-  const [isActive, setIsActive] = useState("");
+  const [isActive, setIsActive] = useState("Personal info");
 
   return (
     <Box width="100%" height="100vh" display="flex" flexDirection="column">
@@ -76,9 +78,11 @@ export const Settings = () => {
       <Flex flex="1" flexDirection="row" overflowY="auto" px={{ base: "1rem", lg: "2rem" }}>
         <Flex flexDirection="column" gap="1rem">
           <PersonalInfo onClick={setIsActive} isActive={isActive === "Personal info"}/>
+          <PaymentsPayouts onClick={setIsActive} isActive={isActive === "Payments Payout"} />
         </Flex>
         <Box flex="1">
           {isActive  ==="Personal info" && <PersonalInfoCard />}
+          {isActive === "Payments Payout" && <PaymentsPayoutsCard />}
         </Box>
       </Flex>
     </Box>
