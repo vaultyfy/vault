@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box, Flex, IconButton, SimpleGrid, Text } from "@chakra-ui/react";
 import {
   CaretRight,
@@ -20,6 +20,7 @@ import {
 interface Props {
   width?: string;
 }
+
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export const Calendar: React.FC<Props> = ({ width }) => {
