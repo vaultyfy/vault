@@ -19,6 +19,8 @@ import {NotificationPopover} from "@components/customer/ui/notification-popover"
 import {CalendarPopover} from "@components/customer/ui/calendar-popover";
 import PaymentsPayouts from "@containers/app/settings/paymentPayout/PaymentsPayouts";
 import PaymentsPayoutsCard from "@containers/app/settings/paymentPayout/PaymentsPayoutsCard";
+import LoginSecurityCard from "@containers/app/settings/loginSecurity/LoginSecurityCard";
+import LoginSecurity from "@containers/app/settings/loginSecurity/LoginSecurity";
 
 
 
@@ -79,10 +81,13 @@ export const Settings = () => {
         <Flex flexDirection="column" gap="1rem">
           <PersonalInfo onClick={setIsActive} isActive={isActive === "Personal info"}/>
           <PaymentsPayouts onClick={setIsActive} isActive={isActive === "Payments Payout"} />
+          <LoginSecurity onClick={setIsActive} isActive={isActive === "Login Security"} />
+
         </Flex>
         <Box flex="1">
           {isActive  ==="Personal info" && <PersonalInfoCard />}
           {isActive === "Payments Payout" && <PaymentsPayoutsCard />}
+          {isActive === "Login Security" &&  <LoginSecurityCard />}
         </Box>
       </Flex>
     </Box>
