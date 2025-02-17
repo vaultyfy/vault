@@ -6,7 +6,7 @@ import {
   Text,
   Icon,
   Image,
-  Link
+
 } from "@chakra-ui/react";
 import { CirclePlus, Menu } from "lucide-react";
 import PersonalInfo from "@containers/app/settings/personalInfo/PersonalInfo";
@@ -15,6 +15,7 @@ import {UserMenu} from "@components/ui";
 import PersonalInfoCard
   from "@containers/app/settings/personalInfo/PersonalInfoCard";
 import React, {useState} from "react";
+import {NotificationPopover} from "@components/customer/ui/notification-popover";
 
 
 
