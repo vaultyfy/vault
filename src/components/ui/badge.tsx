@@ -1,7 +1,6 @@
 import { Badge, Box, Text } from "@chakra-ui/react";
 
-
-export type GlobalStatus = "sucessful"
+export type GlobalStatus = "sucessful" | "pending_approval";
 
 export interface StatusProps {
   dot?: boolean;
@@ -19,7 +18,11 @@ const getStatusStyles = (status: GlobalStatus) => {
         color: "var(--success-700)",
         border: "1px solid var(--success-700)",
       };
-
+    case "pending_approval":
+      return {
+        background: "#ED9A1514",
+        color: "#ED9A15",
+      };
     default:
       return {
         background: "var(--gray-100)",

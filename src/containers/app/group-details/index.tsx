@@ -18,15 +18,7 @@ import { StackedAvatars } from "@components/customer/ui";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useToastContext } from "@hooks/context";
-
-const avatars = [
-  "/img/person-1.svg",
-  "/img/person-2.svg",
-  "/img/person-3.svg",
-  "/img/person-4.svg",
-  "/img/person-1.svg",
-  "/img/person-4.svg",
-];
+import { avatars } from "@utils/constants";
 
 export const GroupDetails = () => {
   const [approval, setApproval] = useState(false);

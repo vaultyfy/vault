@@ -73,7 +73,6 @@ export const DatePicker = ({
     }
   };
 
-  // const formattedDate = date ? format(date, "PP") : "Select date";
   const formattedDate = date ? format(date, "dd-MM-yyyy") : "Select date";
 
   const generateDates = (year: number, month: number) => {

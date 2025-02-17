@@ -235,7 +235,7 @@ export const FilterDatePicker = ({
                 color="#575757"
                 fontSize="11px"
                 borderRight="none"
-                fontWeight="medium"
+                fontWeight="400"
                 whiteSpace="nowrap"
               >
                 {title}

@@ -11,7 +11,7 @@ function RouteComponent() {
   return (
     <>
       <MetaData
-        url="vaultify.vercel.app"
+        url="vaultyfy.vercel.app"
         pageTitle="Explore &mdash; Vaultify"
       />
 
