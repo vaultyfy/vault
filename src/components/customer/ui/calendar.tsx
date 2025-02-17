@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box, Flex, IconButton, SimpleGrid, Text } from "@chakra-ui/react";
 import {
   CaretRight,
@@ -163,3 +163,4 @@ export const Calendar: React.FC<Props> = ({ width }) => {
     </Box>
   );
 };
+
