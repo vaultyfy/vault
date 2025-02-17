@@ -72,7 +72,6 @@ export const Settings = () => {
           </Flex>
         </Box>
       )}
-
       <Flex flex="1" flexDirection="row" overflowY="auto" px={{ base: "1rem", lg: "2rem" }}>
         <Flex flexDirection="column" gap="1rem">
           <PersonalInfo onClick={setIsActive} isActive={isActive === "Personal info"}/>
