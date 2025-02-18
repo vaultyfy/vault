@@ -25,21 +25,37 @@ export const MyGroupCard = ({
   return (
     <Card
       width="full"
-      minHeight="312px"
+      height="full"
       maxWidth="594px"
-      borderWidth="0.5px"
-      borderStyle="solid"
       rounded="10px"
+      position="relative"
       bg={bgColor ?? "#ffffff"}
-      sx={{
-        borderImage: "var(--main-gradient)",
+      _before={{
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        borderRadius: "10px",
+        padding: "0.5px",
+        background: "var(--main-gradient)",
+        WebkitMask:
+          "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+        WebkitMaskComposite: "xor",
+        maskComposite: "exclude",
+        pointerEvents: "none",
       }}
     >
       <CardBody px="19px" py="23px" w="full">
-        <Status status={acceptanceStatus as GlobalStatus} />
-        <VStack spacing="42px" w="full" mt="3rem">
-          <Flex width="full">
-            <Box flex={1}>
+        {acceptanceStatus && (
+          <Box mb="3rem">
+            <Status status={acceptanceStatus as GlobalStatus} />
+          </Box>
+        )}
+        <VStack spacing="23px" w="full">
+          <Flex width="full" height="143px">
+            <Box flex={1} px="8px">
               <Text
                 as="h5"
                 fontSize={{ base: "16px", lg: "20px" }}

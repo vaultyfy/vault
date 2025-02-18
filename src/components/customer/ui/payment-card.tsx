@@ -32,8 +32,9 @@ export const PaymentCard = ({
             as="h5"
             fontWeight="300"
             fontSize={{ base: "34px", lg: "44px" }}
-            bgGradient="var(--main-gradient)"
-            bgClip="text"
+            color={!isActive ? "var(--grey)" : undefined}
+            bgGradient={isActive ? "var(--main-gradient)" : undefined}
+            bgClip={isActive ? "text" : undefined}
           >
             {dateArray?.[0] || 23}
           </Text>

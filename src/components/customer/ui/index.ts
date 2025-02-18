@@ -5,3 +5,4 @@ export * from "./group-card";
 export * from "./stacked-avatars";
 export * from "./my-group-card";
 export * from "./payment-card";
+export * from "./calendar";
