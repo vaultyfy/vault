@@ -26,7 +26,7 @@ export const ExploreFilter = ({ isOpen, onClose }: ExploreFilterProps) => {
       size="full"
       px="4px"
       py="48px"
-      noCloseButton={true}
+      noCloseButton={true}  
     >
       <Box w="full" h="90vh">
         <IconButton

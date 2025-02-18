@@ -157,7 +157,7 @@ export const Calendar: React.FC<Props> = ({ width }) => {
                 {d.getDate()}
               </Text>
             </Flex>
-          )
+          ),
         )}
       </SimpleGrid>
     </Box>
