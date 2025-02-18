@@ -18,7 +18,8 @@ import { CalendarPopover } from "@components/customer/ui/calendar-popover";
 import { SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
 import LoginSecurityCard
   from "@containers/app/settings/components/login-security";
-// import HelpSupportCard from "@containers/app/settings/components/help-support";
+import HelpSupportCard from "@containers/app/settings/components/help-support";
+import {useNavigate} from "@tanstack/react-router";
 
 export type Setting = {
   id: string;
@@ -50,13 +51,13 @@ const SETTINGS: Setting[] = [
     description: "Update your password and secure your account",
     component: <LoginSecurityCard />,
   },
-  // {
-  //   id: crypto.randomUUID(),
-  //   title: "Help & Support",
-  //   iconName: "support",
-  //   description: "Contact our support and learn more about our terms of services",
-  //   component: <HelpSupportCard />,
-  // },
+  {
+    id: crypto.randomUUID(),
+    title: "Help & Support",
+    iconName: "support",
+    description: "Contact our support and learn more about our terms of services",
+    component: <HelpSupportCard />,
+  },
 
 ];
 
@@ -65,11 +66,18 @@ export const Settings = () => {
   const [activeSetting, setActiveSetting] = React.useState<Setting>(
     SETTINGS[0],
   );
+  const navigate = useNavigate();
+
 
   const handleSelectedSetting = (id: string) => {
     const found = SETTINGS.find((setting) => setting.id === id);
     if (!found) return;
-    setActiveSetting(found);
+
+    if (found.title === "Help & Support") {
+      navigate({ to: "/settings/help-support" });
+    } else {
+      setActiveSetting(found);
+    }
   };
 
   return (
