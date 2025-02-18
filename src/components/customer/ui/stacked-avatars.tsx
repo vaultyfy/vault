@@ -43,11 +43,11 @@ export const StackedAvatars = ({
         >
           <Text
             as="span"
-            fontFamily="var(--clash-grotesk-500)"
+            fontWeight="400"
             color="var(--grey)"
             fontSize="14px"
           >
-            {remainingCount} / {images.length}
+            {remainingCount}/{images.length}
           </Text>
         </Box>
       )}
