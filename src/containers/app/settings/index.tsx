@@ -17,7 +17,6 @@ import { NotificationPopover } from "@components/customer/ui/notification-popove
 import { CalendarPopover } from "@components/customer/ui/calendar-popover";
 import { SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
 
-
 export type Setting = {
   id: string;
   iconName: string;
@@ -118,8 +117,8 @@ export const Settings = () => {
       )}
 
       <Flex
-        flex="1"
-        flexDirection="row"
+        justifyContent="space-between"
+        gap="1em"
         overflowY="auto"
         px={{ base: "1rem", lg: "2rem" }}
       >
@@ -129,6 +128,7 @@ export const Settings = () => {
 
             return (
               <SettingCard
+                id={setting.id}
                 key={setting.id}
                 title={setting.title}
                 isActive={currentSetting}
@@ -139,9 +139,7 @@ export const Settings = () => {
             );
           })}
         </Stack>
-        <Box flex="1">
-          {activeSetting.component}
-        </Box>
+        <Box flex="1">{activeSetting.component}</Box>
       </Flex>
     </Box>
   );
