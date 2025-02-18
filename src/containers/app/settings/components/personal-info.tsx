@@ -1,4 +1,4 @@
-import { Box, Text, Divider, Link, Flex, Image } from "@chakra-ui/react";
+import {Box, Text, Divider, Link, Flex, Image, Badge} from "@chakra-ui/react";
 
 interface UserDetail {
   label: string;
@@ -38,7 +38,7 @@ const userDetails: UserDetail[] = [
 export const PersonalInfo = () => {
   return (
     <Box>
-      <Text fontSize="24px" fontWeight="400" mb={4} color="#1C1C1C">
+      <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
         Personal Info
       </Text>
 
@@ -61,13 +61,13 @@ export const PersonalInfo = () => {
                   </Text>
 
                   {item.value && (
-                    <Text fontSize="14px" fontWeight="500" color="#1C1C1C">
+                    <Text fontSize="14px" fontWeight="500" color="var(--gray)">
                       {item.value}
                     </Text>
                   )}
 
                   {item.status && (
-                    <Text
+                    <Badge
                       fontSize="14px"
                       fontWeight="500"
                       color="#13AD60"
@@ -83,7 +83,7 @@ export const PersonalInfo = () => {
                       textAlign="center"
                     >
                       {item.status}
-                    </Text>
+                    </Badge>
                   )}
                 </Box>
               </Flex>
