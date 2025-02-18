@@ -16,6 +16,8 @@ import React, { useState } from "react";
 import { NotificationPopover } from "@components/customer/ui/notification-popover";
 import { CalendarPopover } from "@components/customer/ui/calendar-popover";
 import { SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
+import LoginSecurityCard
+  from "@containers/app/settings/components/login-security";
 
 export type Setting = {
   id: string;
@@ -39,6 +41,13 @@ const SETTINGS: Setting[] = [
     iconName: "payout",
     description: "Review payments, payouts, coupons and gift cards",
     component: <PaymentsPayouts />,
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Login & security",
+    iconName: "login-security",
+    description: "Update your password and secure your account",
+    component: <LoginSecurityCard />,
   },
 ];
 
