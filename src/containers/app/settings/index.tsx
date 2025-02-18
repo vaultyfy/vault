@@ -18,6 +18,7 @@ import { CalendarPopover } from "@components/customer/ui/calendar-popover";
 import { SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
 import LoginSecurityCard
   from "@containers/app/settings/components/login-security";
+import HelpSupportCard from "@containers/app/settings/components/help-support";
 
 export type Setting = {
   id: string;
@@ -49,6 +50,14 @@ const SETTINGS: Setting[] = [
     description: "Update your password and secure your account",
     component: <LoginSecurityCard />,
   },
+  // {
+  //   id: crypto.randomUUID(),
+  //   title: "Help & Support",
+  //   iconName: "support",
+  //   description: "Contact our support and learn more about our terms of services",
+  //   component: <HelpSupportCard />,
+  // },
+
 ];
 
 export const Settings = () => {
