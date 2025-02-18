@@ -18,7 +18,7 @@ import { CalendarPopover } from "@components/customer/ui/calendar-popover";
 import { SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
 import LoginSecurityCard
   from "@containers/app/settings/components/login-security";
-import HelpSupportCard from "@containers/app/settings/components/help-support";
+// import HelpSupportCard from "@containers/app/settings/components/help-support";
 
 export type Setting = {
   id: string;
