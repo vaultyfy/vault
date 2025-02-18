@@ -1,13 +1,14 @@
-import React, { useState } from "react";
 import {
   Box,
   Text,
   Flex,
   Button,
   VStack,
-  Divider, Image,
+  Divider,
+  Image,
 } from "@chakra-ui/react";
-import {PlusCircle} from "lucide-react";
+import { PlusCircle } from "lucide-react";
+import React from "react";
 
 interface PaymentData {
   id: number;
@@ -16,8 +17,8 @@ interface PaymentData {
   bankName: string;
 }
 
-const PaymentsPayoutsCard = () => {
-  const [paymentMethods, setPaymentMethods] = useState<PaymentData[]>([
+export const PaymentsPayouts = () => {
+  const [paymentMethods, setPaymentMethods] = React.useState<PaymentData[]>([
     {
       id: 1,
       accountName: "Akinlolu Daniel",
@@ -26,21 +27,18 @@ const PaymentsPayoutsCard = () => {
     },
   ]);
 
-  // Handle removing a payment method
   const removePaymentMethod = (id: number) => {
     setPaymentMethods((prev) => prev.filter((payment) => payment.id !== id));
   };
 
-  // Handle updating bank name
   const updateBankName = (id: number, newBank: string) => {
     setPaymentMethods((prev) =>
       prev.map((payment) =>
-        payment.id === id ? { ...payment, bankName: newBank } : payment
-      )
+        payment.id === id ? { ...payment, bankName: newBank } : payment,
+      ),
     );
   };
 
-  // Handle adding a new payment method
   const addPaymentMethod = () => {
     setPaymentMethods((prev) => [
       ...prev,
@@ -69,7 +67,6 @@ const PaymentsPayoutsCard = () => {
             bg="white"
             boxShadow="sm"
           >
-
             <Flex justify="flex-end" align="center" mb={4}>
               <Flex align="center" gap={1}>
                 <Image
@@ -142,21 +139,21 @@ const PaymentsPayoutsCard = () => {
         ))}
       </VStack>
 
-      {/* Add Payment Method & Save Button */}
       <Flex justify="space-between" mt={6}>
         <Button
           leftIcon={<PlusCircle size={18} />}
-          background={'#F6F6F6'}
-          color={'#04040499'}
-          borderRadius={'30px'}
+          background={"#F6F6F6"}
+          color={"#04040499"}
+          borderRadius={"30px"}
           variant="outline"
+          fontWeight="400"
           onClick={addPaymentMethod}
         >
           Add payment method
         </Button>
         <Button
           bg="#102634"
-          color={'#FDFFF7'}
+          color={"#FDFFF7"}
           borderRadius="36px"
           _hover={{ bg: "#102634" }}
           _active={{ bg: "#102634" }}
@@ -168,5 +165,3 @@ const PaymentsPayoutsCard = () => {
     </Box>
   );
 };
-
-export default PaymentsPayoutsCard;

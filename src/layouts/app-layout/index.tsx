@@ -7,7 +7,7 @@ export const AppLayout = ({ children }: Readonly<LayoutProps>) => {
     <Flex height="100vh">
       <Sidebar />
 
-      <Box width="80%">{children}</Box>
+      <Box width="100%" background="#fff" border="1px solid red">{children}</Box>
     </Flex>
   );
 };

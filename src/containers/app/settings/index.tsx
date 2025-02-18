@@ -6,25 +6,54 @@ import {
   Text,
   Icon,
   Image,
-
+  Stack,
 } from "@chakra-ui/react";
 import { CirclePlus, Menu } from "lucide-react";
-import PersonalInfo from "@containers/app/settings/personalInfo/PersonalInfo";
+
 import { useBreakpointValue } from "@chakra-ui/react";
-import {UserMenu} from "@components/ui";
-import PersonalInfoCard
-  from "@containers/app/settings/personalInfo/PersonalInfoCard";
-import React, {useState} from "react";
-import {NotificationPopover} from "@components/customer/ui/notification-popover";
-import {CalendarPopover} from "@components/customer/ui/calendar-popover";
-import PaymentsPayouts from "@containers/app/settings/paymentPayout/PaymentsPayouts";
-import PaymentsPayoutsCard from "@containers/app/settings/paymentPayout/PaymentsPayoutsCard";
+import { UserMenu } from "@components/ui";
+import React, { useState } from "react";
+import { NotificationPopover } from "@components/customer/ui/notification-popover";
+import { CalendarPopover } from "@components/customer/ui/calendar-popover";
+import { SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
 
 
+export type Setting = {
+  id: string;
+  iconName: string;
+  title: string;
+  description: string;
+  component: React.ReactNode;
+};
+
+const SETTINGS: Setting[] = [
+  {
+    id: crypto.randomUUID(),
+    title: "personal info",
+    iconName: "person-edit",
+    description: "Provide personal details for full verification",
+    component: <PersonalInfo />,
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Payments & payouts",
+    iconName: "payout",
+    description: "Review payments, payouts, coupons and gift cards",
+    component: <PaymentsPayouts />,
+  },
+];
 
 export const Settings = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
-  const [isActive, setIsActive] = useState("Personal info");
+  const [activeSetting, setActiveSetting] = React.useState<Setting>(
+    SETTINGS[0],
+  );
+
+  const handleSelectedSetting = (id: string) => {
+    const found = SETTINGS.find((setting) => setting.id === id);
+    if (!found) return;
+    setActiveSetting(found);
+  };
 
   return (
     <Box width="100%" height="100vh" display="flex" flexDirection="column">
@@ -42,15 +71,28 @@ export const Settings = () => {
         >
           <HStack spacing="3">
             <Icon as={Menu} boxSize="24px" color="black" cursor="pointer" />
-              <Image src="/img/logo.svg" alt="Vaultyfy logo" height="32px" />
+            <Image src="/img/logo.svg" alt="Vaultyfy logo" height="32px" />
           </HStack>
           <UserMenu />
         </Flex>
       ) : (
-        <Box px={{ base: "1rem", lg: "2rem" }} mt={{ base: "1rem", lg: "2rem" }}>
-          <Flex justifyContent="space-between" alignItems="center" mb={{ base: "1rem", lg: "1.5rem" }}>
-            <Text as="h2" fontSize={{ base: "24px", lg: "32px" }}>Settings</Text>
-            <Flex columnGap="1rem" alignItems="center" display={{ base: "none", lg: "flex" }}>
+        <Box
+          px={{ base: "1rem", lg: "2rem" }}
+          mt={{ base: "1rem", lg: "2rem" }}
+        >
+          <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            mb={{ base: "1rem", lg: "1.5rem" }}
+          >
+            <Text as="h2" fontSize={{ base: "24px", lg: "32px" }}>
+              Settings
+            </Text>
+            <Flex
+              columnGap="1rem"
+              alignItems="center"
+              display={{ base: "none", lg: "flex" }}
+            >
               <Button
                 bgColor="var(--button-secondary-lighten)"
                 width="180px"
@@ -75,14 +117,30 @@ export const Settings = () => {
         </Box>
       )}
 
-      <Flex flex="1" flexDirection="row" overflowY="auto" px={{ base: "1rem", lg: "2rem" }}>
-        <Flex flexDirection="column" gap="1rem">
-          <PersonalInfo onClick={setIsActive} isActive={isActive === "Personal info"}/>
-          <PaymentsPayouts onClick={setIsActive} isActive={isActive === "Payments Payout"} />
-        </Flex>
+      <Flex
+        flex="1"
+        flexDirection="row"
+        overflowY="auto"
+        px={{ base: "1rem", lg: "2rem" }}
+      >
+        <Stack direction="column" gap="1em">
+          {SETTINGS.map((setting) => {
+            const currentSetting = activeSetting.id === setting.id;
+
+            return (
+              <SettingCard
+                key={setting.id}
+                title={setting.title}
+                isActive={currentSetting}
+                description={setting.description}
+                iconName={setting.iconName}
+                onClick={() => handleSelectedSetting(setting.id)}
+              />
+            );
+          })}
+        </Stack>
         <Box flex="1">
-          {isActive  ==="Personal info" && <PersonalInfoCard />}
-          {isActive === "Payments Payout" && <PaymentsPayoutsCard />}
+          {activeSetting.component}
         </Box>
       </Flex>
     </Box>
