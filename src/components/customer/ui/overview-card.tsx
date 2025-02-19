@@ -188,17 +188,20 @@ export const OverviewCard: React.FC<Props> = ({
             )}
             {cycle && (
               <Text
-                as="h4"
-                display="flex"
-                alignItems="center"
-                fontFamily="var(--clash-grotesk-variable)"
-                fontWeight={700}
                 fontSize="28px"
+                fontWeight="700"
+                fontFamily="var(--clash-grotesk-700)"
               >
                 {cycle}
-                <Box as="sub" fontWeight={200}>
+                <Text
+                  pl=".4em"
+                  as="span"
+                  fontWeight="300"
+                  fontSize="16px"
+                  fontFamily="var(--poppins)"
+                >
                   cycle completed
-                </Box>
+                </Text>
               </Text>
             )}
           </VStack>

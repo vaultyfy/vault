@@ -65,8 +65,6 @@ export const GroupCard = ({
       width={width || "100%"}
       height={height || "100%"}
       rounded="xl"
-      fontSize="var(--poppins)"
-      border="0.5px solid #8181816B"
       sx={
         gradient && hasGradient
           ? { backgroundImage: `url(${gradient})`, backgroundSize: "cover" }
@@ -96,9 +94,9 @@ export const GroupCard = ({
               </Text>
               <HStack spacing="3px" mt="2px">
                 <Flex
-                  rounded="10px"
-                  px={4}
-                  py={1}
+                  height="25px"
+                  borderRadius="18px"
+                  px="1em"
                   bg={hasGradient ? "rgba(255, 255, 255, 0.2)" : "#81818112"}
                   alignItems="center"
                 >
@@ -123,17 +121,15 @@ export const GroupCard = ({
             </Box>
             <Box w="full">
               <Text
-                as="p"
+                fontWeight="400"
                 fontSize={{ base: "12px", lg: "14px" }}
-                fontWeight="medium"
                 color={hasGradient ? "#ffffff" : "var(--grey)"}
               >
                 Start date
               </Text>
               <Text
-                as="p"
+                fontWeight="400"
                 fontSize={{ base: "14px", lg: "18px" }}
-                fontWeight="medium"
                 color={hasGradient ? "#ffffff" : "var(--text-1)"}
               >
                 24th Nov 2025
@@ -174,19 +170,16 @@ export const GroupCard = ({
                   as="p"
                   fontSize={{ base: "12px", lg: "14px" }}
                   fontWeight="medium"
-                  color="var(--grey)"
+                  color="#fff"
                   textAlign="end"
                 >
                   Pay-out
                 </Text>
-                <HStack spacing={2}>
+                <HStack gap="0">
                   <CurrencyNgn
                     size={28}
-                    weight="duotone"
                     color={hasGradient ? "#ffffff" : "var(--main)"}
-                    style={{
-                      fontWeight: "bold",
-                    }}
+                    fontWeight={500}
                   />
                   <Text
                     as="h5"
@@ -235,7 +228,7 @@ export const GroupCard = ({
               }}
               onClick={() => navigate({ to: `/dashboard/explore/${link}` })}
             >
-              Join
+              <Text color="#fff">Join</Text>
               <Box
                 boxSize="39px"
                 rounded="full"
@@ -247,7 +240,7 @@ export const GroupCard = ({
                 <ArrowRight
                   size={16}
                   color={hasGradient ? "var(--grey)" : "#ffffff"}
-                  weight="bold"
+                  fill=""
                 />
               </Box>
             </Button>
