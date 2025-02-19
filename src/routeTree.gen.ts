@@ -11,11 +11,11 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as HelpSupportImport } from './routes/help-support'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
-import { Route as SettingsHelpSupportImport } from './routes/settings/help-support'
 import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardGroupsImport } from './routes/dashboard/groups'
@@ -26,6 +26,12 @@ import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
 
 // Create/Update Routes
+
+const HelpSupportRoute = HelpSupportImport.update({
+  id: '/help-support',
+  path: '/help-support',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AboutRoute = AboutImport.update({
   id: '/about',
@@ -48,12 +54,6 @@ const DashboardIndexRoute = DashboardIndexImport.update({
 const AuthIndexRoute = AuthIndexImport.update({
   id: '/auth/',
   path: '/auth/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const SettingsHelpSupportRoute = SettingsHelpSupportImport.update({
-  id: '/settings/help-support',
-  path: '/settings/help-support',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -123,6 +123,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/help-support': {
+      id: '/help-support'
+      path: '/help-support'
+      fullPath: '/help-support'
+      preLoaderRoute: typeof HelpSupportImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/forgot-password': {
       id: '/auth/forgot-password'
       path: '/auth/forgot-password'
@@ -179,13 +186,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsImport
       parentRoute: typeof rootRoute
     }
-    '/settings/help-support': {
-      id: '/settings/help-support'
-      path: '/settings/help-support'
-      fullPath: '/settings/help-support'
-      preLoaderRoute: typeof SettingsHelpSupportImport
-      parentRoute: typeof rootRoute
-    }
     '/auth/': {
       id: '/auth/'
       path: '/auth'
@@ -208,6 +208,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help-support': typeof HelpSupportRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -216,7 +217,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/settings/help-support': typeof SettingsHelpSupportRoute
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -224,6 +224,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help-support': typeof HelpSupportRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -232,7 +233,6 @@ export interface FileRoutesByTo {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/settings/help-support': typeof SettingsHelpSupportRoute
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -241,6 +241,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help-support': typeof HelpSupportRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -249,7 +250,6 @@ export interface FileRoutesById {
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/settings/help-support': typeof SettingsHelpSupportRoute
   '/auth/': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -259,6 +259,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/help-support'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -267,13 +268,13 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
-    | '/settings/help-support'
     | '/auth'
     | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/help-support'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -282,13 +283,13 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
-    | '/settings/help-support'
     | '/auth'
     | '/dashboard'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/help-support'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -297,7 +298,6 @@ export interface FileRouteTypes {
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
-    | '/settings/help-support'
     | '/auth/'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -306,6 +306,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  HelpSupportRoute: typeof HelpSupportRoute
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
@@ -314,7 +315,6 @@ export interface RootRouteChildren {
   DashboardGroupsRoute: typeof DashboardGroupsRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
-  SettingsHelpSupportRoute: typeof SettingsHelpSupportRoute
   AuthIndexRoute: typeof AuthIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
@@ -322,6 +322,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  HelpSupportRoute: HelpSupportRoute,
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
@@ -330,7 +331,6 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardGroupsRoute: DashboardGroupsRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
-  SettingsHelpSupportRoute: SettingsHelpSupportRoute,
   AuthIndexRoute: AuthIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
@@ -347,6 +347,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/help-support",
         "/auth/forgot-password",
         "/auth/login",
         "/auth/reset-password",
@@ -355,7 +356,6 @@ export const routeTree = rootRoute
         "/dashboard/groups",
         "/dashboard/payments",
         "/dashboard/settings",
-        "/settings/help-support",
         "/auth/",
         "/dashboard/"
       ]
@@ -365,6 +365,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/help-support": {
+      "filePath": "help-support.tsx"
     },
     "/auth/forgot-password": {
       "filePath": "auth/forgot-password.tsx"
@@ -389,9 +392,6 @@ export const routeTree = rootRoute
     },
     "/dashboard/settings": {
       "filePath": "dashboard/settings.tsx"
-    },
-    "/settings/help-support": {
-      "filePath": "settings/help-support.tsx"
     },
     "/auth/": {
       "filePath": "auth/index.tsx"

@@ -12,6 +12,7 @@ import { SectionContainer, UserMenu } from "@components/ui";
 import { MotionBox } from "@config/motion";
 import { Hero } from "@containers/home/hero";
 import { MobileNav } from "@containers/home/mobile-nav";
+import { useCurrentPath } from "@hooks/current-path";
 import { useDomContentLoaded } from "@hooks/index";
 import React from "react";
 
@@ -24,19 +25,22 @@ const NAV_ITEMS = ["features", "FAQs", "Contact us"].map((item) => ({
 export const Header = () => {
   const { contentLoaded } = useDomContentLoaded();
   const [isMenuOpen, openMenu] = React.useState<boolean>(false);
+  const pathname = useCurrentPath();
 
   return (
     <>
-      <Box className="hero">
-        <MotionBox
-          className="grid"
-          initial={{ scale: 1 }}
-          animate={
-            contentLoaded
-              ? { scale: 1.8, transition: { duration: 0.6 } }
-              : { scale: 1 }
-          }
-        />
+      <Box className={pathname === "/help-support" ? "" : "hero"}>
+        {pathname !== "/help-support" && (
+          <MotionBox
+            className="grid"
+            initial={{ scale: 1 }}
+            animate={
+              contentLoaded
+                ? { scale: 1.8, transition: { duration: 0.6 } }
+                : { scale: 1 }
+            }
+          />
+        )}
 
         <SectionContainer>
           <Box
@@ -94,7 +98,7 @@ export const Header = () => {
             <UserMenu />
           </Box>
 
-          <Hero />
+          {pathname === "/help-support" ? null : <Hero />}
         </SectionContainer>
       </Box>
 

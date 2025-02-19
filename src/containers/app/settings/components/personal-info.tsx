@@ -1,4 +1,4 @@
-import {Box, Text, Divider, Link, Flex, Image, Badge} from "@chakra-ui/react";
+import { Box, Text, Divider, Link, Flex, Image, Badge } from "@chakra-ui/react";
 
 interface UserDetail {
   label: string;
@@ -46,10 +46,10 @@ export const PersonalInfo = () => {
         {userDetails.map((item, index) => (
           <Box key={index}>
             <Flex
+              px={3}
+              py="1.4em"
               justify="space-between"
               align="center"
-              py={3}
-              px={3}
               borderRadius="6px"
               transition="all .3s ease-out"
               _hover={{ bg: "#F6F6F6", cursor: "pointer" }}
@@ -69,7 +69,7 @@ export const PersonalInfo = () => {
                   {item.status && (
                     <Badge
                       fontSize="14px"
-                      fontWeight="500"
+                      fontWeight="400"
                       color="#13AD60"
                       borderRadius="19px"
                       display="inline-flex"
@@ -81,6 +81,8 @@ export const PersonalInfo = () => {
                       height="26px"
                       lineHeight="26px"
                       textAlign="center"
+                      textTransform="capitalize"
+                      mt=".6em"
                     >
                       {item.status}
                     </Badge>

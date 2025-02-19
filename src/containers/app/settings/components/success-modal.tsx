@@ -8,20 +8,20 @@ import {
   Button,
   Text,
   Image,
-  Center
+  Center,
 } from "@chakra-ui/react";
 
-const SuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const SuccessModal = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay bg="rgba(0, 0, 0, 0.5)" />
-      <ModalContent
-        borderRadius="12px"
-        p={6}
-        textAlign="center"
-        maxW="350px"
-      >
-
+      <ModalContent borderRadius="12px" p={6} textAlign="center" maxW="350px">
         <Center>
           <Image
             src="/img/check-crcle.svg"
@@ -29,9 +29,7 @@ const SuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             height="77px"
             width="77px"
           />
-
         </Center>
-
 
         <ModalHeader fontSize="20px" fontWeight="bold" color="#1C1C1C">
           Successful
@@ -39,7 +37,8 @@ const SuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 
         <ModalBody>
           <Text fontSize="16px" fontWeight={400} color="#1C1C1C">
-            We are reviewing your personal info, this may take up to 24hrs, kindly check your mailbox for updates.
+            We are reviewing your personal info, this may take up to 24hrs,
+            kindly check your mailbox for updates.
           </Text>
         </ModalBody>
 
@@ -48,7 +47,7 @@ const SuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             bg="#102634"
             color="white"
             borderRadius="36px"
-            cursor={'pointer'}
+            cursor={"pointer"}
             width="131px"
             _hover={{ bg: "#102634" }}
             _active={{ bg: "#102634" }}
