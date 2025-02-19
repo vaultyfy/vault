@@ -10,6 +10,7 @@ import {
   Thead,
   Tbody,
 } from "@chakra-ui/react";
+import { Status, GlobalStatus } from "@components/ui";
 
 export const ActivitiesTable = () => {
   return (
@@ -72,7 +73,7 @@ export const ActivitiesTable = () => {
               </Text>
             </Td>
             <Td>
-              <Box
+              {/* <Box
                 fontFamily={"var(--poppins)"}
                 fontWeight={"medium"}
                 fontSize={{ base: "14px", lg: "18px" }}
@@ -83,7 +84,9 @@ export const ActivitiesTable = () => {
                 rounded={"3xl"}
               >
                 02-01-2025
-              </Box>
+              </Box> */}
+
+              <Status status={"02-01-2025" as GlobalStatus} width="104px" />
             </Td>
           </Tr>
         ))}

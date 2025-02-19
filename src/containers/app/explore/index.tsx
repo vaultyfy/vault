@@ -51,7 +51,9 @@ export const Explore = () => {
       >
         <Carousel options={carouselSettings}>
           {Array.from({ length: 5 }).map((_, index) => (
-            <GroupCard key={index} hasGradient={true} link="my-group" />
+            <Box mr="1rem">
+              <GroupCard key={index} hasGradient link="my-group" />
+            </Box>
           ))}
         </Carousel>
       </Box>
@@ -61,6 +63,7 @@ export const Explore = () => {
         sx={
           isMobile ? { display: "flex", justifyContent: "space-between" } : {}
         }
+        border="2px solid black"
       >
         <Text
           fontFamily="var(--poppins)"
@@ -87,8 +90,9 @@ export const Explore = () => {
                 bgColor="#f6f6f6"
                 alignItems="center"
                 gap="0.5em"
+                border="2px solid black"
               >
-                <Box flex={1}>
+                <Box flex={1} border="2px solid black">
                   <FilterInput
                     name="members"
                     title="members"
@@ -97,7 +101,7 @@ export const Explore = () => {
                     height="36px"
                   />
                 </Box>
-                <Box flex={1}>
+                <Box flex={1} border="2px solid black">
                   <FilterDatePicker
                     formik={formik}
                     fieldName="startDate"
@@ -112,7 +116,7 @@ export const Explore = () => {
                     </Box>
                   )}
                 </Box>
-                <Box flex={1}>
+                <Box flex={1} border="2px solid black">
                   <FilterInput
                     name="payout"
                     title="Pay-outs"
@@ -121,7 +125,7 @@ export const Explore = () => {
                     height="36px"
                   />
                 </Box>
-                <Box flex={1}>
+                <Box flex={1} border="2px solid black">
                   <FilterInput
                     name="interval"
                     title="Interval"

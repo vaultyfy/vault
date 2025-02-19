@@ -76,17 +76,7 @@ export const Groups = () => {
                 fontFamily={"var(--poppins)"}
                 fontWeight={"500"}
               >
-                pending approval
-              </Text>
-            </TabList>
-            {/* <TabList px="20px" py="10px" rounded="10px">
-              <Text
-                color="#04040499"
-                fontSize={{ base: "12px", lg: "14px" }}
-                fontFamily={"var(--poppins)"}
-                fontWeight={"500"}
-              >
-                Completed groups
+                Active groups
               </Text>
             </TabList>
             <TabList px="20px" py="10px" rounded="10px">
@@ -96,9 +86,9 @@ export const Groups = () => {
                 fontFamily={"var(--poppins)"}
                 fontWeight={"500"}
               >
-                pending request
+                Completed groups
               </Text>
-            </TabList> */}
+            </TabList>
           </Tabs>
           <Menu>
             <MenuButton
@@ -116,12 +106,12 @@ export const Groups = () => {
               _focus={"none"}
               display={{ base: "block", md: "none" }}
             >
-              All Contribution
+              All Groups
             </MenuButton>
             <MenuList px="10px" py="8px">
-              <MenuItem>All Contribution</MenuItem>
-              <MenuItem>Active</MenuItem>
-              <MenuItem>Ended</MenuItem>
+              <MenuItem>All Groups</MenuItem>
+              <MenuItem>Active Groups</MenuItem>
+              <MenuItem>Completed Groups</MenuItem>
             </MenuList>
           </Menu>
         </Box>

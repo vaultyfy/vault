@@ -25,8 +25,8 @@ const getStatusStyles = (status: GlobalStatus) => {
       };
     default:
       return {
-        background: "var(--gray-100)",
-        color: "var(--gray-700)",
+        background: "var(--grey-100)",
+        color: "var(--text-grey-200)",
         border: "1px solid var(--gray-700)",
       };
   }
@@ -35,7 +35,7 @@ const getStatusStyles = (status: GlobalStatus) => {
 export const Status = ({
   width,
   status,
-  dot = true,
+  dot = false,
   active = false,
   onClick,
 }: StatusProps) => {
@@ -49,6 +49,8 @@ export const Status = ({
       width={width || "85px"}
       px={dot === false ? ".6em" : ".2em"}
       borderRadius={dot === false ? "12px" : "10px"}
+      justifyContent={dot === false ? "center" : "flex-start"}
+      alignItems="center"
       textTransform="none"
       background={styles.background}
       color={styles.color}
