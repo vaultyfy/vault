@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as HelpSupportImport } from './routes/help-support'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
@@ -26,6 +27,12 @@ import { Route as DashboardExploreIndexImport } from './routes/dashboard/explore
 import { Route as DashboardExploreGroupsImport } from './routes/dashboard/explore/$groups'
 
 // Create/Update Routes
+
+const HelpSupportRoute = HelpSupportImport.update({
+  id: '/help-support',
+  path: '/help-support',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AboutRoute = AboutImport.update({
   id: '/about',
@@ -123,6 +130,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/help-support': {
+      id: '/help-support'
+      path: '/help-support'
+      fullPath: '/help-support'
+      preLoaderRoute: typeof HelpSupportImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/forgot-password': {
       id: '/auth/forgot-password'
       path: '/auth/forgot-password'
@@ -208,6 +222,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help-support': typeof HelpSupportRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -224,6 +239,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help-support': typeof HelpSupportRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -241,6 +257,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help-support': typeof HelpSupportRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -259,6 +276,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/help-support'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -274,6 +292,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/help-support'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -289,6 +308,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/help-support'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -306,6 +326,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  HelpSupportRoute: typeof HelpSupportRoute
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
@@ -322,6 +343,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  HelpSupportRoute: HelpSupportRoute,
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
@@ -347,6 +369,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/help-support",
         "/auth/forgot-password",
         "/auth/login",
         "/auth/reset-password",
@@ -365,6 +388,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/help-support": {
+      "filePath": "help-support.tsx"
     },
     "/auth/forgot-password": {
       "filePath": "auth/forgot-password.tsx"
