@@ -15,7 +15,7 @@ function RouteComponent() {
         pageTitle="Explore &mdash; Vaultify"
       />
 
-      <AppLayout>
+      <AppLayout routeTitle="Explore">
         <Explore />
       </AppLayout>
     </>

@@ -15,7 +15,7 @@ function RouteComponent() {
         pageTitle="Settings &mdash; Vaultify"
       />
 
-      <AppLayout>
+      <AppLayout routeTitle="Settings">
         <Settings />
       </AppLayout>
     </>
