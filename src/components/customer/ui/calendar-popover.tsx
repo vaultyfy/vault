@@ -41,9 +41,9 @@ export const CalendarPopover = ({
           display="flex"
           justifyContent={"center"}
           alignItems={"center"}
-          _hover={"var(--button-secondary)"}
-          _focus={"var(--button-secondary)"}
-          _active={"var(--button-secondary)"}
+          _hover={"var(--main-gradient-lighten)"}
+          _focus={"var(--main-gradient-lighten)"}
+          _active={"var(--main-gradient-lighten)"}
         >
           <Box boxSize="27px" position={"relative"}>
             <CalendarDays color="#292d32" size={27} />

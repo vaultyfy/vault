@@ -17,13 +17,13 @@ import {
   addYears,
 } from "date-fns";
 
-interface Props {
+interface CalendarProps {
   width?: string;
 }
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export const Calendar: React.FC<Props> = ({ width }) => {
+export const Calendar = ({ width }: CalendarProps) => {
   const [date, setDate] = useState<Date | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
@@ -140,27 +140,28 @@ export const Calendar: React.FC<Props> = ({ width }) => {
 
       <SimpleGrid columns={7} spacing={2}>
         {generateDates(currentMonth.getFullYear(), currentMonth.getMonth()).map(
-          ({ date: d, isCurrentMonth, isPast }) => (
-            <Flex
-              key={d.toISOString()}
-              boxSize="40px"
-              justifyContent={"center"}
-              p={0}
-              borderRadius="md"
-              background={date && isSameDay(d, date) ? "var(--coral)" : "white"}
-              color={
-                isPast ? "gray.400" : isCurrentMonth ? "black" : "gray.300"
-              }
-              _hover={{ background: isPast ? "none" : "var(--coral-400)" }}
-            >
-              <Text fontSize={"13px"} fontFamily={"var(--poppins)"}>
-                {d.getDate()}
-              </Text>
-            </Flex>
-          )
-        )}
+          ({ date: d, isCurrentMonth, isPast }) => {
+            return (
+              <Flex
+                key={d.toISOString()}
+                boxSize="40px"
+                justifyContent={"center"}
+                p={0}
+                borderRadius="md"
+                background={date && isSameDay(d, date) ? "var(--coral)" : "white"}
+                color={
+                  isPast ? "gray.400" : isCurrentMonth ? "black" : "gray.300"
+                }
+                _hover={{ background: isPast ? "none" : "var(--coral-400)" }}
+              >
+                <Text fontSize={"13px"} fontFamily={"var(--poppins)"}>
+                  {d.getDate()}
+                </Text>
+              </Flex>
+            )
+          })
+        }
       </SimpleGrid>
     </Box>
   );
 };
-

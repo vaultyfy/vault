@@ -1,8 +1,14 @@
-import { Box, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  HStack,
+  Button,
+  Text,
+} from "@chakra-ui/react";
 import { LayoutProps } from "@layouts/home-layout";
 import { Sidebar } from "./sidebar";
+
 import { AppHeader } from "./header";
-import { routeTree } from "src/routeTree.gen";
 
 export interface AppLayoutProps extends Readonly<LayoutProps> {
   routeTitle: string
