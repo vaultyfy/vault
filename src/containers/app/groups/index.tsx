@@ -130,18 +130,18 @@ export const Groups = () => {
       </Box>
 
       <VStack spacing="10px" width="40%">
-        <HStack justifyContent="flex-start" width="full">
-          {isMobile && <Icon name="arrow-left" />}
-          <Text
-            fontFamily="var(--clash-grotesk-400)"
-            fontWeight={{ base: "500", lg: "400" }}
-            fontSize={{ base: "20px", lg: "24px" }}
-            color="var(--text-1)"
-          >
-            Unity savers
-          </Text>
-        </HStack>
-        <VStack width="full" spacing="2px">
+        <VStack width="full" spacing="2px" position="sticky" top="80px">
+          <HStack justifyContent="flex-start" width="full">
+            {isMobile && <Icon name="arrow-left" />}
+            <Text
+              fontFamily="var(--clash-grotesk-400)"
+              fontWeight={{ base: "500", lg: "400" }}
+              fontSize={{ base: "20px", lg: "24px" }}
+              color="var(--text-1)"
+            >
+              Unity savers
+            </Text>
+          </HStack>
           <Box
             width="full"
             roundedTop="10px"
