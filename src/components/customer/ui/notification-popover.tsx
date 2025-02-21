@@ -16,30 +16,24 @@ import {
 } from "@chakra-ui/react";
 import { Bell } from "lucide-react";
 import { NotificationContainer } from "./notification-container";
+import { Icon } from "@components/icon";
 
 export const NotificationPopover = () => {
   return (
     <Popover placement="bottom">
       <PopoverTrigger>
         <Button
-          bgGradient="var(--main-gradient-lighten)"
-          boxSize={"50px"}
+          background="var(--btn-secondary-7)"
+          boxSize="50px"
           rounded="full"
           display="flex"
-          justifyContent={"center"}
-          alignItems={"center"}
+          justifyContent="center"
+          alignItems="center"
+          _hover={{
+            background: "var(--btn-secondary-7)",
+          }}
         >
-          <Box boxSize="27px" position={"relative"}>
-            <Bell color="#292d32" size="27" />
-            <Box
-              boxSize={"8px"}
-              bgColor={"var(--deep-blood)"}
-              rounded={"full"}
-              position={"absolute"}
-              top="0"
-              right="0"
-            />
-          </Box>
+          <Icon name="notification" />
         </Button>
       </PopoverTrigger>
 

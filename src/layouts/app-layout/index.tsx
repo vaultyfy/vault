@@ -13,17 +13,20 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
     <Flex height="100vh" background="#fff">
       <Sidebar />
 
-      <Box px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }} width="100%" height="100vh">
+      <Box
+        px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }}
+        width={{
+          "2xl": "80%",
+          xl: "86%",
+          md: "100%",
+          base: "100%",
+          lg: "100%",
+        }}
+        overflowY="auto" height="100vh"
+        pb="1em"
+      >
         <AppHeader routeTitle={routeTitle} />
-        <Box
-          width={{
-            "2xl": "80%",
-            xl: "80%",
-            md: "100%",
-            base: "100%",
-            lg: "100%",
-          }}
-        >
+        <Box pt="1.4em">
           {children}
         </Box>
       </Box>

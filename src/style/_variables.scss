@@ -1,10 +1,3 @@
-@use "sass:color";
-
-$color1: #1ccfbd;
-$color2: #2c9bf0;
-$lightened1: color.mix(white, $color1, 10%);
-$lightened2: color.mix(white, $color2, 10%);
-
 :root {
   /* tokens  */
   --white-fade: #fdfff7;
@@ -26,10 +19,11 @@ $lightened2: color.mix(white, $color2, 10%);
   --input-outline: #81818199;
   --overview-card-secondary: #2a3e49;
   --button-secondary: #1ccfbd;
-  --button-secondary-lighten: hsla(174, 77%, 46%, 0.07);
+  --btn-secondary-7: #1ccfbd12;
   --grey-100: #f6f6f6;
   --text-grey-200: #04040499;
   --modal-title: #12141a;
+  --alt-text: #6e6e6e;
 
   --success-700: #027a48;
   --success-25: #f6fef9;
@@ -48,10 +42,10 @@ $lightened2: color.mix(white, $color2, 10%);
   );
 
   --main-gradient: linear-gradient(104.4deg, #1ccfbd 1.7%, #2c9bf0 105.41%);
-  --main-gradient-lighten: linear-gradient(
+  --main-gradient-light: linear-gradient(
     104.4deg,
-    $lightened1 1.7%,
-    $lightened2 105.41%
+    rgba(28, 207, 189, 0.1) 1.7%,
+    rgba(44, 155, 240, 0.1) 105.41%
   );
 
   /* fonts */
@@ -64,4 +58,7 @@ $lightened2: color.mix(white, $color2, 10%);
   --clash-grotesk-600: ClashGrotesk-SemiBold;
   --clash-grotesk-700: ClashGrotesk-Bold;
   --clash-grotesk-variable: ClashGrotesk-Variable;
+
+  /* shadows */
+  --table-shadow: 1px 2px 9px 0px #00000017;
 }

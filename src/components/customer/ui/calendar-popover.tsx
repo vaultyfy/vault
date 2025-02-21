@@ -15,60 +15,37 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { CaretRight, CaretLeft } from "@phosphor-icons/react";
-import { CalendarDays } from "lucide-react";
 import { Calendar } from "./calendar";
+import { Icon } from "@components/icon";
 
-interface Props {
-  height?: string;
-  borderColor?: string;
-  color?: string;
-  iconColor?: string;
-}
-
-export const CalendarPopover = ({
-  height = "40px",
-  borderColor,
-  color,
-  iconColor,
-}: Props) => {
+export const CalendarPopover = () => {
   return (
     <Popover placement="bottom-start">
       <PopoverTrigger>
         <Button
-          bgGradient="var(--main-gradient-lighten)"
+          background="var(--btn-secondary-7)"
           boxSize={"50px"}
           rounded="full"
           display="flex"
-          justifyContent={"center"}
-          alignItems={"center"}
+          justifyContent="center"
+          alignItems="center"
+          _hover={{
+            background: "var(--btn-secondary-7)"
+          }}
         >
-          <Box boxSize="27px" position={"relative"}>
-            <CalendarDays color="#292d32" size={27} />
-            <Box
-              boxSize={"8px"}
-              bgColor={"var(--deep-blood)"}
-              rounded={"full"}
-              position={"absolute"}
-              top="0"
-              right="0"
-            />
-          </Box>
+          <Icon name="calendar-2" />
         </Button>
       </PopoverTrigger>
 
       <PopoverContent width="450px" pt={6}>
         <PopoverHeader borderBottom="none">
-          <Flex
-            justifyContent={"space-between"}
-            alignItems={"center"}
-            px={"1em"}
-          >
+          <Flex justifyContent="space-between" alignItems="center" px="1em">
             <IconButton
               aria-label="Previous saving groups"
               icon={<CaretLeft color="#000" weight="bold" />}
               // onClick={() => changeMonth(-1)}
               size="sm"
-              bgColor={"transparent"}
+              bgColor="transparent"
               _hover={{
                 bgColor: "transparent",
               }}

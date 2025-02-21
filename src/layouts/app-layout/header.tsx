@@ -7,39 +7,48 @@ export const AppHeader = ({
   routeTitle,
 }: Pick<AppLayoutProps, "routeTitle">) => {
   return (
-    <Box mt={{ base: "1rem", lg: "2rem" }}>
+    <Flex
+      position="sticky"
+      top="0"
+      border="1px solid red"
+      height="75px"
+      mt="2em"
+      justifyContent="space-between"
+      alignItems="center"
+      transition="all .3s ease-out"
+      zIndex="10"
+      backdropFilter="blur(10px)"
+    >
+      <Text as="h2" fontSize={{ base: "24px", lg: "32px" }}>
+        {routeTitle}
+      </Text>
       <Flex
-        justifyContent="space-between"
+        columnGap="1rem"
         alignItems="center"
-        mb={{ base: "1rem", lg: "1.5rem" }}
+        display={{ base: "none", lg: "flex" }}
       >
-        <Text as="h2" fontSize={{ base: "24px", lg: "32px" }}>
-          {routeTitle}
-        </Text>
-        <Flex
-          columnGap="1rem"
-          alignItems="center"
-          display={{ base: "none", lg: "flex" }}
+        <Button
+          background="var(--btn-secondary-7)"
+          width="180px"
+          height="52px"
+          px="9px"
+          py="13px"
+          leftIcon={<CirclePlus color="var(--main)" size="20" />}
+          fontWeight="400"
+          fontSize="14px"
+          borderRadius="36px"
+          lineHeight="21px"
+          _hover={{
+            background: "var(--btn-secondary-7)",
+          }}
         >
-          <Button
-            bgColor="var(--button-secondary-lighten)"
-            width="180px"
-            height="52px"
-            rounded="8px"
-            px="9px"
-            py="13px"
-            leftIcon={<CirclePlus color="#292d32" size="24" />}
-            fontWeight="medium"
-            fontSize="14px"
-          >
-            Create group
-          </Button>
-          <HStack columnGap="1rem">
-            <CalendarPopover />
-            <NotificationPopover />
-          </HStack>
-        </Flex>
+          Create group
+        </Button>
+        <HStack columnGap="1rem">
+          <CalendarPopover />
+          <NotificationPopover />
+        </HStack>
       </Flex>
-    </Box>
+    </Flex>
   );
 };
