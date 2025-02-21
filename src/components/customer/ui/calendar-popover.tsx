@@ -144,18 +144,12 @@ export const CalendarPopover = () => {
                 py="13px"
                 px="4px"
                 width="122px"
-                rounded={"3xl"}
-                bgGradient={"var(--main-gradient)"}
+                rounded="3xl"
+                bgGradient="var(--main-gradient)"
                 _hover={{ bgGradient: "var(--main-gradient)" }}
+                color="#fff"
               >
-                <Text
-                  fontFamily={"var(--poppins)"}
-                  fontWeight={"medium"}
-                  fontSize="14px"
-                  color={"#ffffff"}
-                >
                   Pay now
-                </Text>
               </Button>
             </VStack>
           </Flex>

@@ -49,7 +49,7 @@ export const GroupDetails = () => {
           width="full"
           minHeight="312px"
           maxWidth="594px"
-          border="0.5px solid #8181816B"
+          border="0.5px solid var(--border-muted)"
           rounded="xl"
         >
           <CardBody px="19px" py="23px" w="full">

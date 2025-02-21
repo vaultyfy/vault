@@ -142,22 +142,24 @@ export const PaymentsPayouts = () => {
       <Flex justify="space-between" mt={6}>
         <Button
           leftIcon={<PlusCircle size={18} />}
-          background={"#F6F6F6"}
-          color={"#04040499"}
-          borderRadius={"30px"}
+          background="var(--grey-100)"
+          color="var(--text-gray-200)"
+          borderRadius="30px"
           variant="outline"
           fontWeight="400"
           onClick={addPaymentMethod}
+          _hover={{
+            background: "var(--grey-100)"
+          }}
         >
           Add payment method
         </Button>
         <Button
-          bg="#102634"
-          color={"#FDFFF7"}
+          bg="var(--main)"
+          color="var(--white-fade)"
           borderRadius="36px"
-          _hover={{ bg: "#102634" }}
-          _active={{ bg: "#102634" }}
-          _focus={{ boxShadow: "none" }}
+          fontWeight="400"
+          _hover={{ bg: "var(--main)" }}
         >
           Save settings
         </Button>

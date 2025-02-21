@@ -79,7 +79,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
               alignItems="center"
               display="flex"
               justifyContent="center"
-              borderBottom="1px solid #8181816B"
+              borderBottom="1px solid var(--border-muted)"
               cursor="pointer"
               textTransform="capitalize"
               fontWeight="400"

@@ -28,6 +28,7 @@ export const ActivitiesTable = () => {
           {ACTIVITIES_TABLE_HEADINGS.map((heading, index: React.Key) => {
             return (
               <Th
+                textAlign="center"
                 fontSize="16px"
                 lineHeight="19px"
                 color="var(--alt-text)"
@@ -52,17 +53,17 @@ export const ActivitiesTable = () => {
                 <Avatar name="Kent Dodds" src="/img/person-3.svg" />
               </AvatarGroup>
             </Td>
-            <Td>
+            <Td textAlign="center">
               <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
                 Unity savers
               </Text>
             </Td>
-            <Td>
+            <Td textAlign="center">
               <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
                 8
               </Text>
             </Td>
-            <Td>
+            <Td textAlign="center">
               <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
                 7th
               </Text>

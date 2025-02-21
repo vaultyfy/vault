@@ -14,7 +14,6 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
       <Sidebar />
 
       <Box
-        px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }}
         width={{
           "2xl": "80%",
           xl: "86%",
@@ -22,11 +21,15 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
           base: "100%",
           lg: "100%",
         }}
-        overflowY="auto" height="100vh"
+        overflowY="auto"
+        height="100vh"
         pb="1em"
       >
         <AppHeader routeTitle={routeTitle} />
-        <Box pt="1.4em">
+        <Box
+          pt="1.4em"
+          px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }}
+        >
           {children}
         </Box>
       </Box>
