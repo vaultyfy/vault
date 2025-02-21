@@ -62,13 +62,9 @@ export const Sidebar = () => {
 
   return (
     <Box
-      top={0}
-      left={0}
       height="100vh"
       background="var(--main)"
       width={{ "2xl": "13%", xl: "18%", lg: "20%" }}
-      display={{ base: "none", lg: "block" }}
-      overflowY="auto"
     >
       <Link to="/">
         <Center mt="1em">

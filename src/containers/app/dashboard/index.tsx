@@ -21,13 +21,13 @@ export const Dashboard = () => {
   return (
     <>
       <Box width="100%" minH="100dvh" border="1px solid red">
-        <Flex gap="10px" flexWrap={"wrap"} mt={"2rem"}>
-          <Box flex={1} minHeight={"210px"}>
+        <Flex gap="10px" flexWrap="wrap">
+          <Box flex={1} minHeight="210px">
             <OverviewCard
-              cardIcon={"calendar"}
+              cardIcon="calendar"
               cardTitle="Wallet balance"
-              amount={"500k"}
-              paidDate={"23-12-2025"}
+              amount="500k"
+              paidDate="23-12-2025"
               cardGradient="var(--main-gradient)"
             />
           </Box>
@@ -153,10 +153,11 @@ export const Dashboard = () => {
           </Box>
           <Box
             width={{ base: "100%", lg: "60%" }}
-            shadow={"lg"}
+            shadow="lg"
             p="18px"
-            minH={"480px"}
-            rounded={"lg"}
+            minH="480px"
+            rounded="lg"
+            boxShadow="var(--table-shadow)"
           >
             <HStack w="full" justifyContent={"space-between"}>
               <Text
@@ -168,74 +169,11 @@ export const Dashboard = () => {
               >
                 Activities
               </Text>
-              <Tabs
-                variant="soft-rounded"
-                colorScheme="gray"
-                display={{ base: "none", md: "flex" }}
-                columnGap={"0.3rem"}
-              >
-                <TabList px="20px" py="10px" rounded="3xl" bgColor={"#f6f6f6"}>
-                  <Text
-                    color="#040404"
-                    fontSize={{ base: "12px", lg: "14px" }}
-                    fontFamily={"var(--poppins)"}
-                    fontWeight={"500"}
-                  >
-                    All Contribution
-                  </Text>
-                </TabList>
-                <TabList px="20px" py="10px" rounded="10px">
-                  <Text
-                    color="#040404"
-                    fontSize={{ base: "12px", lg: "14px" }}
-                    fontFamily={"var(--poppins)"}
-                    fontWeight={"500"}
-                  >
-                    Active
-                  </Text>
-                </TabList>
-                <TabList px="20px" py="10px" rounded="10px">
-                  <Text
-                    color="#040404"
-                    fontSize={{ base: "12px", lg: "14px" }}
-                    fontFamily={"var(--poppins)"}
-                    fontWeight={"500"}
-                  >
-                    Ended
-                  </Text>
-                </TabList>
-              </Tabs>
-
-              {/* for mobile views */}
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rightIcon={<ChevronDown color="var(--grey)" size={14} />}
-                  px="1.35rem"
-                  py="8px"
-                  rounded={"3xl"}
-                  fontSize={{ base: "12px", lg: "14px" }}
-                  fontFamily={"var(--poppins)"}
-                  fontWeight={"400"}
-                  color="#040404"
-                  bgColor="#f6f6f6"
-                  _hover={"none"}
-                  _focus={"none"}
-                  display={{ base: "block", md: "none" }}
-                >
-                  All Contribution
-                </MenuButton>
-                <MenuList px="10px" py="8px">
-                  <MenuItem>All Contribution</MenuItem>
-                  <MenuItem>Active</MenuItem>
-                  <MenuItem>Ended</MenuItem>
-                </MenuList>
-              </Menu>
             </HStack>
-            {/* you should've just called TableContainer here. why <Box as={TableContainer} />?? */}
-            <Box as={TableContainer} w="full" mt="2rem">
+
+            <TableContainer w="full" mt="2rem">
               <ActivitiesTable />
-            </Box>
+            </TableContainer>
           </Box>
         </Flex>
       </Box>

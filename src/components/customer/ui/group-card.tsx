@@ -196,7 +196,7 @@ export const GroupCard = ({
               bg={
                 hasGradient
                   ? "rgba(255, 255, 255, 0.2)"
-                  : "var(--button-secondary-lighten)"
+                  : "var(--btn-secondary-7)"
               }
               width={"111px"}
               display="flex"
@@ -214,17 +214,17 @@ export const GroupCard = ({
               _hover={{
                 bg: hasGradient
                   ? "rgba(255, 255, 255, 0.3)"
-                  : "var(--button-secondary-lighten)",
+                  : "var(--btn-secondary-7)",
               }}
               _focus={{
                 bg: hasGradient
                   ? "rgba(255, 255, 255, 0.3)"
-                  : "var(--button-secondary-lighten)",
+                  : "var(--btn-secondary-7)",
               }}
               _active={{
                 bg: hasGradient
                   ? "rgba(255, 255, 255, 0.4)"
-                  : "var(--button-secondary-lighten)",
+                  : "var(--btn-secondary-7)",
               }}
               onClick={() => navigate({ to: `/dashboard/explore/${link}` })}
             >

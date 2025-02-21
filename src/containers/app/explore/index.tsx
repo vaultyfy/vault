@@ -36,7 +36,7 @@ export const Explore = () => {
   const [isMobileFilter, setIsMobileFilter] = useState(false);
 
   return (
-    <Box border="1px solid red" width="100%">
+    <Box border="1px solid red">
       <Text as="p" fontSize="24px" color="var(--text-1)" mb="0.5rem">
         Suggested for you
       </Text>
@@ -50,11 +50,11 @@ export const Explore = () => {
         alignItems="center"
         overflow="hidden"
       >
-          {Array.from({ length: 5 }).map((_, index) => (
-            <Box mr="1rem">
-              <GroupCard key={index} hasGradient link="my-group" />
-            </Box>
-          ))}
+        {Array.from({ length: 5 }).map((_, index) => (
+          <Box mr="1rem" key={index}>
+            <GroupCard hasGradient link="my-group" />
+          </Box>
+        ))}
       </Box>
 
       <Box
