@@ -20,7 +20,7 @@ export const PaymentCard = ({
     <Flex
       px="19px"
       py="23px"
-      border="0.5px solid #8181816B"
+      border="0.5px solid var(--border-muted)"
       justifyContent="space-between"
     >
       <Box w="max-content">
@@ -58,7 +58,7 @@ export const PaymentCard = ({
       </Box>
       <VStack justifyContent={isActive ? "space-between" : "center"}>
         {amount && isActive && (
-          <HStack spacing={2}>
+          <HStack gap="0">
             <CurrencyNgn
               size={20}
               weight="duotone"
@@ -68,7 +68,7 @@ export const PaymentCard = ({
               }}
             />
             <Text
-              color="var(--text-3)"
+              color="var(--main)"
               fontWeight="500"
               fontSize={{ base: "16px", lg: "20px" }}
             >
@@ -91,14 +91,8 @@ export const PaymentCard = ({
             fontFamily={"var(--poppins)"}
             fontWeight="medium"
             fontSize={"14px"}
-            color="var(--text-3)"
+            color="var(--main)"
             _hover={{
-              bg: "transparent",
-            }}
-            _focus={{
-              bg: "transparent",
-            }}
-            _active={{
               bg: "transparent",
             }}
             opacity="0.3"
@@ -107,7 +101,7 @@ export const PaymentCard = ({
             <Box
               boxSize="39px"
               rounded="full"
-              bg="var(--text-3)"
+              bg="var(--main)"
               display="flex"
               justifyContent="center"
               alignItems="center"
@@ -119,11 +113,13 @@ export const PaymentCard = ({
           </Button>
         ) : (
           <Button
-            bgGradient={"var(--main-gradient)"}
-            color="#FDFFF7"
+            bgGradient="var(--main-gradient)"
+            color="var(--white-fade)"
             fontWeight="500"
             fontSize="14px"
-            fontFamily="var(--poppins)"
+            _hover={{
+              bgGradient: "var(--main-gradient)"
+            }}
           >
             Pay now
           </Button>

@@ -121,7 +121,7 @@ export const CreateGroupModal = ({
               </VStack>
               <Box
                 as="hr"
-                borderColor="var(#f6f6f6)"
+                borderColor="var(--grey-100)"
                 borderWidth="1px"
                 width="100%"
                 my={3}
@@ -184,7 +184,7 @@ export const CreateGroupModal = ({
               </VStack>
               <Box
                 as="hr"
-                borderColor="var(#f6f6f6)"
+                borderColor="var(--grey-100)"
                 borderWidth="1px"
                 width="100%"
                 my={3}

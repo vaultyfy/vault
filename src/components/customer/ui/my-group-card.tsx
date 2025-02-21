@@ -6,6 +6,7 @@ import {
   Box,
   Text,
   HStack,
+  ChakraProps,
 } from "@chakra-ui/react";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { RefreshCcw } from "lucide-react";
@@ -13,7 +14,7 @@ import { StackedAvatars } from "./stacked-avatars";
 import { avatars } from "@utils/constants";
 import { Status, GlobalStatus } from "@components/ui";
 
-interface MyGroupCardProps {
+interface MyGroupCardProps extends Partial<ChakraProps> {
   bgColor?: string;
   acceptanceStatus?: GlobalStatus;
 }
@@ -21,31 +22,19 @@ interface MyGroupCardProps {
 export const MyGroupCard = ({
   bgColor,
   acceptanceStatus,
+  ...props
 }: MyGroupCardProps) => {
   return (
     <Card
+
+      boxShadow="none"
       width="full"
       height="full"
       maxWidth="594px"
       rounded="10px"
       position="relative"
       bg={bgColor ?? "#ffffff"}
-      _before={{
-        content: '""',
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        borderRadius: "10px",
-        padding: "0.5px",
-        background: "var(--main-gradient)",
-        WebkitMask:
-          "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-        WebkitMaskComposite: "xor",
-        maskComposite: "exclude",
-        pointerEvents: "none",
-      }}
+      {...props}
     >
       <CardBody px="19px" py="23px" w="full">
         {acceptanceStatus && (
@@ -76,14 +65,13 @@ export const MyGroupCard = ({
                 >
                   <CurrencyNgn
                     size={16}
-                    weight="duotone"
+                    weight="bold"
                     color="var(--text-1)"
                   />
                   <Text
-                    as="p"
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="400"
-                    color="var(--text-3)"
+                    color="var(--main)"
                   >
                     10,000/week
                   </Text>
@@ -104,7 +92,7 @@ export const MyGroupCard = ({
                     as="p"
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="400"
-                    color="var(--text-3)"
+                    color="var(--main)"
                   >
                     3
                   </Text>
@@ -114,10 +102,10 @@ export const MyGroupCard = ({
                 <StackedAvatars images={avatars} maxVisible={3} />
               </Box>
             </Box>
+
             <VStack spacing="28px" alignItems="flex-end" flex={1}>
               <Box w="fit-content">
                 <Text
-                  as="p"
                   fontSize={{ base: "12px", lg: "14px" }}
                   fontWeight="medium"
                   color="var(--grey)"
@@ -125,40 +113,38 @@ export const MyGroupCard = ({
                 >
                   Pay-out
                 </Text>
-                <HStack spacing={2}>
+                <HStack gap="0px">
                   <CurrencyNgn
                     size={20}
-                    weight="duotone"
+                    weight="bold"
                     color="var(--main)"
                     style={{
                       fontWeight: "bold",
                     }}
                   />
                   <Text
-                    as="h5"
                     fontSize={{ base: "16px", lg: "20px" }}
                     color="var(--main)"
-                    fontWeight="medium"
+                    fontWeight="500"
                   >
                     100,000
                   </Text>
                 </HStack>
               </Box>
+
               <Box w="fit-content">
                 <Text
-                  as="p"
                   fontSize={{ base: "12px", lg: "18px" }}
-                  fontWeight="medium"
+                  fontWeight="400"
                   color="var(--grey)"
                   textAlign="end"
                 >
                   End date
                 </Text>
                 <Text
-                  as="p"
                   fontSize={{ base: "14px", lg: "18px" }}
-                  fontWeight="medium"
-                  color="var(--text-1)"
+                  fontWeight="400"
+                  color="var(--dark)"
                 >
                   24th Nov 2025
                 </Text>
@@ -166,10 +152,9 @@ export const MyGroupCard = ({
             </VStack>
           </Flex>
           <Text
-            as="p"
             fontSize={{ base: "14px", lg: "16px" }}
-            fontWeight="medium"
-            color="var(--text-1)"
+            fontWeight="400"
+            color="var(--dark)"
           >
             This group is designed for parents and guardians saving for school
             fees and supplies. Let’s plan ahead and make the back-to-school

@@ -42,7 +42,12 @@ export const PersonalInfo = () => {
         Personal Info
       </Text>
 
-      <Box border="0.5px solid #8181816B" borderRadius="6px" p={6} width="100%">
+      <Box
+        border="0.5px solid var(--border-muted)"
+        borderRadius="6px"
+        p={6}
+        width="100%"
+      >
         {userDetails.map((item, index) => (
           <Box key={index}>
             <Flex
@@ -52,7 +57,7 @@ export const PersonalInfo = () => {
               align="center"
               borderRadius="6px"
               transition="all .3s ease-out"
-              _hover={{ bg: "#F6F6F6", cursor: "pointer" }}
+              _hover={{ bg: "var(--grey-100)", cursor: "pointer" }}
             >
               <Flex align="center">
                 <Box>

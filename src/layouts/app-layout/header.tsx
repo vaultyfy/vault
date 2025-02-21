@@ -10,7 +10,6 @@ export const AppHeader = ({
     <Flex
       position="sticky"
       top="0"
-      border="1px solid red"
       height="75px"
       mt="2em"
       justifyContent="space-between"
@@ -18,6 +17,7 @@ export const AppHeader = ({
       transition="all .3s ease-out"
       zIndex="10"
       backdropFilter="blur(10px)"
+      px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }}
     >
       <Text as="h2" fontSize={{ base: "24px", lg: "32px" }}>
         {routeTitle}

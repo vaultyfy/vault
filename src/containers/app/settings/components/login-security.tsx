@@ -102,12 +102,11 @@ const LoginSecurityCard = () => {
 
       <Flex justify="flex-end" mt={6}>
         <Button
-          bg="#102634"
+          bg="var(--main)"
           color="white"
           borderRadius="36px"
-          _hover={{ bg: "#102634" }}
-          _active={{ bg: "#102634" }}
-          _focus={{ boxShadow: "none" }}
+          fontWeight="400"
+          _hover={{ bg: "var(--main)" }}
           onClick={() => setIsModalOpen(true)}
         >
           Save settings

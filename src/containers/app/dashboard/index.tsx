@@ -20,7 +20,7 @@ import { useState } from "react";
 export const Dashboard = () => {
   return (
     <>
-      <Box width="100%" minH="100dvh" border="1px solid red">
+      <Box width="100%" minH="100dvh">
         <Flex gap="10px" flexWrap="wrap">
           <Box flex={1} minHeight="210px">
             <OverviewCard
@@ -134,11 +134,7 @@ export const Dashboard = () => {
                     rounded={"3xl"}
                     colorScheme="blackAlpha"
                     fontSize={{ base: "12px", lg: "14px" }}
-                    fontFamily={"var(--poppins)"}
-                    fontWeight={"400"}
-                    _hover={"none"}
-                    _focus={"none"}
-                    _active={"none"}
+                    fontWeight="400"
                   >
                     Month
                   </MenuButton>

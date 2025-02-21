@@ -70,8 +70,7 @@ export const NotificationPopover = () => {
                 px="20px"
                 py="10px"
                 rounded="3xl"
-                // bgColor={"#f6f6f6"}
-                cursor={"pointer"}
+                cursor="pointer"
               >
                 <Tab>All Contribution</Tab>
                 <Tab>Active</Tab>

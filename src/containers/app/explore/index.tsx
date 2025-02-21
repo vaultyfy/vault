@@ -6,10 +6,10 @@ import {
   Flex,
   Button,
   IconButton,
+  HStack,
 } from "@chakra-ui/react";
 import { FilterDatePicker, FilterInput } from "@components/form";
 import { GroupCard } from "@components/customer/ui";
-import { Carousel } from "@components/ui";
 import { EmblaOptionsType } from "embla-carousel";
 import { Icon } from "@components/icon";
 import { Formik, Form } from "formik";
@@ -36,28 +36,30 @@ export const Explore = () => {
   const [isMobileFilter, setIsMobileFilter] = useState(false);
 
   return (
-    <Box border="1px solid red">
+    <Box>
       <Text as="p" fontSize="24px" color="var(--text-1)" mb="0.5rem">
         Suggested for you
       </Text>
 
-      {/* Carousel Section */}
       <Box
         width="100%"
-        maxWidth={{ lg: "1360px" }}
+        maxWidth={{ lg: "1360px", "2xl": "100%" }}
         height="246px"
         display="flex"
         alignItems="center"
-        overflow="hidden"
+        overflowX="auto"
+        gap=".6em"
+        _hover={{
+          cursor: "grab",
+        }}
       >
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Box mr="1rem" key={index}>
-            <GroupCard hasGradient link="my-group" />
-          </Box>
-        ))}
+        {Array.from({ length: 5 }).map((_, index: React.Key) => {
+          return <GroupCard hasGradient link="my-group" key={index} />;
+        })}
       </Box>
 
       <Box
+        mt="1em"
         w="100%"
         sx={
           isMobile ? { display: "flex", justifyContent: "space-between" } : {}
@@ -85,12 +87,11 @@ export const Explore = () => {
                 px="8px"
                 minHeight="54px"
                 rounded="5px"
-                bgColor="#f6f6f6"
+                background="var(--grey-100)"
                 alignItems="center"
                 gap="0.5em"
-                border="2px solid black"
               >
-                <Box flex={1} border="2px solid black">
+                <Box flex={1}>
                   <FilterInput
                     name="members"
                     title="members"
@@ -99,7 +100,7 @@ export const Explore = () => {
                     height="36px"
                   />
                 </Box>
-                <Box flex={1} border="2px solid black">
+                <Box flex={1}>
                   <FilterDatePicker
                     formik={formik}
                     fieldName="startDate"
@@ -114,7 +115,7 @@ export const Explore = () => {
                     </Box>
                   )}
                 </Box>
-                <Box flex={1} border="2px solid black">
+                <Box flex={1}>
                   <FilterInput
                     name="payout"
                     title="Pay-outs"
@@ -123,7 +124,7 @@ export const Explore = () => {
                     height="36px"
                   />
                 </Box>
-                <Box flex={1} border="2px solid black">
+                <Box flex={1}>
                   <FilterInput
                     name="interval"
                     title="Interval"
@@ -161,7 +162,6 @@ export const Explore = () => {
         )}
       </Box>
 
-      {/* Grid Section */}
       <SimpleGrid
         columns={{ md: 2, base: 1 }}
         rowGap="24px"
