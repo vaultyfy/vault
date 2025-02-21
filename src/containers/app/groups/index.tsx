@@ -77,7 +77,7 @@ export const Groups = () => {
                       background: "var(--grey-100)",
                     }}
                     _hover={{
-                      background: "var(--grey-100)"
+                      background: "var(--grey-100)",
                     }}
                     transition="all .3s ease-in"
                     px="1.2em"
@@ -129,7 +129,7 @@ export const Groups = () => {
         </Box>
       </Box>
 
-      <VStack spacing="10px" width="40%">
+      <VStack width="full" spacing="2px" position="sticky" top="80px">
         <HStack justifyContent="flex-start" width="full">
           {isMobile && <Icon name="arrow-left" />}
           <Text
@@ -141,36 +141,28 @@ export const Groups = () => {
             Unity savers
           </Text>
         </HStack>
-        <VStack width="full" spacing="2px">
-          <Box
-            width="full"
-            roundedTop="10px"
-            p="1rem"
-            border="0.5px solid var(--border-muted)"
-          >
-            <Calendar />
-          </Box>
-          <Box maxHeight="127px" width="full">
-            <PaymentCard
-              deadlineDate="23-December-2025"
-              dateType="Start date"
-              amount={200000}
-              isActive
-            />
-          </Box>
-          <Box maxHeight="127px" width="full">
-            <PaymentCard
-              deadlineDate="24-December-2025"
-              dateType="Missed date"
-            />
-          </Box>
-          <Box maxHeight="127px" width="full">
-            <PaymentCard
-              deadlineDate="24-December-2025"
-              dateType="Missed date"
-            />
-          </Box>
-        </VStack>
+        <Box
+          width="full"
+          roundedTop="10px"
+          p="1rem"
+          border="0.5px solid var(--border-muted)"
+        >
+          <Calendar />
+        </Box>
+        <Box maxHeight="127px" width="full">
+          <PaymentCard
+            deadlineDate="23-December-2025"
+            dateType="Start date"
+            amount={200000}
+            isActive
+          />
+        </Box>
+        <Box maxHeight="127px" width="full">
+          <PaymentCard deadlineDate="24-December-2025" dateType="Missed date" />
+        </Box>
+        <Box maxHeight="127px" width="full">
+          <PaymentCard deadlineDate="24-December-2025" dateType="Missed date" />
+        </Box>
       </VStack>
     </Flex>
   );

@@ -8,14 +8,12 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  Tabs,
-  TabList,
   TableContainer,
 } from "@chakra-ui/react";
 import { OverviewCard } from "@components/customer/ui";
 import { ChevronDown } from "lucide-react";
 import { ActivitiesTable } from "@components/customer/tables";
-import { useState } from "react";
+import { Analytics } from "@components/ui";
 
 export const Dashboard = () => {
   return (
@@ -144,7 +142,7 @@ export const Dashboard = () => {
                   </MenuList>
                 </Menu>
               </HStack>
-              <Box w={"full"}>{/* for the graph */}</Box>
+              <Analytics />
             </Box>
           </Box>
           <Box
