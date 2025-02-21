@@ -20,7 +20,7 @@ import { useState } from "react";
 export const Dashboard = () => {
   return (
     <>
-      <Box width="100%" minH={"100dvh"}>
+      <Box width="100%" minH="100dvh" border="1px solid red">
         <Flex gap="10px" flexWrap={"wrap"} mt={"2rem"}>
           <Box flex={1} minHeight={"210px"}>
             <OverviewCard
@@ -31,11 +31,11 @@ export const Dashboard = () => {
               cardGradient="var(--main-gradient)"
             />
           </Box>
-          <Box flex={1} minHeight={"210px"}>
+          <Box flex={1} minHeight="210px">
             <OverviewCard
-              cardIcon={"time-is-money"}
+              cardIcon="time-is-money"
               cardTitle="Wallet balance"
-              amount={"500k"}
+              amount="500k"
               hasFilter={true}
               hasProgress={true}
               progressLevel={40}
@@ -44,11 +44,11 @@ export const Dashboard = () => {
               bgColor="var(--main)"
             />
           </Box>
-          <Box flex={1} minHeight={"210px"}>
+          <Box flex={1} minHeight="210px">
             <OverviewCard
-              cardIcon={"piggy-bank"}
+              cardIcon="piggy-bank"
               cardTitle="Total expected return"
-              amount={"5M"}
+              amount="5M"
               hasFilter={true}
               iconBg="var(--overview-card-secondary)"
               bgColor="var(--main)"
@@ -56,7 +56,7 @@ export const Dashboard = () => {
           </Box>
           <Box flex={1} minHeight={"210px"}>
             <OverviewCard
-              cardIcon={"trophy"}
+              cardIcon="trophy"
               cardTitle="Rewards & milestones"
               hasFilter={true}
               hasProgress={true}

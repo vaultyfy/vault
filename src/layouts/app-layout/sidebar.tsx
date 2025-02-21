@@ -62,26 +62,13 @@ export const Sidebar = () => {
 
   return (
     <Box
-      position="fixed"
       top={0}
       left={0}
       height="100vh"
       background="var(--main)"
-      width={{ "2xl": "13%", xl: "13%", lg: "20%" }}
+      width={{ "2xl": "13%", xl: "18%", lg: "20%" }}
       display={{ base: "none", lg: "block" }}
       overflowY="auto"
-      css={{
-        "&::-webkit-scrollbar": {
-          width: "4px",
-        },
-        "&::-webkit-scrollbar-track": {
-          width: "4px",
-        },
-        "&::-webkit-scrollbar-thumb": {
-          background: "var(--white-fade-8)",
-          borderRadius: "24px",
-        },
-      }}
     >
       <Link to="/">
         <Center mt="1em">

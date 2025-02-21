@@ -7,7 +7,7 @@ export const AppHeader = ({
   routeTitle,
 }: Pick<AppLayoutProps, "routeTitle">) => {
   return (
-    <Box px={{ base: "1rem", lg: "2rem" }} mt={{ base: "1rem", lg: "2rem" }}>
+    <Box mt={{ base: "1rem", lg: "2rem" }}>
       <Flex
         justifyContent="space-between"
         alignItems="center"
@@ -31,8 +31,6 @@ export const AppHeader = ({
             leftIcon={<CirclePlus color="#292d32" size="24" />}
             fontWeight="medium"
             fontSize="14px"
-            _hover="var(--button-secondary)"
-            _focus="var(--button-secondary)"
           >
             Create group
           </Button>
