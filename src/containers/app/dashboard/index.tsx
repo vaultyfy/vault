@@ -11,17 +11,40 @@ import {
   TableContainer,
   SimpleGrid,
   Stack,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { OverviewCard } from "@components/customer/ui";
 import { ChevronDown } from "lucide-react";
 import { ActivitiesTable } from "@components/customer/tables";
 import { Analytics } from "@components/ui";
+import React from "react";
+import { useMobileScreens } from "@hooks/mobile-screen";
+import { CreateGroupModal } from "@layouts/modal-layout";
+import { useUiComponentStore } from "@store/ui";
 
 export const Dashboard = () => {
+  const { store, updateUiStore } = useUiComponentStore();
+  const { isMobile } = useMobileScreens();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  React.useEffect(() => {
+    if (store.ui === "create-group" && !isMobile) {
+      onOpen();
+    }
+  }, []);
+
+  const closeModal = () => {
+    updateUiStore({ ui: "" });
+    onClose();
+  };
+
   return (
     <>
       <Box width="100%" minH="100dvh">
-        <SimpleGrid columns={{ lg: 4, md: 2, base: 2 }} gap={{ lg: ".8em", md: ".6em", base: ".4em"}}>
+        <SimpleGrid
+          columns={{ lg: 4, md: 2, base: 2 }}
+          gap={{ lg: ".8em", md: ".6em", base: ".4em" }}
+        >
           <OverviewCard
             cardIcon="calendar"
             cardTitle="Wallet balance"
@@ -86,7 +109,11 @@ export const Dashboard = () => {
             p="18px"
             minH="480px"
             rounded="lg"
-            border={{ lg: "none", md: "none", base: "0.5px solid var(--border-muted)" }}
+            border={{
+              lg: "none",
+              md: "none",
+              base: "0.5px solid var(--border-muted)",
+            }}
           >
             <Box w="full">
               <Text
@@ -188,7 +215,7 @@ export const Dashboard = () => {
         </Flex>
       </Box>
 
-      {/* create group modal */}
+      <CreateGroupModal isOpen={isOpen} onClose={closeModal} />
     </>
   );
 };

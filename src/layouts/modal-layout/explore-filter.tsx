@@ -1,10 +1,10 @@
-import { ModalLayout } from "@layouts/modal-layout";
 import { Box, Flex, VStack, Button, IconButton } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
 import { FilterDatePicker, FilterInput } from "@components/form";
 import { schema } from "@utils/validators";
 import { Icon } from "@components/icon";
 import { XCircle } from "@phosphor-icons/react";
+import { ModalLayout } from "@components/ui";
 
 interface ExploreFilterProps {
   isOpen: boolean;
@@ -26,7 +26,7 @@ export const ExploreFilter = ({ isOpen, onClose }: ExploreFilterProps) => {
       size="full"
       px="4px"
       py="48px"
-      noCloseButton={true}  
+      noCloseButton={true}
     >
       <Box w="full" h="90vh">
         <IconButton

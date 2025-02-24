@@ -19,6 +19,7 @@ import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardGroupsImport } from './routes/dashboard/groups'
+import { Route as DashboardCreateGroupImport } from './routes/dashboard/create-group'
 import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
 import { Route as AuthLoginImport } from './routes/auth/login'
@@ -73,6 +74,12 @@ const DashboardPaymentsRoute = DashboardPaymentsImport.update({
 const DashboardGroupsRoute = DashboardGroupsImport.update({
   id: '/dashboard/groups',
   path: '/dashboard/groups',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardCreateGroupRoute = DashboardCreateGroupImport.update({
+  id: '/dashboard/create-group',
+  path: '/dashboard/create-group',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -165,6 +172,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/create-group': {
+      id: '/dashboard/create-group'
+      path: '/dashboard/create-group'
+      fullPath: '/dashboard/create-group'
+      preLoaderRoute: typeof DashboardCreateGroupImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/groups': {
       id: '/dashboard/groups'
       path: '/dashboard/groups'
@@ -227,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
@@ -244,6 +259,7 @@ export interface FileRoutesByTo {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
@@ -262,6 +278,7 @@ export interface FileRoutesById {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/groups': typeof DashboardGroupsRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
@@ -281,6 +298,7 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
+    | '/dashboard/create-group'
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
@@ -297,6 +315,7 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
+    | '/dashboard/create-group'
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
@@ -313,6 +332,7 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
+    | '/dashboard/create-group'
     | '/dashboard/groups'
     | '/dashboard/payments'
     | '/dashboard/settings'
@@ -331,6 +351,7 @@ export interface RootRouteChildren {
   AuthLoginRoute: typeof AuthLoginRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSignupRoute: typeof AuthSignupRoute
+  DashboardCreateGroupRoute: typeof DashboardCreateGroupRoute
   DashboardGroupsRoute: typeof DashboardGroupsRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
@@ -348,6 +369,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignupRoute: AuthSignupRoute,
+  DashboardCreateGroupRoute: DashboardCreateGroupRoute,
   DashboardGroupsRoute: DashboardGroupsRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
@@ -374,6 +396,7 @@ export const routeTree = rootRoute
         "/auth/login",
         "/auth/reset-password",
         "/auth/signup",
+        "/dashboard/create-group",
         "/dashboard/groups",
         "/dashboard/payments",
         "/dashboard/settings",
@@ -403,6 +426,9 @@ export const routeTree = rootRoute
     },
     "/auth/signup": {
       "filePath": "auth/signup.tsx"
+    },
+    "/dashboard/create-group": {
+      "filePath": "dashboard/create-group.tsx"
     },
     "/dashboard/groups": {
       "filePath": "dashboard/groups.tsx"
