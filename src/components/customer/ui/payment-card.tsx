@@ -120,6 +120,8 @@ export const PaymentCard = ({
             _hover={{
               bgGradient: "var(--main-gradient)"
             }}
+            rounded="full"
+            width="112px"
           >
             Pay now
           </Button>

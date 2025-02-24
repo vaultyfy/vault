@@ -26,17 +26,16 @@ export const MyGroupCard = ({
 }: MyGroupCardProps) => {
   return (
     <Card
-
       boxShadow="none"
       width="full"
       height="full"
       maxWidth="100%"
       rounded="10px"
       position="relative"
-      bg={bgColor ?? "#ffffff"}
+      bg={bgColor || "#ffffff"}
       {...props}
     >
-      <CardBody px="19px" py="23px" w="full">
+      <CardBody px={{ lg: "1em", md: ".8em", base: ".6em" }} py="23px" w="full">
         {acceptanceStatus && (
           <Box mb="3rem">
             <Status status={acceptanceStatus as GlobalStatus} />
@@ -58,20 +57,17 @@ export const MyGroupCard = ({
               <HStack spacing="3px" mt="2px">
                 <Flex
                   rounded="full"
-                  px={4}
+                  px={{ lg: ".8em", base: ".4em", md: ".6em" }}
                   py={1}
                   bg="#81818112"
                   alignItems="center"
                 >
-                  <CurrencyNgn
-                    size={16}
-                    weight="bold"
-                    color="var(--text-1)"
-                  />
+                  <CurrencyNgn size={16} weight="bold" color="var(--text-1)" />
                   <Text
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="400"
                     color="var(--main)"
+                    whiteSpace="nowrap"
                   >
                     10,000/week
                   </Text>

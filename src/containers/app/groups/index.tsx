@@ -37,8 +37,14 @@ export const Groups = () => {
   const { isMobile } = useMobileScreens();
 
   return (
-    <Flex as="section" width="100%" minHeight="100vh" columnGap="1rem">
-      <Box width={{ base: "100%", lg: "100%" }} border="1px solid red">
+    <Flex
+      as="section"
+      width="100%"
+      minHeight="100vh"
+      gap={{ lg: "1em", md: "1em", base: "2em" }}
+      flexWrap="wrap"
+    >
+      <Box width={{ base: "100%", md: "50%", lg: "50%" }}>
         <HStack
           spacing="10px"
           rounded="10px"
@@ -68,7 +74,10 @@ export const Groups = () => {
 
         <Box width="full" mt="1em">
           <Tabs variant="soft-rounded">
-            <TabList gap=".6em">
+            <TabList
+              gap={{ lg: ".6em", md: ".6em", base: ".4em" }}
+              overflowX="auto"
+            >
               {GROUPS_TAB_ITEMS.map((tab) => {
                 return (
                   <Tab
@@ -83,6 +92,7 @@ export const Groups = () => {
                     py=".8em"
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="500"
+                    whiteSpace="nowrap"
                   >
                     {tab.name}
                   </Tab>
@@ -104,31 +114,52 @@ export const Groups = () => {
             </TabPanels>
           </Tabs>
 
-          <Menu>
+          <Menu autoSelect={false}>
             <MenuButton
               as={Button}
               rightIcon={<ChevronDown color="var(--grey)" size={14} />}
               px="1.35rem"
               py="8px"
-              rounded={"3xl"}
+              rounded="3xl"
               fontSize={{ base: "12px", lg: "14px" }}
               fontWeight="400"
               color="#040404"
               background="var(--grey-100)"
               display={{ base: "block", md: "none" }}
+              _active={{
+                background: "var(--grey-100)",
+              }}
             >
-              All Groups
+              All groups
             </MenuButton>
-            <MenuList px="10px" py="8px">
-              <MenuItem>All Groups</MenuItem>
-              <MenuItem>Active Groups</MenuItem>
-              <MenuItem>Completed Groups</MenuItem>
+            <MenuList px=".4em" py=".4em">
+              {GROUPS_TAB_ITEMS.map((tab) => {
+                return (
+                  <MenuItem
+                    my=".2em"
+                    key={tab.id}
+                    _hover={{
+                      background: "var(--grey-100)",
+                    }}
+                    transition="all .3s ease-out"
+                    borderRadius="4px"
+                    fontSize="12px"
+                  >
+                    {tab.name}
+                  </MenuItem>
+                );
+              })}
             </MenuList>
           </Menu>
         </Box>
       </Box>
 
-      <VStack width="full" spacing="2px" position="sticky" top="80px">
+      <VStack
+        width={{ lg: "35%", md: "45%", base: "100%" }}
+        spacing="2px"
+        position="sticky"
+        top="80px"
+      >
         <HStack justifyContent="flex-start" width="full">
           {isMobile && <Icon name="arrow-left" />}
           <Text

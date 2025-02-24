@@ -3,4 +3,4 @@ export * from "./groups";
 export * from "./payments";
 export * from "./settings";
 export * from "./explore";
-export * from "./group-details";
+export * from "./groups/details";

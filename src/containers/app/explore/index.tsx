@@ -6,23 +6,15 @@ import {
   Flex,
   Button,
   IconButton,
-  HStack,
 } from "@chakra-ui/react";
 import { FilterDatePicker, FilterInput } from "@components/form";
 import { GroupCard } from "@components/customer/ui";
-import { EmblaOptionsType } from "embla-carousel";
 import { Icon } from "@components/icon";
 import { Formik, Form } from "formik";
 import { schema } from "@utils/validators";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { FunnelSimple } from "@phosphor-icons/react";
 import { ExploreFilter } from "@layouts/modal-layout/explore-filter";
-
-const carouselSettings: EmblaOptionsType = {
-  loop: true,
-  align: "start",
-  dragFree: true,
-};
 
 const initialValues = {
   members: "",
@@ -54,7 +46,14 @@ export const Explore = () => {
         }}
       >
         {Array.from({ length: 5 }).map((_, index: React.Key) => {
-          return <GroupCard hasGradient link="my-group" key={index} />;
+          return (
+            <GroupCard
+              groupType="suggested"
+              hasGradient
+              link="my-group"
+              key={index}
+            />
+          );
         })}
       </Box>
 
@@ -171,7 +170,7 @@ export const Explore = () => {
       >
         {Array.from({ length: 5 }).map((_, index) => (
           <Box minHeight="240px" flex={1} key={index}>
-            <GroupCard />
+            <GroupCard groupType="available" />
           </Box>
         ))}
       </SimpleGrid>
