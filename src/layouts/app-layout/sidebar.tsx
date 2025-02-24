@@ -65,6 +65,7 @@ export const Sidebar = () => {
       height="100vh"
       background="var(--main)"
       width={{ "2xl": "13%", xl: "18%", lg: "20%" }}
+      display={{ lg: "block", md: "none", base: "none" }}
     >
       <Link to="/">
         <Center mt="1em">

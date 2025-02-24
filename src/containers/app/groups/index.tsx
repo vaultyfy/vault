@@ -38,12 +38,11 @@ export const Groups = () => {
 
   return (
     <Flex as="section" width="100%" minHeight="100vh" columnGap="1rem">
-      <Box width={{ base: "100%", lg: "fit-content" }} maxWidth="594px">
+      <Box width={{ base: "100%", lg: "100%" }} border="1px solid red">
         <HStack
           spacing="10px"
           rounded="10px"
           width="100%"
-          maxWidth="594px"
           p="10px"
           bgGradient="var(--main-gradient)"
           maxHeight="99px"

@@ -11,13 +11,14 @@ import {
   Menu,
   Text,
   Flex,
+  Stack,
 } from "@chakra-ui/react";
 import { Icon } from "@components/icon";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { ChevronDown } from "lucide-react";
 import { CustomProgress } from "@components/ui";
 
-interface Props {
+interface OverviewCardProps {
   bgColor?: string;
   cardGradient?: string;
   hasProgress?: boolean;
@@ -35,7 +36,7 @@ interface Props {
   paidMonths?: number;
 }
 
-export const OverviewCard: React.FC<Props> = ({
+export const OverviewCard = ({
   bgColor,
   cardGradient,
   hasProgress,
@@ -51,137 +52,135 @@ export const OverviewCard: React.FC<Props> = ({
   height,
   iconBg,
   paidMonths,
-}) => {
+}: OverviewCardProps) => {
   return (
     <Card
-      bgColor={bgColor || undefined}
+      bgColor={bgColor || ""} // why would you default to "undefined" here?
       bgGradient={cardGradient}
       width={width || "100%"}
       height={height || "100%"}
       rounded={"lg"}
     >
-      <CardBody py="1.2rem" pl="17px" pr="10px">
+      <CardBody
+        py={{ lg: "1em", md: ".8em", base: ".4em" }}
+        px={{ lg: "1em", md: "1em", base: ".6em" }}
+      >
         <VStack
           justifyContent="space-between"
           alignItems="stretch"
           height="100%"
+          gap={{ lg: "", md: "", base: "2em" }}
         >
-          <HStack justifyContent={"space-between"}>
-            <Flex
-              rounded={"full"}
-              px={"10px"}
-              py={"8px"}
-              boxSize={"48px"}
-              bgColor={iconBg || "transparent"}
-              justifyContent="center"
-              alignItems="center"
-              shadow={!iconBg ? "lg" : undefined}
-            >
-              <Icon name={cardIcon} />
-            </Flex>
-            {hasFilter ? (
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rightIcon={<ChevronDown color="#f8f8f8" size={14} />}
-                  px="16px"
-                  py="8px"
-                  bgColor="var(--overview-card-secondary)"
-                  rounded="20px"
-                  color="#fff"
-                  _hover={{
-                    bgColor: "var(--overview-card-secondary)",
-                    color: "#fff",
-                  }}
-                  _focus={{
-                    bgColor: "var(--overview-card-secondary)",
-                    color: "#fff",
-                  }}
-                  _active={{
-                    bgColor: "var(--overview-card-secondary)",
-                    color: "#fff",
-                  }}
-                >
-                  month
-                </MenuButton>
-                <MenuList
-                  px="10px"
-                  py="8px"
-                  border="none"
-                  bgColor="var(--overview-card-secondary)"
-                >
-                  <MenuItem bgColor="transparent" color="#ffffff">
-                    month
-                  </MenuItem>
-                  <MenuItem bgColor="transparent" color="#ffffff">
-                    year
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            ) : (
-              <Box
-                px="16px"
-                py="8px"
-                rounded="20px"
-                bgColor={cardGradient || "transparent"}
-                shadow={"lg"}
+          <Stack direction="column">
+            <HStack justifyContent="space-between">
+              <Flex
+                rounded={"full"}
+                px={"10px"}
+                py={"8px"}
+                boxSize={"48px"}
+                bgColor={iconBg || "transparent"}
+                justifyContent="center"
+                alignItems="center"
+                shadow={!iconBg ? "lg" : undefined}
               >
-                <Text
-                  fontFamily={"var(--poppins)"}
-                  fontWeight={"semibold"}
-                  fontSize={"12px"}
-                  lineHeight={"17px"}
-                  color="#fff"
-                >
-                  Paid | {paidDate}
-                </Text>
-              </Box>
-            )}
-          </HStack>
-          {hasProgress && (
-            <HStack spacing={"0.5rem"}>
-              <CustomProgress value={progressLevel!} />
-              {paidMonths && (
+                <Icon name={cardIcon} />
+              </Flex>
+              {hasFilter ? (
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rightIcon={<ChevronDown color="#f8f8f8" size={14} />}
+                    px="16px"
+                    py="8px"
+                    bgColor="var(--overview-card-secondary)"
+                    rounded={{ lg: "20px", base: "36px" }}
+                    color="#fff"
+                    _hover={{
+                      bgColor: "var(--overview-card-secondary)",
+                      color: "#fff",
+                    }}
+                    _focus={{
+                      bgColor: "var(--overview-card-secondary)",
+                      color: "#fff",
+                    }}
+                    _active={{
+                      bgColor: "var(--overview-card-secondary)",
+                      color: "#fff",
+                    }}
+                    fontWeight="500"
+                    fontSize={{ lg: "14px", md: "14px", base: "12px" }}
+                    height="fit-content"
+                    width={{ lg: "100px", md: "100px", base: "88px" }}
+                  >
+                    month
+                  </MenuButton>
+                  <MenuList
+                    px="10px"
+                    py="8px"
+                    border="none"
+                    bgColor="var(--overview-card-secondary)"
+                  >
+                    <MenuItem bgColor="transparent" color="#ffffff">
+                      month
+                    </MenuItem>
+                    <MenuItem bgColor="transparent" color="#ffffff">
+                      year
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              ) : (
                 <Box
-                  bgColor="var(--overview-card-secondary)"
-                  py={1}
-                  px={4}
-                  rounded={"10px"}
+                  px={{ lg: "16px", md: "16px", base: "10px" }}
+                  py="8px"
+                  rounded="20px"
+                  bgColor={cardGradient || "transparent"}
+                  shadow={"lg"}
                 >
                   <Text
-                    fontFamily={"var(--poppins)"}
-                    fontSize={"12px"}
+                    fontWeight="500"
+                    whiteSpace="nowrap"
+                    fontSize={{ lg: "12px", md: "12px", base: "10px" }}
+                    lineHeight="17px"
                     color="#fff"
-                    fontWeight={"medium"}
                   >
-                    {paidMonths} | 12
+                    Paid | {paidDate}
                   </Text>
                 </Box>
               )}
             </HStack>
-          )}
-          <VStack
-            h="fit-content"
-            color="#fff"
-            minH="79.5px"
-            alignItems="space-between"
-          >
-            <Text
-              as="p"
-              fontFamily={"var(--poppins)"}
-              fontSize={{ base: "12px", lg: "16px" }}
-              fontWeight={"medium"}
-            >
+            {hasProgress && (
+              <HStack spacing={"0.5rem"}>
+                <CustomProgress
+                  value={progressLevel!}
+                  height={{ lg: "8px", md: "6px", base: "4px" }}
+                />
+                {paidMonths && (
+                  <Box
+                    bgColor="var(--overview-card-secondary)"
+                    py={1}
+                    px={4}
+                    rounded={"10px"}
+                  >
+                    <Text
+                      fontSize="12px"
+                      color="#fff"
+                      fontWeight="500" // please stop doing this: fontWeight="medium". instead use the exact values from Figma
+                    >
+                      {paidMonths} | 12
+                    </Text>
+                  </Box>
+                )}
+              </HStack>
+            )}
+          </Stack>
+          <VStack h="fit-content" color="#fff" alignItems="space-between">
+            <Text fontSize={{ base: "12px", lg: "16px" }} fontWeight={"medium"}>
               {cardTitle}
             </Text>
             {amount && (
               <Flex alignItems="center">
-                <CurrencyNgn size={28} color="#ffffff" weight="duotone" />
-                <Text
-                  as="h4"
-                  fontFamily="var(--clash-grotesk-700)"
-                  fontSize="28px"
-                >
+                <CurrencyNgn size={28} color="#ffffff" />
+                <Text fontFamily="var(--clash-grotesk-700)" fontSize="28px">
                   {amount}
                 </Text>
               </Flex>

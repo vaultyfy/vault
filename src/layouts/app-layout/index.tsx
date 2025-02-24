@@ -28,7 +28,7 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
         <AppHeader routeTitle={routeTitle} />
         <Box
           pt="1.4em"
-          px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }}
+          px={{ base: ".6em", "2xl": "2em", xl: "1em", lg: ".8em" }}
         >
           {children}
         </Box>

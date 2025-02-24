@@ -4,18 +4,18 @@ import { motion } from "framer-motion";
 interface ProgressProps {
   value: number;
   size?: number;
-  height?: string;
+  height?: string | {};
   borderRadius?: string;
   type?: "linear" | "circular";
 }
 
-export const CustomProgress: React.FC<ProgressProps> = ({
+export const CustomProgress = ({
   value,
   size = 100,
   type = "linear",
   height = "8px",
   borderRadius = "10px",
-}) => {
+}: ProgressProps) => {
   const strokeWidth = 8;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -45,7 +45,6 @@ export const CustomProgress: React.FC<ProgressProps> = ({
             </linearGradient>
           </defs>
 
-          {/* Background Circle */}
           <circle
             cx={center}
             cy={center}
@@ -58,7 +57,6 @@ export const CustomProgress: React.FC<ProgressProps> = ({
             strokeLinecap="round"
           />
 
-          {/* Animated Progress Circle */}
           <motion.circle
             cx={center}
             cy={center}
@@ -89,7 +87,6 @@ export const CustomProgress: React.FC<ProgressProps> = ({
       borderRadius={borderRadius}
       overflow="hidden"
     >
-      {/* Animated progress bar */}
       <motion.div
         initial={{ width: "0%" }}
         animate={{ width: `${value}%` }}
