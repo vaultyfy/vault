@@ -138,7 +138,7 @@ export const Dashboard = () => {
                   <MenuList px=".4em" py=".4em">
                     <MenuItem
                       _hover={{
-                        background: "var(--fade-border)",
+                        background: "var(--grey-100)",
                       }}
                       transition="all .3s ease-out"
                       borderRadius="4px"

@@ -22,6 +22,7 @@ interface GroupCardProps {
   width?: string;
   height?: string;
   link?: string;
+  groupType: "suggested" | "available";
 }
 
 const avatars = [
@@ -48,6 +49,7 @@ export const GroupCard = ({
   width,
   height,
   link,
+  groupType = "suggested",
 }: GroupCardProps) => {
   const getNextGradient = () => {
     const gradient = bgGradient[currentIndex];
@@ -55,7 +57,6 @@ export const GroupCard = ({
     return gradient;
   };
   const gradient = getNextGradient();
-
   const navigate = useNavigate();
 
   return (
@@ -170,7 +171,7 @@ export const GroupCard = ({
                   as="p"
                   fontSize={{ base: "12px", lg: "14px" }}
                   fontWeight="medium"
-                  color="#fff"
+                  color={groupType === "suggested" ? "#fff" : "var(--grey)"}
                   textAlign="end"
                 >
                   Pay-out
@@ -216,19 +217,11 @@ export const GroupCard = ({
                   ? "rgba(255, 255, 255, 0.3)"
                   : "var(--btn-secondary-7)",
               }}
-              _focus={{
-                bg: hasGradient
-                  ? "rgba(255, 255, 255, 0.3)"
-                  : "var(--btn-secondary-7)",
-              }}
-              _active={{
-                bg: hasGradient
-                  ? "rgba(255, 255, 255, 0.4)"
-                  : "var(--btn-secondary-7)",
-              }}
               onClick={() => navigate({ to: `/dashboard/explore/${link}` })}
             >
-              <Text color="#fff">Join</Text>
+              <Text color={groupType === "suggested" ? "#fff" : "var(--main)"}>
+                Join
+              </Text>
               <Box
                 boxSize="39px"
                 rounded="full"
@@ -240,7 +233,6 @@ export const GroupCard = ({
                 <ArrowRight
                   size={16}
                   color={hasGradient ? "var(--grey)" : "#ffffff"}
-                  fill=""
                 />
               </Box>
             </Button>
