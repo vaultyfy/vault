@@ -20,7 +20,7 @@ export const OverviewCard = ({ title, number }: OverviewCardProps) => {
         width={"3.5%"}
         height={"100%"}
         borderLeftRadius={"10px"}
-        background="linear-gradient(135deg, #2C9BF0, #1CCFBD)"
+        background="var(--main-gradient)"
       ></Box>
       <Stack
         width={"100%"}

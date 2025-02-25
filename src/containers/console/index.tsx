@@ -1,16 +1,21 @@
-import { Box, Text, Stack, Button, HStack } from "@chakra-ui/react";
+import { Box, Text, Stack, Button, HStack, VStack } from "@chakra-ui/react";
 import { OverviewCardSection } from "./overview";
 import { BellDot, CirclePlus } from "lucide-react";
+import { ActivitiesTable } from "./overview/activitiesTable";
 
 export const AdminConsole = () => {
   return (
-    <Box width={"100%"}>
+    <VStack
+      width={"100%"}
+      gap={"40px"}
+      alignItems={"flex-start"}
+      justifyContent={"flex-start"}
+    >
       <Stack
         flexDirection={"row"}
+        width={"100%"}
         height={"52px"}
-        display={"flex"}
         justifyContent={"space-between"}
-        mb={"2em"}
       >
         <Text
           fontSize="34px"
@@ -53,6 +58,7 @@ export const AdminConsole = () => {
         </HStack>
       </Stack>
       <OverviewCardSection />
-    </Box>
+      <ActivitiesTable />
+    </VStack>
   );
 };
