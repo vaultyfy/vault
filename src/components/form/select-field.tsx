@@ -170,6 +170,10 @@ export const SelectField = ({
                     fontSize: fontSize || "14px",
                     color: "var(--input-placeholder)",
                   }),
+                  menuPortal: (baseStyles) => ({
+                    ...baseStyles,
+                    zIndex: 1600,
+                  }),
                 }}
               />
             </Box>
