@@ -25,14 +25,12 @@ import {
   startOfToday,
   parseISO,
 } from "date-fns";
-// import { FormikProps } from "formik";
 import { ParagraphText } from "@components/typography";
 import { FormikProps } from "formik";
 
 interface DatePickerProps {
   formik: FormikProps<any>;
   fieldName: string;
-  // onDateChange: (date: Date) => void;
   inputField?: {
     label?: string;
     isActive?: boolean;
@@ -50,7 +48,6 @@ const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export const DatePicker = ({
   formik,
   fieldName,
-  // onDateChange,
   inputField = {
     isActive: false,
   },
@@ -69,7 +66,6 @@ export const DatePicker = ({
       setDate(newDate);
       setIsOpen(false);
       formik.setFieldValue(fieldName, newDate);
-      // onDateChange(newDate);
     }
   };
 
@@ -130,6 +126,7 @@ export const DatePicker = ({
               color="var(--grey)"
               weight="500"
               textTransform="capitalize"
+              fontSize={{ base: "12px", md: "14px" }}
             />
             <HStack
               py={"8px"}

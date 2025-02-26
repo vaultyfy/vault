@@ -1,4 +1,13 @@
-import { HStack, VStack, Box, Flex, Text, Button } from "@chakra-ui/react";
+import { useNavigate } from "@tanstack/react-router";
+import {
+  HStack,
+  VStack,
+  Box,
+  Flex,
+  Text,
+  Button,
+  IconButton,
+} from "@chakra-ui/react";
 import {
   DatePicker,
   InputField,
@@ -42,6 +51,7 @@ export const CreateGroupContent = () => {
     noOfCycles: "",
     noOfContributors: "",
   };
+  const navigate = useNavigate();
 
   return (
     <Formik
@@ -55,7 +65,37 @@ export const CreateGroupContent = () => {
         return (
           <Form>
             <VStack spacing="14px" width="100%">
-              <HStack spacing="8px" width="100%" alignItems="stretch">
+              <HStack
+                display={{ base: "flex", md: "none" }}
+                width="100%"
+                py={2}
+                alignItems="center"
+                gap=".2em"
+              >
+                <IconButton
+                  aria-label="Back button"
+                  icon={<Icon name="arrow-left" />}
+                  bg="transparent"
+                  onClick={() => navigate({ to: "/dashboard" })}
+                  _hover={{ bg: "none" }}
+                  size="sm"
+                />
+                <Text
+                  fontSize="24px"
+                  fontFamily="var(--clash-grotesk-500)"
+                  fontWeight="500"
+                  color="var(--text-1)"
+                  textTransform="capitalize"
+                >
+                  Create group
+                </Text>
+              </HStack>
+              <Flex
+                flexDirection={{ base: "column", md: "row" }}
+                gap="8px"
+                width="100%"
+                alignItems="stretch"
+              >
                 <Box flex={1}>
                   <InputField
                     name="groupName"
@@ -91,7 +131,7 @@ export const CreateGroupContent = () => {
                     </Box>
                   )}
                 </Box>
-              </HStack>
+              </Flex>
               <Box w="full">
                 <TextAreaField
                   name="groupDescription"
@@ -121,8 +161,12 @@ export const CreateGroupContent = () => {
                   my="0"
                 />
               </Box>
-              <HStack spacing="8px" w="full">
-                <Box flex={1}>
+              <HStack
+                spacing="8px"
+                w="full"
+                flexWrap={{ base: "wrap", md: "nowrap" }}
+              >
+                <Box width={{ base: "100%", md: "33.33%" }}>
                   <SelectField
                     name="contributionFrequency"
                     label="Contribution Frequency"
@@ -134,9 +178,11 @@ export const CreateGroupContent = () => {
                     caretColor="var(--text-1)"
                     labelColor="var(--grey)"
                     outlineColor="rgb(226, 232, 240)"
+                    height="50px"
+                    color="var(--grey)"
                   />
                 </Box>
-                <Box flex={1}>
+                <Box flex="1 0 33.33%">
                   <SelectField
                     name="noOfDays"
                     label="No of Days/members"
@@ -148,9 +194,11 @@ export const CreateGroupContent = () => {
                     labelColor="var(--grey)"
                     labelSize="12px"
                     outlineColor="rgb(226, 232, 240)"
+                    height="50px"
+                    color="var(--grey)"
                   />
                 </Box>
-                <Box flex={1}>
+                <Box flex="1 0 33.33%">
                   <SelectField
                     name="noOfCycles"
                     label="No of cycles"
@@ -162,6 +210,8 @@ export const CreateGroupContent = () => {
                     caretColor="var(--text-1)"
                     labelColor="var(--grey)"
                     outlineColor="rgb(226, 232, 240)"
+                    height="50px"
+                    color="var(--grey)"
                   />
                 </Box>
               </HStack>
@@ -213,7 +263,7 @@ export const CreateGroupContent = () => {
                 _hover={{ background: "var(--main)" }}
                 type="submit"
                 background="var(--main)"
-                height="50px"
+                height={{ base: "41px", md: "50px" }}
                 fontWeight="500"
                 fontSize="16px"
                 lineHeight="22px"

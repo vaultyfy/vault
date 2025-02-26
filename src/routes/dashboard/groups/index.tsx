@@ -3,16 +3,16 @@ import { Groups } from "@containers/app";
 import { AppLayout } from "@layouts/app-layout";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/dashboard/groups")({
+export const Route = createFileRoute("/dashboard/groups/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
     <>
-      <MetaData pageTitle="Groups &mdash; Vaultify" url="vaultify.vercel.app" />
+      <MetaData pageTitle="Groups &mdash; Vaultyfy" url="vaultify.vercel.app" />
 
-      <AppLayout routeTitle="My Groups">
+      <AppLayout routeTitle="My groups">
         <Groups />
       </AppLayout>
     </>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Flex,
   Text,
@@ -27,6 +28,7 @@ export const AppHeader = ({
 
     if (isMobile) {
       navigate({ to: "/dashboard/create-group" });
+      onClose();
     } else {
       onOpen();
     }
