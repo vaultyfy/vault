@@ -62,7 +62,7 @@ export const ActionButton = ({
             background={"white"}
             onClick={onClick}
             _hover={{
-              background: "transparent",
+              background: "white",
             }}
           >
             Action
@@ -95,7 +95,7 @@ export const ActionButton = ({
             color="var(--delay-text)"
             background="var(--delay-bg)"
             _hover={{
-              background: "transparent",
+              background: "var(--delay-bg)",
             }}
             onClick={onClick}
           >

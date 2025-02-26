@@ -72,7 +72,7 @@ export const OverviewCardSection = () => {
   return (
     <Box display={"flex"} flexDirection={"row"} width={"100%"}>
       {cardData.map((data, idx) => {
-        return <OverviewCard title={data.question} number={idx} />;
+        return <OverviewCard title={data.question} key={idx} number={idx} />;
       })}
     </Box>
   );

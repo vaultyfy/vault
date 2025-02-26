@@ -35,7 +35,7 @@ export const AdminConsole = () => {
             pr="4px"
             gap={"8px"}
             height="52px"
-            _hover={{ background: "none" }}
+            _hover={{ background: "#1CCFBD12" }}
             width={"180px"}
           >
             Create Group{" "}
@@ -46,7 +46,7 @@ export const AdminConsole = () => {
             borderRadius={"full"}
             height="50px"
             width={"50px"}
-            _hover={{ background: "none" }}
+            _hover={{ background: "#1CCFBD12" }}
           >
             <BellDot
               fill="var(--dark)"
