@@ -32,6 +32,7 @@ interface SelectProps {
   menuWidth?: string;
   noBorder?: boolean;
   fontWeight?: string;
+  color?: string;
   labelInfo?: string;
   multi?: "yes" | "no";
   isDisabled?: boolean;
@@ -60,6 +61,7 @@ export const SelectField = ({
   noBorder,
   multi,
   fontWeight,
+  color,
   icon,
   ...props
 }: SelectProps) => {
@@ -91,8 +93,8 @@ export const SelectField = ({
           <FormLabel
             fontSize={labelSize || "14px"}
             lineHeight="20px"
-            fontWeight="400"
-            color={labelColor || "#211E1D"}
+            fontWeight="500"
+            color={labelColor || "var(--grey)"}
           >
             {label}{" "}
             {labelInfo && (
@@ -168,11 +170,15 @@ export const SelectField = ({
                   placeholder: (baseStyles) => ({
                     ...baseStyles,
                     fontSize: fontSize || "14px",
-                    color: "var(--input-placeholder)",
+                    color: color || "var(--input-placeholder)",
                   }),
                   menuPortal: (baseStyles) => ({
                     ...baseStyles,
                     zIndex: 1600,
+                  }),
+                  dropdownIndicator: (baseStyles) => ({
+                    ...baseStyles,
+                    color: caretColor || "var(--text-1)",
                   }),
                 }}
               />
