@@ -143,40 +143,40 @@ export const FlexibleContributions = () => {
             </MotionText>
           </Flex>
 
-          <MotionBox
-            display={{ lg: "block", md: "none", base: "none" }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={textVariants}
-            borderRadius="4px"
-            height="58px"
-            width="178px"
-            background="var(--primary)"
-            whileTap={{
-              marginLeft: ".5em",
-              marginTop: ".3em",
-              transition: {
-                duration: 0.3,
-                ease: "easeOut",
-              },
-            }}
-          >
-            <MotionBox
-              fontWeight="500"
-              fontSize="14px"
-              background="var(--main)"
-              color="var(--white-fade)"
-              as="button"
-              mt="-.3em"
-              height="100%"
-              width="100%"
-              borderRadius="4px"
-              ml="-.3em"
-            >
-              Pick a saving cycle
-            </MotionBox>
-          </MotionBox>
+          {/*<MotionBox*/}
+          {/*  display={{ lg: "block", md: "none", base: "none" }}*/}
+          {/*  initial="hidden"*/}
+          {/*  whileInView="visible"*/}
+          {/*  viewport={{ once: true, amount: 0.8 }}*/}
+          {/*  variants={textVariants}*/}
+          {/*  borderRadius="4px"*/}
+          {/*  height="58px"*/}
+          {/*  width="178px"*/}
+          {/*  background="var(--primary)"*/}
+          {/*  whileTap={{*/}
+          {/*    marginLeft: ".5em",*/}
+          {/*    marginTop: ".3em",*/}
+          {/*    transition: {*/}
+          {/*      duration: 0.3,*/}
+          {/*      ease: "easeOut",*/}
+          {/*    },*/}
+          {/*  }}*/}
+          {/*>*/}
+          {/*  <MotionBox*/}
+          {/*    fontWeight="500"*/}
+          {/*    fontSize="14px"*/}
+          {/*    background="var(--main)"*/}
+          {/*    color="var(--white-fade)"*/}
+          {/*    as="button"*/}
+          {/*    mt="-.3em"*/}
+          {/*    height="100%"*/}
+          {/*    width="100%"*/}
+          {/*    borderRadius="4px"*/}
+          {/*    ml="-.3em"*/}
+          {/*  >*/}
+          {/*    Pick a saving cycle*/}
+          {/*  </MotionBox>*/}
+          {/*</MotionBox>*/}
         </Box>
       </Flex>
     </SectionContainer>

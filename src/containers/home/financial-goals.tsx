@@ -136,24 +136,25 @@ export const FinancialGoals = () => {
                 fontFamily="var(--clash-grotesk-600)"
                 color="#fff"
               >
-                Reach your financial goals in short time
+                {/*Reach your financial goals in short time*/}
+                Achieve your financial goals quickly.
               </MotionText>
 
-              <MotionText
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                variants={textVariants}
-                custom={0.2}
-                fontFamily="var(--poppins)"
-                fontWeight="500"
-                lineHeight={{ lg: "30px", base: "24px", md: "30px" }}
-                fontSize={{ lg: "20px", base: "16px", md: "20px" }}
-                color="#fff"
-              >
-                Get matched with the right thrift team and achieve your
-                financial goals faster through seamless group savings
-              </MotionText>
+              {/*<MotionText*/}
+              {/*  initial="hidden"*/}
+              {/*  whileInView="visible"*/}
+              {/*  viewport={{ once: true, amount: 0.5 }}*/}
+              {/*  variants={textVariants}*/}
+              {/*  custom={0.2}*/}
+              {/*  fontFamily="var(--poppins)"*/}
+              {/*  fontWeight="500"*/}
+              {/*  lineHeight={{ lg: "30px", base: "24px", md: "30px" }}*/}
+              {/*  fontSize={{ lg: "20px", base: "16px", md: "20px" }}*/}
+              {/*  color="#fff"*/}
+              {/*>*/}
+              {/*  Get matched with the right thrift team and achieve your*/}
+              {/*  financial goals faster through seamless group savings*/}
+              {/*</MotionText>*/}
             </Flex>
 
             <MotionBox
@@ -164,6 +165,8 @@ export const FinancialGoals = () => {
               borderRadius="4px"
               height="58px"
               width="178px"
+              position="absolute"
+              bottom="5%"
               background="var(--primary)"
               whileTap={{
                 marginLeft: ".5em",

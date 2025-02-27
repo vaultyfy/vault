@@ -146,10 +146,10 @@ export const SystemMatching = () => {
 
             <Box
               position="absolute"
-              bottom="0"
+              top="0"
               right={{
                 "2xl": "10%",
-                xl: "2%",
+                xl: "15%",
                 lg: "2%",
                 md: "-5%",
                 base: "19%",
@@ -158,8 +158,8 @@ export const SystemMatching = () => {
               <MotionImage
                 src="/img/person-7.svg"
                 position="absolute"
-                top="-12%"
-                left={{ xl: "-13%", lg: "-15%", md: "2%" }}
+                top="8%"
+                left={{ xl: "-45%", lg: "-15%", md: "2%" }}
                 initial={{ y: 30, x: 40, scale: 0.5, opacity: 0 }}
                 whileInView={{
                   y: 0,
