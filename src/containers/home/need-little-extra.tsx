@@ -63,7 +63,9 @@ export default function LoanHeroSection() {
             />
           </Box>
         </Box>
-        <Box display={'flex'} justifyContent={'center'}><PrimaryButton text="get load" contentLoaded={contentLoaded} /></Box>
+        <Box display={'flex'} justifyContent={'center'} marginTop={'10px'}>
+          <PrimaryButton text="get load" contentLoaded={contentLoaded} />
+        </Box>
       </Box>
     </Box>
   );
