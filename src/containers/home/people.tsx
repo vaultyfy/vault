@@ -1,3 +1,4 @@
+import { Box, Text, Image } from "@chakra-ui/react";
 import { MotionBox, MotionImage } from "@config/motion";
 import { useDomContentLoaded } from "@hooks/dom-content-loaded";
 
@@ -63,85 +64,88 @@ export const People = () => {
       initial="expanded"
       animate={contentLoaded ? "collapsed" : "expanded"}
       whileHover="hover"
-      _hover={{
-        cursor: "pointer",
-      }}
+      _hover={{ cursor: "pointer" }}
       mx="auto"
       mt={{ lg: "initial", base: ".6em" }}
     >
       <MotionImage
-        layoutId="person-6"
-        src="/img/person-6.svg"
+        layoutId="handsome-young-african-american"
+        src="/img/handsome-young-african-american.png"
         position="absolute"
-        top={{ lg: "39%", md: "39%", base: "41%" }}
-        left={{ lg: "40%", md: "40%", base: "42%" }}
-        alt="Woman with curly hair smiling in a colorful blouse"
         custom={{ x: 0, y: 0, scale: 0.9 }}
         variants={childVariants}
-        boxSize={{ md: "80px", base: "70px", lg: "initial" }}
+        boxSize={{ lg: "100%", md: "90%", base: "100%" }}
+        top={'-92px'}
       />
-      <MotionImage
-        layoutId="people-ring"
-        src="/img/people-ring.svg"
-        custom={{ x: 0, y: 0, scale: 1.2 }}
-        variants={childVariants}
-        boxSize={{ md: "220px", base: "70%", lg: "initial" }}
-      />
-      <MotionImage
-        src="/img/person-1.svg"
+
+
+      <Box
         position="absolute"
-        top={{ lg: "0", md: "0", base: "11%" }}
-        left={{ lg: "0", md: "0", base: "12%" }}
-        alt="Man with an afro with a yellow vest"
-        layoutId="person-1"
-        custom={{ x: -30, y: -10 }}
-        variants={childVariants}
-        boxSize={{ md: "130px", base: "100px", lg: "initial" }}
-      />
-      <MotionImage
-        src="/img/person-2.svg"
+        top="2%"
+        left="-17%"
+        bg="#E0FBFF"
+        p={3}
+        borderRadius="lg"
+        boxShadow="md"
+        maxW="50%"
+        fontWeight="medium"
+        borderTopLeftRadius={'15px'}
+        borderBottomRightRadius={'15px'}
+        borderBottomLeftRadius={'15px'}
+        padding={'20px'}
+      >
+        <Text fontSize="14px" fontWeight={600}>I need to meet a payment deadline</Text>
+      </Box>
+
+      <Box
         position="absolute"
-        top={{ lg: "3%", md: "3%", base: "14%" }}
-        right={{ lg: "20%", md: "20%", base: "20%" }}
-        alt="Woman of african descent in a colorful blouse"
-        layoutId="person-2"
-        custom={{ x: 28, y: -20 }}
-        variants={childVariants}
-        boxSize={{ md: "100px", base: "75px", lg: "initial" }}
-      />
-      <MotionImage
-        src="/img/person-3.svg"
+        bottom="26%"
+        left="-1%"
+        bg="#E0FBFF75"
+        p={3}
+        borderRadius="lg"
+        boxShadow="md"
+        maxW="215px"
+        height={'82px'}
+        fontWeight="medium"
+        borderTopLeftRadius={'15px'}
+        borderBottomRightRadius={'15px'}
+        borderBottomLeftRadius={'15px'}
+        padding={'20px'}
+      >
+        <Text fontSize="14px" fontWeight={600} color={'#222020'}>Hmm, my rent will be due in 5 months</Text>
+      </Box>
+
+      <Box
         position="absolute"
-        top={{ lg: "35%", md: "35%", base: "42%" }}
-        right={{ lg: "-2%", md: "-2%", base: "4%" }}
-        alt="Woman with braids"
-        layoutId="person-3"
-        variants={childVariants}
-        custom={{ x: 15, y: 15 }}
-        boxSize={{ md: "110px", base: "85px", lg: "initial" }}
-      />
-      <MotionImage
-        src="/img/person-4.svg"
-        position="absolute"
-        bottom={{lg: "2%", md: "2%", base: "10%"}}
-        right={{lg: "34%", md: "34%", base: "40%"}}
-        alt="Fresh kid painted his hair white/brown"
-        layoutId="person-4"
-        custom={{ x: 0, y: 30 }}
-        variants={childVariants}
-        boxSize={{ md: "98px", base: "78px", lg: "initial" }}
-      />
-      <MotionImage
-        src="/img/person-5.svg"
-        position="absolute"
-        top="49%"
-        left={{lg: "1%", md: "1%", base: "3%"}}
-        alt="Man with beard putting on a beanie"
-        layoutId="person-5"
-        custom={{ x: -40, y: 20 }}
-        variants={childVariants}
-        boxSize={{ md: "98px", base: "80px", lg: "initial" }}
-      />
+        top="5.5%"
+        right="-10%"
+        bg="white"
+        p={3}
+        borderRadius="lg"
+        boxShadow="lg"
+        display="flex"
+        alignItems="center"
+        maxW="228px"
+        height={'82px'}
+        border="1px solid #cfd8dc"
+        gap={'10px'}
+        borderTopRightRadius={'15px'}
+        borderBottomRightRadius={'15px'}
+        borderBottomLeftRadius={'15px'}
+        padding={'20px'}
+      >
+        <Image
+          src="/img/GroupLogo.svg"
+          alt="GroupLogo"
+          height="41px"
+          width="41.93px"
+        />
+        <Text fontSize="14" fontWeight="600" color={'#222020'}>
+          Vaultify has got you covered
+        </Text>
+      </Box>
     </MotionBox>
   );
 };
+

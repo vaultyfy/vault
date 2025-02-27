@@ -3,6 +3,7 @@ import { buttonVariants, textVariants } from "@containers/home/hero";
 import { useDomContentLoaded } from "@hooks/dom-content-loaded";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { ArrowRight } from "@phosphor-icons/react";
+import {Box} from "@chakra-ui/react";
 
 interface PrimaryBtnProps {
   text: string;
@@ -22,14 +23,15 @@ export const PrimaryButton = ({
       variants={buttonVariants}
       backdropFilter="blur(24px)"
       display="flex"
-      color="var(--main)"
+      color="#FFFFFF"
       fontWeight="500"
       fontSize={{ lg: "16px", base: "12px" }}
       textTransform="capitalize"
-      height={{ lg: "84px", base: "52px" }}
+      height={{ lg: "55px", base: "55px" }}
       width={{ lg: "fit-content", base: "140px" }}
       borderRadius="60px"
-      background="var(--primary-btn-bg)"
+      // background="var(--primary-btn-bg)"
+      background={'#102634'}
       alignItems="center"
       justifyContent="center"
       gap=".8em"
@@ -83,10 +85,19 @@ export const PrimaryButton = ({
           transition: { duration: 0.2 },
         }}
       >
+        <Box
+          borderRadius="50%"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          boxSize={{ lg: "45px", base: "33px" }}
+          background="white"
+        >
         <ArrowRight
-          color="var(--white-fade)"
+          color="#102634"
           size={isMobile ? "18" : isTablet ? "20" : "38"}
         />
+          </Box>
       </MotionBox>
     </MotionBox>
   );

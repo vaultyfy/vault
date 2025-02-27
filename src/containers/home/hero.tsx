@@ -158,9 +158,10 @@ export const Hero = () => {
               custom={0.9}
               variants={textVariants}
             >
-              Join verified thrift savings groups, contribute securely, and
-              receive payouts in rotation. Transparent, reliable, and built for
-              your goals
+              {/*Join verified thrift savings groups, contribute securely, and*/}
+              {/*receive payouts in rotation. Transparent, reliable, and built for*/}
+              {/*your goals*/}
+              Turn dreams into reality, one contribution at a time
             </MotionText>
 
             <PrimaryButton text="get started" contentLoaded={contentLoaded} />
