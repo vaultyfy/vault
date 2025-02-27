@@ -12,6 +12,7 @@ import { textVariants } from "./hero";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { cashVariant } from "./flexible-contributions";
 import { Marker } from "./map-pin";
+import LoanHeroSection from "@containers/home/need-little-extra";
 
 const personVariant = {
   hidden: { scale: 0, opacity: 0 },
@@ -193,6 +194,7 @@ export const SystemMatching = () => {
           </Flex>
         </SectionContainer>
       </Box>
+      <LoanHeroSection/>
     </Box>
   );
 };
