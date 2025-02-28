@@ -6,16 +6,8 @@ import {
   CaretDown,
   CaretUp,
 } from "@phosphor-icons/react";
-import {
-  format,
-  addMonths,
-  subMonths,
-  isAfter,
-  isSameDay,
-  startOfToday,
-  parseISO,
-  addYears,
-} from "date-fns";
+import { format, addMonths, isSameDay, startOfToday, addYears } from "date-fns";
+import { borderGradientStyle_2 } from "@utils/constants";
 
 interface CalendarProps {
   width?: string;
@@ -27,6 +19,7 @@ export const Calendar = ({ width }: CalendarProps) => {
   const [date, setDate] = useState<Date | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
+  const today = startOfToday();
 
   const formattedDate = date ? format(date, "PP") : "Select date";
 
@@ -34,7 +27,6 @@ export const Calendar = ({ width }: CalendarProps) => {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const dates = [];
-    const today = startOfToday();
 
     // Previous month padding
     for (let i = 0; i < firstDay.getDay(); i++) {
@@ -87,7 +79,9 @@ export const Calendar = ({ width }: CalendarProps) => {
               bgColor: "transparent",
             }}
           />
-          <Text fontWeight="500">{format(currentMonth, "MMMM")}</Text>
+          <Text fontWeight="400" fontSize="14px">
+            {format(currentMonth, "MMMM")}
+          </Text>
           <IconButton
             aria-label="Next month"
             icon={<CaretRight color="#000" weight="bold" />}
@@ -110,7 +104,9 @@ export const Calendar = ({ width }: CalendarProps) => {
               bgColor: "transparent",
             }}
           />
-          <Text fontWeight="500">{format(currentYear, "yyyy")}</Text>
+          <Text fontWeight="400" fontSize="14px">
+            {format(currentYear, "yyyy")}
+          </Text>
           <IconButton
             aria-label="Next year"
             icon={<CaretDown color="#000" weight="fill" />}
@@ -132,35 +128,72 @@ export const Calendar = ({ width }: CalendarProps) => {
             fontWeight="semibold"
             fontSize={"13px"}
             color="var(--grey)"
+            fontFamily="var(--maven-pro-500)"
           >
             {day}
           </Text>
         ))}
       </SimpleGrid>
 
-      <SimpleGrid columns={7} spacing={2}>
+      <SimpleGrid columns={7} spacing={2} mb="16px">
         {generateDates(currentMonth.getFullYear(), currentMonth.getMonth()).map(
           ({ date: d, isCurrentMonth, isPast }) => {
             return (
               <Flex
                 key={d.toISOString()}
                 boxSize="40px"
-                justifyContent={"center"}
-                p={0}
-                borderRadius="md"
-                background={date && isSameDay(d, date) ? "var(--coral)" : "white"}
-                color={
-                  isPast ? "gray.400" : isCurrentMonth ? "black" : "gray.300"
+                alignItems="center"
+                justifyContent="center"
+                borderRadius={isSameDay(d, today) ? "full" : "md"}
+                border="1px solid"
+                borderColor="transparent"
+                background={isSameDay(d, today) ? "var(--main)" : "white"}
+                sx={
+                  isSameDay(d, today)
+                    ? borderGradientStyle_2
+                    : {
+                        _hover: !isPast
+                          ? isSameDay(d, today)
+                            ? {
+                                ...borderGradientStyle_2,
+                              }
+                            : {
+                                ...borderGradientStyle_2,
+                                borderRadius: "full",
+                              }
+                          : {},
+                      }
                 }
-                _hover={{ background: isPast ? "none" : "var(--coral-400)" }}
+                _hover={{ background: "var(--main)" }}
+                fontFamily="var(--poppins)"
+                fontSize="14px"
+                fontWeight="400"
+                color={
+                  isPast
+                    ? "var(--calendar-days-color)"
+                    : isCurrentMonth && isSameDay(d, today)
+                      ? "white"
+                      : "var(--text-1)"
+                }
+                opacity={isPast ? 0.5 : 1}
+                position="relative"
               >
-                <Text fontSize={"13px"} fontFamily={"var(--poppins)"}>
+                <Text
+                  fontSize="13px"
+                  fontFamily="var(--poppins)"
+                  position="absolute"
+                  top="50%"
+                  left="50%"
+                  transform="translate(-50%, -50%)"
+                  margin="0"
+                  lineHeight="1"
+                >
                   {d.getDate()}
                 </Text>
               </Flex>
-            )
-          })
-        }
+            );
+          },
+        )}
       </SimpleGrid>
     </Box>
   );

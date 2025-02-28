@@ -17,7 +17,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
       "@context/*": ["src/context/*"],
-      "@queries/*": ["src/queries/*"]
+      "@queries/*": ["src/queries/*"],
+      "@store/*": ["src/store/*"]
     }
   }
 }

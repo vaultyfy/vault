@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { ToastProvider } from "@context/toast-provider";
 import { AuthProvider } from "@context/auth-provider";
+import {NuqsAdapter} from "nuqs/adapters/react"
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
@@ -19,11 +20,13 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <ToastProvider>
-        <AuthProvider>
-          <Outlet />
-        </AuthProvider>
-      </ToastProvider>
+      <NuqsAdapter>
+        <ToastProvider>
+          <AuthProvider>
+            <Outlet />
+          </AuthProvider>
+        </ToastProvider>
+      </NuqsAdapter>
       <React.Suspense>
         <TanStackRouterDevtools position="bottom-right" />
       </React.Suspense>
