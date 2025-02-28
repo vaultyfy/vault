@@ -68,17 +68,16 @@ export const CreateGroupContent = () => {
               <HStack
                 display={{ base: "flex", md: "none" }}
                 width="100%"
-                px={4}
                 py={2}
                 alignItems="center"
-                spacing={3}
+                gap=".2em"
               >
                 <IconButton
                   aria-label="Back button"
                   icon={<Icon name="arrow-left" />}
                   bg="transparent"
-                  onClick={() => navigate({ to: ".." })}
-                  _hover={{ bg: "gray.100" }}
+                  onClick={() => navigate({ to: "/dashboard" })}
+                  _hover={{ bg: "none" }}
                   size="sm"
                 />
                 <Text
