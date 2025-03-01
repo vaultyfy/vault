@@ -149,7 +149,7 @@ export const PaymentsPayouts = () => {
           fontWeight="400"
           onClick={addPaymentMethod}
           _hover={{
-            background: "var(--grey-100)"
+            background: "var(--grey-100)",
           }}
         >
           Add payment method

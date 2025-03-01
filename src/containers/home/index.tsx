@@ -16,7 +16,7 @@ export const Home = () => {
         position="absolute"
         mx="auto"
         left={{ lg: "32%", md: "8%", base: "0" }}
-        top={{lg: "15%", md: "18%", base: "15%"}}
+        top={{ lg: "15%", md: "18%", base: "15%" }}
         width={{ lg: "660px", md: "90%", base: "100%" }}
         zIndex="-1"
       >

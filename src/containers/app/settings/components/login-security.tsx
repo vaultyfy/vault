@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  Text,
-  Flex,
-  Button,
-  Divider,
-  Input,
-} from "@chakra-ui/react";
+import { Box, Text, Flex, Button, Divider, Input } from "@chakra-ui/react";
 import SuccessModal from "@containers/app/settings/components/success-modal";
 
 interface PasswordFields {
@@ -28,7 +21,6 @@ const LoginSecurityCard = () => {
     newPassword: false,
     confirmPassword: false,
   });
-
 
   const handleChange = (field: keyof PasswordFields, value: string) => {
     setPasswords((prev) => ({
@@ -57,7 +49,6 @@ const LoginSecurityCard = () => {
         bg="white"
         boxShadow="sm"
       >
-
         {Object.keys(passwords).map((field) => (
           <Box key={field} py={4}>
             <Text fontSize="14px" fontWeight="400" color="#818181">
@@ -80,7 +71,12 @@ const LoginSecurityCard = () => {
                   flex="1"
                 />
               ) : (
-                <Text fontSize="18px" fontWeight="400" color={"#1C1C1C"} flex="1">
+                <Text
+                  fontSize="18px"
+                  fontWeight="400"
+                  color={"#1C1C1C"}
+                  flex="1"
+                >
                   {passwords[field as keyof PasswordFields] || "******"}
                 </Text>
               )}
@@ -112,7 +108,10 @@ const LoginSecurityCard = () => {
           Save settings
         </Button>
       </Flex>
-      <SuccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <SuccessModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </Box>
   );
 };

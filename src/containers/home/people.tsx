@@ -123,8 +123,8 @@ export const People = () => {
       <MotionImage
         src="/img/person-4.svg"
         position="absolute"
-        bottom={{lg: "2%", md: "2%", base: "10%"}}
-        right={{lg: "34%", md: "34%", base: "40%"}}
+        bottom={{ lg: "2%", md: "2%", base: "10%" }}
+        right={{ lg: "34%", md: "34%", base: "40%" }}
         alt="Fresh kid painted his hair white/brown"
         layoutId="person-4"
         custom={{ x: 0, y: 30 }}
@@ -135,7 +135,7 @@ export const People = () => {
         src="/img/person-5.svg"
         position="absolute"
         top="49%"
-        left={{lg: "1%", md: "1%", base: "3%"}}
+        left={{ lg: "1%", md: "1%", base: "3%" }}
         alt="Man with beard putting on a beanie"
         layoutId="person-5"
         custom={{ x: -40, y: 20 }}

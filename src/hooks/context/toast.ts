@@ -6,7 +6,7 @@ export const useToastContext = (): ToastContextValues => {
 
   if (context === null) {
     throw new Error(
-      "Toast context is missing. You probably forgot to wrap the component depending on toast in <ToastProvider />"
+      "Toast context is missing. You probably forgot to wrap the component depending on toast in <ToastProvider />",
     );
   }
 

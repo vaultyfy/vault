@@ -7,7 +7,7 @@ import {
   CaretUp,
 } from "@phosphor-icons/react";
 import { format, addMonths, isSameDay, startOfToday, addYears } from "date-fns";
-import { borderGradientStyle_2 } from "@utils/constants";
+import { borderGradientStyle } from "@utils/constants";
 
 interface CalendarProps {
   width?: string;
@@ -16,12 +16,9 @@ interface CalendarProps {
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export const Calendar = ({ width }: CalendarProps) => {
-  const [date, setDate] = useState<Date | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
   const today = startOfToday();
-
-  const formattedDate = date ? format(date, "PP") : "Select date";
 
   const generateDates = (year: number, month: number) => {
     const firstDay = new Date(year, month, 1);
@@ -150,15 +147,15 @@ export const Calendar = ({ width }: CalendarProps) => {
                 background={isSameDay(d, today) ? "var(--main)" : "white"}
                 sx={
                   isSameDay(d, today)
-                    ? borderGradientStyle_2
+                    ? borderGradientStyle
                     : {
                         _hover: !isPast
                           ? isSameDay(d, today)
                             ? {
-                                ...borderGradientStyle_2,
+                                ...borderGradientStyle,
                               }
                             : {
-                                ...borderGradientStyle_2,
+                                ...borderGradientStyle,
                                 borderRadius: "full",
                               }
                           : {},

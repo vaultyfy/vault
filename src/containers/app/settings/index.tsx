@@ -1,16 +1,11 @@
-import {
-  Box,
-  Flex,
-  Stack,
-} from "@chakra-ui/react";
+import { Box, Flex, Stack } from "@chakra-ui/react";
 
 import { useBreakpointValue } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
-import LoginSecurityCard
-  from "@containers/app/settings/components/login-security";
+import LoginSecurityCard from "@containers/app/settings/components/login-security";
 import HelpSupportCard from "@containers/app/settings/components/help-support";
-import {useNavigate} from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 export type Setting = {
   id: string;
@@ -46,10 +41,10 @@ const SETTINGS: Setting[] = [
     id: crypto.randomUUID(),
     title: "Help & Support",
     iconName: "support",
-    description: "Contact our support and learn more about our terms of services",
+    description:
+      "Contact our support and learn more about our terms of services",
     component: <HelpSupportCard />,
   },
-
 ];
 
 export const Settings = () => {
@@ -58,7 +53,6 @@ export const Settings = () => {
     SETTINGS[0],
   );
   const navigate = useNavigate();
-
 
   const handleSelectedSetting = (id: string) => {
     const found = SETTINGS.find((setting) => setting.id === id);
@@ -73,8 +67,6 @@ export const Settings = () => {
 
   return (
     <Box width="100%" height="100vh" display="flex" flexDirection="column">
-
-
       <Flex
         justifyContent="space-between"
         gap="1em"

@@ -1,7 +1,6 @@
 import { ModalLayout } from "@components/ui";
 import { CreateGroupContent } from "./components/create-group-content";
 
-
 interface CreateGroupModalProps {
   isOpen: boolean;
   onClose: () => void;

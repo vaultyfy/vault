@@ -66,12 +66,7 @@ export const NotificationPopover = () => {
               display={{ base: "none", md: "flex" }}
               columnGap="0.3rem"
             >
-              <TabList
-                px="20px"
-                py="10px"
-                rounded="3xl"
-                cursor="pointer"
-              >
+              <TabList px="20px" py="10px" rounded="3xl" cursor="pointer">
                 <Tab>All Contribution</Tab>
                 <Tab>Active</Tab>
                 <Tab>Ended</Tab>

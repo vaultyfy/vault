@@ -1,5 +1,5 @@
 import React from "react";
-import {Helmet} from "react-helmet-async"
+import { Helmet } from "react-helmet-async";
 
 interface MetaProps {
   url: string;
@@ -34,7 +34,8 @@ export const MetaData = ({
       <meta
         name="description"
         property="og:description"
-        content={description}></meta>
+        content={description}
+      ></meta>
 
       {/* Google's meta */}
       <meta itemProp="name" content={pageTitle} />

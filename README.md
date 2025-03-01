@@ -5,6 +5,7 @@
 Join verified thrift savings groups, contribute securely, and receive payouts in rotation. Transparent, reliable, and built for your goals
 
 ## Getting started
+
 - Clone this repo
 
 ```shell
@@ -36,12 +37,12 @@ cp .env.example .env.local
 ```
 
 - Run the command below to start the dev server. The local address should be **localhost:3000**
+
 ```shell
 pnpm run dev
 ```
 
 - When you're done with your changes, send a PR to the dev branch.
-
 
 ## Tools
 

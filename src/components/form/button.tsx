@@ -3,7 +3,6 @@ import { Button, ChakraProps } from "@chakra-ui/react";
 interface PrimaryBtnProps extends ChakraProps {
   value: string;
   loading: boolean;
-
 }
 
 export const PrimaryButton = ({

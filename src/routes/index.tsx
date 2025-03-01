@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import * as React from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import { MetaData } from "@components/metadata";
-import { HomeLayout } from '@layouts/home-layout';
-import { Home } from '@containers/home';
+import { HomeLayout } from "@layouts/home-layout";
+import { Home } from "@containers/home";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: HomeComponent,
-})
+});
 
 function HomeComponent() {
   return (
@@ -21,5 +21,5 @@ function HomeComponent() {
         <Home />
       </HomeLayout>
     </>
-  )
+  );
 }

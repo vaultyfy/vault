@@ -154,7 +154,7 @@ export const HowItWorks = () => {
 
           <MotionBox
             bgGradient="var(--main-gradient)"
-            height={{lg: "480px", md: "480px", base: "440px"}}
+            height={{ lg: "480px", md: "480px", base: "440px" }}
             borderRadius="25px"
             display="flex"
             justifyContent="center"

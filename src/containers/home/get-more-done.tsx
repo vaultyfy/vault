@@ -44,7 +44,7 @@ export const GetMoreDone = () => {
             backdropFilter="blur(7px)"
             flexWrap={{ lg: "nowrap", md: "wrap", base: "wrap" }}
           >
-            <MotionImage src="/img/video.svg" width={{lg: "60%"}} />
+            <MotionImage src="/img/video.svg" width={{ lg: "60%" }} />
 
             <Flex flexFlow="column" gap="2em">
               <Flex flexFlow="column" gap=".8em">

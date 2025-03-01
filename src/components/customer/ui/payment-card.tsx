@@ -118,7 +118,7 @@ export const PaymentCard = ({
             fontWeight="500"
             fontSize="14px"
             _hover={{
-              bgGradient: "var(--main-gradient)"
+              bgGradient: "var(--main-gradient)",
             }}
             rounded="full"
             width="112px"

@@ -56,7 +56,11 @@ const MobileStep = ({ icon, title, body }: MobStepProps) => {
 
 export const MobileStepsCarousel = ({ steps }: { steps: MobStepProps[] }) => {
   return (
-    <Box display={{ base: "block", md: "block", lg: "none" }} width="100%" overflow="hidden">
+    <Box
+      display={{ base: "block", md: "block", lg: "none" }}
+      width="100%"
+      overflow="hidden"
+    >
       <MotionBox
         display="flex"
         gap="4"

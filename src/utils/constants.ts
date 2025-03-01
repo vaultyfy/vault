@@ -56,8 +56,7 @@ export const borderGradientStyle_2 = {
   "&::before": {
     content: '""',
     position: "absolute",
-    top: "-1px",
-    left: "-2px",
+    top: "-2px",
     borderRadius: "full",
     border: "10px solid",
     borderColor: "transparent",

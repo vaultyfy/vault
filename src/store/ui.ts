@@ -20,4 +20,3 @@ export const useUiComponentStore = () => {
     updateUiStore: setUiComponent,
   };
 };
-  

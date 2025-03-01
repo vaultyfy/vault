@@ -30,7 +30,7 @@ export const CalendarPopover = () => {
           justifyContent="center"
           alignItems="center"
           _hover={{
-            background: "var(--btn-secondary-7)"
+            background: "var(--btn-secondary-7)",
           }}
         >
           <Icon name="calendar-2" />
@@ -149,7 +149,7 @@ export const CalendarPopover = () => {
                 _hover={{ bgGradient: "var(--main-gradient)" }}
                 color="#fff"
               >
-                  Pay now
+                Pay now
               </Button>
             </VStack>
           </Flex>
