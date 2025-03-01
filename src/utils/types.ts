@@ -17,6 +17,15 @@ export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
 
+export type Wallet = {
+  id: number;
+  balance: number;
+  walletAddrress: string;
+  isActive: boolean;
+  createdAT: string;
+  updatedAT: string;
+};
+
 export type User = {
   id: number;
   name: string;
@@ -31,7 +40,10 @@ export type User = {
   email: string;
   isVerified: boolean;
   kycStatus: Record<string, any>;
+  KycAction: null;
+  Kycpercentage: number | string;
   my_transactions: any[];
+  my_wallet: Wallet;
   participations: any[];
   password: string;
   profilePicture: string;

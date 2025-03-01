@@ -56,7 +56,7 @@ export const LoginPage = () => {
                 if (request.ok) {
                   setCookie(
                     TOKEN_KEY,
-                    JSON.stringify(response.payload?.token.token),
+                    response.payload?.token.token,
                     {
                       ...cookieOptions,
                     },

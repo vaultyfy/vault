@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import {
   Flex,
   Text,
   Button,
-  Box,
   HStack,
   useDisclosure,
+  Skeleton,
 } from "@chakra-ui/react";
 import { CalendarPopover, NotificationPopover } from "@components/customer/ui";
 import { CirclePlus } from "lucide-react";
@@ -14,6 +13,9 @@ import { CreateGroupModal } from "@layouts/modal-layout/create-group";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useNavigate } from "@tanstack/react-router";
 import { useUiComponentStore } from "@store/ui";
+import { useCurrentPath } from "@hooks/current-path";
+import { useUser } from "@hooks/swr";
+import { skeleton } from "@utils/misc";
 
 export const AppHeader = ({
   routeTitle,
@@ -22,10 +24,10 @@ export const AppHeader = ({
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { updateUiStore } = useUiComponentStore();
+  const pathname = useCurrentPath();
+  const { userName, isLoading } = useUser();
 
   const createGroup = () => {
-    updateUiStore({ ui: "create-group" });
-
     if (isMobile) {
       navigate({ to: "/dashboard/create-group" });
       onClose();
@@ -53,9 +55,38 @@ export const AppHeader = ({
         backdropFilter="blur(10px)"
         px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }}
       >
-        <Text as="h2" fontSize={{ base: "24px", lg: "32px" }}>
-          {routeTitle}
-        </Text>
+        <HStack gap=".4em">
+          <Text
+            as="h2"
+            fontSize={{ base: "24px", lg: "32px" }}
+            fontWeight="500"
+          >
+            {routeTitle}
+          </Text>
+          {pathname === "/dashboard" && (
+            <>
+              {isLoading ? (
+                <Skeleton
+                  height="28px"
+                  width="170px"
+                  borderRadius="10px"
+                  startColor={skeleton.light.startColor}
+                  endColor={skeleton.light.endColor}
+                />
+              ) : (
+                <Text
+                  as="h2"
+                  fontSize={{ base: "24px", lg: "32px" }}
+                  bgGradient="var(--main-gradient)"
+                  bgClip="text"
+                  fontFamily="var(--clash-grotesk-600)"
+                >
+                  {userName}
+                </Text>
+              )}
+            </>
+          )}
+        </HStack>
         <Flex
           columnGap="1rem"
           alignItems="center"

@@ -6,6 +6,7 @@ import {
   Image,
   List,
   ListItem,
+  Skeleton,
   Text,
 } from "@chakra-ui/react";
 import { GradientIcon } from "@components/icon";
@@ -16,6 +17,8 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { FileRouteTypes } from "src/routeTree.gen";
 import { useCurrentPath } from "@hooks/current-path";
 import { CircleProgress } from "@components/ui";
+import { useUser } from "@hooks/swr";
+import { skeleton } from "@utils/misc";
 
 export type SidenavItems = {
   id: string;
@@ -31,12 +34,12 @@ const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
     name: "overview",
     path: "/dashboard",
   },
-  {
-    id: crypto.randomUUID(),
-    icon: <Icon name="payouts" />,
-    name: "payments",
-    path: "/dashboard/payments",
-  },
+  // {
+  //   id: crypto.randomUUID(),
+  //   icon: <Icon name="payouts" />,
+  //   name: "payments",
+  //   path: "/dashboard/payments",
+  // },
   {
     id: crypto.randomUUID(),
     icon: <Icon name="profile-2user" />,
@@ -59,6 +62,13 @@ const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
 
 export const Sidebar = () => {
   const pathname = useCurrentPath();
+  const {
+    userName,
+    hasUserCompletedKyc,
+    kycPercentage,
+    isLoading,
+    walletBalance,
+  } = useUser();
 
   return (
     <Box
@@ -75,45 +85,59 @@ export const Sidebar = () => {
 
       <Center flexFlow="column" my="1.2em" gap=".6em">
         <Flex flexFlow="column" gap=".6em">
-          <CircleProgress progress={65} size={150} strokeWidth={5} />
-          <Text
-            textAlign="center"
-            fontSize="16px"
-            color="var(--grey)"
-            fontWeight="400"
-            lineHeight="24px"
-          >
-            Danielking
-          </Text>
+          <CircleProgress progress={kycPercentage} size={150} strokeWidth={5} />
+          {!isLoading ? (
+            <Text
+              textAlign="center"
+              fontSize="16px"
+              color="var(--grey)"
+              fontWeight="400"
+              lineHeight="24px"
+            >
+              {userName || "Danielking"}
+            </Text>
+          ) : (
+            <Center>
+              <Skeleton
+                startColor={skeleton.startColor}
+                endColor={skeleton.endColor}
+                height="14px"
+                width="70%"
+                borderRadius="6px"
+              />
+            </Center>
+          )}
         </Flex>
 
-        <Badge
-          background="var(--white-fade-8)"
-          display="flex"
-          justifyContent="center"
-          gap=".6em"
-          height="37px"
-          width="158px"
-          borderRadius="30px"
-          alignItems="center"
-        >
-          <GradientIcon
-            weight="fill"
-            startColor="#2C9BF0"
-            endColor="#1CCFBD"
-            IconComponent={SealCheck}
-            size="18"
-          />
-          <Text
-            textTransform="capitalize"
-            fontSize="14px"
-            fontWeight="400"
-            bgClip="text"
-            bgGradient={MAIN_GRADIENT}
+        {hasUserCompletedKyc ? (
+          <Badge
+            background="var(--white-fade-8)"
+            display="flex"
+            justifyContent="center"
+            gap=".6em"
+            height="37px"
+            width="158px"
+            borderRadius="30px"
+            alignItems="center"
           >
-            verified
-          </Text>
-        </Badge>
+            <GradientIcon
+              weight="fill"
+              startColor="#2C9BF0"
+              endColor="#1CCFBD"
+              IconComponent={SealCheck}
+              size="18"
+            />
+            <Text
+              textTransform="capitalize"
+              fontSize="14px"
+              fontWeight="400"
+              bgClip="text"
+              bgGradient={MAIN_GRADIENT}
+            >
+              verified
+            </Text>
+          </Badge>
+        ) : null}
 
         <Flex flexFlow="column" gap=".1em">
           <Text
@@ -125,15 +149,25 @@ export const Sidebar = () => {
           >
             Wallet balance
           </Text>
-          <Text
-            fontFamily="var(--clash-grotesk-600)"
-            fontSize="22px"
-            lineHeight="27px"
-            bgGradient={MAIN_GRADIENT}
-            bgClip="text"
-          >
-            N500,700
-          </Text>
+          {isLoading ? (
+            <Skeleton
+              startColor={skeleton.startColor}
+              endColor={skeleton.endColor}
+              height="20px"
+              width="100%"
+              borderRadius="8px"
+            />
+          ) : (
+            <Text
+              fontFamily="var(--clash-grotesk-600)"
+              fontSize="22px"
+              lineHeight="27px"
+              bgGradient={MAIN_GRADIENT}
+              bgClip="text"
+            >
+              {walletBalance}
+            </Text>
+          )}
         </Flex>
 
         <Flex gap=".8em" flexFlow="column" mt="2em" width="100%" px=".8em">
