@@ -11,7 +11,7 @@
     "start": "vite",
     "release": "standard-version",
     "prepare": "husky",
-    "format": "prettier . --write && git add --all",
+    "format": "prettier . --write && git add .",
     "prebuild-commit": "tsc --noEmit --incremental"
   },
   "devDependencies": {
