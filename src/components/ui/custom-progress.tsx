@@ -83,7 +83,7 @@ export const CustomProgress = ({
       position="relative"
       width="100%"
       height={height}
-      bg="#42545F"
+      bg="var(--grey-sec)"
       borderRadius={borderRadius}
       overflow="hidden"
     >

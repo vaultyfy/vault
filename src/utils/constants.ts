@@ -12,6 +12,13 @@ export const cookieOptions = {
   secure: process.env.NODE_ENV === "production",
 } as Partial<OptionsType>;
 
+export const swrOptions = {
+  revalidateIfStale: true,
+  // revalidateOnMount: false,
+  revalidateOnFocus: true,
+  revalidateOnReconnect: true,
+};
+
 export const TOKEN_KEY = "t";
 
 export type State =
