@@ -32,38 +32,38 @@ export default function LoanHeroSection() {
               src="img/RectangleGirl.svg"
               alt="Background Image"
               borderRadius="md"
-              boxSize="173px"
+              boxSize="200px"
               position="absolute"
               objectFit="contain"
-              bottom="-20px"
-              left="35%"
+              bottom="-40px"
+              left="29%"
               zIndex="1"
             />
             <Image
               src="img/RectangleBoy.png"
               alt="Middle Image"
               borderRadius="md"
-              boxSize="150px"
+              boxSize="190px"
               position="absolute"
               objectFit="contain"
-              bottom="-10px"
-              left="37.5%"
+              bottom="-35px"
+              left="30%"
               zIndex="2"
             />
             <Image
               src="img/RectangleWallet.png"
               alt="Top Image"
               borderRadius="md"
-              boxSize="120px"
+              boxSize="170px"
               position="absolute"
               objectFit="contain"
-              bottom="5px"
-              left="40.2%"
+              bottom="-27px"
+              left="32%"
               zIndex="3"
             />
           </Box>
         </Box>
-        <Box display={'flex'} justifyContent={'center'} marginTop={'10px'}>
+        <Box display={'flex'} justifyContent={'center'} mt={'30px'}>
           <PrimaryButton text="get load" contentLoaded={contentLoaded} />
         </Box>
       </Box>

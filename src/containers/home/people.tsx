@@ -76,6 +76,7 @@ export const People = () => {
         variants={childVariants}
         boxSize={{ lg: "100%", md: "90%", base: "100%" }}
         top={'-92px'}
+        objectFit="cover"
       />
 
 

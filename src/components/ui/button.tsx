@@ -60,13 +60,14 @@ export const PrimaryButton = ({
       >
         {text}
       </MotionText>
+
       <MotionBox
         borderRadius="50%"
         display="flex"
         alignItems="center"
         justifyContent="center"
         boxSize={{ lg: "58px", base: "33px" }}
-        background="var(--main)"
+        // background="var(--main)"
         initial={{ x: -10, opacity: 0 }}
         animate={
           contentLoaded
@@ -90,7 +91,7 @@ export const PrimaryButton = ({
           display="flex"
           alignItems="center"
           justifyContent="center"
-          boxSize={{ lg: "45px", base: "33px" }}
+          boxSize={{ lg: "40px", base: "33px" }}
           background="white"
         >
         <ArrowRight
