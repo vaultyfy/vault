@@ -10,7 +10,7 @@ export const auth = {
     forgotPassword: `${BASE_URL}/customer/auth/forgot-password`,
     verifyResetPasswordOtp: `${BASE_URL}/customer/auth/verify-reset-password-otp`,
     resetPassword: `${BASE_URL}/customer/auth/reset-password`,
-    login: `${BASE_URL}/customer/auth/login`
+    login: `${BASE_URL}/customer/auth/login`,
   },
   admin: {
     profile: `${BASE_URL}/admin/auth/profile`,
@@ -20,6 +20,12 @@ export const auth = {
     forgotPassword: `${BASE_URL}/admin/auth/forgot-password`,
     verifyResetPasswordOtp: `${BASE_URL}/admin/auth/verify-reset-password-otp`,
     resetPassword: `${BASE_URL}/admin/auth/reset-password`,
-    login: `${BASE_URL}/admin/auth/login`
-  }
+    login: `${BASE_URL}/admin/auth/login`,
+  },
+} as const;
+
+export const app = {
+  customer: {
+    wallet: `${BASE_URL}/customer/my-wallet`,
+  },
 } as const;

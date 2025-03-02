@@ -19,11 +19,12 @@ export interface SignupResponse extends Omit<Response, "payload"> {
 
 export type Wallet = {
   id: number;
-  balance: number;
   walletAddrress: string;
+  balance: number;
   isActive: boolean;
   createdAT: string;
   updatedAT: string;
+  customer: Customer;
 };
 
 export type User = {
@@ -52,3 +53,167 @@ export type User = {
   role: string;
   updatedAT: string;
 };
+
+export type  Customer = {
+  id: number;
+  customerID: string;
+  name: string;
+  password: string;
+  email: string;
+  phoneNumber: string;
+  altrnatePhoneNumber: string;
+  address: string;
+  profilePicture: string;
+  deviceToken: string;
+  isVerified: boolean;
+  acceptedTermsAndConditions: boolean;
+  role: "Admin" | string;
+  resetPasswordToken: string;
+  resetPasswordTokenExpTime: string;
+  createdAT: string;
+  updatedAT: string;
+  KycAction: "facial_recognition" | string;
+  kycStatus: Record<string, unknown>;
+  Kycpercentage: number;
+  my_wallet: Wallet;
+  my_transactions: Transaction[];
+  created_groups: Group[];
+  participations: any | [];
+  contributions: Contribution[];
+  bank_details: BankDetail[];
+  goals: Goal[];
+  loans: Loan[];
+}
+
+export type Transaction = {
+  id: number;
+  transactionID: string;
+  walletAddrress: string;
+  amount: number;
+  type: "Credit" | string;
+  status: "Successful" | string;
+  createdAT: string;
+  reference: string;
+  description: string;
+  metadata: Record<string, unknown>;
+  customer: string;
+}
+
+export type Group = {
+  id: number;
+  groupID: string;
+  name: string;
+  groupDescription: string;
+  groupInviteLink: string;
+  contributionAmount: number;
+  contributionFrequency: "Daily" | string;
+  numberOfdaysOrMembers: number;
+  numberOfcircle: number;
+  numberOfparticipantsAvailable: number;
+  payOutAmount: number;
+  isApproved: boolean;
+  isActive: boolean;
+  startDate: string;
+  endDate: string;
+  circleCounts: number;
+  joinedParticipantsCount: number;
+  createdAT: string;
+  updatedAT: string;
+  createdBy: string;
+  participants: Participant[];
+}
+
+export type Participant = {
+  id: number;
+  participantID: string;
+  position: number;
+  completedCircleCount: number;
+  missedContributionCount: number;
+  hasCashedOut: boolean;
+  contributionDates: string;
+  nextContributionDate: string;
+  payoutDate: string;
+  totalContributionsRequired: number;
+  contributionsMade: number;
+  payoutAmount: number;
+  createdAT: string;
+  updatedAT: string;
+  group: string;
+  customer: string;
+  contributions: Contribution[];
+}
+
+export type Contribution = {
+  id: number;
+  amount: number;
+  date: string;
+  participant: string;
+  customer: string;
+}
+
+export type BankDetail = {
+  id: number;
+  bankID: string;
+  bankName: string;
+  accountNumber: string;
+  accountName: string;
+  createdAT: string;
+  updatedAT: string;
+  owner: string;
+}
+
+export type Goal = {
+  id: number;
+  goalID: string;
+  name: string;
+  target: number;
+  duration: string;
+  goalReached: boolean;
+  createdAT: string;
+  updatedAT: string;
+  owner: string;
+}
+
+export type Loan = {
+  id: number;
+  loanID: string;
+  loanPurpose: string;
+  amount: number;
+  loanDuration: "One_Month" | string;
+  paymentPlan: "Spread_Payment" | string;
+  spreadPaymentDuration: "One_Month" | string;
+  bankStatement: string;
+  jobOrBusiness: string;
+  annualIncome: string;
+  amountPaid: number;
+  loanBalance: number;
+  nextPaymentDate: string;
+  isApproved: boolean;
+  isDenied: boolean;
+  hasPaidOffdebtCompletely: boolean;
+  payBackAmount: number;
+  createdAT: string;
+  loanApprovedAT: string;
+  loanDeclinedAT: string;
+  updatedAT: string;
+  customer: string;
+  approvedBy: Admin;
+}
+
+export type Admin = {
+  id: number;
+  adminID: string;
+  name: string;
+  password: string;
+  email: string;
+  phoneNumber: string;
+  address: string;
+  profilePicture: string;
+  isVerified: boolean;
+  role: "Admin" | string;
+  resetPasswordToken: string;
+  resetPasswordTokenExpTime: string;
+  createdAT: string;
+  updatedAT: string;
+  approvedLoans: string[];
+}

@@ -85,7 +85,22 @@ export const Sidebar = () => {
 
       <Center flexFlow="column" my="1.2em" gap=".6em">
         <Flex flexFlow="column" gap=".6em">
-          <CircleProgress progress={kycPercentage} size={150} strokeWidth={5} />
+          {isLoading ? (
+            <Skeleton
+              height="120px"
+              width="120px"
+              border="1px solid red"
+              startColor={skeleton.startColor}
+              endColor={skeleton.endColor}
+              borderRadius="100%"
+            />
+          ) : (
+            <CircleProgress
+            progress={kycPercentage}
+              size={150}
+              strokeWidth={5}
+            />
+          )}
           {!isLoading ? (
             <Text
               textAlign="center"
