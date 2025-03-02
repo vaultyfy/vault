@@ -161,8 +161,8 @@ export const DatePicker = ({
         ) : (
           <Text
             cursor="pointer"
-            textDecor={date ? "none" : "underline"}
             onClick={onOpen}
+            textDecor={date ? "none" : "underline"}
             color={date ? "gray.500" : "blue.500"}
           >
             {formattedDate}
