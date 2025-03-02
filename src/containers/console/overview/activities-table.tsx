@@ -14,7 +14,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { ActionButton } from "./actionButton";
+import { ActionButton } from "./action-button";
 
 const HEADING = [
   "",

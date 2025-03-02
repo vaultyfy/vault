@@ -1,8 +1,8 @@
 import { Box, Text, Stack, Button, HStack, VStack } from "@chakra-ui/react";
 import { BellDot, CirclePlus } from "lucide-react";
-import { ActivitiesTable } from "./activitiesTable";
-import { OverviewCardSection } from "./overviewCard";
-import { PageHeader } from "../pageHeader";
+import { ActivitiesTable } from "./activities-table";
+import { OverviewCardSection } from "./overview-card";
+import { PageHeader } from "../page-header";
 
 export const AdminOverView = () => {
   return (

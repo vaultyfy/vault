@@ -14,7 +14,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import React from "react";
-import { PageHeader } from "../pageHeader";
+import { PageHeader } from "../page-header";
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { GroupDetailsSummary } from "./group-details-summary";
