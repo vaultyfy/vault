@@ -28,6 +28,7 @@ import {
   isSameDay,
   startOfToday,
   addYears,
+  parseISO,
 } from "date-fns";
 import { ParagraphText } from "@components/typography";
 import { FormikProps } from "formik";
@@ -66,13 +67,28 @@ export const DatePicker = ({
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
   const initialFocusRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
   const today = startOfToday();
+
+  const isDateSelected = (d: Date) =>
+    date && isSameDay(d, parseISO(format(date, "yyyy-MM-dd")));
 
   const handleDateChange = (newDate: Date) => {
     if (isAfter(newDate, today)) {
       setDate(newDate);
       setIsOpen(false);
       formik.setFieldValue(fieldName, newDate);
+
+      if (triggerRef.current) {
+        triggerRef.current.focus();
+      }
+    }
+  };
+
+  const handleOnClose = () => {
+    setIsOpen(false);
+    if (triggerRef.current) {
+      triggerRef.current.focus();
     }
   };
 
@@ -124,13 +140,13 @@ export const DatePicker = ({
   return (
     <Popover
       isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
+      onClose={handleOnClose}
       initialFocusRef={initialFocusRef}
       placement="bottom-start"
     >
       <PopoverTrigger>
         {inputField && inputField.isActive ? (
-          <Box>
+          <Box ref={triggerRef} tabIndex={-1}>
             <ParagraphText
               value={inputField?.label ?? "start date"}
               color="var(--grey)"
@@ -267,23 +283,28 @@ export const DatePicker = ({
               <Button
                 key={d.toISOString()}
                 boxSize="40px"
-                borderRadius={isSameDay(d, today) ? "full" : "md"}
+                borderRadius={
+                  isDateSelected(d) ||
+                  !!isDateSelected(d) ||
+                  isSameDay(d, today)
+                    ? "full"
+                    : "md"
+                }
                 border="1px solid"
                 borderColor="transparent"
-                background={isSameDay(d, today) ? "var(--main)" : "white"}
+                background={
+                  isDateSelected(d) ||
+                  (isDateSelected(d) === null && isSameDay(d, today))
+                    ? "var(--main)"
+                    : "white"
+                }
                 sx={
-                  isSameDay(d, today)
+                  isDateSelected(d) ||
+                  (isDateSelected(d) === null && isSameDay(d, today))
                     ? borderGradientStyle
                     : {
                         _hover: !isPast
-                          ? isSameDay(d, today)
-                            ? {
-                                ...borderGradientStyle,
-                              }
-                            : {
-                                ...borderGradientStyle,
-                                borderRadius: "full",
-                              }
+                          ? { ...borderGradientStyle, borderRadius: "full" }
                           : {},
                       }
                 }
@@ -294,7 +315,10 @@ export const DatePicker = ({
                 color={
                   isPast
                     ? "var(--calendar-days-color)"
-                    : isCurrentMonth && isSameDay(d, today)
+                    : isDateSelected(d) ||
+                        (isDateSelected(d) === null &&
+                          isCurrentMonth &&
+                          isSameDay(d, today))
                       ? "white"
                       : "var(--text-1)"
                 }
