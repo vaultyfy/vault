@@ -21,6 +21,7 @@ import React from "react";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { CreateGroupModal } from "@layouts/modal-layout";
 import { useUiComponentStore } from "@store/ui";
+import { useWallet } from "@hooks/swr";
 
 export const Dashboard = () => {
   const { store, updateUiStore } = useUiComponentStore();
@@ -38,6 +39,8 @@ export const Dashboard = () => {
     onClose();
   };
 
+  const { walletBalance, lastUpdated} = useWallet()
+
   return (
     <>
       <Box width="100%" minH="100dvh">
@@ -48,14 +51,14 @@ export const Dashboard = () => {
           <OverviewCard
             cardIcon="calendar"
             cardTitle="Wallet balance"
-            amount="500k"
-            paidDate="23-12-2025"
+            amount={walletBalance}
+            paidDate={lastUpdated}
             cardGradient="var(--main-gradient)"
           />
           <OverviewCard
             cardIcon="time-is-money"
             cardTitle="Wallet balance"
-            amount="500k"
+            amount={walletBalance}
             hasFilter={true}
             hasProgress={true}
             progressLevel={40}

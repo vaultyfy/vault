@@ -17,6 +17,7 @@ export const getWallet = async () => {
     });
 
     const response: Response<Wallet> = await request.json()
+    return response
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }
