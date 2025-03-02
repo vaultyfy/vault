@@ -67,8 +67,6 @@ export const DatePicker = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
-  const initialFocusRef = useRef<HTMLButtonElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
   const today = startOfToday();
 
   const isDateSelected = (d: Date) =>
@@ -79,17 +77,6 @@ export const DatePicker = ({
       setDate(newDate);
       onClose();
       formik.setFieldValue(fieldName, newDate);
-
-      if (triggerRef.current) {
-        triggerRef.current.focus();
-      }
-    }
-  };
-
-  const handleOnClose = () => {
-    onClose();
-    if (triggerRef.current) {
-      triggerRef.current.focus();
     }
   };
 
@@ -133,15 +120,10 @@ export const DatePicker = ({
   };
 
   return (
-    <Popover
-      isOpen={isOpen}
-      onClose={handleOnClose}
-      initialFocusRef={initialFocusRef}
-      placement="bottom-start"
-    >
+    <Popover isOpen={isOpen} onClose={onClose} placement="bottom-start">
       <PopoverTrigger>
         {inputField && inputField.isActive ? (
-          <Box ref={triggerRef} tabIndex={-1}>
+          <Box tabIndex={-1}>
             <ParagraphText
               value={inputField?.label ?? "start date"}
               color="var(--grey)"
@@ -160,6 +142,7 @@ export const DatePicker = ({
               onClick={onOpen}
               mt={2}
               height={height}
+              cursor="pointer"
             >
               {iconPlacement === "left" && inputField?.icon && inputField?.icon}
               <ParagraphText
