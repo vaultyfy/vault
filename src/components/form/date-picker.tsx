@@ -14,6 +14,7 @@ import {
   HStack,
   Select,
   Box,
+  useDisclosure,
 } from "@chakra-ui/react";
 import {
   CaretRight,
@@ -63,7 +64,7 @@ export const DatePicker = ({
   iconPlacement = "left",
 }: DatePickerProps) => {
   const [date, setDate] = useState<Date | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
   const initialFocusRef = useRef<HTMLButtonElement>(null);
@@ -76,7 +77,7 @@ export const DatePicker = ({
   const handleDateChange = (newDate: Date) => {
     if (isAfter(newDate, today)) {
       setDate(newDate);
-      setIsOpen(false);
+      onClose();
       formik.setFieldValue(fieldName, newDate);
 
       if (triggerRef.current) {
@@ -86,7 +87,7 @@ export const DatePicker = ({
   };
 
   const handleOnClose = () => {
-    setIsOpen(false);
+    onClose();
     if (triggerRef.current) {
       triggerRef.current.focus();
     }
@@ -131,12 +132,6 @@ export const DatePicker = ({
     setCurrentYear((prevYear) => addYears(prevYear, increment));
   };
 
-  useEffect(() => {
-    if (isOpen && initialFocusRef.current) {
-      initialFocusRef.current.focus();
-    }
-  }, [isOpen]);
-
   return (
     <Popover
       isOpen={isOpen}
@@ -162,7 +157,7 @@ export const DatePicker = ({
               border={`1px solid ${borderColor || "var(--neutral-200)"}`}
               display="flex"
               spacing={1}
-              onClick={() => setIsOpen(true)}
+              onClick={onOpen}
               mt={2}
               height={height}
             >
@@ -184,7 +179,7 @@ export const DatePicker = ({
           <Text
             cursor="pointer"
             textDecor={date ? "none" : "underline"}
-            onClick={() => setIsOpen(true)}
+            onClick={onOpen}
             color={date ? "gray.500" : "blue.500"}
           >
             {formattedDate}
@@ -277,7 +272,7 @@ export const DatePicker = ({
 
           <SimpleGrid columns={7} spacing={2} mb="16px">
             {generateDates(
-              currentMonth.getFullYear(),
+              currentYear.getFullYear(),
               currentMonth.getMonth(),
             ).map(({ date: d, isCurrentMonth, isPast }) => (
               <Button
