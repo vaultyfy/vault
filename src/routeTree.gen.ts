@@ -23,11 +23,12 @@ import { Route as DashboardExploreImport } from './routes/dashboard/explore'
 import { Route as ConsoleUsersImport } from './routes/console/users'
 import { Route as ConsoleRulesImport } from './routes/console/rules'
 import { Route as ConsolePaymentsImport } from './routes/console/payments'
-import { Route as ConsoleGroupMgmtImport } from './routes/console/group-mgmt'
 import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
+import { Route as ConsoleGroupMgmtIndexImport } from './routes/console/group-mgmt/index'
+import { Route as ConsoleGroupMgmtGroupDetailsImport } from './routes/console/group-mgmt/group-details'
 
 // Create/Update Routes
 
@@ -103,12 +104,6 @@ const ConsolePaymentsRoute = ConsolePaymentsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ConsoleGroupMgmtRoute = ConsoleGroupMgmtImport.update({
-  id: '/console/group-mgmt',
-  path: '/console/group-mgmt',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const AuthSignupRoute = AuthSignupImport.update({
   id: '/auth/signup',
   path: '/auth/signup',
@@ -132,6 +127,19 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   path: '/auth/forgot-password',
   getParentRoute: () => rootRoute,
 } as any)
+
+const ConsoleGroupMgmtIndexRoute = ConsoleGroupMgmtIndexImport.update({
+  id: '/console/group-mgmt/',
+  path: '/console/group-mgmt/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ConsoleGroupMgmtGroupDetailsRoute =
+  ConsoleGroupMgmtGroupDetailsImport.update({
+    id: '/console/group-mgmt/group-details',
+    path: '/console/group-mgmt/group-details',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -177,13 +185,6 @@ declare module '@tanstack/react-router' {
       path: '/auth/signup'
       fullPath: '/auth/signup'
       preLoaderRoute: typeof AuthSignupImport
-      parentRoute: typeof rootRoute
-    }
-    '/console/group-mgmt': {
-      id: '/console/group-mgmt'
-      path: '/console/group-mgmt'
-      fullPath: '/console/group-mgmt'
-      preLoaderRoute: typeof ConsoleGroupMgmtImport
       parentRoute: typeof rootRoute
     }
     '/console/payments': {
@@ -256,6 +257,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexImport
       parentRoute: typeof rootRoute
     }
+    '/console/group-mgmt/group-details': {
+      id: '/console/group-mgmt/group-details'
+      path: '/console/group-mgmt/group-details'
+      fullPath: '/console/group-mgmt/group-details'
+      preLoaderRoute: typeof ConsoleGroupMgmtGroupDetailsImport
+      parentRoute: typeof rootRoute
+    }
+    '/console/group-mgmt/': {
+      id: '/console/group-mgmt/'
+      path: '/console/group-mgmt'
+      fullPath: '/console/group-mgmt'
+      preLoaderRoute: typeof ConsoleGroupMgmtIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -268,7 +283,6 @@ export interface FileRoutesByFullPath {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
-  '/console/group-mgmt': typeof ConsoleGroupMgmtRoute
   '/console/payments': typeof ConsolePaymentsRoute
   '/console/rules': typeof ConsoleRulesRoute
   '/console/users': typeof ConsoleUsersRoute
@@ -279,6 +293,8 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthIndexRoute
   '/console': typeof ConsoleIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/console/group-mgmt/group-details': typeof ConsoleGroupMgmtGroupDetailsRoute
+  '/console/group-mgmt': typeof ConsoleGroupMgmtIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -288,7 +304,6 @@ export interface FileRoutesByTo {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
-  '/console/group-mgmt': typeof ConsoleGroupMgmtRoute
   '/console/payments': typeof ConsolePaymentsRoute
   '/console/rules': typeof ConsoleRulesRoute
   '/console/users': typeof ConsoleUsersRoute
@@ -299,6 +314,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthIndexRoute
   '/console': typeof ConsoleIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/console/group-mgmt/group-details': typeof ConsoleGroupMgmtGroupDetailsRoute
+  '/console/group-mgmt': typeof ConsoleGroupMgmtIndexRoute
 }
 
 export interface FileRoutesById {
@@ -309,7 +326,6 @@ export interface FileRoutesById {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
-  '/console/group-mgmt': typeof ConsoleGroupMgmtRoute
   '/console/payments': typeof ConsolePaymentsRoute
   '/console/rules': typeof ConsoleRulesRoute
   '/console/users': typeof ConsoleUsersRoute
@@ -320,6 +336,8 @@ export interface FileRoutesById {
   '/auth/': typeof AuthIndexRoute
   '/console/': typeof ConsoleIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/console/group-mgmt/group-details': typeof ConsoleGroupMgmtGroupDetailsRoute
+  '/console/group-mgmt/': typeof ConsoleGroupMgmtIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -331,7 +349,6 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
-    | '/console/group-mgmt'
     | '/console/payments'
     | '/console/rules'
     | '/console/users'
@@ -342,6 +359,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/console'
     | '/dashboard'
+    | '/console/group-mgmt/group-details'
+    | '/console/group-mgmt'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -350,7 +369,6 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
-    | '/console/group-mgmt'
     | '/console/payments'
     | '/console/rules'
     | '/console/users'
@@ -361,6 +379,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/console'
     | '/dashboard'
+    | '/console/group-mgmt/group-details'
+    | '/console/group-mgmt'
   id:
     | '__root__'
     | '/'
@@ -369,7 +389,6 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
-    | '/console/group-mgmt'
     | '/console/payments'
     | '/console/rules'
     | '/console/users'
@@ -380,6 +399,8 @@ export interface FileRouteTypes {
     | '/auth/'
     | '/console/'
     | '/dashboard/'
+    | '/console/group-mgmt/group-details'
+    | '/console/group-mgmt/'
   fileRoutesById: FileRoutesById
 }
 
@@ -390,7 +411,6 @@ export interface RootRouteChildren {
   AuthLoginRoute: typeof AuthLoginRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSignupRoute: typeof AuthSignupRoute
-  ConsoleGroupMgmtRoute: typeof ConsoleGroupMgmtRoute
   ConsolePaymentsRoute: typeof ConsolePaymentsRoute
   ConsoleRulesRoute: typeof ConsoleRulesRoute
   ConsoleUsersRoute: typeof ConsoleUsersRoute
@@ -401,6 +421,8 @@ export interface RootRouteChildren {
   AuthIndexRoute: typeof AuthIndexRoute
   ConsoleIndexRoute: typeof ConsoleIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  ConsoleGroupMgmtGroupDetailsRoute: typeof ConsoleGroupMgmtGroupDetailsRoute
+  ConsoleGroupMgmtIndexRoute: typeof ConsoleGroupMgmtIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -410,7 +432,6 @@ const rootRouteChildren: RootRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignupRoute: AuthSignupRoute,
-  ConsoleGroupMgmtRoute: ConsoleGroupMgmtRoute,
   ConsolePaymentsRoute: ConsolePaymentsRoute,
   ConsoleRulesRoute: ConsoleRulesRoute,
   ConsoleUsersRoute: ConsoleUsersRoute,
@@ -421,6 +442,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthIndexRoute: AuthIndexRoute,
   ConsoleIndexRoute: ConsoleIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  ConsoleGroupMgmtGroupDetailsRoute: ConsoleGroupMgmtGroupDetailsRoute,
+  ConsoleGroupMgmtIndexRoute: ConsoleGroupMgmtIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -439,7 +462,6 @@ export const routeTree = rootRoute
         "/auth/login",
         "/auth/reset-password",
         "/auth/signup",
-        "/console/group-mgmt",
         "/console/payments",
         "/console/rules",
         "/console/users",
@@ -449,7 +471,9 @@ export const routeTree = rootRoute
         "/dashboard/settings",
         "/auth/",
         "/console/",
-        "/dashboard/"
+        "/dashboard/",
+        "/console/group-mgmt/group-details",
+        "/console/group-mgmt/"
       ]
     },
     "/": {
@@ -469,9 +493,6 @@ export const routeTree = rootRoute
     },
     "/auth/signup": {
       "filePath": "auth/signup.tsx"
-    },
-    "/console/group-mgmt": {
-      "filePath": "console/group-mgmt.tsx"
     },
     "/console/payments": {
       "filePath": "console/payments.tsx"
@@ -502,6 +523,12 @@ export const routeTree = rootRoute
     },
     "/dashboard/": {
       "filePath": "dashboard/index.tsx"
+    },
+    "/console/group-mgmt/group-details": {
+      "filePath": "console/group-mgmt/group-details.tsx"
+    },
+    "/console/group-mgmt/": {
+      "filePath": "console/group-mgmt/index.tsx"
     }
   }
 }
