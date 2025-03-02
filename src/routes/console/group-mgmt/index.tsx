@@ -1,15 +1,15 @@
-import { AdminOverView } from "@containers/console/overview";
+import { ThriftGroupManagement } from "@containers/console/thrift-group-mgmt";
 import { AppLayout } from "@layouts/app-layout";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/console/")({
+export const Route = createFileRoute("/console/group-mgmt/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
     <AppLayout>
-      <AdminOverView />
+      <ThriftGroupManagement />
     </AppLayout>
   );
 }
