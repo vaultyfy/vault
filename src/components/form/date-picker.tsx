@@ -14,6 +14,7 @@ import {
   HStack,
   Select,
   Box,
+  useDisclosure,
 } from "@chakra-ui/react";
 import {
   CaretRight,
@@ -63,12 +64,10 @@ export const DatePicker = ({
   iconPlacement = "left",
 }: DatePickerProps) => {
   const [date, setDate] = useState<Date | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
-  const initialFocusRef = useRef<HTMLButtonElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
   const today = startOfToday();
+  const {isOpen, onClose, onOpen} = useDisclosure()
 
   const isDateSelected = (d: Date) =>
     date && isSameDay(d, parseISO(format(date, "yyyy-MM-dd")));
@@ -76,19 +75,7 @@ export const DatePicker = ({
   const handleDateChange = (newDate: Date) => {
     if (isAfter(newDate, today)) {
       setDate(newDate);
-      setIsOpen(false);
       formik.setFieldValue(fieldName, newDate);
-
-      if (triggerRef.current) {
-        triggerRef.current.focus();
-      }
-    }
-  };
-
-  const handleOnClose = () => {
-    setIsOpen(false);
-    if (triggerRef.current) {
-      triggerRef.current.focus();
     }
   };
 
@@ -131,22 +118,15 @@ export const DatePicker = ({
     setCurrentYear((prevYear) => addYears(prevYear, increment));
   };
 
-  useEffect(() => {
-    if (isOpen && initialFocusRef.current) {
-      initialFocusRef.current.focus();
-    }
-  }, [isOpen]);
-
   return (
     <Popover
       isOpen={isOpen}
-      onClose={handleOnClose}
-      initialFocusRef={initialFocusRef}
+      onClose={onClose}
       placement="bottom-start"
     >
       <PopoverTrigger>
         {inputField && inputField.isActive ? (
-          <Box ref={triggerRef} tabIndex={-1}>
+          <Box tabIndex={-1}>
             <ParagraphText
               value={inputField?.label ?? "start date"}
               color="var(--grey)"
@@ -162,7 +142,7 @@ export const DatePicker = ({
               border={`1px solid ${borderColor || "var(--neutral-200)"}`}
               display="flex"
               spacing={1}
-              onClick={() => setIsOpen(true)}
+              onClick={onOpen}
               mt={2}
               height={height}
             >
@@ -183,8 +163,8 @@ export const DatePicker = ({
         ) : (
           <Text
             cursor="pointer"
+            onClick={onOpen}
             textDecor={date ? "none" : "underline"}
-            onClick={() => setIsOpen(true)}
             color={date ? "gray.500" : "blue.500"}
           >
             {formattedDate}
