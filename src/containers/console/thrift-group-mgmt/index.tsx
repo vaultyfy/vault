@@ -72,1292 +72,190 @@ export const ThriftGroupManagement = () => {
               </Tr>
             </Thead>
             <Tbody>
-              <Tr position={"relative"}>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <HStack width={"114px"} alignItems={"center"}>
-                    {PROFILE_IMG.map((img, index: React.Key) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          "&:nth-of-type(2)": {
-                            marginLeft: "-25px",
-                            zIndex: 50,
-                            padding: "2px",
-                          },
-                          "&:nth-of-type(3)": {
-                            marginLeft: "-25px",
-                            zIndex: 60,
-                            padding: "2.5px",
-                          },
+              {Array.from({ length: 7 }).map((_, index) => (
+                <Tr key={index} position={"relative"}>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                  >
+                    <HStack width={"114px"} alignItems={"center"}>
+                      {PROFILE_IMG.map((img, index: React.Key) => (
+                        <Box
+                          key={index}
+                          sx={{
+                            "&:nth-of-type(2)": {
+                              marginLeft: "-25px",
+                              zIndex: 50,
+                              padding: "2px",
+                            },
+                            "&:nth-of-type(3)": {
+                              marginLeft: "-25px",
+                              zIndex: 60,
+                              padding: "2.5px",
+                            },
+                          }}
+                          width={"50px"}
+                          height={"50px"}
+                          borderRadius={"full"}
+                          bgGradient="var(--main-gradient)"
+                          padding="1.5px"
+                        >
+                          <Image
+                            src={img}
+                            width={"100%"}
+                            height="100%"
+                            objectPosition={"center"}
+                            objectFit="cover"
+                            borderRadius={"90%"}
+                          />
+                        </Box>
+                      ))}
+                    </HStack>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    textAlign={"center"}
+                  >
+                    <Text
+                      fontSize={"16px"}
+                      fontWeight={"normal"}
+                      lineHeight={"19px"}
+                      textDecoration={"underline"}
+                    >
+                      Unity savers
+                    </Text>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    textAlign={"center"}
+                  >
+                    <Text
+                      fontSize={"16px"}
+                      fontWeight={"normal"}
+                      lineHeight={"19px"}
+                    >
+                      10-2-2024
+                    </Text>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    textAlign={"center"}
+                  >
+                    <Text
+                      fontSize={"16px"}
+                      fontWeight={"normal"}
+                      lineHeight={"19px"}
+                    >
+                      ₦2,000
+                    </Text>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    textAlign={"center"}
+                  >
+                    <Text
+                      fontSize={"16px"}
+                      fontWeight={"normal"}
+                      lineHeight={"19px"}
+                    >
+                      weekly
+                    </Text>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    textAlign={"center"}
+                  >
+                    <Text
+                      fontSize={"16px"}
+                      fontWeight={"normal"}
+                      lineHeight={"19px"}
+                    >
+                      10
+                    </Text>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                  >
+                    <Box
+                      width={"101px"}
+                      display="flex"
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                      marginX={"auto"}
+                    >
+                      <Button
+                        width="full"
+                        height="33px"
+                        padding="6px 48px"
+                        borderRadius={"30px"}
+                        fontSize={"14px"}
+                        fontWeight={"normal"}
+                        lineHeight={"21px"}
+                        color="var(--pay-green)"
+                        background={"var(--pay-green-bg)"}
+                        _hover={{
+                          background: "var(--pay-green-bg)",
                         }}
-                        width={"50px"}
-                        height={"50px"}
-                        borderRadius={"full"}
-                        bgGradient="var(--main-gradient)"
-                        padding="1.5px"
                       >
-                        <Image
-                          src={img}
-                          width={"100%"}
-                          height="100%"
-                          objectPosition={"center"}
-                          objectFit="cover"
-                          borderRadius={"90%"}
-                        />
-                      </Box>
-                    ))}
-                  </HStack>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                    textDecoration={"underline"}
-                  >
-                    Unity savers
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10-2-2024
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    ₦2,000
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    weekly
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
+                        Active
+                      </Button>
+                    </Box>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
                     alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="full"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      lineHeight={"21px"}
-                      color="var(--pay-green)"
-                      background={"var(--pay-green-bg)"}
-                      _hover={{
-                        background: "var(--pay-green-bg)",
-                      }}
-                    >
-                      Active
-                    </Button>
-                  </Box>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
                     justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
                   >
-                    <Button
-                      width="89px"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      border="0.5px solid #8181816B"
-                      lineHeight={"21px"}
-                      color="var(--grey)"
-                      background={"white"}
-                      onClick={handleCLick}
-                      _hover={{
-                        background: "white",
-                      }}
+                    <Box
+                      width={"101px"}
+                      display="flex"
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                      marginX={"auto"}
                     >
-                      View
-                    </Button>{" "}
-                  </Box>
-                </Td>
-              </Tr>
-            </Tbody>
-            <Tbody>
-              <Tr position={"relative"}>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <HStack width={"114px"} alignItems={"center"}>
-                    {PROFILE_IMG.map((img, index: React.Key) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          "&:nth-of-type(2)": {
-                            marginLeft: "-25px",
-                            zIndex: 50,
-                            padding: "2px",
-                          },
-                          "&:nth-of-type(3)": {
-                            marginLeft: "-25px",
-                            zIndex: 60,
-                            padding: "2.5px",
-                          },
+                      <Button
+                        width="89px"
+                        height="33px"
+                        padding="6px 48px"
+                        borderRadius={"30px"}
+                        fontSize={"14px"}
+                        fontWeight={"normal"}
+                        border="0.5px solid #8181816B"
+                        lineHeight={"21px"}
+                        color="var(--grey)"
+                        background={"white"}
+                        onClick={handleCLick}
+                        _hover={{
+                          background: "white",
                         }}
-                        width={"50px"}
-                        height={"50px"}
-                        borderRadius={"full"}
-                        bgGradient="var(--main-gradient)"
-                        padding="1.5px"
                       >
-                        <Image
-                          src={img}
-                          width={"100%"}
-                          height="100%"
-                          objectPosition={"center"}
-                          objectFit="cover"
-                          borderRadius={"90%"}
-                        />
-                      </Box>
-                    ))}
-                  </HStack>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                    textDecoration={"underline"}
-                  >
-                    Unity savers
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10-2-2024
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    ₦2,000
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    weekly
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="full"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      lineHeight={"21px"}
-                      color="var(--pay-green)"
-                      background={"var(--pay-green-bg)"}
-                      _hover={{
-                        background: "var(--pay-green-bg)",
-                      }}
-                    >
-                      Active
-                    </Button>
-                  </Box>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="89px"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      border="0.5px solid #8181816B"
-                      lineHeight={"21px"}
-                      color="var(--grey)"
-                      background={"white"}
-                      onClick={handleCLick}
-                      _hover={{
-                        background: "white",
-                      }}
-                    >
-                      View
-                    </Button>{" "}
-                  </Box>
-                </Td>
-              </Tr>
-            </Tbody>
-            <Tbody>
-              <Tr position={"relative"}>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <HStack width={"114px"} alignItems={"center"}>
-                    {PROFILE_IMG.map((img, index: React.Key) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          "&:nth-of-type(2)": {
-                            marginLeft: "-25px",
-                            zIndex: 50,
-                            padding: "2px",
-                          },
-                          "&:nth-of-type(3)": {
-                            marginLeft: "-25px",
-                            zIndex: 60,
-                            padding: "2.5px",
-                          },
-                        }}
-                        width={"50px"}
-                        height={"50px"}
-                        borderRadius={"full"}
-                        bgGradient="var(--main-gradient)"
-                        padding="1.5px"
-                      >
-                        <Image
-                          src={img}
-                          width={"100%"}
-                          height="100%"
-                          objectPosition={"center"}
-                          objectFit="cover"
-                          borderRadius={"90%"}
-                        />
-                      </Box>
-                    ))}
-                  </HStack>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                    textDecoration={"underline"}
-                  >
-                    Unity savers
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10-2-2024
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    ₦2,000
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    weekly
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="full"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      lineHeight={"21px"}
-                      color="var(--pay-green)"
-                      background={"var(--pay-green-bg)"}
-                      _hover={{
-                        background: "var(--pay-green-bg)",
-                      }}
-                    >
-                      Active
-                    </Button>
-                  </Box>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="89px"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      border="0.5px solid #8181816B"
-                      lineHeight={"21px"}
-                      color="var(--grey)"
-                      background={"white"}
-                      onClick={handleCLick}
-                      _hover={{
-                        background: "white",
-                      }}
-                    >
-                      View
-                    </Button>{" "}
-                  </Box>
-                </Td>
-              </Tr>
-            </Tbody>
-            <Tbody>
-              <Tr position={"relative"}>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <HStack width={"114px"} alignItems={"center"}>
-                    {PROFILE_IMG.map((img, index: React.Key) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          "&:nth-of-type(2)": {
-                            marginLeft: "-25px",
-                            zIndex: 50,
-                            padding: "2px",
-                          },
-                          "&:nth-of-type(3)": {
-                            marginLeft: "-25px",
-                            zIndex: 60,
-                            padding: "2.5px",
-                          },
-                        }}
-                        width={"50px"}
-                        height={"50px"}
-                        borderRadius={"full"}
-                        bgGradient="var(--main-gradient)"
-                        padding="1.5px"
-                      >
-                        <Image
-                          src={img}
-                          width={"100%"}
-                          height="100%"
-                          objectPosition={"center"}
-                          objectFit="cover"
-                          borderRadius={"90%"}
-                        />
-                      </Box>
-                    ))}
-                  </HStack>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                    textDecoration={"underline"}
-                  >
-                    Unity savers
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10-2-2024
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    ₦2,000
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    weekly
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="full"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      lineHeight={"21px"}
-                      color="var(--pay-green)"
-                      background={"var(--pay-green-bg)"}
-                      _hover={{
-                        background: "var(--pay-green-bg)",
-                      }}
-                    >
-                      Active
-                    </Button>
-                  </Box>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="89px"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      border="0.5px solid #8181816B"
-                      lineHeight={"21px"}
-                      color="var(--grey)"
-                      background={"white"}
-                      onClick={handleCLick}
-                      _hover={{
-                        background: "white",
-                      }}
-                    >
-                      View
-                    </Button>{" "}
-                  </Box>
-                </Td>
-              </Tr>
-            </Tbody>
-            <Tbody>
-              <Tr position={"relative"}>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <HStack width={"114px"} alignItems={"center"}>
-                    {PROFILE_IMG.map((img, index: React.Key) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          "&:nth-of-type(2)": {
-                            marginLeft: "-25px",
-                            zIndex: 50,
-                            padding: "2px",
-                          },
-                          "&:nth-of-type(3)": {
-                            marginLeft: "-25px",
-                            zIndex: 60,
-                            padding: "2.5px",
-                          },
-                        }}
-                        width={"50px"}
-                        height={"50px"}
-                        borderRadius={"full"}
-                        bgGradient="var(--main-gradient)"
-                        padding="1.5px"
-                      >
-                        <Image
-                          src={img}
-                          width={"100%"}
-                          height="100%"
-                          objectPosition={"center"}
-                          objectFit="cover"
-                          borderRadius={"90%"}
-                        />
-                      </Box>
-                    ))}
-                  </HStack>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                    textDecoration={"underline"}
-                  >
-                    Unity savers
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10-2-2024
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    ₦2,000
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    weekly
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="full"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      lineHeight={"21px"}
-                      color="var(--pay-green)"
-                      background={"var(--pay-green-bg)"}
-                      _hover={{
-                        background: "var(--pay-green-bg)",
-                      }}
-                    >
-                      Active
-                    </Button>
-                  </Box>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="89px"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      border="0.5px solid #8181816B"
-                      lineHeight={"21px"}
-                      color="var(--grey)"
-                      background={"white"}
-                      onClick={handleCLick}
-                      _hover={{
-                        background: "white",
-                      }}
-                    >
-                      View
-                    </Button>{" "}
-                  </Box>
-                </Td>
-              </Tr>
-            </Tbody>
-            <Tbody>
-              <Tr position={"relative"}>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <HStack width={"114px"} alignItems={"center"}>
-                    {PROFILE_IMG.map((img, index: React.Key) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          "&:nth-of-type(2)": {
-                            marginLeft: "-25px",
-                            zIndex: 50,
-                            padding: "2px",
-                          },
-                          "&:nth-of-type(3)": {
-                            marginLeft: "-25px",
-                            zIndex: 60,
-                            padding: "2.5px",
-                          },
-                        }}
-                        width={"50px"}
-                        height={"50px"}
-                        borderRadius={"full"}
-                        bgGradient="var(--main-gradient)"
-                        padding="1.5px"
-                      >
-                        <Image
-                          src={img}
-                          width={"100%"}
-                          height="100%"
-                          objectPosition={"center"}
-                          objectFit="cover"
-                          borderRadius={"90%"}
-                        />
-                      </Box>
-                    ))}
-                  </HStack>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                    textDecoration={"underline"}
-                  >
-                    Unity savers
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10-2-2024
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    ₦2,000
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    weekly
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="full"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      lineHeight={"21px"}
-                      color="var(--pay-green)"
-                      background={"var(--pay-green-bg)"}
-                      _hover={{
-                        background: "var(--pay-green-bg)",
-                      }}
-                    >
-                      Active
-                    </Button>
-                  </Box>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="89px"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      border="0.5px solid #8181816B"
-                      lineHeight={"21px"}
-                      color="var(--grey)"
-                      background={"white"}
-                      onClick={handleCLick}
-                      _hover={{
-                        background: "white",
-                      }}
-                    >
-                      View
-                    </Button>{" "}
-                  </Box>
-                </Td>
-              </Tr>
-            </Tbody>
-            <Tbody>
-              <Tr position={"relative"}>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <HStack width={"114px"} alignItems={"center"}>
-                    {PROFILE_IMG.map((img, index: React.Key) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          "&:nth-of-type(2)": {
-                            marginLeft: "-25px",
-                            zIndex: 50,
-                            padding: "2px",
-                          },
-                          "&:nth-of-type(3)": {
-                            marginLeft: "-25px",
-                            zIndex: 60,
-                            padding: "2.5px",
-                          },
-                        }}
-                        width={"50px"}
-                        height={"50px"}
-                        borderRadius={"full"}
-                        bgGradient="var(--main-gradient)"
-                        padding="1.5px"
-                      >
-                        <Image
-                          src={img}
-                          width={"100%"}
-                          height="100%"
-                          objectPosition={"center"}
-                          objectFit="cover"
-                          borderRadius={"90%"}
-                        />
-                      </Box>
-                    ))}
-                  </HStack>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                    textDecoration={"underline"}
-                  >
-                    Unity savers
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10-2-2024
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    ₦2,000
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    weekly
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                >
-                  <Text
-                    fontSize={"16px"}
-                    fontWeight={"normal"}
-                    lineHeight={"19px"}
-                  >
-                    10
-                  </Text>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="full"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      lineHeight={"21px"}
-                      color="var(--pay-green)"
-                      background={"var(--pay-green-bg)"}
-                      _hover={{
-                        background: "var(--pay-green-bg)",
-                      }}
-                    >
-                      Active
-                    </Button>
-                  </Box>
-                </Td>
-                <Td
-                  width={"1/8"}
-                  height="100%"
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Box
-                    width={"101px"}
-                    display="flex"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    marginX={"auto"}
-                  >
-                    <Button
-                      width="89px"
-                      height="33px"
-                      padding="6px 48px"
-                      borderRadius={"30px"}
-                      fontSize={"14px"}
-                      fontWeight={"normal"}
-                      border="0.5px solid #8181816B"
-                      lineHeight={"21px"}
-                      color="var(--grey)"
-                      background={"white"}
-                      onClick={handleCLick}
-                      _hover={{
-                        background: "white",
-                      }}
-                    >
-                      View
-                    </Button>{" "}
-                  </Box>
-                </Td>
-              </Tr>
+                        View
+                      </Button>{" "}
+                    </Box>
+                  </Td>
+                </Tr>
+              ))}
             </Tbody>
           </Table>
         </TableContainer>
