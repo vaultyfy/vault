@@ -12,11 +12,12 @@ import {
   Th,
   Td,
   Image,
+  Badge,
 } from "@chakra-ui/react";
 import React from "react";
 import { PageHeader } from "../page-header";
 import { ChevronLeft } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { GroupDetailsSummary } from "./group-details-summary";
 
 export const GroupDetails = () => {
@@ -30,10 +31,6 @@ export const GroupDetails = () => {
 
   const PROFILE_IMG = "/img/admin/profileImg1.jpeg";
 
-  const navigate = useNavigate();
-  const handleCLick = () => {
-    navigate({ to: "/console/group-mgmt" });
-  };
   return (
     <VStack
       width={"100%"}
@@ -56,9 +53,11 @@ export const GroupDetails = () => {
           justifyContent={"flex-start"}
           alignItems={"center"}
         >
-          <Text cursor={"pointer"} onClick={handleCLick}>
-            <ChevronLeft />
-          </Text>
+          <Link to="/console/group-mgmt">
+            <Text cursor={"pointer"}>
+              <ChevronLeft />
+            </Text>
+          </Link>
           <Text fontSize={"24px"} fontWeight={"400px"}>
             Unity savers
           </Text>
@@ -83,7 +82,7 @@ export const GroupDetails = () => {
           padding="23px 19px"
           borderRadius={"10px"}
         >
-          <TableContainer width={"100%"}>
+          <TableContainer width={"100%"} height={"100%"} overflowY={"auto"}>
             <Table variant="simple">
               <Thead>
                 <Tr width={"100%"}>
@@ -197,8 +196,7 @@ export const GroupDetails = () => {
                         alignItems={"center"}
                         marginX={"auto"}
                       >
-                        <Button
-                          width="full"
+                        <Badge
                           height="33px"
                           padding="6px 48px"
                           borderRadius={"30px"}
@@ -212,7 +210,7 @@ export const GroupDetails = () => {
                           }}
                         >
                           None
-                        </Button>
+                        </Badge>
                       </Box>
                     </Td>
                   </Tr>

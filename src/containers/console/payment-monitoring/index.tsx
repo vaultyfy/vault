@@ -23,15 +23,15 @@ import { Link } from "@tanstack/react-router";
 const HEADING = [
   "",
   "Group name",
-  "Created",
-  "Contribution",
-  "Frequency",
   "Members",
-  "Status",
+  "End date",
+  "position",
+  "Amount",
+  "Missed payments",
   "Action",
 ];
 
-export const ThriftGroupManagement = () => {
+export const PaymentMonitoring = () => {
   return (
     <VStack
       width={"100%"}
@@ -39,7 +39,7 @@ export const ThriftGroupManagement = () => {
       alignItems={"flex-start"}
       justifyContent={"flex-start"}
     >
-      <PageHeader title="Thrift Group Managment" />
+      <PageHeader title="Payment Monitoring" />
       <Filter />
       <Box
         width={"100%"}
@@ -121,9 +121,24 @@ export const ThriftGroupManagement = () => {
                       fontSize={"16px"}
                       fontWeight={"normal"}
                       lineHeight={"19px"}
-                      textDecoration={"underline"}
                     >
                       Unity savers
+                    </Text>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    textAlign={"center"}
+                  >
+                    <Text
+                      fontSize={"16px"}
+                      fontWeight={"normal"}
+                      lineHeight={"19px"}
+                      textDecoration={"underline"}
+                    >
+                      Alishomo daniel
                     </Text>
                   </Td>
                   <Td
@@ -153,7 +168,7 @@ export const ThriftGroupManagement = () => {
                       fontWeight={"normal"}
                       lineHeight={"19px"}
                     >
-                      ₦2,000
+                      7/10
                     </Text>
                   </Td>
                   <Td
@@ -168,22 +183,7 @@ export const ThriftGroupManagement = () => {
                       fontWeight={"normal"}
                       lineHeight={"19px"}
                     >
-                      weekly
-                    </Text>
-                  </Td>
-                  <Td
-                    width={"1/8"}
-                    height="100%"
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                    textAlign={"center"}
-                  >
-                    <Text
-                      fontSize={"16px"}
-                      fontWeight={"normal"}
-                      lineHeight={"19px"}
-                    >
-                      10
+                      ₦2,000,000
                     </Text>
                   </Td>
                   <Td
@@ -212,7 +212,7 @@ export const ThriftGroupManagement = () => {
                           background: "var(--pay-green-bg)",
                         }}
                       >
-                        Active
+                        None
                       </Badge>
                     </Box>
                   </Td>
@@ -229,7 +229,7 @@ export const ThriftGroupManagement = () => {
                       alignItems={"center"}
                       marginX={"auto"}
                     >
-                      <Link to="/console/group-mgmt/group-details">
+                      <Link to="/console/payment-monitoring/payment-details">
                         <Button
                           width="89px"
                           height="33px"

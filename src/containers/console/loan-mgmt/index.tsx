@@ -12,26 +12,28 @@ import {
   Text,
   Button,
   Image,
-  Badge,
 } from "@chakra-ui/react";
 import React from "react";
 import { PageHeader } from "../page-header";
-import { Filter } from "../filters";
 import { PROFILE_IMG } from "../overview/activities-table";
-import { Link } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 const HEADING = [
-  "",
-  "Group name",
-  "Created",
-  "Contribution",
-  "Frequency",
-  "Members",
-  "Status",
+  "Applicants",
+  "Amount requested",
+  "Date Requested",
+  "Payment period",
+  "Approval Status",
+  "Disbursement  status",
   "Action",
 ];
 
-export const ThriftGroupManagement = () => {
+export const LoanManagement = () => {
+  const navigate = useNavigate();
+  const handleCLick = () => {
+    navigate({ to: "/console/group-mgmt/group-details" });
+  };
+
   return (
     <VStack
       width={"100%"}
@@ -39,14 +41,14 @@ export const ThriftGroupManagement = () => {
       alignItems={"flex-start"}
       justifyContent={"flex-start"}
     >
-      <PageHeader title="Thrift Group Managment" />
-      <Filter />
+      <PageHeader title="Loan Managment" />
       <Box
         width={"100%"}
         height={"60vh"}
         boxShadow={"md"}
         borderRadius={"10px"}
         padding="16px 18px"
+        border={"0.5px solid #8181816B"}
       >
         <TableContainer width={"100%"} height={"100%"} overflowY={"auto"}>
           <Table variant="simple" gap={"29px"}>
@@ -59,7 +61,7 @@ export const ThriftGroupManagement = () => {
                     lineHeight={"19px"}
                     color="var(--table-text)"
                     key={index}
-                    width={"1/8"}
+                    width={`1/${HEADING.length}`}
                     textAlign={"center"}
                   >
                     {head}
@@ -138,6 +140,21 @@ export const ThriftGroupManagement = () => {
                       fontWeight={"normal"}
                       lineHeight={"19px"}
                     >
+                      Alishomo daniel
+                    </Text>
+                  </Td>
+                  <Td
+                    width={"1/8"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    textAlign={"center"}
+                  >
+                    <Text
+                      fontSize={"16px"}
+                      fontWeight={"normal"}
+                      lineHeight={"19px"}
+                    >
                       10-2-2024
                     </Text>
                   </Td>
@@ -153,7 +170,7 @@ export const ThriftGroupManagement = () => {
                       fontWeight={"normal"}
                       lineHeight={"19px"}
                     >
-                      ₦2,000
+                      7/10
                     </Text>
                   </Td>
                   <Td
@@ -168,22 +185,7 @@ export const ThriftGroupManagement = () => {
                       fontWeight={"normal"}
                       lineHeight={"19px"}
                     >
-                      weekly
-                    </Text>
-                  </Td>
-                  <Td
-                    width={"1/8"}
-                    height="100%"
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                    textAlign={"center"}
-                  >
-                    <Text
-                      fontSize={"16px"}
-                      fontWeight={"normal"}
-                      lineHeight={"19px"}
-                    >
-                      10
+                      ₦2,000,000
                     </Text>
                   </Td>
                   <Td
@@ -199,7 +201,8 @@ export const ThriftGroupManagement = () => {
                       alignItems={"center"}
                       marginX={"auto"}
                     >
-                      <Badge
+                      <Button
+                        width="full"
                         height="33px"
                         padding="6px 48px"
                         borderRadius={"30px"}
@@ -213,7 +216,7 @@ export const ThriftGroupManagement = () => {
                         }}
                       >
                         Active
-                      </Badge>
+                      </Button>
                     </Box>
                   </Td>
                   <Td
@@ -229,25 +232,24 @@ export const ThriftGroupManagement = () => {
                       alignItems={"center"}
                       marginX={"auto"}
                     >
-                      <Link to="/console/group-mgmt/group-details">
-                        <Button
-                          width="89px"
-                          height="33px"
-                          padding="6px 48px"
-                          borderRadius={"30px"}
-                          fontSize={"14px"}
-                          fontWeight={"normal"}
-                          border="0.5px solid #8181816B"
-                          lineHeight={"21px"}
-                          color="var(--grey)"
-                          background={"white"}
-                          _hover={{
-                            background: "white",
-                          }}
-                        >
-                          View
-                        </Button>{" "}
-                      </Link>
+                      <Button
+                        width="89px"
+                        height="33px"
+                        padding="6px 48px"
+                        borderRadius={"30px"}
+                        fontSize={"14px"}
+                        fontWeight={"normal"}
+                        border="0.5px solid #8181816B"
+                        lineHeight={"21px"}
+                        color="var(--grey)"
+                        background={"white"}
+                        onClick={handleCLick}
+                        _hover={{
+                          background: "white",
+                        }}
+                      >
+                        View
+                      </Button>{" "}
                     </Box>
                   </Td>
                 </Tr>
