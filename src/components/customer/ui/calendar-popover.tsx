@@ -30,7 +30,7 @@ export const CalendarPopover = () => {
           justifyContent="center"
           alignItems="center"
           _hover={{
-            background: "var(--btn-secondary-7)"
+            background: "var(--btn-secondary-7)",
           }}
         >
           <Icon name="calendar-2" />
@@ -43,7 +43,6 @@ export const CalendarPopover = () => {
             <IconButton
               aria-label="Previous saving groups"
               icon={<CaretLeft color="#000" weight="bold" />}
-              // onClick={() => changeMonth(-1)}
               size="sm"
               bgColor="transparent"
               _hover={{
@@ -73,7 +72,6 @@ export const CalendarPopover = () => {
             <IconButton
               aria-label="Next saving groups"
               icon={<CaretRight color="#000" weight="bold" />}
-              // onClick={() => changeMonth(-1)}
               size="sm"
               bgColor={"transparent"}
               _hover={{
@@ -149,7 +147,7 @@ export const CalendarPopover = () => {
                 _hover={{ bgGradient: "var(--main-gradient)" }}
                 color="#fff"
               >
-                  Pay now
+                Pay now
               </Button>
             </VStack>
           </Flex>

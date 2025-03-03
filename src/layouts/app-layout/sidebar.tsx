@@ -96,7 +96,7 @@ export const Sidebar = () => {
             />
           ) : (
             <CircleProgress
-            progress={kycPercentage}
+              progress={kycPercentage}
               size={150}
               strokeWidth={5}
             />
