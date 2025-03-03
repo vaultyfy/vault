@@ -12,6 +12,7 @@ import {
   Text,
   Button,
   Image,
+  Badge,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ActionButton } from "./action-button";
@@ -253,8 +254,7 @@ export const ActivitiesTable = () => {
                     alignItems={"center"}
                     marginX={"auto"}
                   >
-                    <Button
-                      width="full"
+                    <Badge
                       height="33px"
                       padding="6px 48px"
                       borderRadius={"30px"}
@@ -268,7 +268,7 @@ export const ActivitiesTable = () => {
                       }}
                     >
                       None
-                    </Button>
+                    </Badge>
                   </Box>
                 </Td>
                 <Td
@@ -285,8 +285,8 @@ export const ActivitiesTable = () => {
                     marginX={"auto"}
                   >
                     <ActionButton
-                      isOpen={openItem === 1}
-                      onClick={() => handleToggle(1)}
+                      isOpen={openItem === index}
+                      onClick={() => handleToggle(index)}
                     />
                   </Box>
                 </Td>

@@ -12,11 +12,12 @@ import {
   Th,
   Td,
   Image,
+  Badge,
 } from "@chakra-ui/react";
 import React from "react";
 import { PageHeader } from "../page-header";
 import { ChevronLeft } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 
 interface ContactDetailsProps {
   email: string;
@@ -292,9 +293,11 @@ export const PaymentDetails = () => {
           justifyContent={"flex-start"}
           alignItems={"center"}
         >
-          <Text cursor={"pointer"} onClick={handleCLick}>
-            <ChevronLeft />
-          </Text>
+          <Link to="/console/payment-monitoring">
+            <Text cursor={"pointer"}>
+              <ChevronLeft />
+            </Text>
+          </Link>
           <Box
             width={"50px"}
             height={"50px"}
@@ -462,8 +465,7 @@ export const PaymentDetails = () => {
                           alignItems={"center"}
                           marginX={"auto"}
                         >
-                          <Button
-                            width="full"
+                          <Badge
                             height="33px"
                             padding="6px 48px"
                             borderRadius={"30px"}
@@ -477,7 +479,7 @@ export const PaymentDetails = () => {
                             }}
                           >
                             Paid
-                          </Button>
+                          </Badge>
                         </Box>
                       </Td>
                     </Tr>

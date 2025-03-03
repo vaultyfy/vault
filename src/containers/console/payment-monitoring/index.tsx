@@ -12,12 +12,13 @@ import {
   Text,
   Button,
   Image,
+  Badge,
 } from "@chakra-ui/react";
 import React from "react";
 import { PageHeader } from "../page-header";
 import { Filter } from "../filters";
 import { PROFILE_IMG } from "../overview/activities-table";
-import { useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 
 const HEADING = [
   "",
@@ -31,11 +32,6 @@ const HEADING = [
 ];
 
 export const PaymentMonitoring = () => {
-  const navigate = useNavigate();
-  const handleCLick = () => {
-    navigate({ to: "/console/payment-monitoring/payment-details" });
-  };
-
   return (
     <VStack
       width={"100%"}
@@ -203,8 +199,7 @@ export const PaymentMonitoring = () => {
                       alignItems={"center"}
                       marginX={"auto"}
                     >
-                      <Button
-                        width="full"
+                      <Badge
                         height="33px"
                         padding="6px 48px"
                         borderRadius={"30px"}
@@ -218,7 +213,7 @@ export const PaymentMonitoring = () => {
                         }}
                       >
                         None
-                      </Button>
+                      </Badge>
                     </Box>
                   </Td>
                   <Td
@@ -234,24 +229,25 @@ export const PaymentMonitoring = () => {
                       alignItems={"center"}
                       marginX={"auto"}
                     >
-                      <Button
-                        width="89px"
-                        height="33px"
-                        padding="6px 48px"
-                        borderRadius={"30px"}
-                        fontSize={"14px"}
-                        fontWeight={"normal"}
-                        border="0.5px solid #8181816B"
-                        lineHeight={"21px"}
-                        color="var(--grey)"
-                        background={"white"}
-                        onClick={handleCLick}
-                        _hover={{
-                          background: "white",
-                        }}
-                      >
-                        View
-                      </Button>{" "}
+                      <Link to="/console/payment-monitoring/payment-details">
+                        <Button
+                          width="89px"
+                          height="33px"
+                          padding="6px 48px"
+                          borderRadius={"30px"}
+                          fontSize={"14px"}
+                          fontWeight={"normal"}
+                          border="0.5px solid #8181816B"
+                          lineHeight={"21px"}
+                          color="var(--grey)"
+                          background={"white"}
+                          _hover={{
+                            background: "white",
+                          }}
+                        >
+                          View
+                        </Button>{" "}
+                      </Link>
                     </Box>
                   </Td>
                 </Tr>
