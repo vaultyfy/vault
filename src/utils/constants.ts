@@ -14,7 +14,6 @@ export const cookieOptions = {
 
 export const swrOptions = {
   revalidateIfStale: true,
-  // revalidateOnMount: false,
   revalidateOnFocus: true,
   revalidateOnReconnect: true,
 };

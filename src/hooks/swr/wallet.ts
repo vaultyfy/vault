@@ -1,7 +1,7 @@
 import { getWallet } from "@queries/get-wallet";
 import { swrOptions } from "@utils/constants";
-import { format } from "date-fns";
 import useSWR from "swr";
+import dayjs from "dayjs"
 
 export const useWallet = () => {
   const key = "wallet";
@@ -14,9 +14,6 @@ export const useWallet = () => {
     data: data?.payload,
     isLoading,
     walletBalance: payload?.balance,
-    lastUpdated: format(
-      String(payload?.updatedAT || payload?.createdAT),
-      "dd-mm-yyyy",
-    ),
+    lastUpdated: dayjs(payload?.updatedAT || payload?.createdAT).format("dd-mm-yyyy")
   };
 };

@@ -39,7 +39,7 @@ export const Dashboard = () => {
     onClose();
   };
 
-  const { walletBalance, lastUpdated} = useWallet()
+  const { walletBalance, lastUpdated, isLoading } = useWallet();
 
   return (
     <>
@@ -54,6 +54,7 @@ export const Dashboard = () => {
             amount={walletBalance}
             paidDate={lastUpdated}
             cardGradient="var(--main-gradient)"
+            loading={isLoading}
           />
           <OverviewCard
             cardIcon="time-is-money"
@@ -65,6 +66,7 @@ export const Dashboard = () => {
             progressColor="var(--main-gradient)"
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
+            loading={isLoading}
           />
           <OverviewCard
             cardIcon="piggy-bank"
@@ -73,6 +75,7 @@ export const Dashboard = () => {
             hasFilter={true}
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
+            loading={isLoading}
           />
           <OverviewCard
             cardIcon="trophy"
@@ -84,6 +87,7 @@ export const Dashboard = () => {
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
             cycle={1}
+            loading={isLoading}
           />
         </SimpleGrid>
         {/* the empty state*/}
