@@ -102,7 +102,7 @@ export const ActivitiesTable = () => {
           Delayed pay-outs
         </Button>
       </HStack>
-      <TableContainer width={"100%"}>
+      <TableContainer width={"100%"} height={"80%"} overflowY={"auto"}>
         <Table variant="simple">
           <Thead>
             <Tr width={"100%"}>

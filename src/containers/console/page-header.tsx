@@ -24,7 +24,7 @@ export const PageHeader = ({ title }: PageHeaderProps) => {
         {title}
       </Text>
       <HStack>
-        <Button
+        {/* <Button
           bg="#1CCFBD12"
           borderRadius={"36px"}
           pl="31px"
@@ -36,7 +36,7 @@ export const PageHeader = ({ title }: PageHeaderProps) => {
           width={"180px"}
         >
           Create Group <CirclePlus fill="var(--dark)" color="white" size="45" />
-        </Button>
+        </Button> */}
         <Button
           bg="#1CCFBD12"
           borderRadius={"full"}

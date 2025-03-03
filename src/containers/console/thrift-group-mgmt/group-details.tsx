@@ -83,7 +83,7 @@ export const GroupDetails = () => {
           padding="23px 19px"
           borderRadius={"10px"}
         >
-          <TableContainer width={"100%"}>
+          <TableContainer width={"100%"} height={"100%"} overflowY={"auto"}>
             <Table variant="simple">
               <Thead>
                 <Tr width={"100%"}>
