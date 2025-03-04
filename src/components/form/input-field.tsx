@@ -18,12 +18,14 @@ interface InputProps {
   label?: string;
   labelInfo?: string;
   labelColor?: string;
+  labelSize?: string;
   required?: boolean;
   password?: boolean;
   placeholder?: string;
   size?: string;
   radius?: string | number | {};
   boldLabel?: boolean;
+  my?: string;
 }
 
 export const InputField = ({
@@ -36,7 +38,9 @@ export const InputField = ({
   labelInfo,
   height,
   labelColor,
+  labelSize,
   boldLabel = false,
+  my,
   ...props
 }: InputProps) => {
   const [field, meta] = useField(name);
@@ -51,7 +55,7 @@ export const InputField = ({
   const inputBorderRadius = typeof radius === "string" ? radius : `${radius}px`;
 
   const inputStyle = {
-    fontSize: "sm",
+    fontSize: "14px",
     background: "#fff",
     height: height || "55px",
     borderRadius: inputBorderRadius,
@@ -77,13 +81,13 @@ export const InputField = ({
   const errorProps = meta.touched && meta.error ? errorStyle : null;
 
   return (
-    <FormControl my="1.4em" width="100%">
+    <FormControl my={my || "1.4em"} width="100%">
       {label && (
         <FormLabel
-          fontSize="14px"
+          fontSize={labelSize || { base: "12px", md: "14px" }}
           lineHeight="20px"
           fontWeight="500"
-          color={labelColor || "#211E1D"}
+          color={labelColor || "var(--grey)"}
         >
           {label}
         </FormLabel>
@@ -157,11 +161,13 @@ export const InputField = ({
 
 export const TextAreaField = ({
   name,
+  my,
   label,
   radius,
   placeholder,
   password,
   labelColor,
+  labelSize,
   height,
   size,
   ...props
@@ -170,27 +176,27 @@ export const TextAreaField = ({
 
   return (
     <>
-      <FormControl my="1.8em" width="100%">
+      <FormControl my={my || "1.8em"} width="100%">
         <FormLabel
-          fontSize="16px"
+          fontSize={labelSize || { base: "12px", lg: "16px" }}
           lineHeight="22px"
           fontWeight="400"
-          color={labelColor || ""}
+          color={labelColor || "var(--grey)"}
         >
           {label}
         </FormLabel>
 
         <Textarea
           autoComplete="true"
-          fontSize="sm"
+          fontSize="14px"
           placeholder={placeholder}
           borderRadius={radius ? radius : "9px"}
-          border="1px solid var(--input-outline)"
+          border="1px solid  #E2E8F0"
           className={meta.touched && meta.error ? "shake" : ""}
           _placeholder={{
             fontWeight: "400",
             color: "var(--grey)",
-            fontSize: "16px",
+            fontSize: "14px",
             lineHeight: "22px",
           }}
           height={height || "200px"}

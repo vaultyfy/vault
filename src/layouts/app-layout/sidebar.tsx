@@ -6,17 +6,18 @@ import {
   Image,
   List,
   ListItem,
+  Skeleton,
   Text,
 } from "@chakra-ui/react";
 import { GradientIcon } from "@components/icon";
 import { Gear, SealCheck } from "@phosphor-icons/react";
 import { MAIN_GRADIENT } from "@utils/constants";
 import { Icon } from "@components/icon";
-import { Link, useLocation } from "@tanstack/react-router";
-import { FileRouteTypes } from "src/routeTree.gen";
+import { Link, FileRouteTypes } from "@tanstack/react-router";
 import { useConsolePath, useCurrentPath } from "@hooks/current-path";
-import { useAuthContext } from "@hooks/context";
-import { useUser } from "@hooks/user";
+import { CircleProgress } from "@components/ui";
+import { useUser } from "@hooks/swr";
+import { skeleton } from "@utils/misc";
 
 export type SidenavItems = {
   id: string;
@@ -32,12 +33,12 @@ const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
     name: "overview",
     path: "/dashboard",
   },
-  {
-    id: crypto.randomUUID(),
-    icon: <Icon name="payouts" />,
-    name: "payments",
-    path: "/dashboard/payments",
-  },
+  // {
+  //   id: crypto.randomUUID(),
+  //   icon: <Icon name="payouts" />,
+  //   name: "payments",
+  //   path: "/dashboard/payments",
+  // },
   {
     id: crypto.randomUUID(),
     icon: <Icon name="profile-2user" />,
@@ -59,7 +60,6 @@ const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
 ];
 
 export const Sidebar = () => {
-  const { user, isLoading } = useUser();
   const pathname = useCurrentPath();
   const isConsoleRoute = useConsolePath();
 
@@ -104,6 +104,14 @@ export const Sidebar = () => {
     path: item.path as FileRouteTypes["fullPaths"],
   }));
 
+  const {
+    userName,
+    hasUserCompletedKyc,
+    kycPercentage,
+    isLoading,
+    walletBalance,
+  } = useUser();
+
   return (
     <Box
       height="100vh"
@@ -114,6 +122,7 @@ export const Sidebar = () => {
         lg: "20%",
       }}
       borderRight={isConsoleRoute ? "2px solid var(--dark-6)" : ""}
+      display={{ lg: "block", md: "none", base: "none" }}
     >
       <Link to="/">
         <Center mt="1em">
@@ -155,10 +164,10 @@ export const Sidebar = () => {
                   >
                     {item.icon}
                     <Text
-                      fontSize="16px"
-                      fontWeight={pathname === item.path ? "500" : "400"}
                       lineHeight="19px"
                       whiteSpace="nowrap"
+                      fontSize="14px"
+                      fontWeight={pathname === item.path ? "500" : "400"}
                     >
                       {item.name}
                     </Text>
@@ -170,46 +179,75 @@ export const Sidebar = () => {
         </Flex>
       ) : (
         <Center flexFlow="column" my="1.2em" gap=".6em">
-          <Flex flexFlow="column">
-            <Image src="/img/sample-avatar.svg" />
-            <Text
-              textAlign="center"
-              fontSize="16px"
-              color="var(--grey)"
-              fontWeight="400"
-              lineHeight="24px"
-            >
-              {user?.name}
-            </Text>
+          <Flex flexFlow="column" gap=".6em">
+            {isLoading ? (
+              <Skeleton
+                height="120px"
+                width="120px"
+                border="1px solid red"
+                startColor={skeleton.startColor}
+                endColor={skeleton.endColor}
+                borderRadius="100%"
+              />
+            ) : (
+              <CircleProgress
+                progress={kycPercentage}
+                size={150}
+                strokeWidth={5}
+              />
+            )}
+            {!isLoading ? (
+              <Text
+                textAlign="center"
+                fontSize="16px"
+                color="var(--grey)"
+                fontWeight="400"
+                lineHeight="24px"
+              >
+                {userName || "Danielking"}
+              </Text>
+            ) : (
+              <Center>
+                <Skeleton
+                  startColor={skeleton.startColor}
+                  endColor={skeleton.endColor}
+                  height="14px"
+                  width="70%"
+                  borderRadius="6px"
+                />
+              </Center>
+            )}
           </Flex>
 
-          <Badge
-            background="var(--white-fade-8)"
-            display="flex"
-            justifyContent="center"
-            gap=".6em"
-            height="37px"
-            width="158px"
-            borderRadius="30px"
-            alignItems="center"
-          >
-            <GradientIcon
-              weight="fill"
-              startColor="#2C9BF0"
-              endColor="#1CCFBD"
-              IconComponent={SealCheck}
-              size="18"
-            />
-            <Text
-              textTransform="capitalize"
-              fontSize="14px"
-              fontWeight="400"
-              bgClip="text"
-              bgGradient={MAIN_GRADIENT}
+          {hasUserCompletedKyc ? (
+            <Badge
+              background="var(--white-fade-8)"
+              display="flex"
+              justifyContent="center"
+              gap=".6em"
+              height="37px"
+              width="158px"
+              borderRadius="30px"
+              alignItems="center"
             >
-              verified
-            </Text>
-          </Badge>
+              <GradientIcon
+                weight="fill"
+                startColor="#2C9BF0"
+                endColor="#1CCFBD"
+                IconComponent={SealCheck}
+                size="18"
+              />
+              <Text
+                textTransform="capitalize"
+                fontSize="14px"
+                fontWeight="400"
+                bgClip="text"
+                bgGradient={MAIN_GRADIENT}
+              >
+                verified
+              </Text>
+            </Badge>
+          ) : null}
 
           <Flex flexFlow="column" gap=".1em">
             <Text
@@ -221,55 +259,63 @@ export const Sidebar = () => {
             >
               Wallet balance
             </Text>
-            <Text
-              fontFamily="var(--clash-grotesk-600)"
-              fontSize="22px"
-              lineHeight="27px"
-              bgGradient={MAIN_GRADIENT}
-              bgClip="text"
-            >
-              N500,700
-            </Text>
+            {isLoading ? (
+              <Skeleton
+                startColor={skeleton.startColor}
+                endColor={skeleton.endColor}
+                height="20px"
+                width="100%"
+                borderRadius="8px"
+              />
+            ) : (
+              <Text
+                fontFamily="var(--clash-grotesk-600)"
+                fontSize="22px"
+                lineHeight="27px"
+                bgGradient={MAIN_GRADIENT}
+                bgClip="text"
+              >
+                {walletBalance}
+              </Text>
+            )}
           </Flex>
 
           <Flex gap=".8em" flexFlow="column" mt="2em" width="100%" px=".8em">
-            {SIDEBAR_NAV_ITEMS.map((item) => {
-              return (
-                <List key={item.id}>
-                  <Link to={item.path}>
-                    <ListItem
-                      listStyleType="none"
-                      display="flex"
-                      alignItems="center"
-                      px="1.4em"
-                      height="54px"
-                      borderRadius="8px"
-                      gap={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
-                      textTransform="capitalize"
-                      color="#fff"
-                      background={
-                        pathname === item.path ? "var(--white-fade-8)" : ""
-                      }
-                      transition="all .3s ease-out"
-                      _hover={{
-                        cursor: "pointer",
-                        background: "var(--white-fade-8)",
-                      }}
+            {SIDEBAR_NAV_ITEMS.map((item) => (
+              <List key={item.id}>
+                <Link to={item.path}>
+                  <ListItem
+                    listStyleType="none"
+                    display="flex"
+                    alignItems="center"
+                    px="1.4em"
+                    height="54px"
+                    borderRadius="8px"
+                    gap={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
+                    textTransform="capitalize"
+                    color="#fff"
+                    background={
+                      pathname === item.path ? "var(--white-fade-8)" : ""
+                    }
+                    transition="all .3s ease-out"
+                    _hover={{
+                      cursor: "pointer",
+                      background: "var(--white-fade-8)",
+                    }}
+                  >
+                    {item.icon}
+                    <Text
+                      fontSize="16px"
+                      fontWeight={pathname === item.path ? "500" : "400"}
+                      lineHeight="19px"
+                      whiteSpace="nowrap"
                     >
-                      {item.icon}
-                      <Text
-                        fontSize="16px"
-                        fontWeight={pathname === item.path ? "500" : "400"}
-                        lineHeight="19px"
-                        whiteSpace="nowrap"
-                      >
-                        {item.name}
-                      </Text>
-                    </ListItem>
-                  </Link>
-                </List>
-              );
-            })}
+                      {item.name}
+                    </Text>
+                  </ListItem>
+                </Link>
+              </List>
+            ))}
           </Flex>
         </Center>
       )}

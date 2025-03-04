@@ -6,8 +6,7 @@ import { useCurrentPath } from "@hooks/current-path";
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import { cookieOptions, TOKEN_KEY } from "@utils/constants";
 import { useToastContext } from "@hooks/context";
-import { RoutePaths } from "@tanstack/react-router";
-import { FileRouteTypes } from "src/routeTree.gen";
+import { FileRouteTypes } from "@tanstack/react-router";
 
 export interface AuthProviderProps {
   children: React.ReactNode;

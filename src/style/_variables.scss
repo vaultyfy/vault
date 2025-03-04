@@ -6,6 +6,7 @@
   --main: #102634;
   --text-1: #292d32;
   --text-2: #f6f6f6;
+  --text-3: var(--main);
   --dark: #1c1c1c;
   --pale-blue: #ddf7f066;
   --pale-grey: #ffffff1a;
@@ -17,6 +18,18 @@
   --input-outline: #81818199;
   /* dark 6% */
   --dark-6: #1C1C1C0F;
+
+  --overview-card-secondary: #2a3e49;
+  --button-secondary: #1ccfbd;
+  --btn-secondary-7: #1ccfbd12;
+  --grey-100: #f6f6f6;
+  --text-grey-200: #04040499;
+  --modal-title: #12141a;
+  --alt-text: #6e6e6e;
+  --card-bg-active: #f0fafc;
+  --border-muted: #8181816b;
+  --calendar-days-color: #696969;
+  --grey-sec: #42545f;
 
   --success-700: #027a48;
   --success-25: #f6fef9;
@@ -31,11 +44,6 @@
   --delay-text: #F60E44;
   --pay-green: #3FC412;
   --pay-green-bg: #3FC4121C;
-
-
-
-
-
   --table-text:#6E6E6E;
 
   --primary-btn-bg: linear-gradient(
@@ -45,13 +53,23 @@
   );
 
   --main-gradient: linear-gradient(104.4deg, #1ccfbd 1.7%, #2c9bf0 105.41%);
+  --main-gradient-light: linear-gradient(
+    104.4deg,
+    rgba(28, 207, 189, 0.1) 1.7%,
+    rgba(44, 155, 240, 0.1) 105.41%
+  );
 
   /* fonts */
   --poppins: "Poppins", serif;
+  --open-sans: "Open Sans", serif;
   --clash-grotesk-200: ClashGrotesk-ExtraLight;
   --clash-grotesk-300: ClashGrotesk-Light;
   --clash-grotesk-400: CLashGrotesk-Regular;
   --clash-grotesk-500: ClashGrotesk-Medium;
   --clash-grotesk-600: ClashGrotesk-SemiBold;
   --clash-grotesk-700: ClashGrotesk-Bold;
+  --clash-grotesk-variable: ClashGrotesk-Variable;
+  --maven-pro-500: "Maven Pro", sans-serif;
+  /* shadows */
+  --table-shadow: 1px 2px 9px 0px #00000017;
 }

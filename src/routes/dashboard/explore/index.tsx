@@ -1,19 +1,22 @@
 import { MetaData } from "@components/metadata";
-import { Groups } from "@containers/app";
+import { Explore } from "@containers/app";
 import { AppLayout } from "@layouts/app-layout";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/dashboard/groups")({
+export const Route = createFileRoute("/dashboard/explore/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
     <>
-      <MetaData pageTitle="Groups &mdash; Vaultify" url="vaultify.vercel.app" />
+      <MetaData
+        url="vaultyfy.vercel.app"
+        pageTitle="Explore &mdash; Vaultify"
+      />
 
-      <AppLayout>
-        <Groups />
+      <AppLayout routeTitle="Explore">
+        <Explore />
       </AppLayout>
     </>
   );

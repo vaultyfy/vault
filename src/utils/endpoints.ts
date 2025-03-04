@@ -10,7 +10,7 @@ export const auth = {
     forgotPassword: `${BASE_URL}/customer/auth/forgot-password`,
     verifyResetPasswordOtp: `${BASE_URL}/customer/auth/verify-reset-password-otp`,
     resetPassword: `${BASE_URL}/customer/auth/reset-password`,
-    login: `${BASE_URL}/customer/auth/login`
+    login: `${BASE_URL}/customer/auth/login`,
   },
   admin: {
     profile: `${BASE_URL}/admin/auth/profile`,
@@ -20,6 +20,22 @@ export const auth = {
     forgotPassword: `${BASE_URL}/admin/auth/forgot-password`,
     verifyResetPasswordOtp: `${BASE_URL}/admin/auth/verify-reset-password-otp`,
     resetPassword: `${BASE_URL}/admin/auth/reset-password`,
-    login: `${BASE_URL}/admin/auth/login`
-  }
+    login: `${BASE_URL}/admin/auth/login`,
+  },
+} as const;
+
+export const app = {
+  customer: {
+    wallet: `${BASE_URL}/customer/my-wallet`,
+    bvnVerification: `${BASE_URL}/customer/kyc/bvn-verification`,
+    ninVerification: `${BASE_URL}/customer/kyc/nin-verification`,
+    expectedReturns: `${BASE_URL}/customer/dashboard/expectedReturns`,
+    remainingContributions: `${BASE_URL}/customer/dashboard/remainingContributions`,
+    constributionSummary: `${BASE_URL}/customer/dashboard/contributionSummary`,
+    bankDetails: `${BASE_URL}/customer/add-bankDetails`,
+    updateBankDetails: `${BASE_URL}/customer/update-bankDetails`,
+    deleteBankDetails: `${BASE_URL}/customer/delete-bankDetails`,
+    yourBanks: `${BASE_URL}/customer/all-my-bankDetails`,
+    changePassword: `${BASE_URL}/customer/change-password`
+  },
 } as const;

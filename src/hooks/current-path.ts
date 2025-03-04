@@ -1,5 +1,5 @@
 import { useLocation } from "@tanstack/react-router"
-import { FileRouteTypes } from "src/routeTree.gen";
+import { FileRouteTypes } from "@tanstack/react-router";
 
 export const useCurrentPath = () => {
   const location = useLocation();

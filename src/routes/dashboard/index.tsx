@@ -15,7 +15,7 @@ function RouteComponent() {
         url="vaultify.vercel.app"
       />
 
-      <AppLayout>
+      <AppLayout routeTitle="Welcome back">
         <Dashboard />
       </AppLayout>
     </>

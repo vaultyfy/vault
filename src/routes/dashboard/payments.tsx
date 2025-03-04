@@ -12,7 +12,7 @@ function RouteComponent() {
     <>
       <MetaData url="vaultify.vercel.app" pageTitle="Payments &mdash; Vaultify" />
 
-      <AppLayout>
+      <AppLayout routeTitle='Payments'>
         <Payments />
       </AppLayout>
     </>

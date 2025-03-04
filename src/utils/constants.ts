@@ -12,6 +12,12 @@ export const cookieOptions = {
   secure: process.env.NODE_ENV === "production",
 } as Partial<OptionsType>;
 
+export const swrOptions = {
+  revalidateIfStale: true,
+  revalidateOnFocus: true,
+  revalidateOnReconnect: true,
+};
+
 export const TOKEN_KEY = "t";
 
 export type State =
@@ -23,9 +29,50 @@ export type State =
   | "success"
   | "deleting";
 
-export const swrOptions = {
-  revalidateIfStale: true,
-  // revalidateOnMount: false,
-  revalidateOnFocus: false,
-  revalidateOnReconnect: true,
+export const avatars = [
+  "/img/person-1.svg",
+  "/img/person-2.svg",
+  "/img/person-3.svg",
+  "/img/person-4.svg",
+  "/img/person-1.svg",
+  "/img/person-4.svg",
+];
+
+export const borderGradientStyle = {
+  position: "relative",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: "-2px",
+    borderRadius: "full",
+    border: "10px solid",
+    borderColor: "transparent",
+    padding: "10px",
+    boxSize: "2px",
+    background: "var(--main-gradient)",
+    WebkitMask: "var(--main-gradient) content-box, var(--main-gradient)",
+    WebkitMaskComposite: "xor",
+    maskComposite: "exclude",
+    zIndex: -1,
+  },
+};
+
+export const borderGradientStyle_2 = {
+  position: "relative",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: "-1px",
+    left: "-2px",
+    borderRadius: "full",
+    border: "10px solid",
+    borderColor: "transparent",
+    padding: "10px",
+    boxSize: "2px",
+    background: "var(--main-gradient)",
+    WebkitMask: "var(--main-gradient) content-box, var(--main-gradient)",
+    WebkitMaskComposite: "xor",
+    maskComposite: "exclude",
+    zIndex: -1,
+  },
 };

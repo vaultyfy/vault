@@ -9,12 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { useAuthContext } from "@hooks/context";
 import { useMobileScreens } from "@hooks/mobile-screen";
+import { useUser } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, UserRound } from "lucide-react";
 
 export const UserMenu = () => {
   const { isSmallViewPort } = useMobileScreens();
-  const { user } = useAuthContext();
+  const { data } = useUser()
 
   return (
     <Menu autoSelect={false}>
@@ -67,7 +68,7 @@ export const UserMenu = () => {
           </MenuItem>
         </Link>
 
-        {user && (
+        {data && (
           <Link to="/dashboard">
             <MenuItem
               as={Button}
