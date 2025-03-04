@@ -18,7 +18,8 @@
       "@utils/*": ["src/utils/*"],
       "@context/*": ["src/context/*"],
       "@queries/*": ["src/queries/*"],
-      "@store/*": ["src/store/*"]
+      "@store/*": ["src/store/*"],
+      "@mutations/*": ["src/mutations/*"]
     }
   }
 }

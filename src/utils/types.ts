@@ -217,3 +217,13 @@ export type Admin = {
   updatedAT: string;
   approvedLoans: string[];
 }
+
+export type ExpectedReturns = {
+  expectedReturns: number;
+}
+
+export type PasswordPayload = {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}

@@ -53,7 +53,7 @@ export const PaymentsPayouts = () => {
 
   return (
     <Box width="482px">
-      <Text fontSize="24px" fontWeight="400" mb={4} color={"#1C1C1C"}>
+      <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
         Payment & Payouts
       </Text>
 
@@ -92,7 +92,7 @@ export const PaymentsPayouts = () => {
                 Account name
               </Text>
               <Flex justify="space-between" align="center">
-                <Text fontSize="18px" fontWeight="400" color={"#1C1C1C"}>
+                <Text fontSize="18px" fontWeight="400" color="var(--dark)">
                   {payment.accountName}
                 </Text>
                 <Button variant="link" size="sm" color="#1CCFBD">
@@ -108,7 +108,7 @@ export const PaymentsPayouts = () => {
                 Bank account number
               </Text>
               <Flex justify="space-between" align="center">
-                <Text fontSize="18px" fontWeight="400" color={"#1C1C1C"}>
+                <Text fontSize="18px" fontWeight="400" color="var(--dark)">
                   {payment.accountNumber}
                 </Text>
                 <Button variant="link" size="sm" color="#1CCFBD">
@@ -124,7 +124,7 @@ export const PaymentsPayouts = () => {
                 Bank name
               </Text>
               <Flex justify="space-between" align="center" cursor="pointer">
-                <Text fontSize="18px" fontWeight="400" color={"#1C1C1C"}>
+                <Text fontSize="18px" fontWeight="400" color="var(--dark)">
                   {payment.bankName}
                 </Text>
                 <Image

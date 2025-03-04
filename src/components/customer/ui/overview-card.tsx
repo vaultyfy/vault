@@ -59,7 +59,7 @@ export const OverviewCard = ({
 }: OverviewCardProps) => {
   return (
     <Card
-      bgColor={bgColor || ""} // why would you default to "undefined" here?
+      bgColor={bgColor || ""}
       bgGradient={cardGradient}
       width={width || "100%"}
       height={height || "100%"}
@@ -181,7 +181,7 @@ export const OverviewCard = ({
             <Text fontSize={{ base: "12px", lg: "16px" }} fontWeight={"medium"}>
               {cardTitle}
             </Text>
-            {loading && amount ? (
+            {loading && !cycle ? (
               <Skeleton
                 height="18px"
                 width="130px"
@@ -191,13 +191,13 @@ export const OverviewCard = ({
               />
             ) : (
               <>
-                {amount && (
-                  <Flex alignItems="center">
-                    <CurrencyNgn size={28} color="#ffffff" />
+                {!cycle && (
+                  <HStack gap=".1em">
+                    <CurrencyNgn size={28} color="#ffffff" /> herr
                     <Text fontFamily="var(--clash-grotesk-700)" fontSize="28px">
                       {amount}
                     </Text>
-                  </Flex>
+                  </HStack>
                 )}
               </>
             )}
