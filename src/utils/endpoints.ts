@@ -27,5 +27,15 @@ export const auth = {
 export const app = {
   customer: {
     wallet: `${BASE_URL}/customer/my-wallet`,
+    bvnVerification: `${BASE_URL}/customer/kyc/bvn-verification`,
+    ninVerification: `${BASE_URL}/customer/kyc/nin-verification`,
+    expectedReturns: `${BASE_URL}/customer/dashboard/expectedReturns`,
+    remainingContributions: `${BASE_URL}/customer/dashboard/remainingContributions`,
+    constributionSummary: `${BASE_URL}/customer/dashboard/contributionSummary`,
+    bankDetails: `${BASE_URL}/customer/add-bankDetails`,
+    updateBankDetails: `${BASE_URL}/customer/update-bankDetails`,
+    deleteBankDetails: `${BASE_URL}/customer/delete-bankDetails`,
+    yourBanks: `${BASE_URL}/customer/all-my-bankDetails`,
+    changePassword: `${BASE_URL}/customer/change-password`
   },
 } as const;

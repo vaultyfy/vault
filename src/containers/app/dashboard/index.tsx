@@ -39,7 +39,7 @@ export const Dashboard = () => {
     onClose();
   };
 
-  const { walletBalance, lastUpdated, isLoading } = useWallet();
+  const { walletBalance, lastUpdated, isLoading, expectedReturns } = useWallet();
 
   return (
     <>
@@ -71,7 +71,7 @@ export const Dashboard = () => {
           <OverviewCard
             cardIcon="piggy-bank"
             cardTitle="Total expected return"
-            amount="5M"
+            amount={expectedReturns}
             hasFilter={true}
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
