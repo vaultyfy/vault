@@ -6,13 +6,13 @@ import { useCurrentPath } from "@hooks/current-path";
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import { cookieOptions, TOKEN_KEY } from "@utils/constants";
 import { useToastContext } from "@hooks/context";
-import { FileRouteTypes } from "src/routeTree.gen";
+import { FileRouteTypes } from "@tanstack/react-router";
 
 export interface AuthProviderProps {
   children: React.ReactNode;
 }
 
-export interface UserAccessInfo extends LoginResponse {}
+export interface UserAccessInfo extends Pick<LoginResponse, "token"> {}
 
 export type AuthContextValues = {
   isAuthenticated: boolean;
@@ -28,6 +28,7 @@ type Actions =
 
 const createAuthContext = () =>
   React.createContext<AuthContextValues | null>(null);
+
 export const AuthContext = createAuthContext();
 
 const initialState: AuthContextValues = {
@@ -49,10 +50,8 @@ const authReducer = (
       };
     case "SET_ACCESS":
       return { ...state, accessInfo: action.payload };
-
     case "LOGOUT":
       return initialState;
-
     default:
       return state;
   }
@@ -69,36 +68,42 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       navigate({ to: "/", from: pathname as FileRouteTypes["fullPaths"] });
       openToast("Logout successful!", "success");
     }
-
     deleteCookie(TOKEN_KEY, { ...cookieOptions });
     dispatch({ type: "LOGOUT" });
   };
 
   React.useEffect(() => {
     const obtainUserProfile = async () => {
-      if (hasCookie(TOKEN_KEY)) {
-        const userCookie = getCookie(TOKEN_KEY);
-        if (!userCookie) return;
+      if (!hasCookie(TOKEN_KEY)) return;
 
-        const userAccessInfo: UserAccessInfo = JSON.parse(userCookie as string);
-        dispatch({ type: "SET_ACCESS", payload: userAccessInfo });
+      const userCookie = getCookie(TOKEN_KEY, { ...cookieOptions });
+      if (!userCookie) return;
 
-        try {
-          const data = await getUser();
-          dispatch({
-            type: "SET_USER",
-            payload: data?.payload as User | undefined,
-          });
-        } catch (error) {
-          console.error(error);
-          openToast("Failed to fetch", "error");
-        }
+      dispatch({
+        type: "SET_ACCESS",
+        payload: {
+          token: {
+            token: String(userCookie),
+          },
+        },
+      });
+
+      try {
+        const data = await getUser();
+        dispatch({
+          type: "SET_USER",
+          payload: data?.payload as User | undefined,
+        });
+      } catch (error) {
+        console.error(error);
+        openToast("Failed to fetch", "error");
       }
     };
 
-    obtainUserProfile();
+    if (!state.user && hasCookie(TOKEN_KEY)) {
+      obtainUserProfile();
+    }
   }, []);
-
   const values: AuthContextValues = {
     user: state.user,
     accessInfo: state.accessInfo,

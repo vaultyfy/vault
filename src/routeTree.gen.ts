@@ -15,18 +15,27 @@ import { Route as HelpSupportImport } from './routes/help-support'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
+import { Route as ConsoleIndexImport } from './routes/console/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardCreateGroupImport } from './routes/dashboard/create-group'
+import { Route as ConsoleUsersImport } from './routes/console/users'
+import { Route as ConsoleRulesImport } from './routes/console/rules'
 import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
 import { Route as DashboardGroupsIndexImport } from './routes/dashboard/groups/index'
 import { Route as DashboardExploreIndexImport } from './routes/dashboard/explore/index'
+import { Route as ConsolePaymentMonitoringIndexImport } from './routes/console/payment-monitoring/index'
+import { Route as ConsoleLoanMgmtIndexImport } from './routes/console/loan-mgmt/index'
+import { Route as ConsoleGroupMgmtIndexImport } from './routes/console/group-mgmt/index'
 import { Route as DashboardGroupsMyGroupImport } from './routes/dashboard/groups/$my-group'
 import { Route as DashboardExploreGroupsImport } from './routes/dashboard/explore/$groups'
+import { Route as ConsolePaymentMonitoringPaymentDetailsImport } from './routes/console/payment-monitoring/payment-details'
+import { Route as ConsoleLoanMgmtLoanDetailsImport } from './routes/console/loan-mgmt/loan-details'
+import { Route as ConsoleGroupMgmtGroupDetailsImport } from './routes/console/group-mgmt/group-details'
 
 // Create/Update Routes
 
@@ -54,6 +63,12 @@ const DashboardIndexRoute = DashboardIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ConsoleIndexRoute = ConsoleIndexImport.update({
+  id: '/console/',
+  path: '/console/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AuthIndexRoute = AuthIndexImport.update({
   id: '/auth/',
   path: '/auth/',
@@ -75,6 +90,18 @@ const DashboardPaymentsRoute = DashboardPaymentsImport.update({
 const DashboardCreateGroupRoute = DashboardCreateGroupImport.update({
   id: '/dashboard/create-group',
   path: '/dashboard/create-group',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ConsoleUsersRoute = ConsoleUsersImport.update({
+  id: '/console/users',
+  path: '/console/users',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ConsoleRulesRoute = ConsoleRulesImport.update({
+  id: '/console/rules',
+  path: '/console/rules',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -114,6 +141,25 @@ const DashboardExploreIndexRoute = DashboardExploreIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ConsolePaymentMonitoringIndexRoute =
+  ConsolePaymentMonitoringIndexImport.update({
+    id: '/console/payment-monitoring/',
+    path: '/console/payment-monitoring/',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const ConsoleLoanMgmtIndexRoute = ConsoleLoanMgmtIndexImport.update({
+  id: '/console/loan-mgmt/',
+  path: '/console/loan-mgmt/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ConsoleGroupMgmtIndexRoute = ConsoleGroupMgmtIndexImport.update({
+  id: '/console/group-mgmt/',
+  path: '/console/group-mgmt/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DashboardGroupsMyGroupRoute = DashboardGroupsMyGroupImport.update({
   id: '/dashboard/groups/$my-group',
   path: '/dashboard/groups/$my-group',
@@ -125,6 +171,28 @@ const DashboardExploreGroupsRoute = DashboardExploreGroupsImport.update({
   path: '/dashboard/explore/$groups',
   getParentRoute: () => rootRoute,
 } as any)
+
+const ConsolePaymentMonitoringPaymentDetailsRoute =
+  ConsolePaymentMonitoringPaymentDetailsImport.update({
+    id: '/console/payment-monitoring/payment-details',
+    path: '/console/payment-monitoring/payment-details',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const ConsoleLoanMgmtLoanDetailsRoute = ConsoleLoanMgmtLoanDetailsImport.update(
+  {
+    id: '/console/loan-mgmt/loan-details',
+    path: '/console/loan-mgmt/loan-details',
+    getParentRoute: () => rootRoute,
+  } as any,
+)
+
+const ConsoleGroupMgmtGroupDetailsRoute =
+  ConsoleGroupMgmtGroupDetailsImport.update({
+    id: '/console/group-mgmt/group-details',
+    path: '/console/group-mgmt/group-details',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -179,6 +247,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupImport
       parentRoute: typeof rootRoute
     }
+    '/console/rules': {
+      id: '/console/rules'
+      path: '/console/rules'
+      fullPath: '/console/rules'
+      preLoaderRoute: typeof ConsoleRulesImport
+      parentRoute: typeof rootRoute
+    }
+    '/console/users': {
+      id: '/console/users'
+      path: '/console/users'
+      fullPath: '/console/users'
+      preLoaderRoute: typeof ConsoleUsersImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/create-group': {
       id: '/dashboard/create-group'
       path: '/dashboard/create-group'
@@ -207,11 +289,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthIndexImport
       parentRoute: typeof rootRoute
     }
+    '/console/': {
+      id: '/console/'
+      path: '/console'
+      fullPath: '/console'
+      preLoaderRoute: typeof ConsoleIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/': {
       id: '/dashboard/'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/console/group-mgmt/group-details': {
+      id: '/console/group-mgmt/group-details'
+      path: '/console/group-mgmt/group-details'
+      fullPath: '/console/group-mgmt/group-details'
+      preLoaderRoute: typeof ConsoleGroupMgmtGroupDetailsImport
+      parentRoute: typeof rootRoute
+    }
+    '/console/loan-mgmt/loan-details': {
+      id: '/console/loan-mgmt/loan-details'
+      path: '/console/loan-mgmt/loan-details'
+      fullPath: '/console/loan-mgmt/loan-details'
+      preLoaderRoute: typeof ConsoleLoanMgmtLoanDetailsImport
+      parentRoute: typeof rootRoute
+    }
+    '/console/payment-monitoring/payment-details': {
+      id: '/console/payment-monitoring/payment-details'
+      path: '/console/payment-monitoring/payment-details'
+      fullPath: '/console/payment-monitoring/payment-details'
+      preLoaderRoute: typeof ConsolePaymentMonitoringPaymentDetailsImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/explore/$groups': {
@@ -226,6 +336,27 @@ declare module '@tanstack/react-router' {
       path: '/dashboard/groups/$my-group'
       fullPath: '/dashboard/groups/$my-group'
       preLoaderRoute: typeof DashboardGroupsMyGroupImport
+      parentRoute: typeof rootRoute
+    }
+    '/console/group-mgmt/': {
+      id: '/console/group-mgmt/'
+      path: '/console/group-mgmt'
+      fullPath: '/console/group-mgmt'
+      preLoaderRoute: typeof ConsoleGroupMgmtIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/console/loan-mgmt/': {
+      id: '/console/loan-mgmt/'
+      path: '/console/loan-mgmt'
+      fullPath: '/console/loan-mgmt'
+      preLoaderRoute: typeof ConsoleLoanMgmtIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/console/payment-monitoring/': {
+      id: '/console/payment-monitoring/'
+      path: '/console/payment-monitoring'
+      fullPath: '/console/payment-monitoring'
+      preLoaderRoute: typeof ConsolePaymentMonitoringIndexImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/explore/': {
@@ -255,13 +386,22 @@ export interface FileRoutesByFullPath {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/console/rules': typeof ConsoleRulesRoute
+  '/console/users': typeof ConsoleUsersRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/auth': typeof AuthIndexRoute
+  '/console': typeof ConsoleIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/console/group-mgmt/group-details': typeof ConsoleGroupMgmtGroupDetailsRoute
+  '/console/loan-mgmt/loan-details': typeof ConsoleLoanMgmtLoanDetailsRoute
+  '/console/payment-monitoring/payment-details': typeof ConsolePaymentMonitoringPaymentDetailsRoute
   '/dashboard/explore/$groups': typeof DashboardExploreGroupsRoute
   '/dashboard/groups/$my-group': typeof DashboardGroupsMyGroupRoute
+  '/console/group-mgmt': typeof ConsoleGroupMgmtIndexRoute
+  '/console/loan-mgmt': typeof ConsoleLoanMgmtIndexRoute
+  '/console/payment-monitoring': typeof ConsolePaymentMonitoringIndexRoute
   '/dashboard/explore': typeof DashboardExploreIndexRoute
   '/dashboard/groups': typeof DashboardGroupsIndexRoute
 }
@@ -274,13 +414,22 @@ export interface FileRoutesByTo {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/console/rules': typeof ConsoleRulesRoute
+  '/console/users': typeof ConsoleUsersRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/auth': typeof AuthIndexRoute
+  '/console': typeof ConsoleIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/console/group-mgmt/group-details': typeof ConsoleGroupMgmtGroupDetailsRoute
+  '/console/loan-mgmt/loan-details': typeof ConsoleLoanMgmtLoanDetailsRoute
+  '/console/payment-monitoring/payment-details': typeof ConsolePaymentMonitoringPaymentDetailsRoute
   '/dashboard/explore/$groups': typeof DashboardExploreGroupsRoute
   '/dashboard/groups/$my-group': typeof DashboardGroupsMyGroupRoute
+  '/console/group-mgmt': typeof ConsoleGroupMgmtIndexRoute
+  '/console/loan-mgmt': typeof ConsoleLoanMgmtIndexRoute
+  '/console/payment-monitoring': typeof ConsolePaymentMonitoringIndexRoute
   '/dashboard/explore': typeof DashboardExploreIndexRoute
   '/dashboard/groups': typeof DashboardGroupsIndexRoute
 }
@@ -294,13 +443,22 @@ export interface FileRoutesById {
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
+  '/console/rules': typeof ConsoleRulesRoute
+  '/console/users': typeof ConsoleUsersRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/auth/': typeof AuthIndexRoute
+  '/console/': typeof ConsoleIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/console/group-mgmt/group-details': typeof ConsoleGroupMgmtGroupDetailsRoute
+  '/console/loan-mgmt/loan-details': typeof ConsoleLoanMgmtLoanDetailsRoute
+  '/console/payment-monitoring/payment-details': typeof ConsolePaymentMonitoringPaymentDetailsRoute
   '/dashboard/explore/$groups': typeof DashboardExploreGroupsRoute
   '/dashboard/groups/$my-group': typeof DashboardGroupsMyGroupRoute
+  '/console/group-mgmt/': typeof ConsoleGroupMgmtIndexRoute
+  '/console/loan-mgmt/': typeof ConsoleLoanMgmtIndexRoute
+  '/console/payment-monitoring/': typeof ConsolePaymentMonitoringIndexRoute
   '/dashboard/explore/': typeof DashboardExploreIndexRoute
   '/dashboard/groups/': typeof DashboardGroupsIndexRoute
 }
@@ -315,13 +473,22 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
+    | '/console/rules'
+    | '/console/users'
     | '/dashboard/create-group'
     | '/dashboard/payments'
     | '/dashboard/settings'
     | '/auth'
+    | '/console'
     | '/dashboard'
+    | '/console/group-mgmt/group-details'
+    | '/console/loan-mgmt/loan-details'
+    | '/console/payment-monitoring/payment-details'
     | '/dashboard/explore/$groups'
     | '/dashboard/groups/$my-group'
+    | '/console/group-mgmt'
+    | '/console/loan-mgmt'
+    | '/console/payment-monitoring'
     | '/dashboard/explore'
     | '/dashboard/groups'
   fileRoutesByTo: FileRoutesByTo
@@ -333,13 +500,22 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
+    | '/console/rules'
+    | '/console/users'
     | '/dashboard/create-group'
     | '/dashboard/payments'
     | '/dashboard/settings'
     | '/auth'
+    | '/console'
     | '/dashboard'
+    | '/console/group-mgmt/group-details'
+    | '/console/loan-mgmt/loan-details'
+    | '/console/payment-monitoring/payment-details'
     | '/dashboard/explore/$groups'
     | '/dashboard/groups/$my-group'
+    | '/console/group-mgmt'
+    | '/console/loan-mgmt'
+    | '/console/payment-monitoring'
     | '/dashboard/explore'
     | '/dashboard/groups'
   id:
@@ -351,13 +527,22 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
+    | '/console/rules'
+    | '/console/users'
     | '/dashboard/create-group'
     | '/dashboard/payments'
     | '/dashboard/settings'
     | '/auth/'
+    | '/console/'
     | '/dashboard/'
+    | '/console/group-mgmt/group-details'
+    | '/console/loan-mgmt/loan-details'
+    | '/console/payment-monitoring/payment-details'
     | '/dashboard/explore/$groups'
     | '/dashboard/groups/$my-group'
+    | '/console/group-mgmt/'
+    | '/console/loan-mgmt/'
+    | '/console/payment-monitoring/'
     | '/dashboard/explore/'
     | '/dashboard/groups/'
   fileRoutesById: FileRoutesById
@@ -371,13 +556,22 @@ export interface RootRouteChildren {
   AuthLoginRoute: typeof AuthLoginRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSignupRoute: typeof AuthSignupRoute
+  ConsoleRulesRoute: typeof ConsoleRulesRoute
+  ConsoleUsersRoute: typeof ConsoleUsersRoute
   DashboardCreateGroupRoute: typeof DashboardCreateGroupRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   AuthIndexRoute: typeof AuthIndexRoute
+  ConsoleIndexRoute: typeof ConsoleIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  ConsoleGroupMgmtGroupDetailsRoute: typeof ConsoleGroupMgmtGroupDetailsRoute
+  ConsoleLoanMgmtLoanDetailsRoute: typeof ConsoleLoanMgmtLoanDetailsRoute
+  ConsolePaymentMonitoringPaymentDetailsRoute: typeof ConsolePaymentMonitoringPaymentDetailsRoute
   DashboardExploreGroupsRoute: typeof DashboardExploreGroupsRoute
   DashboardGroupsMyGroupRoute: typeof DashboardGroupsMyGroupRoute
+  ConsoleGroupMgmtIndexRoute: typeof ConsoleGroupMgmtIndexRoute
+  ConsoleLoanMgmtIndexRoute: typeof ConsoleLoanMgmtIndexRoute
+  ConsolePaymentMonitoringIndexRoute: typeof ConsolePaymentMonitoringIndexRoute
   DashboardExploreIndexRoute: typeof DashboardExploreIndexRoute
   DashboardGroupsIndexRoute: typeof DashboardGroupsIndexRoute
 }
@@ -390,13 +584,23 @@ const rootRouteChildren: RootRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignupRoute: AuthSignupRoute,
+  ConsoleRulesRoute: ConsoleRulesRoute,
+  ConsoleUsersRoute: ConsoleUsersRoute,
   DashboardCreateGroupRoute: DashboardCreateGroupRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
   AuthIndexRoute: AuthIndexRoute,
+  ConsoleIndexRoute: ConsoleIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  ConsoleGroupMgmtGroupDetailsRoute: ConsoleGroupMgmtGroupDetailsRoute,
+  ConsoleLoanMgmtLoanDetailsRoute: ConsoleLoanMgmtLoanDetailsRoute,
+  ConsolePaymentMonitoringPaymentDetailsRoute:
+    ConsolePaymentMonitoringPaymentDetailsRoute,
   DashboardExploreGroupsRoute: DashboardExploreGroupsRoute,
   DashboardGroupsMyGroupRoute: DashboardGroupsMyGroupRoute,
+  ConsoleGroupMgmtIndexRoute: ConsoleGroupMgmtIndexRoute,
+  ConsoleLoanMgmtIndexRoute: ConsoleLoanMgmtIndexRoute,
+  ConsolePaymentMonitoringIndexRoute: ConsolePaymentMonitoringIndexRoute,
   DashboardExploreIndexRoute: DashboardExploreIndexRoute,
   DashboardGroupsIndexRoute: DashboardGroupsIndexRoute,
 }
@@ -418,13 +622,22 @@ export const routeTree = rootRoute
         "/auth/login",
         "/auth/reset-password",
         "/auth/signup",
+        "/console/rules",
+        "/console/users",
         "/dashboard/create-group",
         "/dashboard/payments",
         "/dashboard/settings",
         "/auth/",
+        "/console/",
         "/dashboard/",
+        "/console/group-mgmt/group-details",
+        "/console/loan-mgmt/loan-details",
+        "/console/payment-monitoring/payment-details",
         "/dashboard/explore/$groups",
         "/dashboard/groups/$my-group",
+        "/console/group-mgmt/",
+        "/console/loan-mgmt/",
+        "/console/payment-monitoring/",
         "/dashboard/explore/",
         "/dashboard/groups/"
       ]
@@ -450,6 +663,12 @@ export const routeTree = rootRoute
     "/auth/signup": {
       "filePath": "auth/signup.tsx"
     },
+    "/console/rules": {
+      "filePath": "console/rules.tsx"
+    },
+    "/console/users": {
+      "filePath": "console/users.tsx"
+    },
     "/dashboard/create-group": {
       "filePath": "dashboard/create-group.tsx"
     },
@@ -462,14 +681,35 @@ export const routeTree = rootRoute
     "/auth/": {
       "filePath": "auth/index.tsx"
     },
+    "/console/": {
+      "filePath": "console/index.tsx"
+    },
     "/dashboard/": {
       "filePath": "dashboard/index.tsx"
+    },
+    "/console/group-mgmt/group-details": {
+      "filePath": "console/group-mgmt/group-details.tsx"
+    },
+    "/console/loan-mgmt/loan-details": {
+      "filePath": "console/loan-mgmt/loan-details.tsx"
+    },
+    "/console/payment-monitoring/payment-details": {
+      "filePath": "console/payment-monitoring/payment-details.tsx"
     },
     "/dashboard/explore/$groups": {
       "filePath": "dashboard/explore/$groups.tsx"
     },
     "/dashboard/groups/$my-group": {
       "filePath": "dashboard/groups/$my-group.tsx"
+    },
+    "/console/group-mgmt/": {
+      "filePath": "console/group-mgmt/index.tsx"
+    },
+    "/console/loan-mgmt/": {
+      "filePath": "console/loan-mgmt/index.tsx"
+    },
+    "/console/payment-monitoring/": {
+      "filePath": "console/payment-monitoring/index.tsx"
     },
     "/dashboard/explore/": {
       "filePath": "dashboard/explore/index.tsx"
