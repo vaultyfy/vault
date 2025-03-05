@@ -7,7 +7,7 @@ export const Route = createFileRoute("/console/rules")({
 
 function RouteComponent() {
   return (
-    <AppLayout>
+    <AppLayout routeTitle="">
       <div>Hello "/console/rules"!</div>
     </AppLayout>
   );

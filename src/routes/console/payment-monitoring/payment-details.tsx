@@ -10,7 +10,7 @@ export const Route = createFileRoute(
 
 function RouteComponent() {
   return (
-    <AppLayout>
+    <AppLayout routeTitle="">
       <PaymentDetails />
     </AppLayout>
   );

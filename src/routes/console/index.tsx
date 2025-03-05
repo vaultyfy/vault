@@ -8,7 +8,7 @@ export const Route = createFileRoute("/console/")({
 
 function RouteComponent() {
   return (
-    <AppLayout>
+    <AppLayout routeTitle="">
       <AdminOverView />
     </AppLayout>
   );

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/console/loan-mgmt/")({
 
 function RouteComponent() {
   return (
-    <AppLayout>
+    <AppLayout routeTitle="">
       <LoanManagement />
     </AppLayout>
   );

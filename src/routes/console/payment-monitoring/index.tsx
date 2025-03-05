@@ -8,7 +8,7 @@ export const Route = createFileRoute("/console/payment-monitoring/")({
 
 function RouteComponent() {
   return (
-    <AppLayout>
+    <AppLayout routeTitle="">
       <PaymentMonitoring />
     </AppLayout>
   );
