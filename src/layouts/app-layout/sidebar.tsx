@@ -138,7 +138,7 @@ export const Sidebar = () => {
             <GradientIcon
               weight="fill"
               startColor="#2C9BF0"
-              endColor="#1CCFBD"
+              endColor="var(--button-secondary)"
               IconComponent={SealCheck}
               size="18"
             />

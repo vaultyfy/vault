@@ -17,6 +17,34 @@ export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
 
+export type Bank = {
+  logo: string;
+  name: string;
+  slug: string;
+  code: string;
+};
+
+export type BankInfo = {
+  bankName: string;
+  accountNumber: string;
+  accountName: string;
+};
+
+export type UserBankAccount = BankInfo & {
+  id: number;
+  bankID: string;
+  createdAT: string;
+  updatedAT: string | null;
+  owner: User;
+};
+
+export type UserBanks = {
+  currentPage: number;
+  pageSize: number;
+  total: number;
+  data: UserBankAccount[];
+};
+
 export type Wallet = {
   id: number;
   walletAddrress: string;

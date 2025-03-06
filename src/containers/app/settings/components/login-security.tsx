@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import {
   Box,
@@ -22,13 +22,13 @@ interface PasswordFields
 }
 
 export const LoginSecurityCard = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editMode, setEditMode] = useState<Record<string, boolean>>({
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [editMode, setEditMode] = React.useState<Record<string, boolean>>({
     oldPassword: false,
     newPassword: false,
     confirmPassword: false,
   });
-  const [showPasswords, setShowPasswords] = useState<Record<string, boolean>>({
+  const [showPasswords, setShowPasswords] = React.useState<Record<string, boolean>>({
     oldPassword: false,
     newPassword: false,
     confirmPassword: false,
@@ -82,7 +82,7 @@ export const LoginSecurityCard = () => {
       >
         {Object.keys(formik.values).map((field) => (
           <Box key={field} py={4}>
-            <Text fontSize="14px" fontWeight="400" color="#818181">
+            <Text fontSize="14px" fontWeight="400" color="var(--grey)">
               {field === "oldPassword"
                 ? "Old password"
                 : field === "newPassword"
@@ -134,7 +134,6 @@ export const LoginSecurityCard = () => {
               <Button
                 variant="link"
                 size="sm"
-                color="#1CCFBD"
                 fontWeight="400"
                 bgGradient="var(--main-gradient)"
                 bgClip="text"

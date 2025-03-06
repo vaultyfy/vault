@@ -5,6 +5,8 @@ export const HEADER_API_KEY = {
   "X-API-Key": import.meta.env.VITE_API_KEY!,
 };
 
+export const BANKS_LIST = "https://nigerianbanks.xyz/";
+
 export const cookieOptions = {
   path: "/",
   maxAge: 30 * 24 * 60 * 60,

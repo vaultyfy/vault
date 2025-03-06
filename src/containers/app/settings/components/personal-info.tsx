@@ -61,7 +61,7 @@ export const PersonalInfo = () => {
             >
               <Flex align="center">
                 <Box>
-                  <Text fontSize="14px" fontWeight="400" color="#818181">
+                  <Text fontSize="14px" fontWeight="400" color="var(--grey)">
                     {item.label}
                   </Text>
 
