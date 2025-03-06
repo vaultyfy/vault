@@ -12,11 +12,16 @@ import {
   Text,
   Button,
   Image,
+  Badge,
+  Input,
+  Tabs,
+  TabList,
+  Tab,
 } from "@chakra-ui/react";
 import React from "react";
-import { PageHeader } from "../page-header";
 import { PROFILE_IMG } from "../overview/activities-table";
-import { useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import { Icon } from "@components/icon";
 
 const HEADING = [
   "Applicants",
@@ -29,10 +34,14 @@ const HEADING = [
 ];
 
 export const LoanManagement = () => {
-  const navigate = useNavigate();
-  const handleCLick = () => {
-    navigate({ to: "/console/group-mgmt/group-details" });
-  };
+  const TAB_LISTS = [
+    "All loans",
+    "Approved loans",
+    "Declined approval",
+    "Defaulters",
+    "Defaulters",
+    "Suspended accounts",
+  ];
 
   return (
     <VStack
@@ -41,10 +50,61 @@ export const LoanManagement = () => {
       alignItems={"flex-start"}
       justifyContent={"flex-start"}
     >
-      <PageHeader title="Loan Managment" />
+      <HStack
+        width={"100%"}
+        height={"44px"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Tabs
+          columnGap={"16px"}
+          width={"100%"}
+          height="41px"
+          variant="soft-rounded"
+          colorScheme="gray"
+          display={{ base: "none", md: "flex" }}
+        >
+          <TabList py="10px" rounded="3xl" cursor="pointer" height={"100%"}>
+            {TAB_LISTS.map((tab, idx) => (
+              <Tab
+                height="41px"
+                padding="10px 20px"
+                borderRadius={"30px"}
+                fontSize={"14px"}
+                fontWeight={"semibold"}
+                lineHeight={"21px"}
+                color={"#04040499"}
+                key={idx}
+              >
+                {tab}
+              </Tab>
+            ))}
+          </TabList>
+        </Tabs>
+        <HStack
+          width={"27%"}
+          border="0.5px solid #8181816B"
+          borderRadius={"31px"}
+          padding="10px 21px"
+          height="44px"
+        >
+          <Input
+            outline={"none"}
+            border="none"
+            _focusVisible={{
+              outline: "none",
+              border: "none",
+            }}
+            placeholder="Search"
+          />
+          <Text>
+            <Icon name={"search-normal"} />
+          </Text>
+        </HStack>
+      </HStack>
       <Box
         width={"100%"}
-        height={"60vh"}
+        height={"70vh"}
         boxShadow={"md"}
         borderRadius={"10px"}
         padding="16px 18px"
@@ -70,50 +130,10 @@ export const LoanManagement = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {Array.from({ length: 7 }).map((_, index) => (
+              {Array.from({ length: 10 }).map((_, index) => (
                 <Tr key={index} position={"relative"}>
                   <Td
-                    width={"1/8"}
-                    height="100%"
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                  >
-                    <HStack width={"114px"} alignItems={"center"}>
-                      {PROFILE_IMG.map((img, index: React.Key) => (
-                        <Box
-                          key={index}
-                          sx={{
-                            "&:nth-of-type(2)": {
-                              marginLeft: "-25px",
-                              zIndex: 50,
-                              padding: "2px",
-                            },
-                            "&:nth-of-type(3)": {
-                              marginLeft: "-25px",
-                              zIndex: 60,
-                              padding: "2.5px",
-                            },
-                          }}
-                          width={"50px"}
-                          height={"50px"}
-                          borderRadius={"full"}
-                          bgGradient="var(--main-gradient)"
-                          padding="1.5px"
-                        >
-                          <Image
-                            src={img}
-                            width={"100%"}
-                            height="100%"
-                            objectPosition={"center"}
-                            objectFit="cover"
-                            borderRadius={"90%"}
-                          />
-                        </Box>
-                      ))}
-                    </HStack>
-                  </Td>
-                  <Td
-                    width={"1/8"}
+                    width={"1/7"}
                     height="100%"
                     alignItems={"center"}
                     justifyContent={"center"}
@@ -125,11 +145,11 @@ export const LoanManagement = () => {
                       lineHeight={"19px"}
                       textDecoration={"underline"}
                     >
-                      Unity savers
+                      Alishomo daniel
                     </Text>
                   </Td>
                   <Td
-                    width={"1/8"}
+                    width={"1/7"}
                     height="100%"
                     alignItems={"center"}
                     justifyContent={"center"}
@@ -140,11 +160,11 @@ export const LoanManagement = () => {
                       fontWeight={"normal"}
                       lineHeight={"19px"}
                     >
-                      Alishomo daniel
+                      N500,000
                     </Text>
                   </Td>
                   <Td
-                    width={"1/8"}
+                    width={"1/7"}
                     height="100%"
                     alignItems={"center"}
                     justifyContent={"center"}
@@ -159,7 +179,7 @@ export const LoanManagement = () => {
                     </Text>
                   </Td>
                   <Td
-                    width={"1/8"}
+                    width={"1/7"}
                     height="100%"
                     alignItems={"center"}
                     justifyContent={"center"}
@@ -170,26 +190,11 @@ export const LoanManagement = () => {
                       fontWeight={"normal"}
                       lineHeight={"19px"}
                     >
-                      7/10
+                      080320304
                     </Text>
                   </Td>
                   <Td
-                    width={"1/8"}
-                    height="100%"
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                    textAlign={"center"}
-                  >
-                    <Text
-                      fontSize={"16px"}
-                      fontWeight={"normal"}
-                      lineHeight={"19px"}
-                    >
-                      ₦2,000,000
-                    </Text>
-                  </Td>
-                  <Td
-                    width={"1/8"}
+                    width={"1/7"}
                     height="100%"
                     alignItems={"center"}
                     justifyContent={"center"}
@@ -201,8 +206,7 @@ export const LoanManagement = () => {
                       alignItems={"center"}
                       marginX={"auto"}
                     >
-                      <Button
-                        width="full"
+                      <Badge
                         height="33px"
                         padding="6px 48px"
                         borderRadius={"30px"}
@@ -215,12 +219,12 @@ export const LoanManagement = () => {
                           background: "var(--pay-green-bg)",
                         }}
                       >
-                        Active
-                      </Button>
+                        Approved
+                      </Badge>
                     </Box>
                   </Td>
                   <Td
-                    width={"1/8"}
+                    width={"1/7"}
                     height="100%"
                     alignItems={"center"}
                     justifyContent={"center"}
@@ -232,24 +236,55 @@ export const LoanManagement = () => {
                       alignItems={"center"}
                       marginX={"auto"}
                     >
-                      <Button
-                        width="89px"
+                      <Badge
                         height="33px"
                         padding="6px 48px"
                         borderRadius={"30px"}
                         fontSize={"14px"}
                         fontWeight={"normal"}
-                        border="0.5px solid #8181816B"
                         lineHeight={"21px"}
-                        color="var(--grey)"
-                        background={"white"}
-                        onClick={handleCLick}
+                        color="var(--pay-green)"
+                        background={"var(--pay-green-bg)"}
                         _hover={{
-                          background: "white",
+                          background: "var(--pay-green-bg)",
                         }}
                       >
-                        View
-                      </Button>{" "}
+                        Paid
+                      </Badge>
+                    </Box>
+                  </Td>
+                  <Td
+                    width={"1/7"}
+                    height="100%"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                  >
+                    <Box
+                      width={"101px"}
+                      display="flex"
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                      marginX={"auto"}
+                    >
+                      <Link to="/console/loan-mgmt/loan-details">
+                        <Button
+                          width="89px"
+                          height="33px"
+                          padding="6px 48px"
+                          borderRadius={"30px"}
+                          fontSize={"14px"}
+                          fontWeight={"normal"}
+                          border="0.5px solid #8181816B"
+                          lineHeight={"21px"}
+                          color="var(--grey)"
+                          background={"white"}
+                          _hover={{
+                            background: "white",
+                          }}
+                        >
+                          View
+                        </Button>{" "}
+                      </Link>
                     </Box>
                   </Td>
                 </Tr>

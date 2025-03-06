@@ -76,7 +76,7 @@ export const Sidebar = () => {
       path: "/console/payment-monitoring",
     },
     {
-      iconBaseName: "search",
+      iconBaseName: "money-send",
       name: "Loan Mgmt",
       path: "/console/loan-mgmt",
     },

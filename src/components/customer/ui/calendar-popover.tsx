@@ -17,8 +17,10 @@ import {
 import { CaretRight, CaretLeft } from "@phosphor-icons/react";
 import { Calendar } from "./calendar";
 import { Icon } from "@components/icon";
+import { useConsolePath } from "@hooks/current-path";
 
 export const CalendarPopover = () => {
+  const adminPathname = useConsolePath();
   return (
     <Popover placement="bottom-start">
       <PopoverTrigger>
@@ -26,7 +28,7 @@ export const CalendarPopover = () => {
           background="var(--btn-secondary-7)"
           boxSize={"50px"}
           rounded="full"
-          display="flex"
+          display={adminPathname ? "none" : "flex"}
           justifyContent="center"
           alignItems="center"
           _hover={{

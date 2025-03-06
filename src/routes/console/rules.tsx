@@ -1,5 +1,6 @@
 import { AppLayout } from "@layouts/app-layout";
 import { createFileRoute } from "@tanstack/react-router";
+import { Text } from "@chakra-ui/react";
 
 export const Route = createFileRoute("/console/rules")({
   component: RouteComponent,
@@ -7,8 +8,8 @@ export const Route = createFileRoute("/console/rules")({
 
 function RouteComponent() {
   return (
-    <AppLayout routeTitle="">
-      <div>Hello "/console/rules"!</div>
+    <AppLayout routeTitle="Rules and enforments">
+      <Text>Rules</Text>
     </AppLayout>
   );
 }

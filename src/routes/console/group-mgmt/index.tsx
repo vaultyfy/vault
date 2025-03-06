@@ -8,7 +8,7 @@ export const Route = createFileRoute("/console/group-mgmt/")({
 
 function RouteComponent() {
   return (
-    <AppLayout routeTitle="">
+    <AppLayout routeTitle="Thrift Group Management">
       <ThriftGroupManagement />
     </AppLayout>
   );
