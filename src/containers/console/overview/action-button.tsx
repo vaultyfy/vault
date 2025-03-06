@@ -1,5 +1,6 @@
 import { Button, VStack, Box, HStack, Text } from "@chakra-ui/react";
-import { Link, useLocation } from "@tanstack/react-router";
+import { useCurrentPath } from "@hooks/current-path";
+import { Link } from "@tanstack/react-router";
 import { ChevronDown } from "lucide-react";
 
 export const ActionButton = ({
@@ -9,7 +10,7 @@ export const ActionButton = ({
   isOpen: boolean;
   onClick: () => void;
 }) => {
-  const pathName = useLocation();
+  const pathname = useCurrentPath();
 
   return (
     <Box width={"100%"}>
@@ -37,7 +38,7 @@ export const ActionButton = ({
         </Text>
       </Button>
       {isOpen &&
-        (pathName.pathname.includes("users") ? (
+        (pathname.includes("users") ? (
           <VStack
             width="172px"
             height="180px"

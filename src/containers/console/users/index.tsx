@@ -31,20 +31,20 @@ const HEADING = [
   "Action",
 ];
 
+const TAB_LISTS = [
+  "All users",
+  "Pending",
+  "Active",
+  "Defaulters",
+  "Suspended accounts",
+];
+
 export const Users = () => {
   const [openItem, setOpenItem] = useState<number | null>(null);
 
   const handleToggle = (id: number) => {
     setOpenItem((prev: number | null) => (prev === id ? null : id));
   };
-
-  const TAB_LISTS = [
-    "All users",
-    "Pending",
-    "Active",
-    "Defaulters",
-    "Suspended accounts",
-  ];
 
   return (
     <VStack

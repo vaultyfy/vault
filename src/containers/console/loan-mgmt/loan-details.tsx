@@ -21,14 +21,14 @@ import { Link } from "@tanstack/react-router";
 import { LoanDetailsSummary } from "./loan-details-summay";
 import { AdjustLoanModal } from "@layouts/modal-layout/adjust-loan";
 
+const HEADING = [
+  "Repaid loans",
+  "Amount",
+  "Date  Completed",
+  "Duration",
+  "Missed payments",
+];
 export const LoanDetails = () => {
-  const HEADING = [
-    "Repaid loans",
-    "Amount",
-    "Date  Completed",
-    "Duration",
-    "Missed payments",
-  ];
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
