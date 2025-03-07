@@ -8,56 +8,32 @@ import {
   Image,
   Input,
   Spinner,
+  Stack,
+  HStack,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { SelectField } from "@components/form";
-import { Icon } from "@components/icon";
 import { useToastContext } from "@hooks/context";
-import { useBanks, useMyBanks } from "@hooks/swr";
-import { addBank, deleteBank } from "@mutations/banks";
+import { useMyBanks } from "@hooks/swr";
+import { AccountInfoModal } from "@layouts/modal-layout/account-info";
+import { deleteBank } from "@mutations/banks";
 import { State } from "@utils/constants";
-import { BankInfo, UserBankAccount } from "@utils/types";
-import { Form, Formik, useFormik } from "formik";
-import { PlusCircle } from "lucide-react";
-import React, { useState } from "react";
-
-interface PaymentData {
-  id: number;
-  accountName: string;
-  accountNumber: string;
-  bankName: string;
-}
+import { UserBankAccount } from "@utils/types";
+import { PencilLine, PlusCircle, Trash2 } from "lucide-react";
+import React from "react";
 
 export const PaymentsPayouts = () => {
   const { openToast } = useToastContext();
-  const { data: banks } = useBanks();
   const { data: userBanks } = useMyBanks();
   const [state, setState] = React.useState<State>("idle");
-  const [selectedBank, setSelectedBank] =
-    React.useState<UserBankAccount | null>();
+  const [selectedBank, setSelectedBank] = React.useState<
+    UserBankAccount | undefined
+  >();
+  const { onClose, isOpen, onOpen } = useDisclosure();
 
-  const [editModes, setEditModes] = React.useState<Record<string, boolean>>({
-    accountName: false,
-    accountNumber: false,
-  });
-
-  const bankList = banks.map((bank) => ({
-    label: bank.name,
-    value: bank.name,
-    code: bank.code,
-    icon: (
-      <Image
-        src={bank.logo}
-        boxSize="20px"
-        alt={bank.name}
-        borderRadius="6px"
-      />
-    ),
-  }));
-
-  const removePaymentMethod = async (id: number) => {
-    const foundBank = userBanks?.find((bank) => bank?.id === id);
+  const removePaymentMethod = async (id: string) => {
+    const foundBank = userBanks?.find((bank) => bank?.bankID === id);
     try {
-      setState("loading");
+      setState("deleting");
       setSelectedBank(foundBank);
 
       const request = await deleteBank(id);
@@ -68,186 +44,137 @@ export const PaymentsPayouts = () => {
       console.error(error);
     } finally {
       setState("idle");
-      setSelectedBank(null);
+      setSelectedBank(undefined);
     }
   };
 
-  const toggleEdit = (field: keyof typeof editModes) =>
-    setEditModes((prev) => ({ ...prev, [field]: !prev[field] }));
+  const editBankInfo = (id: string) => {
+    const foundBank = userBanks?.find((bank) => bank?.bankID === id);
+    if (!foundBank) return;
+    setSelectedBank(foundBank);
+    onOpen();
+  };
 
   return (
-    <Box width="482px">
-      <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
-        Payment & Payouts
-      </Text>
+    <>
+      <Box width="482px">
+        <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
+          Payment & Payouts
+        </Text>
 
-      <Formik
-        initialValues={{
-          accountName: "",
-          accountNumber: "",
-          bankName: "",
-        }}
-        onSubmit={async (values) => {
-          try {
-            const request = await addBank(values);
-            setEditModes({
-              accountName: false,
-              accountNumber: false,
-            });
-
-            const response = await request?.json();
-
-            if (request?.ok) {
-              openToast(response?.message, "success");
-            }
-          } catch (error) {
-            console.error(error);
-          }
-        }}
-      >
-        {(formik) => (
-          <Form>
-            <VStack spacing={4} align="stretch">
-              {userBanks?.map((bank) => (
-                <Box
-                  key={bank.id}
-                  border="1px solid #E2E8F0"
-                  borderRadius="8px"
-                  p={4}
-                  bg="white"
-                  boxShadow="sm"
+        <VStack spacing={4} align="stretch">
+          {userBanks?.map((bank, index) => (
+            <Box
+              key={`${index}${bank.bankID}`}
+              border="1px solid var(--outline)"
+              borderRadius="8px"
+              p={4}
+              bg="white"
+              boxShadow="sm"
+            >
+              <Flex justifySelf="flex-end" gap=".8em">
+                <HStack
+                  _hover={{
+                    cursor: "pointer",
+                  }}
+                  gap=".2em"
+                  justifySelf="flex-end"
+                  alignItems="center"
+                  onClick={() => editBankInfo(bank.bankID)}
                 >
-                  <Flex justify="flex-end" align="center" mb={4}>
-                    <Flex
-                      align="center"
-                      gap={1}
-                      onClick={() => removePaymentMethod(bank.id)}
-                    >
-                      {state === "deleting" && selectedBank?.id === bank.id ? (
-                        <Spinner size="sm" color="var(--grey-100)" />
-                      ) : (
-                        <Icon name="remove" />
-                      )}
-                      <Text
-                        fontSize="14px"
-                        fontWeight="400"
-                        color="#102634"
-                        cursor="pointer"
-                      >
-                        {state === "deleting" && selectedBank?.id === bank.id
-                          ? "Removing..."
-                          : "Remove"}
-                      </Text>
-                    </Flex>
-                  </Flex>
+                  <PencilLine size="18" color="var(--main)" />
+                  <Text
+                    fontSize="14px"
+                    fontWeight="400"
+                    color="var(--main)"
+                    pt=".125em"
+                  >
+                    Edit
+                  </Text>
+                </HStack>
 
-                  {Object.keys(formik.values)
-                    .slice(0, 2)
-                    .map((field, index) => {
-                      return (
-                        <Box py={3} key={index}>
-                          <Text
-                            fontSize="14px"
-                            fontWeight="400"
-                            color="var(--grey)"
-                          >
-                            {field === "accountName"
-                              ? "Account name"
-                              : "Bank account number"}
-                          </Text>
+                <HStack
+                  gap=".1em"
+                  justifySelf="flex-end"
+                  alignItems="center"
+                  _hover={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => removePaymentMethod(bank.bankID)}
+                >
+                  {state === "deleting" &&
+                  selectedBank?.bankID === bank.bankID ? (
+                    <Spinner size="xs" color="var(--grey)" />
+                  ) : (
+                    <Trash2 size="18" color="var(--main)" />
+                  )}
+                  <Text
+                    fontSize="14px"
+                    fontWeight="400"
+                    color="var(--main)"
+                    pt=".18em"
+                  >
+                    {state === "deleting" && selectedBank?.id === bank.id
+                      ? "Removing..."
+                      : "Remove"}
+                  </Text>
+                </HStack>
+              </Flex>
 
-                          <Flex justify="space-between" align="center">
-                            {editModes[field] ? (
-                              <Input
-                                type="text"
-                                variant="unstyled"
-                                name={field}
-                                height="45px"
-                                py=".6em"
-                                onChange={formik.handleChange}
-                                value={formik.values[field as keyof BankInfo]}
-                              />
-                            ) : (
-                              <Text
-                                fontSize="18px"
-                                fontWeight="400"
-                                color="var(--dark)"
-                              >
-                                {formik.values[field as keyof BankInfo]}
-                              </Text>
-                            )}
-                            <Button
-                              _hover={{
-                                background: "none",
-                                bgGradient: "var(--main-gradient)",
-                                bgClip: "text",
-                              }}
-                              bgGradient="var(--main-gradient)"
-                              bgClip="text"
-                              fontWeight="400"
-                              onClick={() =>
-                                toggleEdit(field as keyof BankInfo)
-                              }
-                            >
-                              Edit
-                            </Button>
-                          </Flex>
+              <Box py={3}>
+                <Stack direction="column">
+                  <Text fontSize="14px" fontWeight="400" color="var(--grey)">
+                    Account name
+                  </Text>
+                  <Text fontSize="18px" fontWeight="400" color="var(--dark)">
+                    {bank.accountName}
+                  </Text>
+                </Stack>
+                <Divider my={2} />
+                <Stack direction="column">
+                  <Text fontSize="14px" fontWeight="400" color="var(--grey)">
+                    Bank account number
+                  </Text>
+                  <Text fontSize="18px" fontWeight="400" color="var(--dark)">
+                    {bank.accountNumber}
+                  </Text>
+                </Stack>
+                <Divider my={2} />
+                <Stack direction="column">
+                  <Text fontSize="14px" color="var(--grey)" fontWeight="400">
+                    Bank name
+                  </Text>
+                  <Text fontSize="18px" fontWeight="400" color="var(--dark)">
+                    {bank.bankName}
+                  </Text>
+                </Stack>
+              </Box>
+            </Box>
+          ))}
+        </VStack>
 
-                          <Divider my={2} />
-                        </Box>
-                      );
-                    })}
+        <Button
+          mt="1em"
+          leftIcon={<PlusCircle size={18} />}
+          background="var(--grey-100)"
+          color="var(--text-gray-200)"
+          borderRadius="30px"
+          variant="outline"
+          fontWeight="400"
+          onClick={onOpen}
+          _hover={{
+            background: "var(--grey-100)",
+          }}
+        >
+          Add payment method
+        </Button>
+      </Box>
 
-                  <Box py={3}>
-                    <Text fontSize="14px" fontWeight="400" color="var(--grey)">
-                      Bank name
-                    </Text>
-
-                    <SelectField
-                      name="bankName"
-                      options={bankList}
-                      menuWidth="100%"
-                      noBorder
-                      defaultValue={bankList[0]}
-                      fontSize="18px"
-                      fontWeight="400"
-                      customCaret
-                    />
-                  </Box>
-                </Box>
-              ))}
-            </VStack>
-
-            <Flex justify="space-between" mt={6}>
-              <Button
-                leftIcon={<PlusCircle size={18} />}
-                background="var(--grey-100)"
-                color="var(--text-gray-200)"
-                borderRadius="30px"
-                variant="outline"
-                fontWeight="400"
-                onClick={() => console.log("Hey")}
-                _hover={{
-                  background: "var(--grey-100)",
-                }}
-              >
-                Add payment method
-              </Button>
-              <Button
-                type="submit"
-                bg="var(--main)"
-                color="var(--white-fade)"
-                borderRadius="36px"
-                fontWeight="400"
-                _hover={{ bg: "var(--main)" }}
-                isLoading={formik.isSubmitting}
-              >
-                Save settings
-              </Button>
-            </Flex>
-          </Form>
-        )}
-      </Formik>
-    </Box>
+      <AccountInfoModal
+        isOpen={isOpen}
+        onClose={onClose}
+        accountInfo={selectedBank}
+      />
+    </>
   );
 };

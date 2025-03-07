@@ -1,6 +1,6 @@
 import { cookieOptions, HEADER_API_KEY, TOKEN_KEY } from "@utils/constants"
 import { app } from "@utils/endpoints";
-import { BankInfo } from "@utils/types";
+import { BankInfo, UserBankAccount } from "@utils/types";
 import { getCookie } from "cookies-next"
 
 export const addBank = async (payload: BankInfo) => {
@@ -26,7 +26,7 @@ export const addBank = async (payload: BankInfo) => {
   }
 }
 
-export const deleteBank = async (id: number) => {
+export const deleteBank = async (id: string) => {
  const token = getCookie(TOKEN_KEY, {...cookieOptions })
  if (!token) return;
 
@@ -44,4 +44,27 @@ export const deleteBank = async (id: number) => {
  } catch (error) {
    console.error(error)
  }
+}
+
+export const updateBankInfo = async (bankId: string, payload: BankInfo) => {
+  const token = getCookie(TOKEN_KEY, {...cookieOptions})
+  if (!token) return;
+
+  try {
+    const request = await fetch(`${app.customer.updateBankDetails}/${bankId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorizarion: `Bearer ${token}`,
+        ...HEADER_API_KEY
+      },
+      body: JSON.stringify({
+        ...payload,
+      })
+    })
+
+    return request
+  } catch (error) {
+    console.error(`${(error as Error).message}`)
+  }
 }

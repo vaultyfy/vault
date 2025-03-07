@@ -74,7 +74,7 @@ export const LoginSecurityCard = () => {
       </Text>
 
       <Box
-        border="1px solid #E2E8F0"
+        border="1px solid var(--outline)"
         borderRadius="8px"
         p={6}
         bg="white"
