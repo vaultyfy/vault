@@ -13,8 +13,9 @@ import { GradientIcon } from "@components/icon";
 import { Gear, SealCheck } from "@phosphor-icons/react";
 import { MAIN_GRADIENT } from "@utils/constants";
 import { Icon } from "@components/icon";
-import { Link, FileRouteTypes } from "@tanstack/react-router";
-import { useConsolePath, useCurrentPath } from "@hooks/current-path";
+import { Link, useLocation } from "@tanstack/react-router";
+import { FileRouteTypes } from "src/routeTree.gen";
+import { useCurrentPath } from "@hooks/current-path";
 import { CircleProgress } from "@components/ui";
 import { useUser } from "@hooks/swr";
 import { skeleton } from "@utils/misc";
@@ -102,6 +103,7 @@ export const Sidebar = () => {
     path: item.path as FileRouteTypes["fullPaths"],
   }));
 
+
   const {
     userName,
     hasUserCompletedKyc,
@@ -111,7 +113,7 @@ export const Sidebar = () => {
   } = useUser();
 
   return (
-    <Box
+       <Box
       height="100vh"
       background={isConsoleRoute ? "" : "var(--main)"}
       width={{

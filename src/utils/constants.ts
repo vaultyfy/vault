@@ -1,9 +1,15 @@
+import { ModalLayoutProps } from "@components/ui";
 import { OptionsType } from "cookies-next";
 
 export const MAIN_GRADIENT = "linear(to-r, #1CCFBD, #2C9BF0)";
 export const HEADER_API_KEY = {
   "X-API-Key": import.meta.env.VITE_API_KEY!,
 };
+
+export const BANKS_LIST = "https://nigerianbanks.xyz/";
+
+export interface BaseModalProps
+  extends Pick<ModalLayoutProps, "isOpen" | "onClose"> {}
 
 export const cookieOptions = {
   path: "/",

@@ -9,7 +9,7 @@ import {
 import { CalendarPopover, NotificationPopover } from "@components/customer/ui";
 import { CirclePlus } from "lucide-react";
 import { AppLayoutProps } from ".";
-import { CreateGroupModal } from "@layouts/modal-layout/create-group";
+import { CreateGroupModal } from "@layouts/modal-layout";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useNavigate } from "@tanstack/react-router";
 import { useUiComponentStore } from "@store/ui";
