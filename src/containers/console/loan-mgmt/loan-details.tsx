@@ -19,7 +19,7 @@ import React from "react";
 import { ChevronLeft } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { LoanDetailsSummary } from "./loan-details-summay";
-import { AdjustLoanModal } from "@layouts/modal-layout/adjust-loan";
+import { AdjustLoanModal } from "@layouts/modal-layout";
 
 const HEADING = [
   "Repaid loans",

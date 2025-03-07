@@ -1,6 +1,6 @@
 import { ModalLayout } from "@components/ui";
-import { CreateGroupContent } from "./components/create-group-content";
-import { AdjustLoanContent } from "./components/adjust-loan-content";
+import { CreateGroupContent } from "@layouts/modal-layout";
+import { AdjustLoanContent } from "./adjust-loan-content";
 
 interface AdjustLoanModalProps {
   isOpen: boolean;
