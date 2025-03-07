@@ -15,7 +15,6 @@ import {
   Badge,
 } from "@chakra-ui/react";
 import React from "react";
-import { PageHeader } from "../page-header";
 import { Filter } from "../filters";
 import { PROFILE_IMG } from "../overview/activities-table";
 import { Link } from "@tanstack/react-router";
@@ -39,7 +38,6 @@ export const PaymentMonitoring = () => {
       alignItems={"flex-start"}
       justifyContent={"flex-start"}
     >
-      <PageHeader title="Payment Monitoring" />
       <Filter />
       <Box
         width={"100%"}

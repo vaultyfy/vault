@@ -10,7 +10,9 @@ import {
   Th,
   Td,
   Text,
-  Button,
+  TabList,
+  Tab,
+  Tabs,
   Image,
   Badge,
 } from "@chakra-ui/react";
@@ -50,58 +52,53 @@ export const ActivitiesTable = () => {
       boxShadow={"md"}
       padding="16px 18px"
     >
-      <HStack gap={"16px"} width={"100%"} height="41px">
+      <HStack gap={"16px"} width={"100%"} height="41px" alignItems={"center"}>
         <Text fontSize={"24px"} fontWeight={"semibold"} lineHeight={"19px"}>
           Activities
         </Text>
-        <Button
-          width="169px"
-          height="100%"
-          padding="10px 20px"
-          borderRadius={"30px"}
-          bg="var(--text-2)"
-          fontSize={"14px"}
-          fontWeight={"semibold"}
-          lineHeight={"21px"}
-          color={"#04040499"}
-          _hover={{
-            background: "var(--text-2)",
-          }}
+        <Tabs
+          columnGap={"16px"}
+          width={"100%"}
+          height="41px"
+          variant="soft-rounded"
+          colorScheme="gray"
         >
-          Todays pay-outs
-        </Button>
-        <Button
-          width="169px"
-          height="100%"
-          padding="10px 20px"
-          borderRadius={"30px"}
-          bg="transparent"
-          fontSize={"14px"}
-          fontWeight={"semibold"}
-          lineHeight={"21px"}
-          color={"#04040499"}
-          _hover={{
-            background: "var(--text-2)",
-          }}
-        >
-          Upcoming pay-outs
-        </Button>
-        <Button
-          width="169px"
-          height="100%"
-          padding="10px 20px"
-          borderRadius={"30px"}
-          fontSize={"14px"}
-          fontWeight={"semibold"}
-          lineHeight={"21px"}
-          color={"#04040499"}
-          bg="transparent"
-          _hover={{
-            background: "var(--text-2)",
-          }}
-        >
-          Delayed pay-outs
-        </Button>
+          <TabList px="20px" rounded="3xl" cursor="pointer" height={"100%"}>
+            <Tab
+              height="41px"
+              padding="10px 20px"
+              borderRadius={"30px"}
+              fontSize={"14px"}
+              fontWeight={"semibold"}
+              lineHeight={"21px"}
+              color={"#04040499"}
+            >
+              Todays pay-outs
+            </Tab>
+            <Tab
+              height="41px"
+              padding="10px 20px"
+              borderRadius={"30px"}
+              fontSize={"14px"}
+              fontWeight={"semibold"}
+              lineHeight={"21px"}
+              color={"#04040499"}
+            >
+              Upcoming pay-outs
+            </Tab>
+            <Tab
+              height="41px"
+              padding="10px 20px"
+              borderRadius={"30px"}
+              fontSize={"14px"}
+              fontWeight={"semibold"}
+              lineHeight={"21px"}
+              color={"#04040499"}
+            >
+              Delayed pay-outs
+            </Tab>
+          </TabList>
+        </Tabs>
       </HStack>
       <TableContainer width={"100%"} height={"80%"} overflowY={"auto"}>
         <Table variant="simple">

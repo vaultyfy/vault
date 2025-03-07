@@ -15,7 +15,6 @@ import {
   Badge,
 } from "@chakra-ui/react";
 import React from "react";
-import { PageHeader } from "../page-header";
 import { ChevronLeft } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { GroupDetailsSummary } from "./group-details-summary";
@@ -39,9 +38,8 @@ export const GroupDetails = () => {
       justifyContent={"flex-start"}
       height={"100%"}
     >
-      <PageHeader title="Thrift Group Managment" />
       <VStack
-        width="60%"
+        width="70%"
         height={"100%"}
         justifyContent={"start"}
         alignItems={"start"}

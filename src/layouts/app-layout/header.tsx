@@ -16,6 +16,7 @@ import { useUiComponentStore } from "@store/ui";
 import { useCurrentPath } from "@hooks/current-path";
 import { useUser } from "@hooks/swr";
 import { skeleton } from "@utils/misc";
+import { useConsolePath } from "@hooks/current-path";
 
 export const AppHeader = ({
   routeTitle,
@@ -26,6 +27,7 @@ export const AppHeader = ({
   const { updateUiStore } = useUiComponentStore();
   const pathname = useCurrentPath();
   const { userName, isLoading } = useUser();
+  const adminPathname = useConsolePath();
 
   const createGroup = () => {
     if (isMobile) {
@@ -103,6 +105,7 @@ export const AppHeader = ({
             fontSize="14px"
             borderRadius="36px"
             lineHeight="21px"
+            display={adminPathname ? "none" : "flex"}
             _hover={{
               background: "var(--btn-secondary-7)",
             }}

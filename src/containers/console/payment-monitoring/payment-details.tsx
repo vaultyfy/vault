@@ -15,7 +15,6 @@ import {
   Badge,
 } from "@chakra-ui/react";
 import React from "react";
-import { PageHeader } from "../page-header";
 import { ChevronLeft } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
 
@@ -279,7 +278,6 @@ export const PaymentDetails = () => {
       justifyContent={"flex-start"}
       height={"100%"}
     >
-      <PageHeader title="Payment Monitoring" />
       <VStack
         width="100%"
         height={"100%"}

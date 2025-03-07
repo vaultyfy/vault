@@ -1,3 +1,4 @@
+import { adjustLoanSchema } from "./adjust-loan";
 import {
   forgotPwdSchema,
   newPasswordSchema,
@@ -17,4 +18,5 @@ export const schema = {
   profile: personalInfoSchema,
   createGroup: createGroupSchema,
   exploreFilters: exploreFilterSchema,
+  adjustLoan: adjustLoanSchema
 };
