@@ -2,12 +2,14 @@ import { FormControl, Text, FormLabel, Flex, Box } from "@chakra-ui/react";
 import makeAnimated from "react-select/animated";
 import { useField } from "formik";
 import React from "react";
-import Select from "react-select";
+import Select, { components, DropdownIndicatorProps, Props } from "react-select";
+import { Icon } from "@components/icon";
 
 const animatedComponent = makeAnimated();
 
 export interface Option {
   label: string;
+  code?: string;
   value: number | string;
   icon?: React.ReactElement;
 }
@@ -32,11 +34,21 @@ interface SelectProps {
   menuWidth?: string;
   noBorder?: boolean;
   fontWeight?: string;
+  color?: string;
   labelInfo?: string;
   multi?: "yes" | "no";
   isDisabled?: boolean;
   icon?: React.ReactElement;
+  customCaret?: boolean;
 }
+
+const VaultyfyCaret = (props: DropdownIndicatorProps<Option>) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <Icon name="caret-down" />
+    </components.DropdownIndicator>
+  );
+};
 
 export const SelectField = ({
   options,
@@ -60,7 +72,9 @@ export const SelectField = ({
   noBorder,
   multi,
   fontWeight,
+  color,
   icon,
+  customCaret,
   ...props
 }: SelectProps) => {
   const [field, meta, helpers] = useField(name);
@@ -91,8 +105,8 @@ export const SelectField = ({
           <FormLabel
             fontSize={labelSize || "14px"}
             lineHeight="20px"
-            fontWeight="400"
-            color={labelColor || "#211E1D"}
+            fontWeight="500"
+            color={labelColor || "var(--grey)"}
           >
             {label}{" "}
             {labelInfo && (
@@ -132,7 +146,10 @@ export const SelectField = ({
                 instanceId={id}
                 onChange={handleChange}
                 menuPortalTarget={document.body}
-                components={animatedComponent}
+                components={{
+                  ...animatedComponent,
+                  DropdownIndicator: customCaret ? VaultyfyCaret : components.DropdownIndicator,
+                }}
                 placeholder={placeholder}
                 options={options}
                 defaultValue={defaultValue}
@@ -165,10 +182,27 @@ export const SelectField = ({
                     backgroundColor: menuBg || "#fff",
                     width: menuWidth || "auto",
                   }),
+                  option: (baseStyles, { isSelected }) => ({
+                    ...baseStyles,
+                    color: isSelected ? "var(--dark)" : "",
+                    background: isSelected ? "var(--grey-100)" : "",
+                  }),
                   placeholder: (baseStyles) => ({
                     ...baseStyles,
                     fontSize: fontSize || "14px",
-                    color: "var(--input-placeholder)",
+                    color: color || "var(--input-placeholder)",
+                  }),
+                  menuPortal: (baseStyles) => ({
+                    ...baseStyles,
+                    zIndex: 1600,
+                  }),
+                  dropdownIndicator: (baseStyles) => ({
+                    ...baseStyles,
+                    color: caretColor || "var(--text-1)",
+                  }),
+                  indicatorSeparator: (baseStyles) => ({
+                    ...baseStyles,
+                    display: customCaret ? "none" : "block",
                   }),
                 }}
               />

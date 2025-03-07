@@ -25,7 +25,7 @@ const userDetails: UserDetail[] = [
   { label: "Full name", value: "Akinlolu Daniel", editable: true },
   { label: "Phone number", value: "0902300000", editable: true },
   { label: "BVN", value: "1293020392920", editable: true },
-  { label: "Address", value: "GT Bank", editable: true },
+  { label: "Address", value: "Salamuu street", editable: true },
   {
     label:
       "Address verification (upload ID card, utility bills containing your house address)",
@@ -45,7 +45,7 @@ export const PersonalInfo = () => {
       <Box
         border="0.5px solid var(--border-muted)"
         borderRadius="6px"
-        p={6}
+        px={{ lg: "1em", base: ".4em", md: ".6em" }}
         width="100%"
       >
         {userDetails.map((item, index) => (
@@ -61,7 +61,7 @@ export const PersonalInfo = () => {
             >
               <Flex align="center">
                 <Box>
-                  <Text fontSize="14px" fontWeight="400" color="#818181">
+                  <Text fontSize="14px" fontWeight="400" color="var(--grey)">
                     {item.label}
                   </Text>
 

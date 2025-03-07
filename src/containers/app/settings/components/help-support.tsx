@@ -60,13 +60,13 @@ const HelpSupportCard = () => {
           p="4"
           pt={{ base: "0", md: "2" }}
         >
-          <Text fontSize="40px" fontWeight="600" color={"#1C1C1C"} mt="-30px">
+          <Text fontSize="40px" fontWeight="600" color="var(--dark)" mt="-30px">
             Help & Support
           </Text>
           <Text
             fontSize="36px"
             fontWeight="600"
-            color={"#1C1C1C"}
+            color="var(--dark)"
             mt="6"
             mb={"2"}
           >

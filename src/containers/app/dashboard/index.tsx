@@ -11,42 +11,71 @@ import {
   TableContainer,
   SimpleGrid,
   Stack,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { OverviewCard } from "@components/customer/ui";
 import { ChevronDown } from "lucide-react";
 import { ActivitiesTable } from "@components/customer/tables";
 import { Analytics } from "@components/ui";
+import React from "react";
+import { useMobileScreens } from "@hooks/mobile-screen";
+import { CreateGroupModal } from "@layouts/modal-layout";
+import { useUiComponentStore } from "@store/ui";
+import { useWallet } from "@hooks/swr";
 
 export const Dashboard = () => {
+  const { store, updateUiStore } = useUiComponentStore();
+  const { isMobile } = useMobileScreens();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  React.useEffect(() => {
+    if (store.ui === "create-group" && !isMobile) {
+      onOpen();
+    }
+  }, []);
+
+  const closeModal = () => {
+    updateUiStore({ ui: "" });
+    onClose();
+  };
+
+  const { walletBalance, lastUpdated, isLoading, expectedReturns } = useWallet();
+
   return (
     <>
       <Box width="100%" minH="100dvh">
-        <SimpleGrid columns={{ lg: 4, md: 2, base: 2 }} gap={{ lg: ".8em", md: ".6em", base: ".4em"}}>
+        <SimpleGrid
+          columns={{ lg: 4, md: 2, base: 2 }}
+          gap={{ lg: ".8em", md: ".6em", base: ".4em" }}
+        >
           <OverviewCard
             cardIcon="calendar"
             cardTitle="Wallet balance"
-            amount="500k"
-            paidDate="23-12-2025"
+            amount={walletBalance}
+            paidDate={lastUpdated}
             cardGradient="var(--main-gradient)"
+            loading={isLoading}
           />
           <OverviewCard
             cardIcon="time-is-money"
             cardTitle="Wallet balance"
-            amount="500k"
+            amount={walletBalance}
             hasFilter={true}
             hasProgress={true}
             progressLevel={40}
             progressColor="var(--main-gradient)"
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
+            loading={isLoading}
           />
           <OverviewCard
             cardIcon="piggy-bank"
             cardTitle="Total expected return"
-            amount="5M"
+            amount={expectedReturns}
             hasFilter={true}
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
+            loading={isLoading}
           />
           <OverviewCard
             cardIcon="trophy"
@@ -58,6 +87,7 @@ export const Dashboard = () => {
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
             cycle={1}
+            loading={isLoading}
           />
         </SimpleGrid>
         {/* the empty state*/}
@@ -86,7 +116,11 @@ export const Dashboard = () => {
             p="18px"
             minH="480px"
             rounded="lg"
-            border={{ lg: "none", md: "none", base: "0.5px solid var(--border-muted)" }}
+            border={{
+              lg: "none",
+              md: "none",
+              base: "0.5px solid var(--border-muted)",
+            }}
           >
             <Box w="full">
               <Text
@@ -188,7 +222,7 @@ export const Dashboard = () => {
         </Flex>
       </Box>
 
-      {/* create group modal */}
+      <CreateGroupModal isOpen={isOpen} onClose={closeModal} />
     </>
   );
 };

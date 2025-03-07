@@ -7,12 +7,9 @@ import {
   ModalCloseButton,
   Text,
   ChakraProps,
-  Box,
-  IconButton,
 } from "@chakra-ui/react";
-import { XCircle } from "@phosphor-icons/react";
 
-interface ModalLayoutProps extends ChakraProps {
+export interface ModalLayoutProps extends ChakraProps {
   title?: string;
   subTitle?: string;
   children: React.ReactNode;

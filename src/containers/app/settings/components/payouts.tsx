@@ -6,164 +6,176 @@ import {
   VStack,
   Divider,
   Image,
+  Input,
+  Spinner,
+  Stack,
+  HStack,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { PlusCircle } from "lucide-react";
+import { useToastContext } from "@hooks/context";
+import { useMyBanks } from "@hooks/swr";
+import { AccountInfoModal } from "@layouts/modal-layout/account-info";
+import { deleteBank } from "@mutations/banks";
+import { State } from "@utils/constants";
+import { UserBankAccount } from "@utils/types";
+import { PencilLine, PlusCircle, Trash2 } from "lucide-react";
 import React from "react";
 
-interface PaymentData {
-  id: number;
-  accountName: string;
-  accountNumber: string;
-  bankName: string;
-}
-
 export const PaymentsPayouts = () => {
-  const [paymentMethods, setPaymentMethods] = React.useState<PaymentData[]>([
-    {
-      id: 1,
-      accountName: "Akinlolu Daniel",
-      accountNumber: "0233850785",
-      bankName: "GT Bank",
-    },
-  ]);
+  const { openToast } = useToastContext();
+  const { data: userBanks, mutate } = useMyBanks();
+  const [state, setState] = React.useState<State>("idle");
+  const [selectedBank, setSelectedBank] = React.useState<
+    UserBankAccount | undefined
+  >();
+  const { onClose, isOpen, onOpen } = useDisclosure();
 
-  const removePaymentMethod = (id: number) => {
-    setPaymentMethods((prev) => prev.filter((payment) => payment.id !== id));
+  const removePaymentMethod = async (id: string) => {
+    const foundBank = userBanks?.find((bank) => bank?.bankID === id);
+    try {
+      setState("deleting");
+      setSelectedBank(foundBank);
+
+      const request = await deleteBank(id);
+      if (request?.ok) {
+        openToast("Bank deleted successfully!", "success");
+        mutate();
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setState("idle");
+      setSelectedBank(undefined);
+    }
   };
 
-  const updateBankName = (id: number, newBank: string) => {
-    setPaymentMethods((prev) =>
-      prev.map((payment) =>
-        payment.id === id ? { ...payment, bankName: newBank } : payment,
-      ),
-    );
-  };
-
-  const addPaymentMethod = () => {
-    setPaymentMethods((prev) => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        accountName: "New Account",
-        accountNumber: "0000000000",
-        bankName: "Select Bank",
-      },
-    ]);
+  const editBankInfo = (id: string) => {
+    const foundBank = userBanks?.find((bank) => bank?.bankID === id);
+    if (!foundBank) return;
+    setSelectedBank(foundBank);
+    onOpen();
   };
 
   return (
-    <Box width="482px">
-      <Text fontSize="24px" fontWeight="400" mb={4} color={"#1C1C1C"}>
-        Payment & Payouts
-      </Text>
+    <>
+      <Box width="482px">
+        <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
+          Payment & Payouts
+        </Text>
 
-      <VStack spacing={4} align="stretch">
-        {paymentMethods.map((payment) => (
-          <Box
-            key={payment.id}
-            border="1px solid #E2E8F0"
-            borderRadius="8px"
-            p={4}
-            bg="white"
-            boxShadow="sm"
-          >
-            <Flex justify="flex-end" align="center" mb={4}>
-              <Flex align="center" gap={1}>
-                <Image
-                  src="/img/remove.svg"
-                  alt="remove"
-                  width="20.68px"
-                  onClick={() => removePaymentMethod(payment.id)}
-                />
-                <Text
-                  fontSize="14px"
-                  fontWeight="400"
-                  color={"#102634"}
-                  cursor="pointer"
-                  onClick={() => removePaymentMethod(payment.id)}
+        <VStack spacing={4} align="stretch">
+          {userBanks?.map((bank, index) => (
+            <Box
+              key={`${index}${bank.bankID}`}
+              border="1px solid var(--outline)"
+              borderRadius="8px"
+              p={4}
+              bg="white"
+              boxShadow="sm"
+            >
+              <Flex justifySelf="flex-end" gap=".8em">
+                <HStack
+                  _hover={{
+                    cursor: "pointer",
+                  }}
+                  gap=".2em"
+                  justifySelf="flex-end"
+                  alignItems="center"
+                  onClick={() => editBankInfo(bank.bankID)}
                 >
-                  Remove
-                </Text>
-              </Flex>
-            </Flex>
+                  <PencilLine size="18" color="var(--main)" />
+                  <Text
+                    fontSize="14px"
+                    fontWeight="400"
+                    color="var(--main)"
+                    pt=".125em"
+                  >
+                    Edit
+                  </Text>
+                </HStack>
 
-            <Box py={3}>
-              <Text fontSize="14px" fontWeight="400" color="#818181">
-                Account name
-              </Text>
-              <Flex justify="space-between" align="center">
-                <Text fontSize="18px" fontWeight="400" color={"#1C1C1C"}>
-                  {payment.accountName}
-                </Text>
-                <Button variant="link" size="sm" color="#1CCFBD">
-                  Edit
-                </Button>
+                <HStack
+                  gap=".1em"
+                  justifySelf="flex-end"
+                  alignItems="center"
+                  _hover={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => removePaymentMethod(bank.bankID)}
+                >
+                  {state === "deleting" &&
+                  selectedBank?.bankID === bank.bankID ? (
+                    <Spinner size="xs" color="var(--grey)" />
+                  ) : (
+                    <Trash2 size="18" color="var(--main)" />
+                  )}
+                  <Text
+                    fontSize="14px"
+                    fontWeight="400"
+                    color="var(--main)"
+                    pt=".18em"
+                  >
+                    {state === "deleting" && selectedBank?.id === bank.id
+                      ? "Removing..."
+                      : "Remove"}
+                  </Text>
+                </HStack>
               </Flex>
+
+              <Box py={3}>
+                <Stack direction="column">
+                  <Text fontSize="14px" fontWeight="400" color="var(--grey)">
+                    Account name
+                  </Text>
+                  <Text fontSize="18px" fontWeight="400" color="var(--dark)">
+                    {bank.accountName}
+                  </Text>
+                </Stack>
+                <Divider my={2} />
+                <Stack direction="column">
+                  <Text fontSize="14px" fontWeight="400" color="var(--grey)">
+                    Bank account number
+                  </Text>
+                  <Text fontSize="18px" fontWeight="400" color="var(--dark)">
+                    {bank.accountNumber}
+                  </Text>
+                </Stack>
+                <Divider my={2} />
+                <Stack direction="column">
+                  <Text fontSize="14px" color="var(--grey)" fontWeight="400">
+                    Bank name
+                  </Text>
+                  <Text fontSize="18px" fontWeight="400" color="var(--dark)">
+                    {bank.bankName}
+                  </Text>
+                </Stack>
+              </Box>
             </Box>
+          ))}
+        </VStack>
 
-            <Divider my={2} />
-
-            <Box py={3}>
-              <Text fontSize="14px" fontWeight="400" color="#818181">
-                Bank account number
-              </Text>
-              <Flex justify="space-between" align="center">
-                <Text fontSize="18px" fontWeight="400" color={"#1C1C1C"}>
-                  {payment.accountNumber}
-                </Text>
-                <Button variant="link" size="sm" color="#1CCFBD">
-                  Edit
-                </Button>
-              </Flex>
-            </Box>
-
-            <Divider my={2} />
-
-            <Box py={3}>
-              <Text fontSize="14px" fontWeight="400" color="#818181">
-                Bank name
-              </Text>
-              <Flex justify="space-between" align="center" cursor="pointer">
-                <Text fontSize="18px" fontWeight="400" color={"#1C1C1C"}>
-                  {payment.bankName}
-                </Text>
-                <Image
-                  src="/img/cheveron-toggle.svg"
-                  alt="chevevron"
-                  width="18.03px"
-                  height={"10.91px"}
-                />
-              </Flex>
-            </Box>
-          </Box>
-        ))}
-      </VStack>
-
-      <Flex justify="space-between" mt={6}>
         <Button
+          mt="1em"
           leftIcon={<PlusCircle size={18} />}
           background="var(--grey-100)"
           color="var(--text-gray-200)"
           borderRadius="30px"
           variant="outline"
           fontWeight="400"
-          onClick={addPaymentMethod}
+          onClick={onOpen}
           _hover={{
-            background: "var(--grey-100)"
+            background: "var(--grey-100)",
           }}
         >
           Add payment method
         </Button>
-        <Button
-          bg="var(--main)"
-          color="var(--white-fade)"
-          borderRadius="36px"
-          fontWeight="400"
-          _hover={{ bg: "var(--main)" }}
-        >
-          Save settings
-        </Button>
-      </Flex>
-    </Box>
+      </Box>
+
+      <AccountInfoModal
+        isOpen={isOpen}
+        onClose={onClose}
+        accountInfo={selectedBank}
+      />
+    </>
   );
 };

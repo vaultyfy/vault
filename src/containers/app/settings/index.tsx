@@ -1,16 +1,8 @@
-import {
-  Box,
-  Flex,
-  Stack,
-} from "@chakra-ui/react";
-
-import { useBreakpointValue } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
-import LoginSecurityCard
-  from "@containers/app/settings/components/login-security";
+import { Box, Flex, Stack } from "@chakra-ui/react";
+import React from "react";
+import { LoginSecurityCard, SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
 import HelpSupportCard from "@containers/app/settings/components/help-support";
-import {useNavigate} from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 export type Setting = {
   id: string;
@@ -46,19 +38,17 @@ const SETTINGS: Setting[] = [
     id: crypto.randomUUID(),
     title: "Help & Support",
     iconName: "support",
-    description: "Contact our support and learn more about our terms of services",
+    description:
+      "Contact our support and learn more about our terms of services",
     component: <HelpSupportCard />,
   },
-
 ];
 
 export const Settings = () => {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const [activeSetting, setActiveSetting] = React.useState<Setting>(
     SETTINGS[0],
   );
   const navigate = useNavigate();
-
 
   const handleSelectedSetting = (id: string) => {
     const found = SETTINGS.find((setting) => setting.id === id);
@@ -72,34 +62,37 @@ export const Settings = () => {
   };
 
   return (
-    <Box width="100%" height="100vh" display="flex" flexDirection="column">
-
-
-      <Flex
-        justifyContent="space-between"
+    <Flex
+      justifyContent="space-between"
+      overflowY="auto"
+      flexWrap="wrap"
+      gap="1em"
+      px={{ xl: "1em", base: ".4rem", lg: ".2rem" }}
+    >
+      <Stack
+        direction="column"
         gap="1em"
-        overflowY="auto"
-        px={{ base: "1rem", lg: "2rem" }}
+        width={{ lg: "48%", md: "48%", base: "100%" }}
       >
-        <Stack direction="column" gap="1em">
-          {SETTINGS.map((setting) => {
-            const currentSetting = activeSetting.id === setting.id;
+        {SETTINGS.map((setting) => {
+          const currentSetting = activeSetting.id === setting.id;
 
-            return (
-              <SettingCard
-                id={setting.id}
-                key={setting.id}
-                title={setting.title}
-                isActive={currentSetting}
-                description={setting.description}
-                iconName={setting.iconName}
-                onClick={() => handleSelectedSetting(setting.id)}
-              />
-            );
-          })}
-        </Stack>
-        <Box flex="1">{activeSetting.component}</Box>
-      </Flex>
-    </Box>
+          return (
+            <SettingCard
+              id={setting.id}
+              key={setting.id}
+              title={setting.title}
+              isActive={currentSetting}
+              description={setting.description}
+              iconName={setting.iconName}
+              onClick={() => handleSelectedSetting(setting.id)}
+            />
+          );
+        })}
+      </Stack>
+      <Box width={{ lg: "50%", base: "100%", md: "48%" }}>
+        {activeSetting.component}
+      </Box>
+    </Flex>
   );
 };

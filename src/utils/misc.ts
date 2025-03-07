@@ -24,3 +24,20 @@ export const generateNoOfCycles = (cycleCount?: number): CountedObject[] => {
 
   return result;
 };
+
+export const skeleton = {
+  startColor: "var(--pale-grey)",
+  endColor: "var(--grey-sec)",
+  light: {
+    startColor: "var(--white-fade)",
+    endColor: "var(--border-muted)"
+  }
+};
+
+export const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "NGN",
+    maximumSignificantDigits: 3,
+  }).format(price).replace("NGN", "₦");
+};

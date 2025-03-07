@@ -37,12 +37,14 @@
     "@tanstack/router-devtools": "^1.95.0",
     "cookies-next": "^5.1.0",
     "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "formik": "^2.4.6",
     "framer-motion": "^11.0.18",
     "lucide-react": "^0.469.0",
     "motion": "^11.15.0",
+    "nuqs": "^2.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
@@ -54,6 +56,7 @@
     "scss": "^0.2.4",
     "slugify": "^1.6.6",
     "standard-version": "^9.5.0",
+    "swr": "^2.3.2",
     "yup": "^1.6.1"
   }
 }

@@ -19,7 +19,7 @@ export const SettingCard = ({
     <Flex
       direction="column"
       py="2em"
-      width="500px"
+      width="100%"
       gap="1em"
       px={{ base: "1rem", lg: "1rem" }}
       border="1px solid #dceefb"

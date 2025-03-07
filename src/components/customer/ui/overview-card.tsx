@@ -12,11 +12,13 @@ import {
   Text,
   Flex,
   Stack,
+  Skeleton,
 } from "@chakra-ui/react";
 import { Icon } from "@components/icon";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { ChevronDown } from "lucide-react";
 import { CustomProgress } from "@components/ui";
+import { skeleton } from "@utils/misc";
 
 interface OverviewCardProps {
   bgColor?: string;
@@ -34,6 +36,7 @@ interface OverviewCardProps {
   width?: string | number;
   iconBg?: string;
   paidMonths?: number;
+  loading?: boolean;
 }
 
 export const OverviewCard = ({
@@ -52,10 +55,11 @@ export const OverviewCard = ({
   height,
   iconBg,
   paidMonths,
+  loading,
 }: OverviewCardProps) => {
   return (
     <Card
-      bgColor={bgColor || ""} // why would you default to "undefined" here?
+      bgColor={bgColor || ""}
       bgGradient={cardGradient}
       width={width || "100%"}
       height={height || "100%"}
@@ -177,13 +181,25 @@ export const OverviewCard = ({
             <Text fontSize={{ base: "12px", lg: "16px" }} fontWeight={"medium"}>
               {cardTitle}
             </Text>
-            {amount && (
-              <Flex alignItems="center">
-                <CurrencyNgn size={28} color="#ffffff" />
-                <Text fontFamily="var(--clash-grotesk-700)" fontSize="28px">
-                  {amount}
-                </Text>
-              </Flex>
+            {loading && !cycle ? (
+              <Skeleton
+                height="18px"
+                width="130px"
+                borderRadius="8px"
+                startColor={skeleton.startColor}
+                endColor={skeleton.endColor}
+              />
+            ) : (
+              <>
+                {!cycle && (
+                  <HStack gap=".1em">
+                    <CurrencyNgn size={28} color="#ffffff" /> herr
+                    <Text fontFamily="var(--clash-grotesk-700)" fontSize="28px">
+                      {amount}
+                    </Text>
+                  </HStack>
+                )}
+              </>
             )}
             {cycle && (
               <Text
