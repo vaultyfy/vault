@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { addBank, updateBankInfo } from "@mutations/banks";
 import { useToastContext } from "@hooks/context";
-import { useBanks } from "@hooks/swr";
+import { useBanks, useMyBanks } from "@hooks/swr";
 
 interface AccountInfoModalProps extends BaseModalProps {
   accountInfo?: UserBankAccount;
@@ -27,6 +27,7 @@ export const AccountInfoModal = ({
 }: AccountInfoModalProps) => {
   const { openToast } = useToastContext();
   const { data: banks } = useBanks();
+  const {mutate} = useMyBanks()
 
   const bankList = banks.map((bank) => ({
     label: bank.name,
@@ -65,6 +66,7 @@ export const AccountInfoModal = ({
 
             const response = await request?.json();
             if (request?.ok) {
+              mutate();
               openToast(response?.message, "success");
             }
           } catch (error) {

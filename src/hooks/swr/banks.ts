@@ -1,7 +1,7 @@
 import { getAllBanks, getUserBanks } from "@queries/banks";
 import { swrOptions } from "@utils/constants";
 import { Bank } from "@utils/types";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 export const useBanks = () => {
   const { data, error, isLoading } = useSWR(
@@ -34,6 +34,7 @@ export const useMyBanks = () => {
   );
 
   const payload = data?.payload
+  const refreshBankList = () => mutate(key)
 
   return {
     data: data?.payload?.data,
@@ -42,5 +43,6 @@ export const useMyBanks = () => {
     currentPage: payload?.currentPage,
     error,
     isLoading,
+    mutate: refreshBankList,
   };
 };

@@ -23,7 +23,7 @@ import React from "react";
 
 export const PaymentsPayouts = () => {
   const { openToast } = useToastContext();
-  const { data: userBanks } = useMyBanks();
+  const { data: userBanks, mutate } = useMyBanks();
   const [state, setState] = React.useState<State>("idle");
   const [selectedBank, setSelectedBank] = React.useState<
     UserBankAccount | undefined
@@ -39,6 +39,7 @@ export const PaymentsPayouts = () => {
       const request = await deleteBank(id);
       if (request?.ok) {
         openToast("Bank deleted successfully!", "success");
+        mutate();
       }
     } catch (error) {
       console.error(error);
