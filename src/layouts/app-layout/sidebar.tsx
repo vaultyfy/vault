@@ -59,35 +59,33 @@ const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
   },
 ];
 
+const consoleNavBase = [
+  { iconBaseName: "dash-dark", name: "overview", path: "/console" },
+  {
+    iconBaseName: "profile",
+    name: "Thrift group mgmt",
+    path: "/console/group-mgmt",
+  },
+  {
+    iconBaseName: "search",
+    name: "payment monitoring",
+    path: "/console/payment-monitoring",
+  },
+  {
+    iconBaseName: "money-send",
+    name: "Loan Mgmt",
+    path: "/console/loan-mgmt",
+  },
+  {
+    iconBaseName: "info",
+    name: "Rules & enforcement",
+    path: "/console/rules",
+  },
+  { iconBaseName: "user", name: "Users", path: "/console/users" },
+];
 export const Sidebar = () => {
   const pathname = useCurrentPath();
   const isConsoleRoute = useConsolePath();
-
-  const consoleNavBase = [
-    { iconBaseName: "dash-dark", name: "overview", path: "/console" },
-    {
-      iconBaseName: "profile",
-      name: "Thrift group mgmt",
-      path: "/console/group-mgmt",
-    },
-    {
-      iconBaseName: "search",
-      name: "payment monitoring",
-      path: "/console/payment-monitoring",
-    },
-    {
-      iconBaseName: "money-send",
-      name: "Loan Mgmt",
-      path: "/console/loan-mgmt",
-    },
-    {
-      iconBaseName: "info",
-      name: "Rules & enforcement",
-      path: "/console/rules",
-    },
-    { iconBaseName: "user", name: "Users", path: "/console/users" },
-  ];
-
   const CONSOLE_NAV_ITEMS: SidenavItems[] = consoleNavBase.map((item) => ({
     id: crypto.randomUUID(),
     icon: (
