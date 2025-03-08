@@ -6,6 +6,12 @@ export type Response<T = any> = {
   errors?: string[] | string;
 };
 
+export type Common = {
+  currentPage: number;
+  pageSize: number;
+  total: number;
+};
+
 export type LoginResponse = {
   token: { token: string };
   user: User;
@@ -38,10 +44,7 @@ export type UserBankAccount = BankInfo & {
   owner: User;
 };
 
-export type UserBanks = {
-  currentPage: number;
-  pageSize: number;
-  total: number;
+export type UserBanks = Common & {
   data: UserBankAccount[];
 };
 
@@ -151,6 +154,10 @@ export type Group = {
   participants: Participant[];
 };
 
+export type UserGroups = Common & {
+  data: Group[];
+};
+
 export type Participant = {
   id: number;
   participantID: string;
@@ -167,7 +174,7 @@ export type Participant = {
   createdAT: string;
   updatedAT: string;
   group: string;
-  customer: string;
+  customer: Customer;
   contributions: Contribution[];
 };
 

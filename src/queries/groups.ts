@@ -1,6 +1,6 @@
 import { cookieOptions, HEADER_API_KEY, TOKEN_KEY } from "@utils/constants"
 import { app } from "@utils/endpoints"
-import { Group, Response } from "@utils/types"
+import { Response, UserGroups } from "@utils/types"
 import { getCookie } from "cookies-next"
 
 export const getJoinedGroups = async () => {
@@ -38,7 +38,7 @@ export const getAllGroups = async () => {
       }
     })
 
-    const response: Response<Group> = await request.json()
+    const response: Response<UserGroups> = await request.json()
     return response
   } catch (error) {
     console.error(`${(error as Error).message}`)

@@ -1,7 +1,7 @@
 import { Flex, Image, Box, Text } from "@chakra-ui/react";
 
 interface StackedAvatarsProps {
-  images: string[];
+  images: string[] | undefined;
   maxVisible?: number;
 }
 

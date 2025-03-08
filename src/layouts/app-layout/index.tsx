@@ -16,7 +16,7 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
       <Box
         width={{
           "2xl": "70%",
-          xl: "75%",
+          xl: "84%",
           md: "100%",
           base: "100%",
           lg: "100%",
