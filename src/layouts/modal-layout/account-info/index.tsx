@@ -1,17 +1,9 @@
 import { ModalLayout } from "@components/ui";
 import { BaseModalProps } from "@utils/constants";
 import { InputField, SelectField } from "@components/form";
-import { BankInfo, UserBankAccount } from "@utils/types";
+import { UserBankAccount } from "@utils/types";
 import { Formik, Form } from "formik";
-import {
-  Text,
-  Flex,
-  Input,
-  Button,
-  Image,
-  Divider,
-  Box,
-} from "@chakra-ui/react";
+import { Text, Button, Image, Box } from "@chakra-ui/react";
 import { addBank, updateBankInfo } from "@mutations/banks";
 import { useToastContext } from "@hooks/context";
 import { useBanks, useMyBanks } from "@hooks/swr";
@@ -27,7 +19,7 @@ export const AccountInfoModal = ({
 }: AccountInfoModalProps) => {
   const { openToast } = useToastContext();
   const { data: banks } = useBanks();
-  const {mutate} = useMyBanks()
+  const { mutate } = useMyBanks();
 
   const bankList = banks.map((bank) => ({
     label: bank.name,
@@ -82,6 +74,7 @@ export const AccountInfoModal = ({
                 .map((field, index) => {
                   return (
                     <InputField
+                      key={index}
                       label={
                         field === "accountName"
                           ? "Account name"

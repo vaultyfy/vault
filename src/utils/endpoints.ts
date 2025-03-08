@@ -38,4 +38,9 @@ export const app = {
     yourBanks: `${BASE_URL}/customer/all-my-bankDetails`,
     changePassword: `${BASE_URL}/customer/change-password`
   },
+  groups: {
+    create: `${BASE_URL}/groups/create`,
+    all: `${BASE_URL}/groups/all-groups`,
+    mine: `${BASE_URL}/groups/all-myParticipatoryGroups`
+  }
 } as const;

@@ -82,7 +82,7 @@ export type User = {
   updatedAT: string;
 };
 
-export type  Customer = {
+export type Customer = {
   id: number;
   customerID: string;
   name: string;
@@ -111,7 +111,7 @@ export type  Customer = {
   bank_details: BankDetail[];
   goals: Goal[];
   loans: Loan[];
-}
+};
 
 export type Transaction = {
   id: number;
@@ -125,7 +125,7 @@ export type Transaction = {
   description: string;
   metadata: Record<string, unknown>;
   customer: string;
-}
+};
 
 export type Group = {
   id: number;
@@ -149,7 +149,7 @@ export type Group = {
   updatedAT: string;
   createdBy: string;
   participants: Participant[];
-}
+};
 
 export type Participant = {
   id: number;
@@ -169,7 +169,7 @@ export type Participant = {
   group: string;
   customer: string;
   contributions: Contribution[];
-}
+};
 
 export type Contribution = {
   id: number;
@@ -177,7 +177,7 @@ export type Contribution = {
   date: string;
   participant: string;
   customer: string;
-}
+};
 
 export type BankDetail = {
   id: number;
@@ -188,7 +188,7 @@ export type BankDetail = {
   createdAT: string;
   updatedAT: string;
   owner: string;
-}
+};
 
 export type Goal = {
   id: number;
@@ -200,7 +200,7 @@ export type Goal = {
   createdAT: string;
   updatedAT: string;
   owner: string;
-}
+};
 
 export type Loan = {
   id: number;
@@ -226,7 +226,7 @@ export type Loan = {
   updatedAT: string;
   customer: string;
   approvedBy: Admin;
-}
+};
 
 export type Admin = {
   id: number;
@@ -244,14 +244,33 @@ export type Admin = {
   createdAT: string;
   updatedAT: string;
   approvedLoans: string[];
-}
+};
 
 export type ExpectedReturns = {
   expectedReturns: number;
-}
+};
 
 export type PasswordPayload = {
   oldPassword: string;
   newPassword: string;
   confirmNewPassword: string;
-}
+};
+
+export type ContributionFrequency =
+  | "Monthly"
+  | "Weekly"
+  | "Yearly"
+  | "Daily"
+  | "Three_Months"
+  | "Six_Months";
+
+export type GroupPayload = {
+  name: string;
+  groupDescription: string;
+  contributionAmount: number;
+  numberOfdaysOrMembers: number;
+  numberOfcircle: number;
+  startDate: string;
+  numberOfparticipantsAvailable: number;
+  contributionFrequency: string | ContributionFrequency;
+};
