@@ -27,7 +27,7 @@ import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
 export const CreateGroupContent = ({
   closeModal,
 }: {
-  closeModal: () => void;
+  closeModal?: () => void;
 }) => {
   const navigate = useNavigate();
   const { openToast } = useToastContext();
@@ -59,7 +59,7 @@ export const CreateGroupContent = ({
             if (request?.ok) {
               openToast(response.message, "success");
               // mutate
-              closeModal();
+              closeModal && closeModal();
             }
           } catch (error) {
             console.error(error);
