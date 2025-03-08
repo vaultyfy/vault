@@ -106,12 +106,16 @@ export const Groups = () => {
             <TabPanels>
               <TabPanel px="0px" pt="1.4em">
                 <Stack direction="column" gap=".8em">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <MyGroupCard
-                      bgColor={i === 0 ? "var(--card-bg-active)" : ""}
-                      border={`0.5px solid ${i === 0 ? "var(--primary)" : "var(--border-muted)"}`}
-                    />
-                  ))}
+                  {data?.map((group, index) => {
+                    return (
+                      <MyGroupCard
+                        key={group.id}
+                        data={group}
+                        bgColor={index === 0 ? "var(--card-bg-active)" : ""}
+                        border={`0.5px solid ${index === 0 ? "var(--primary)" : "var(--border-muted)"}`}
+                      />
+                    );
+                  })}
                 </Stack>
               </TabPanel>
             </TabPanels>

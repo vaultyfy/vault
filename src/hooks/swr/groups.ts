@@ -34,7 +34,10 @@ export const useMyGroups = () => {
   return {
     error,
     isLoading,
-    data: payload,
+    data: payload?.data,
+    pageSize: payload?.pageSize,
+    currentPage: payload?.currentPage,
     mutate: updateGroupsList,
+    count: payload?.total
   };
 };

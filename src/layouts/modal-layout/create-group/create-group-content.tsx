@@ -23,6 +23,7 @@ import { GroupPayload } from "@utils/types";
 import { createGroup } from "@mutations/groups";
 import { useToastContext } from "@hooks/context";
 import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
+import { useMyBanks } from "@hooks/swr";
 
 export const CreateGroupContent = ({
   closeModal,
@@ -31,6 +32,7 @@ export const CreateGroupContent = ({
 }) => {
   const navigate = useNavigate();
   const { openToast } = useToastContext();
+  const { mutate } = useMyBanks();
 
   return (
     <Formik<GroupPayload>
@@ -58,7 +60,7 @@ export const CreateGroupContent = ({
 
             if (request?.ok) {
               openToast(response.message, "success");
-              // mutate
+              mutate();
               closeModal && closeModal();
             }
           } catch (error) {

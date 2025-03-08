@@ -36,8 +36,10 @@ export const useMyBanks = () => {
   const payload = data?.payload
   const refreshBankList = () => mutate(key)
 
+  console.log("payload", payload)
+
   return {
-    data: data?.payload?.data,
+    data: payload?.data,
     count: payload?.total,
     pageSize: payload?.pageSize,
     currentPage: payload?.currentPage,
