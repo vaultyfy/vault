@@ -20,6 +20,7 @@ import {
 import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
 import { Icon } from "@components/icon";
 import { useMobileScreens } from "@hooks/mobile-screen";
+import { useMyGroups } from "@hooks/swr";
 import { ChevronDown } from "lucide-react";
 import slugify from "slugify";
 
@@ -35,6 +36,7 @@ export const GROUPS_TAB_ITEMS = [
 
 export const Groups = () => {
   const { isMobile } = useMobileScreens();
+  const { data } = useMyGroups();
 
   return (
     <Flex
@@ -93,6 +95,7 @@ export const Groups = () => {
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="500"
                     whiteSpace="nowrap"
+                    key={tab.id}
                   >
                     {tab.name}
                   </Tab>

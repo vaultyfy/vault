@@ -22,20 +22,13 @@ import { generateNoOfCycles, generateNoOfDays } from "@utils/misc";
 import { GroupPayload } from "@utils/types";
 import { createGroup } from "@mutations/groups";
 import { useToastContext } from "@hooks/context";
+import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
 
-export const CONTRIBUTION_FREQUENCY = Array.from([
-  "Daily",
-  "Weekly",
-  "Monthly",
-  "Yearly",
-  "Three_Months",
-  "Six_Months",
-]).map((frequency) => ({
-  label: frequency.replaceAll("_", " "),
-  value: frequency,
-}));
-
-export const CreateGroupContent = () => {
+export const CreateGroupContent = ({
+  closeModal,
+}: {
+  closeModal: () => void;
+}) => {
   const navigate = useNavigate();
   const { openToast } = useToastContext();
 
@@ -66,6 +59,7 @@ export const CreateGroupContent = () => {
             if (request?.ok) {
               openToast(response.message, "success");
               // mutate
+              closeModal();
             }
           } catch (error) {
             console.error(error);

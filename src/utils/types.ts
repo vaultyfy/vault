@@ -134,7 +134,7 @@ export type Group = {
   groupDescription: string;
   groupInviteLink: string;
   contributionAmount: number;
-  contributionFrequency: "Daily" | string;
+  contributionFrequency: ContributionFrequency;
   numberOfdaysOrMembers: number;
   numberOfcircle: number;
   numberOfparticipantsAvailable: number;
@@ -147,7 +147,7 @@ export type Group = {
   joinedParticipantsCount: number;
   createdAT: string;
   updatedAT: string;
-  createdBy: string;
+  createdBy: Customer;
   participants: Participant[];
 };
 
