@@ -1,4 +1,4 @@
-import { CONTRIBUTION_FREQUENCY } from "@layouts/modal-layout";
+import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
 import * as Yup from "yup";
 
 export const createGroupSchema = Yup.object().shape({

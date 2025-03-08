@@ -8,6 +8,18 @@ export const HEADER_API_KEY = {
 
 export const BANKS_LIST = "https://nigerianbanks.xyz/";
 
+export const CONTRIBUTION_FREQUENCY = Array.from([
+  "Daily",
+  "Weekly",
+  "Monthly",
+  "Yearly",
+  "Three_Months",
+  "Six_Months",
+]).map((frequency) => ({
+  label: frequency.replaceAll("_", " "),
+  value: frequency,
+}));
+
 export interface BaseModalProps
   extends Pick<ModalLayoutProps, "isOpen" | "onClose"> {}
 
