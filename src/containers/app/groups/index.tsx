@@ -20,6 +20,7 @@ import {
 import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
 import { Icon } from "@components/icon";
 import { useMobileScreens } from "@hooks/mobile-screen";
+import { useMyGroups } from "@hooks/swr";
 import { ChevronDown } from "lucide-react";
 import slugify from "slugify";
 
@@ -35,6 +36,7 @@ export const GROUPS_TAB_ITEMS = [
 
 export const Groups = () => {
   const { isMobile } = useMobileScreens();
+  const { data } = useMyGroups();
 
   return (
     <Flex
@@ -93,6 +95,7 @@ export const Groups = () => {
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="500"
                     whiteSpace="nowrap"
+                    key={tab.id}
                   >
                     {tab.name}
                   </Tab>
@@ -103,12 +106,16 @@ export const Groups = () => {
             <TabPanels>
               <TabPanel px="0px" pt="1.4em">
                 <Stack direction="column" gap=".8em">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <MyGroupCard
-                      bgColor={i === 0 ? "var(--card-bg-active)" : ""}
-                      border={`0.5px solid ${i === 0 ? "var(--primary)" : "var(--border-muted)"}`}
-                    />
-                  ))}
+                  {data?.map((group, index) => {
+                    return (
+                      <MyGroupCard
+                        key={group.id}
+                        data={group}
+                        bgColor={index === 0 ? "var(--card-bg-active)" : ""}
+                        border={`0.5px solid ${index === 0 ? "var(--primary)" : "var(--border-muted)"}`}
+                      />
+                    );
+                  })}
                 </Stack>
               </TabPanel>
             </TabPanels>

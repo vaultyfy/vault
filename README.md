@@ -8,7 +8,7 @@ Join verified thrift savings groups, contribute securely, and receive payouts in
 - Clone this repo
 
 ```shell
-git clone https://github.com/kaf-lamed-beyt/vultifier.git
+git clone https://github.com/vaultyfy/vault.git
 ```
 
 - Create a new branch with a name reflecting what you intend to work on

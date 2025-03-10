@@ -1,8 +1,17 @@
 import { ReactSVG } from "react-svg";
 import { IconProps } from "@phosphor-icons/react";
 
-export const Icon = ({ name }: { name: string }) => {
-  return <ReactSVG src={`/icons/${name}.svg`} />;
+interface CustomIconProps {
+  name: string;
+  type?: "console" | "app";
+}
+
+export const Icon = ({ name, type }: CustomIconProps) => {
+  return (
+    <ReactSVG
+      src={`${type ? `/icons/console/${name}.svg` : `/icons/${name}.svg`}`}
+    />
+  );
 };
 
 export interface GradientIconProps extends IconProps {

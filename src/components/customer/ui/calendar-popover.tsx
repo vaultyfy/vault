@@ -17,8 +17,10 @@ import {
 import { CaretRight, CaretLeft } from "@phosphor-icons/react";
 import { Calendar } from "./calendar";
 import { Icon } from "@components/icon";
+import { useConsolePath } from "@hooks/current-path";
 
 export const CalendarPopover = () => {
+  const adminPathname = useConsolePath();
   return (
     <Popover placement="bottom-start">
       <PopoverTrigger>
@@ -26,11 +28,11 @@ export const CalendarPopover = () => {
           background="var(--btn-secondary-7)"
           boxSize={"50px"}
           rounded="full"
-          display="flex"
+          display={adminPathname ? "none" : "flex"}
           justifyContent="center"
           alignItems="center"
           _hover={{
-            background: "var(--btn-secondary-7)"
+            background: "var(--btn-secondary-7)",
           }}
         >
           <Icon name="calendar-2" />
@@ -43,7 +45,6 @@ export const CalendarPopover = () => {
             <IconButton
               aria-label="Previous saving groups"
               icon={<CaretLeft color="#000" weight="bold" />}
-              // onClick={() => changeMonth(-1)}
               size="sm"
               bgColor="transparent"
               _hover={{
@@ -73,7 +74,6 @@ export const CalendarPopover = () => {
             <IconButton
               aria-label="Next saving groups"
               icon={<CaretRight color="#000" weight="bold" />}
-              // onClick={() => changeMonth(-1)}
               size="sm"
               bgColor={"transparent"}
               _hover={{
@@ -149,7 +149,7 @@ export const CalendarPopover = () => {
                 _hover={{ bgGradient: "var(--main-gradient)" }}
                 color="#fff"
               >
-                  Pay now
+                Pay now
               </Button>
             </VStack>
           </Flex>

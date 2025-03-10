@@ -6,6 +6,12 @@ export type Response<T = any> = {
   errors?: string[] | string;
 };
 
+export type Common = {
+  currentPage: number;
+  pageSize: number;
+  total: number;
+};
+
 export type LoginResponse = {
   token: { token: string };
   user: User;
@@ -16,6 +22,31 @@ export type LoginResponse = {
 export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
+
+export type Bank = {
+  logo: string;
+  name: string;
+  slug: string;
+  code: string;
+};
+
+export type BankInfo = {
+  bankName: string;
+  accountNumber: string;
+  accountName: string;
+};
+
+export type UserBankAccount = BankInfo & {
+  id: number;
+  bankID: string;
+  createdAT: string;
+  updatedAT: string | null;
+  owner: User;
+};
+
+export type UserBanks = Common & {
+  data: UserBankAccount[];
+};
 
 export type Wallet = {
   id: number;
@@ -54,7 +85,7 @@ export type User = {
   updatedAT: string;
 };
 
-export type  Customer = {
+export type Customer = {
   id: number;
   customerID: string;
   name: string;
@@ -83,7 +114,7 @@ export type  Customer = {
   bank_details: BankDetail[];
   goals: Goal[];
   loans: Loan[];
-}
+};
 
 export type Transaction = {
   id: number;
@@ -97,7 +128,7 @@ export type Transaction = {
   description: string;
   metadata: Record<string, unknown>;
   customer: string;
-}
+};
 
 export type Group = {
   id: number;
@@ -106,7 +137,7 @@ export type Group = {
   groupDescription: string;
   groupInviteLink: string;
   contributionAmount: number;
-  contributionFrequency: "Daily" | string;
+  contributionFrequency: ContributionFrequency;
   numberOfdaysOrMembers: number;
   numberOfcircle: number;
   numberOfparticipantsAvailable: number;
@@ -119,9 +150,13 @@ export type Group = {
   joinedParticipantsCount: number;
   createdAT: string;
   updatedAT: string;
-  createdBy: string;
+  createdBy: Customer;
   participants: Participant[];
-}
+};
+
+export type UserGroups = Common & {
+  data: Group[];
+};
 
 export type Participant = {
   id: number;
@@ -139,9 +174,9 @@ export type Participant = {
   createdAT: string;
   updatedAT: string;
   group: string;
-  customer: string;
+  customer: Customer;
   contributions: Contribution[];
-}
+};
 
 export type Contribution = {
   id: number;
@@ -149,7 +184,7 @@ export type Contribution = {
   date: string;
   participant: string;
   customer: string;
-}
+};
 
 export type BankDetail = {
   id: number;
@@ -160,7 +195,7 @@ export type BankDetail = {
   createdAT: string;
   updatedAT: string;
   owner: string;
-}
+};
 
 export type Goal = {
   id: number;
@@ -172,7 +207,7 @@ export type Goal = {
   createdAT: string;
   updatedAT: string;
   owner: string;
-}
+};
 
 export type Loan = {
   id: number;
@@ -198,7 +233,7 @@ export type Loan = {
   updatedAT: string;
   customer: string;
   approvedBy: Admin;
-}
+};
 
 export type Admin = {
   id: number;
@@ -216,4 +251,33 @@ export type Admin = {
   createdAT: string;
   updatedAT: string;
   approvedLoans: string[];
-}
+};
+
+export type ExpectedReturns = {
+  expectedReturns: number;
+};
+
+export type PasswordPayload = {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+};
+
+export type ContributionFrequency =
+  | "Monthly"
+  | "Weekly"
+  | "Yearly"
+  | "Daily"
+  | "Three_Months"
+  | "Six_Months";
+
+export type GroupPayload = {
+  name: string;
+  groupDescription: string;
+  contributionAmount: number;
+  numberOfdaysOrMembers: number;
+  numberOfcircle: number;
+  startDate: string;
+  numberOfparticipantsAvailable: number;
+  contributionFrequency: string | ContributionFrequency;
+};

@@ -1,7 +1,8 @@
+import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
 import * as Yup from "yup";
 
 export const createGroupSchema = Yup.object().shape({
-  groupName: Yup.string()
+  name: Yup.string()
     .min(3, "Group name must be at least 3 characters")
     .required("Group name is required"),
 
@@ -18,23 +19,26 @@ export const createGroupSchema = Yup.object().shape({
     .positive("Amount must be greater than 0")
     .required("Contribution amount is required"),
 
-  constributionFrequency: Yup.string()
-    .oneOf(["daily", "weekly", "monthly"], "Invalid frequency")
+  contributionFrequency: Yup.string()
+    .oneOf(
+      CONTRIBUTION_FREQUENCY.map((freq) => freq.value),
+      "Invalid frequency",
+    )
     .required("Contribution frequency is required"),
 
-  noOfDays: Yup.number()
+  numberOfdaysOrMembers: Yup.number()
     .typeError("Must be a number")
     .integer("Must be an integer")
     .positive("Must be greater than 0")
     .required("Number of days is required"),
 
-  noOfCycles: Yup.number()
+  numberOfcircle: Yup.number()
     .typeError("Must be a number")
     .integer("Must be an integer")
     .positive("Must be greater than 0")
     .required("Number of cycles is required"),
 
-  noOfContributors: Yup.number()
+  numberOfparticipantsAvailable: Yup.number()
     .typeError("Must be a number")
     .integer("Must be an integer")
     .positive("Must be greater than 0")

@@ -1,7 +1,7 @@
 import { MetaData } from "@components/metadata";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { AppLayout } from "@layouts/app-layout";
-import { CreateGroupContent } from "@layouts/modal-layout/components";
+import { CreateGroupContent } from "@layouts/modal-layout";
 import { useNavigate } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 import React from "react";

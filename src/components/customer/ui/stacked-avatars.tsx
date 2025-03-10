@@ -1,7 +1,7 @@
 import { Flex, Image, Box, Text } from "@chakra-ui/react";
 
 interface StackedAvatarsProps {
-  images: string[];
+  images: string[] | undefined;
   maxVisible?: number;
 }
 
@@ -9,12 +9,12 @@ export const StackedAvatars = ({
   images,
   maxVisible = 3,
 }: StackedAvatarsProps) => {
-  const visibleImages = images.slice(0, maxVisible);
-  const remainingCount = images.length - maxVisible;
+  const visibleImages = images?.slice(0, maxVisible);
+  const remainingCount = images && images?.length - maxVisible;
 
   return (
     <Flex>
-      {visibleImages.map((src, index) => (
+      {visibleImages?.map((src, index) => (
         <Image
           key={index}
           src={src}
@@ -27,7 +27,7 @@ export const StackedAvatars = ({
         />
       ))}
 
-      {remainingCount > 0 && (
+      {remainingCount && remainingCount > 0 && (
         <Box
           boxSize="38px"
           display="flex"

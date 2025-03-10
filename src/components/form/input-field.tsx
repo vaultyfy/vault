@@ -62,7 +62,7 @@ export const InputField = ({
     border:
       meta.touched && meta.error
         ? "1px solid var(--deep-blood)"
-        : "1px solid #E2E8F0",
+        : "1px solid var(--outline)",
     transition: "border-color 0.2s ease",
   };
 
@@ -191,7 +191,7 @@ export const TextAreaField = ({
           fontSize="14px"
           placeholder={placeholder}
           borderRadius={radius ? radius : "9px"}
-          border="1px solid  #E2E8F0"
+          border="1px solid  var(--outline)"
           className={meta.touched && meta.error ? "shake" : ""}
           _placeholder={{
             fontWeight: "400",

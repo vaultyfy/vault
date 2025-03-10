@@ -1,7 +1,13 @@
-import { useLocation } from "@tanstack/react-router"
-import { FileRouteTypes } from "src/routeTree.gen";
+import { useLocation } from "@tanstack/react-router";
+import { FileRouteTypes } from "@tanstack/react-router";
 
 export const useCurrentPath = () => {
   const location = useLocation();
-  return location.pathname as unknown as FileRouteTypes["fullPaths"];
-}
+  const currentRoute = location.pathname as FileRouteTypes["fullPaths"];
+  return currentRoute;
+};
+
+export const useConsolePath = () => {
+  const pathname = useCurrentPath();
+  return pathname.includes("/console");
+};

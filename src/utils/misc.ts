@@ -8,7 +8,7 @@ export const generateNoOfDays = (days?: number): CountedObject[] => {
   const newDays = days || 100;
 
   for (let i = 5; i <= newDays; i += 5) {
-    result.push({ label: `${i} days`, value: `${i} days` });
+    result.push({ label: `${i} days`, value: `${i}` });
   }
 
   return result;
@@ -19,7 +19,7 @@ export const generateNoOfCycles = (cycleCount?: number): CountedObject[] => {
   const cycles = cycleCount || 10;
 
   for (let i = 1; i <= cycles; i += 1) {
-    result.push({ label: `${i} days`, value: `${i} days` });
+    result.push({ label: `${i} days`, value: `${i}` });
   }
 
   return result;

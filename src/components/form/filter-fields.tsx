@@ -58,7 +58,7 @@ export const FilterInput = ({
     border:
       meta.touched && meta.error
         ? "1px solid var(--deep-blood)"
-        : "1px solid #E2E8F0",
+        : "1px solid var(--outlne-color)",
     transition: "border-color 0.2s ease",
     padding: "7px 8px",
   };
@@ -159,7 +159,7 @@ export const FilterDatePicker = ({
     background: "#fff",
     height: height,
     borderRadius: inputBorderRadius,
-    border: "1px solid #E2E8F0",
+    border: "1px solid var(--outline)",
     transition: "border-color 0.2s ease",
     paddingLeft: "16px",
     cursor: "pointer",

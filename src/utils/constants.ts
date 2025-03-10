@@ -1,9 +1,27 @@
+import { ModalLayoutProps } from "@components/ui";
 import { OptionsType } from "cookies-next";
 
 export const MAIN_GRADIENT = "linear(to-r, #1CCFBD, #2C9BF0)";
 export const HEADER_API_KEY = {
   "X-API-Key": import.meta.env.VITE_API_KEY!,
 };
+
+export const BANKS_LIST = "https://nigerianbanks.xyz/";
+
+export const CONTRIBUTION_FREQUENCY = Array.from([
+  "Daily",
+  "Weekly",
+  "Monthly",
+  "Yearly",
+  "Three_Months",
+  "Six_Months",
+]).map((frequency) => ({
+  label: frequency.replaceAll("_", " "),
+  value: frequency,
+}));
+
+export interface BaseModalProps
+  extends Pick<ModalLayoutProps, "isOpen" | "onClose"> {}
 
 export const cookieOptions = {
   path: "/",
@@ -14,7 +32,6 @@ export const cookieOptions = {
 
 export const swrOptions = {
   revalidateIfStale: true,
-  // revalidateOnMount: false,
   revalidateOnFocus: true,
   revalidateOnReconnect: true,
 };
@@ -29,6 +46,10 @@ export type State =
   | "error"
   | "success"
   | "deleting";
+
+const bgs = ["b6e3f4", "c0aede", "d1d4f9", "ffd5dc", "ffdfbf"];
+const randomBgIndex = Math.floor(Math.random() * bgs.length);
+export const randomBg = bgs[randomBgIndex];
 
 export const avatars = [
   "/img/person-1.svg",

@@ -7,23 +7,33 @@ import {
   Text,
   HStack,
   ChakraProps,
+  Stack,
 } from "@chakra-ui/react";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { RefreshCcw } from "lucide-react";
 import { StackedAvatars } from "./stacked-avatars";
-import { avatars } from "@utils/constants";
 import { Status, GlobalStatus } from "@components/ui";
+import { Group } from "@utils/types";
+import { randomBg } from "@utils/constants";
 
 interface MyGroupCardProps extends Partial<ChakraProps> {
   bgColor?: string;
+  data: Partial<Group>;
   acceptanceStatus?: GlobalStatus;
 }
 
 export const MyGroupCard = ({
+  data,
   bgColor,
   acceptanceStatus,
   ...props
 }: MyGroupCardProps) => {
+  const groupData = data;
+  const groupMembersAvatar = groupData?.participants?.map(
+    (members) =>
+      `${members.customer.profilePicture || `https://api.dicebear.com/7.x/micah/svg?seed=${members.customer.name}&size=48&flip=true&background=${randomBg}`}`,
+  );
+
   return (
     <Card
       boxShadow="none"
@@ -41,7 +51,7 @@ export const MyGroupCard = ({
             <Status status={acceptanceStatus as GlobalStatus} />
           </Box>
         )}
-        <VStack spacing="23px" w="full">
+        <Stack direction="column" gap=".8em">
           <Flex width="full" height="143px">
             <Box flex={1} px="8px">
               <Text
@@ -52,7 +62,7 @@ export const MyGroupCard = ({
                 fontWeight="medium"
                 textTransform="capitalize"
               >
-                Unity Saver
+                {groupData?.name}
               </Text>
               <HStack spacing="3px" mt="2px">
                 <Flex
@@ -68,8 +78,10 @@ export const MyGroupCard = ({
                     fontWeight="400"
                     color="var(--main)"
                     whiteSpace="nowrap"
+                    textTransform="lowercase"
                   >
-                    10,000/week
+                    {groupData?.contributionAmount}/
+                    {groupData?.contributionFrequency}
                   </Text>
                 </Flex>
                 <Flex
@@ -90,12 +102,18 @@ export const MyGroupCard = ({
                     fontWeight="400"
                     color="var(--main)"
                   >
-                    3
+                    {groupData?.numberOfcircle}
                   </Text>
                 </Flex>
               </HStack>
               <Box w="full" mt="28px">
-                <StackedAvatars images={avatars} maxVisible={3} />
+                {groupMembersAvatar?.length === 0 ? (
+                  <Text fontSize="12px" color="var(--grey)">
+                    No members yet...
+                  </Text>
+                ) : (
+                  <StackedAvatars images={groupMembersAvatar} maxVisible={3} />
+                )}
               </Box>
             </Box>
 
@@ -123,7 +141,7 @@ export const MyGroupCard = ({
                     color="var(--main)"
                     fontWeight="500"
                   >
-                    100,000
+                    {groupData?.payOutAmount}
                   </Text>
                 </HStack>
               </Box>
@@ -142,7 +160,7 @@ export const MyGroupCard = ({
                   fontWeight="400"
                   color="var(--dark)"
                 >
-                  24th Nov 2025
+                  {groupData?.endDate}
                 </Text>
               </Box>
             </VStack>
@@ -152,11 +170,9 @@ export const MyGroupCard = ({
             fontWeight="400"
             color="var(--dark)"
           >
-            This group is designed for parents and guardians saving for school
-            fees and supplies. Let’s plan ahead and make the back-to-school
-            season stress-free
+            {groupData?.groupDescription}
           </Text>
-        </VStack>
+        </Stack>
       </CardBody>
     </Card>
   );
