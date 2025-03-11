@@ -106,13 +106,13 @@ const HelpSupportCard = () => {
         </Box>
 
         <Box w={{ base: "100%", md: "50%" }} maxWidth="600px" p="4">
-          <Text fontSize="24px" fontWeight="600" color="#1CCFBD" mb="4">
+          <Text fontSize="24px" fontWeight="600" color="var(--btn-secondary)" mb="4">
             Answers
           </Text>
           <Box
             backgroundColor="#102634"
             borderRadius="22px"
-            border="2px solid #1CCFBD"
+            border="2px solid var(--btn-secondary)"
             p="6"
             position="relative"
             minHeight="280px"

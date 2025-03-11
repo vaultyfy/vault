@@ -36,7 +36,8 @@ export const app = {
     updateBankDetails: `${BASE_URL}/customer/update-bankDetails`,
     deleteBankDetails: `${BASE_URL}/customer/delete-bankDetails`,
     yourBanks: `${BASE_URL}/customer/all-my-bankDetails`,
-    changePassword: `${BASE_URL}/customer/change-password`
+    changePassword: `${BASE_URL}/customer/change-password`,
+    updateRecord: `${BASE_URL}/customer/update-record`
   },
   groups: {
     create: `${BASE_URL}/groups/create`,

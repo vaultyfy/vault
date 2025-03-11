@@ -32,7 +32,7 @@ export const Analytics = () => {
         >
           <defs>
             <linearGradient id="colorGradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="1.7%" stopColor="#1CCFBD" />
+              <stop offset="1.7%" stopColor="var(--secondary)" />
               <stop offset="105.41%" stopColor="#2C9BF0" />
             </linearGradient>
             <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">

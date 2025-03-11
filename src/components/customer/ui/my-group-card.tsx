@@ -15,6 +15,7 @@ import { StackedAvatars } from "./stacked-avatars";
 import { Status, GlobalStatus } from "@components/ui";
 import { Group } from "@utils/types";
 import { randomBg } from "@utils/constants";
+import { dicebear } from "@utils/misc";
 
 interface MyGroupCardProps extends Partial<ChakraProps> {
   bgColor?: string;
@@ -31,7 +32,7 @@ export const MyGroupCard = ({
   const groupData = data;
   const groupMembersAvatar = groupData?.participants?.map(
     (members) =>
-      `${members.customer.profilePicture || `https://api.dicebear.com/7.x/micah/svg?seed=${members.customer.name}&size=48&flip=true&background=${randomBg}`}`,
+      `${members.customer.profilePicture || `${dicebear}?seed=${members.customer.name}&size=48&flip=true&background=${randomBg}`}`,
   );
 
   return (
