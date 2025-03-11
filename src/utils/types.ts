@@ -281,3 +281,12 @@ export type GroupPayload = {
   numberOfparticipantsAvailable: number;
   contributionFrequency: string | ContributionFrequency;
 };
+
+// type def for when a user wants to update their account info
+export type UserPayload = {
+  name: string;
+  phoneNumber: string;
+  address: string;
+  email: string;
+  acceptTermsAndConditions: boolean;
+};

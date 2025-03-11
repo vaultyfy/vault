@@ -1,6 +1,11 @@
 import { Box, Flex, Stack } from "@chakra-ui/react";
 import React from "react";
-import { LoginSecurityCard, SettingCard, PaymentsPayouts, PersonalInfo } from "./components";
+import {
+  LoginSecurityCard,
+  SettingCard,
+  PaymentsPayouts,
+  PersonalInfo,
+} from "./components";
 import HelpSupportCard from "@containers/app/settings/components/help-support";
 import { useNavigate } from "@tanstack/react-router";
 
@@ -66,7 +71,7 @@ export const Settings = () => {
       justifyContent="space-between"
       overflowY="auto"
       flexWrap="wrap"
-      gap="1em"
+      gap={{ xl: "1em", lg: ".6em", md: ".6em", base: "1em" }}
       px={{ xl: "1em", base: ".4rem", lg: ".2rem" }}
     >
       <Stack
@@ -90,7 +95,7 @@ export const Settings = () => {
           );
         })}
       </Stack>
-      <Box width={{ lg: "50%", base: "100%", md: "48%" }}>
+      <Box width={{ lg: "50%", base: "100%", md: "50%" }}>
         {activeSetting.component}
       </Box>
     </Flex>
