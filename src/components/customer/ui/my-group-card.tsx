@@ -33,7 +33,6 @@ export const MyGroupCard = ({
   const groupMembersAvatar = groupData?.participants?.map(
     (members) =>
       `${members.customer.profilePicture || `${dicebear}?seed=${members.customer.name}&size=48&flip=true&background=${randomBg}`}`,
-  );
 
   return (
     <Card

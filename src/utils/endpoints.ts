@@ -42,6 +42,6 @@ export const app = {
   groups: {
     create: `${BASE_URL}/groups/create`,
     all: `${BASE_URL}/groups/all-groups`,
-    mine: `${BASE_URL}/groups/all-myParticipatoryGroups`
-  }
+    mine: `${BASE_URL}/groups/all-myParticipatoryGroups`,
+  },
 } as const;
