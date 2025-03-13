@@ -10,11 +10,15 @@ import {
   InputGroup,
   InputRightElement,
   IconButton,
+  HStack,
 } from "@chakra-ui/react";
 import { Eye, EyeSlash } from "@phosphor-icons/react";
 import SuccessModal from "@containers/app/settings/components/success-modal";
 import { PasswordPayload } from "@utils/types";
 import { changePassword } from "@mutations/change-password";
+import { CaretLeft } from "@phosphor-icons/react";
+import { useNavigate } from "@tanstack/react-router";
+import { useUiComponentStore } from "@store/ui";
 
 interface PasswordFields
   extends Pick<PasswordPayload, "newPassword" | "oldPassword"> {
@@ -22,13 +26,17 @@ interface PasswordFields
 }
 
 export const LoginSecurityCard = () => {
+  const navigate = useNavigate();
+  const { updateUiStore } = useUiComponentStore();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [editMode, setEditMode] = React.useState<Record<string, boolean>>({
     oldPassword: false,
     newPassword: false,
     confirmPassword: false,
   });
-  const [showPasswords, setShowPasswords] = React.useState<Record<string, boolean>>({
+  const [showPasswords, setShowPasswords] = React.useState<
+    Record<string, boolean>
+  >({
     oldPassword: false,
     newPassword: false,
     confirmPassword: false,
@@ -67,11 +75,36 @@ export const LoginSecurityCard = () => {
     setShowPasswords((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
+  const handleNavigation = () => {
+    updateUiStore({ ui: "login-security" });
+    navigate({ to: "/dashboard/settings" });
+  };
+
   return (
-    <Box width="482px">
-      <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
-        Login & Security
-      </Text>
+    <Box maxWidth="482px">
+      <HStack
+        spacing="2px"
+        alignItems="center"
+        mb={4}
+        mt={{ base: "4px", md: "0" }}
+      >
+        <IconButton
+          variant="ghost"
+          display={{ base: "block", md: "none" }}
+          _hover={{ bg: "transparent" }}
+          boxSize="auto"
+          aria-label="go back button"
+          icon={<CaretLeft size={24} />}
+          onClick={() => handleNavigation()}
+        />
+        <Text
+          fontSize="24px"
+          fontWeight={{ base: "500", md: "400" }}
+          color="var(--dark)"
+        >
+          Login & Security
+        </Text>
+      </HStack>
 
       <Box
         border="1px solid var(--outline)"
@@ -126,7 +159,12 @@ export const LoginSecurityCard = () => {
                   </InputRightElement>
                 </InputGroup>
               ) : (
-                <Text fontSize="18px" fontWeight="400" color="var(--dark)" flex="1">
+                <Text
+                  fontSize="18px"
+                  fontWeight="400"
+                  color="var(--dark)"
+                  flex="1"
+                >
                   {field === "oldPassword" ? "************" : "******"}
                 </Text>
               )}

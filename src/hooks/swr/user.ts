@@ -7,7 +7,7 @@ export const useUser = () => {
   const key = "user";
   const { data, error, isLoading } = useSWR(key, () => getUser(), swrOptions);
 
-  const walletBalance = data?.payload?.my_wallet.balance
+  const walletBalance = data?.payload?.my_wallet.balance;
 
   return {
     data: data?.payload,

@@ -9,6 +9,6 @@ export const useMobileScreens = () => {
   return {
     isMobile,
     isTablet,
-    isSmallViewPort
+    isSmallViewPort,
   };
 };

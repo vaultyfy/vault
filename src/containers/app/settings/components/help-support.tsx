@@ -1,18 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  Flex,
-  Text,
-  VStack,
-  Button,
-  Icon,
-  HStack,
-  useBreakpointValue,
-  Image,
-} from "@chakra-ui/react";
-import { Menu } from "lucide-react";
-import { Link } from "@tanstack/react-router";
-import { UserMenu } from "@components/ui";
+import { Box, Flex, Text, VStack, Button, Image } from "@chakra-ui/react";
 
 const faqs = [
   {
@@ -106,7 +93,12 @@ const HelpSupportCard = () => {
         </Box>
 
         <Box w={{ base: "100%", md: "50%" }} maxWidth="600px" p="4">
-          <Text fontSize="24px" fontWeight="600" color="var(--btn-secondary)" mb="4">
+          <Text
+            fontSize="24px"
+            fontWeight="600"
+            color="var(--btn-secondary)"
+            mb="4"
+          >
             Answers
           </Text>
           <Box

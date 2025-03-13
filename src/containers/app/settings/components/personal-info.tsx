@@ -8,6 +8,8 @@ import {
   Badge,
   Input,
   Button,
+  HStack,
+  IconButton,
 } from "@chakra-ui/react";
 import { useUser } from "@hooks/swr";
 import { updateUserInfo } from "@mutations/user";
@@ -16,6 +18,9 @@ import { UserPayload, User, Response } from "@utils/types";
 import { mutate } from "swr";
 import { Formik, Form, Field, FieldProps } from "formik";
 import { useToastContext } from "@hooks/context";
+import { CaretLeft } from "@phosphor-icons/react";
+import { useNavigate } from "@tanstack/react-router";
+import { useUiComponentStore } from "@store/ui";
 
 type SafeUserPayload = Omit<UserPayload, "acceptTermsAndConditions">;
 type VerificationFields = "nin" | "bvn";
@@ -75,6 +80,8 @@ const verificationFields: VerificationDetail[] = [
 ];
 
 export const PersonalInfo = () => {
+  const navigate = useNavigate();
+  const { updateUiStore } = useUiComponentStore();
   const { data: user } = useUser();
   const { openToast } = useToastContext();
   const [editModes, setEditModes] = React.useState<
@@ -174,11 +181,36 @@ export const PersonalInfo = () => {
     }
   };
 
+  const handleNavigation = () => {
+    updateUiStore({ ui: "personal-info" });
+    navigate({ to: "/dashboard/settings" });
+  };
+
   return (
     <Box width={{ xl: "482px", lg: "100%", md: "100%", base: "100%" }}>
-      <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
-        Personal Info
-      </Text>
+      <HStack
+        spacing="2px"
+        alignItems="center"
+        mb={4}
+        mt={{ base: "4px", md: "0" }}
+      >
+        <IconButton
+          variant="ghost"
+          display={{ base: "block", md: "none" }}
+          _hover={{ bg: "transparent" }}
+          boxSize="auto"
+          aria-label="go back button"
+          icon={<CaretLeft size={24} />}
+          onClick={() => handleNavigation()}
+        />
+        <Text
+          fontSize="24px"
+          fontWeight={{ base: "500", md: "400" }}
+          color="var(--dark)"
+        >
+          Personal Info
+        </Text>
+      </HStack>
 
       <Formik
         initialValues={initialValues}
@@ -217,7 +249,11 @@ export const PersonalInfo = () => {
                             <Input
                               {...field}
                               variant="unstyled"
-                              fontSize={{lg: "18px", md: "16px", base: "14px"}}
+                              fontSize={{
+                                lg: "18px",
+                                md: "16px",
+                                base: "14px",
+                              }}
                               fontWeight="400"
                               color="var(--dark)"
                               placeholder={`Enter your ${item.label.toLowerCase()}`}

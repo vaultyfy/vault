@@ -1,5 +1,5 @@
 import { Box, Flex, Stack } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   LoginSecurityCard,
   SettingCard,
@@ -8,6 +8,8 @@ import {
 } from "./components";
 import HelpSupportCard from "@containers/app/settings/components/help-support";
 import { useNavigate } from "@tanstack/react-router";
+import { useMobileScreens } from "@hooks/mobile-screen";
+import { useUiComponentStore } from "@store/ui";
 
 export type Setting = {
   id: string;
@@ -49,7 +51,15 @@ const SETTINGS: Setting[] = [
   },
 ];
 
+const settingRoutes: Record<string, string> = {
+  "personal info": "/dashboard/settings/personal-info",
+  "Payments & payouts": "/dashboard/settings/payments-payouts",
+  "Login & security": "/dashboard/settings/login-security",
+};
+
 export const Settings = () => {
+  const { isMobile } = useMobileScreens();
+  const { store } = useUiComponentStore();
   const [activeSetting, setActiveSetting] = React.useState<Setting>(
     SETTINGS[0],
   );
@@ -61,10 +71,37 @@ export const Settings = () => {
 
     if (found.title === "Help & Support") {
       navigate({ to: "/help-support" });
+    } else if (isMobile) {
+      const route = settingRoutes[found.title];
+      if (route) navigate({ to: route });
     } else {
       setActiveSetting(found);
     }
   };
+
+  const settingsMap = React.useMemo(() => {
+    return SETTINGS.reduce(
+      (acc, setting) => {
+        const key = setting.title
+          .toLowerCase()
+          .replace(/[\s&]+/g, " ")
+          .trim()
+          .replace(/\s/g, "-");
+        acc[key] = setting;
+        return acc;
+      },
+      {} as Record<string, Setting>,
+    );
+  }, []);
+
+  React.useEffect(() => {
+    if (store.ui === "") return;
+
+    const found = settingsMap[store.ui];
+
+    if (found) setActiveSetting(found);
+    console.log(found, store.ui);
+  }, [store, settingsMap]);
 
   return (
     <Flex
@@ -95,7 +132,10 @@ export const Settings = () => {
           );
         })}
       </Stack>
-      <Box width={{ lg: "50%", base: "100%", md: "50%" }}>
+      <Box
+        width={{ lg: "50%", base: "100%", md: "50%" }}
+        display={{ base: "none", md: "block" }}
+      >
         {activeSetting.component}
       </Box>
     </Flex>

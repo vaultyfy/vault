@@ -1,6 +1,11 @@
 import { useQueryStates, createParser } from "nuqs";
 
-export type UiComponents = "create-group" | "";
+export type UiComponents =
+  | "create-group"
+  | "personal-info"
+  | "payments-payouts"
+  | "login-security"
+  | "";
 
 const uiComponentParser = createParser({
   parse: (value: string) => {
@@ -20,4 +25,3 @@ export const useUiComponentStore = () => {
     updateUiStore: setUiComponent,
   };
 };
-  
