@@ -3,8 +3,8 @@ import { useQueryStates, createParser } from "nuqs";
 export type UiComponents =
   | "create-group"
   | "personal-info"
-  | "payments-payouts"
-  | "login-security"
+  | "payments-and-payouts"
+  | "login-and-security"
   | "";
 
 const uiComponentParser = createParser({

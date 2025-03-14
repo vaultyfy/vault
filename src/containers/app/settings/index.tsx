@@ -10,12 +10,14 @@ import HelpSupportCard from "@containers/app/settings/components/help-support";
 import { useNavigate } from "@tanstack/react-router";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useUiComponentStore } from "@store/ui";
+import slugify from "slugify";
 
 export type Setting = {
   id: string;
   iconName: string;
   title: string;
   description: string;
+  slug: string;
   component: React.ReactNode;
 };
 
@@ -49,7 +51,10 @@ const SETTINGS: Setting[] = [
       "Contact our support and learn more about our terms of services",
     component: <HelpSupportCard />,
   },
-];
+].map((setting) => ({
+  ...setting,
+  slug: slugify(setting.title, { lower: true, strict: true }),
+}));
 
 const settingRoutes: Record<string, string> = {
   "personal info": "/dashboard/settings/personal-info",
@@ -67,6 +72,7 @@ export const Settings = () => {
 
   const handleSelectedSetting = (id: string) => {
     const found = SETTINGS.find((setting) => setting.id === id);
+
     if (!found) return;
 
     if (found.title === "Help & Support") {
@@ -79,29 +85,14 @@ export const Settings = () => {
     }
   };
 
-  const settingsMap = React.useMemo(() => {
-    return SETTINGS.reduce(
-      (acc, setting) => {
-        const key = setting.title
-          .toLowerCase()
-          .replace(/[\s&]+/g, " ")
-          .trim()
-          .replace(/\s/g, "-");
-        acc[key] = setting;
-        return acc;
-      },
-      {} as Record<string, Setting>,
-    );
-  }, []);
-
   React.useEffect(() => {
     if (store.ui === "") return;
 
-    const found = settingsMap[store.ui];
+    const found = SETTINGS.find((setting) => setting.slug === store.ui);
 
     if (found) setActiveSetting(found);
     console.log(found, store.ui);
-  }, [store, settingsMap]);
+  }, [store, SETTINGS]);
 
   return (
     <Flex

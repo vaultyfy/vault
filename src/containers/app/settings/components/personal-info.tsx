@@ -18,9 +18,9 @@ import { UserPayload, User, Response } from "@utils/types";
 import { mutate } from "swr";
 import { Formik, Form, Field, FieldProps } from "formik";
 import { useToastContext } from "@hooks/context";
-import { CaretLeft } from "@phosphor-icons/react";
 import { useNavigate } from "@tanstack/react-router";
 import { useUiComponentStore } from "@store/ui";
+import { SettingsHeader } from "./settings-header";
 
 type SafeUserPayload = Omit<UserPayload, "acceptTermsAndConditions">;
 type VerificationFields = "nin" | "bvn";
@@ -188,29 +188,10 @@ export const PersonalInfo = () => {
 
   return (
     <Box width={{ xl: "482px", lg: "100%", md: "100%", base: "100%" }}>
-      <HStack
-        spacing="2px"
-        alignItems="center"
-        mb={4}
-        mt={{ base: "4px", md: "0" }}
-      >
-        <IconButton
-          variant="ghost"
-          display={{ base: "block", md: "none" }}
-          _hover={{ bg: "transparent" }}
-          boxSize="auto"
-          aria-label="go back button"
-          icon={<CaretLeft size={24} />}
-          onClick={() => handleNavigation()}
-        />
-        <Text
-          fontSize="24px"
-          fontWeight={{ base: "500", md: "400" }}
-          color="var(--dark)"
-        >
-          Personal Info
-        </Text>
-      </HStack>
+      <SettingsHeader
+        title="Personal Info"
+        handleNavigation={handleNavigation}
+      />
 
       <Formik
         initialValues={initialValues}

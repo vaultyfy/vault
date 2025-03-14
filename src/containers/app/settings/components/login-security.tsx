@@ -16,9 +16,9 @@ import { Eye, EyeSlash } from "@phosphor-icons/react";
 import SuccessModal from "@containers/app/settings/components/success-modal";
 import { PasswordPayload } from "@utils/types";
 import { changePassword } from "@mutations/change-password";
-import { CaretLeft } from "@phosphor-icons/react";
 import { useNavigate } from "@tanstack/react-router";
 import { useUiComponentStore } from "@store/ui";
+import { SettingsHeader } from "./settings-header";
 
 interface PasswordFields
   extends Pick<PasswordPayload, "newPassword" | "oldPassword"> {
@@ -76,35 +76,16 @@ export const LoginSecurityCard = () => {
   };
 
   const handleNavigation = () => {
-    updateUiStore({ ui: "login-security" });
+    updateUiStore({ ui: "login-and-security" });
     navigate({ to: "/dashboard/settings" });
   };
 
   return (
     <Box maxWidth="482px">
-      <HStack
-        spacing="2px"
-        alignItems="center"
-        mb={4}
-        mt={{ base: "4px", md: "0" }}
-      >
-        <IconButton
-          variant="ghost"
-          display={{ base: "block", md: "none" }}
-          _hover={{ bg: "transparent" }}
-          boxSize="auto"
-          aria-label="go back button"
-          icon={<CaretLeft size={24} />}
-          onClick={() => handleNavigation()}
-        />
-        <Text
-          fontSize="24px"
-          fontWeight={{ base: "500", md: "400" }}
-          color="var(--dark)"
-        >
-          Login & Security
-        </Text>
-      </HStack>
+      <SettingsHeader
+        title="Login & Security"
+        handleNavigation={handleNavigation}
+      />
 
       <Box
         border="1px solid var(--outline)"

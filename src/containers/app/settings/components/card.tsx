@@ -2,7 +2,7 @@ import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { Icon } from "@components/icon";
 import { Setting } from "..";
 
-interface SettingsCardProps extends Omit<Setting, "component"> {
+interface SettingsCardProps extends Omit<Setting, "component" | "slug"> {
   isActive: boolean;
   onClick: (id: string) => void;
 }

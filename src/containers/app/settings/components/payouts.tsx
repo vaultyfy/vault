@@ -21,10 +21,10 @@ import { deleteBank } from "@mutations/banks";
 import { State } from "@utils/constants";
 import { UserBankAccount } from "@utils/types";
 import { PencilLine, PlusCircle, Trash2 } from "lucide-react";
-import { CaretLeft } from "@phosphor-icons/react";
 import { useNavigate } from "@tanstack/react-router";
 import React from "react";
 import { useUiComponentStore } from "@store/ui";
+import { SettingsHeader } from "./settings-header";
 
 export const PaymentsPayouts = () => {
   const navigate = useNavigate();
@@ -64,36 +64,18 @@ export const PaymentsPayouts = () => {
   };
 
   const handleNavigation = () => {
-    updateUiStore({ ui: "payments-payouts" });
+    updateUiStore({ ui: "payments-and-payouts" });
+    console.log("is this working");
     navigate({ to: "/dashboard/settings" });
   };
 
   return (
     <>
       <Box width="482px">
-        <HStack
-          spacing="2px"
-          alignItems="center"
-          mb={4}
-          mt={{ base: "4px", md: "0" }}
-        >
-          <IconButton
-            variant="ghost"
-            display={{ base: "block", md: "none" }}
-            _hover={{ bg: "transparent" }}
-            boxSize="auto"
-            aria-label="go back button"
-            icon={<CaretLeft size={24} />}
-            onClick={() => handleNavigation()}
-          />
-          <Text
-            fontSize="24px"
-            fontWeight={{ base: "500", md: "400" }}
-            color="var(--dark)"
-          >
-            Payment & Payouts
-          </Text>
-        </HStack>
+        <SettingsHeader
+          title="Payment & Payouts"
+          handleNavigation={handleNavigation}
+        />
 
         {isLoading ? (
           <Stack direction="column" gap=".8em">
