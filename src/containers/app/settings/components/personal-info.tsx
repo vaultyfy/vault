@@ -8,6 +8,8 @@ import {
   Badge,
   Input,
   Button,
+  HStack,
+  IconButton,
 } from "@chakra-ui/react";
 import { useUser } from "@hooks/swr";
 import { updateUserInfo } from "@mutations/user";
@@ -16,6 +18,9 @@ import { UserPayload, User, Response } from "@utils/types";
 import { mutate } from "swr";
 import { Formik, Form, Field, FieldProps } from "formik";
 import { useToastContext } from "@hooks/context";
+import { useNavigate } from "@tanstack/react-router";
+import { useUiComponentStore } from "@store/ui";
+import { SettingsHeader } from "./settings-header";
 
 type SafeUserPayload = Omit<UserPayload, "acceptTermsAndConditions">;
 type VerificationFields = "nin" | "bvn";
@@ -75,6 +80,8 @@ const verificationFields: VerificationDetail[] = [
 ];
 
 export const PersonalInfo = () => {
+  const navigate = useNavigate();
+  const { updateUiStore } = useUiComponentStore();
   const { data: user } = useUser();
   const { openToast } = useToastContext();
   const [editModes, setEditModes] = React.useState<
@@ -174,11 +181,16 @@ export const PersonalInfo = () => {
     }
   };
 
+  const handleNavigation = () => {
+    navigate({ to: "/dashboard/settings" });
+  };
+
   return (
     <Box width={{ xl: "482px", lg: "100%", md: "100%", base: "100%" }}>
-      <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
-        Personal Info
-      </Text>
+      <SettingsHeader
+        title="Personal Info"
+        handleNavigation={handleNavigation}
+      />
 
       <Formik
         initialValues={initialValues}
@@ -217,7 +229,11 @@ export const PersonalInfo = () => {
                             <Input
                               {...field}
                               variant="unstyled"
-                              fontSize={{lg: "18px", md: "16px", base: "14px"}}
+                              fontSize={{
+                                lg: "18px",
+                                md: "16px",
+                                base: "14px",
+                              }}
                               fontWeight="400"
                               color="var(--dark)"
                               placeholder={`Enter your ${item.label.toLowerCase()}`}
