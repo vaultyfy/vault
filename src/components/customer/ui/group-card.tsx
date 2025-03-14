@@ -98,7 +98,7 @@ export const GroupCard = ({
                   height="25px"
                   borderRadius="18px"
                   px="1em"
-                  bg={hasGradient ? "rgba(255, 255, 255, 0.2)" : "#81818112"}
+                  bg={hasGradient ? "rgba(255, 255, 255, 0.2)" : "var(--grey-007)"}
                   alignItems="center"
                 >
                   <CurrencyNgn

@@ -32,7 +32,7 @@ export const MyGroupCard = ({
   const groupData = data;
   const groupMembersAvatar = groupData?.participants?.map(
     (members) =>
-      `${members.customer.profilePicture || `${dicebear}?seed=${members.customer.name}&size=48&flip=true&background=${randomBg}`}`,
+      `${members.customer?.profilePicture || `${dicebear}?seed=${members?.customer?.name}&size=48&flip=true&background=${randomBg}`}`,
   );
 
   return (
@@ -44,6 +44,7 @@ export const MyGroupCard = ({
       rounded="10px"
       position="relative"
       bg={bgColor || "#ffffff"}
+      _hover={{ cursor: "pointer" }}
       {...props}
     >
       <CardBody px={{ lg: "1em", md: ".8em", base: ".6em" }} py="23px" w="full">
@@ -70,7 +71,7 @@ export const MyGroupCard = ({
                   rounded="full"
                   px={{ lg: ".8em", base: ".4em", md: ".6em" }}
                   py={1}
-                  bg="#81818112"
+                  bg="var(--grey-007)"
                   alignItems="center"
                 >
                   <CurrencyNgn size={16} weight="bold" color="var(--text-1)" />
@@ -85,27 +86,20 @@ export const MyGroupCard = ({
                     {groupData?.contributionFrequency}
                   </Text>
                 </Flex>
-                <Flex
-                  rounded="full"
-                  px={4}
-                  py={1}
-                  bg="#81818112"
-                  alignItems="center"
-                >
+                <HStack gap=".2em" px={2} rounded="full" py={1} bg="var(--grey-007)" alignItems="center">
                   <RefreshCcw
                     size={16}
                     strokeWidth={2.5}
                     color="var(--text-1)"
                   />
                   <Text
-                    as="p"
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="400"
                     color="var(--main)"
                   >
                     {groupData?.numberOfcircle}
                   </Text>
-                </Flex>
+                </HStack>
               </HStack>
               <Box w="full" mt="28px">
                 {groupMembersAvatar?.length === 0 ? (
@@ -122,7 +116,7 @@ export const MyGroupCard = ({
               <Box w="fit-content">
                 <Text
                   fontSize={{ base: "12px", lg: "14px" }}
-                  fontWeight="medium"
+                  fontWeight="400"
                   color="var(--grey)"
                   textAlign="end"
                 >
@@ -149,7 +143,7 @@ export const MyGroupCard = ({
 
               <Box w="fit-content">
                 <Text
-                  fontSize={{ base: "12px", lg: "18px" }}
+                  fontSize={{ base: "12px", lg: "14px" }}
                   fontWeight="400"
                   color="var(--grey)"
                   textAlign="end"

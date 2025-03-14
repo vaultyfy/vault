@@ -16,6 +16,8 @@ import {
   TabPanels,
   TabPanel,
   Stack,
+  Center,
+  Spinner,
 } from "@chakra-ui/react";
 import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
 import { Icon } from "@components/icon";
@@ -36,7 +38,7 @@ export const GROUPS_TAB_ITEMS = [
 
 export const Groups = () => {
   const { isMobile } = useMobileScreens();
-  const { data } = useMyGroups();
+  const { data, isLoading } = useMyGroups();
 
   return (
     <Flex
@@ -62,7 +64,7 @@ export const Groups = () => {
           />
           <Text
             fontWeight="400"
-            fontSize={{ base: "14px", lg: "16px" }}
+            fontSize={{ base: "14px", lg: "14px", xl: "16px", md: "14px" }}
             color="var(--white-fade)"
           >
             Complete{" "}
@@ -103,67 +105,34 @@ export const Groups = () => {
               })}
             </TabList>
 
-            <TabPanels>
-              <TabPanel px="0px" pt="1.4em">
-                <Stack direction="column" gap=".8em">
-                  {data?.map((group, index) => {
-                    return (
-                      <MyGroupCard
-                        key={group.id}
-                        data={group}
-                        bgColor={index === 0 ? "var(--card-bg-active)" : ""}
-                        border={`0.5px solid ${index === 0 ? "var(--primary)" : "var(--border-muted)"}`}
-                      />
-                    );
-                  })}
-                </Stack>
-              </TabPanel>
-            </TabPanels>
+            {isLoading ? (
+              <Center height="450px">
+                <Spinner size="sm" color="var(--grey)" />
+              </Center>
+            ) : (
+              <TabPanels>
+                <TabPanel px="0px" pt="1.4em">
+                  <Stack direction="column" gap=".8em">
+                    {data?.map((group, index) => {
+                      return (
+                        <MyGroupCard
+                          key={group.id}
+                          data={group}
+                          bgColor={index === 0 ? "var(--card-bg-active)" : ""}
+                          border={`0.5px solid ${index === 0 ? "var(--primary)" : "var(--border-muted)"}`}
+                        />
+                      );
+                    })}
+                  </Stack>
+                </TabPanel>
+              </TabPanels>
+            )}
           </Tabs>
-
-          <Menu autoSelect={false}>
-            <MenuButton
-              as={Button}
-              rightIcon={<ChevronDown color="var(--grey)" size={14} />}
-              px="1.35rem"
-              py="8px"
-              rounded="3xl"
-              fontSize={{ base: "12px", lg: "14px" }}
-              fontWeight="400"
-              color="#040404"
-              background="var(--grey-100)"
-              display={{ base: "block", md: "none" }}
-              _active={{
-                background: "var(--grey-100)",
-              }}
-            >
-              All groups
-            </MenuButton>
-            <MenuList px=".4em" py=".4em">
-              {GROUPS_TAB_ITEMS.map((tab) => {
-                return (
-                  <MenuItem
-                    my=".2em"
-                    key={tab.id}
-                    _hover={{
-                      background: "var(--grey-100)",
-                    }}
-                    transition="all .3s ease-out"
-                    borderRadius="4px"
-                    fontSize="12px"
-                  >
-                    {tab.name}
-                  </MenuItem>
-                );
-              })}
-            </MenuList>
-          </Menu>
         </Box>
       </Box>
 
-      <VStack
-        width={{ lg: "35%", md: "45%", base: "100%" }}
-        spacing="2px"
+      <Box
+        width={{ lg: "48%", xl: "35%", md: "45%", base: "100%" }}
         position="sticky"
         top="80px"
       >
@@ -200,7 +169,7 @@ export const Groups = () => {
         <Box maxHeight="127px" width="full">
           <PaymentCard deadlineDate="24-December-2025" dateType="Missed date" />
         </Box>
-      </VStack>
+      </Box>
     </Flex>
   );
 };
