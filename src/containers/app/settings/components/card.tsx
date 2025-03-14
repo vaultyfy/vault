@@ -25,7 +25,15 @@ export const SettingCard = ({
       border="1px solid #dceefb"
       borderRadius="8px"
       cursor="pointer"
-      bg={isActive ? "var(--card-bg-active)" : "transparent"}
+      bg={
+        isActive
+          ? {
+              lg: "var(--card-bg-active)",
+              md: "var(--card-bg-active)",
+              base: "transparent",
+            }
+          : "transparent"
+      }
       onClick={() => onClick(id)}
     >
       <Icon name={iconName} />

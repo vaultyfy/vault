@@ -9,7 +9,7 @@ import {
 import HelpSupportCard from "@containers/app/settings/components/help-support";
 import { useNavigate } from "@tanstack/react-router";
 import { useMobileScreens } from "@hooks/mobile-screen";
-import { useUiComponentStore } from "@store/ui";
+import { UiComponents, useUiComponentStore } from "@store/ui";
 import slugify from "slugify";
 
 export type Setting = {
@@ -17,7 +17,7 @@ export type Setting = {
   iconName: string;
   title: string;
   description: string;
-  slug: string;
+  slug: UiComponents;
   component: React.ReactNode;
 };
 
@@ -53,7 +53,7 @@ const SETTINGS: Setting[] = [
   },
 ].map((setting) => ({
   ...setting,
-  slug: slugify(setting.title, { lower: true, strict: true }),
+  slug: slugify(setting.title, { lower: true, strict: true }) as UiComponents,
 }));
 
 const settingRoutes: Record<string, string> = {
@@ -64,7 +64,7 @@ const settingRoutes: Record<string, string> = {
 
 export const Settings = () => {
   const { isMobile } = useMobileScreens();
-  const { store } = useUiComponentStore();
+  const { store, updateUiStore } = useUiComponentStore();
   const [activeSetting, setActiveSetting] = React.useState<Setting>(
     SETTINGS[0],
   );
@@ -72,27 +72,18 @@ export const Settings = () => {
 
   const handleSelectedSetting = (id: string) => {
     const found = SETTINGS.find((setting) => setting.id === id);
-
     if (!found) return;
 
     if (found.title === "Help & Support") {
       navigate({ to: "/help-support" });
     } else if (isMobile) {
       const route = settingRoutes[found.title];
-      if (route) navigate({ to: route });
+      if (route) navigate({ to: route, search: { ui: found.slug } });
     } else {
       setActiveSetting(found);
+      updateUiStore({ ui: found.slug });
     }
   };
-
-  React.useEffect(() => {
-    if (store.ui === "") return;
-
-    const found = SETTINGS.find((setting) => setting.slug === store.ui);
-
-    if (found) setActiveSetting(found);
-    console.log(found, store.ui);
-  }, [store, SETTINGS]);
 
   return (
     <Flex
@@ -108,7 +99,8 @@ export const Settings = () => {
         width={{ lg: "48%", md: "48%", base: "100%" }}
       >
         {SETTINGS.map((setting) => {
-          const currentSetting = activeSetting.id === setting.id;
+          const currentSetting =
+            activeSetting.id === setting.id || store.ui === setting.slug;
 
           return (
             <SettingCard

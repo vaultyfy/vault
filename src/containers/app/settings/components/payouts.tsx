@@ -28,7 +28,6 @@ import { SettingsHeader } from "./settings-header";
 
 export const PaymentsPayouts = () => {
   const navigate = useNavigate();
-  const { updateUiStore } = useUiComponentStore();
   const { openToast } = useToastContext();
   const { data: userBanks, mutate, isLoading } = useMyBanks();
   const [state, setState] = React.useState<State>("idle");
@@ -64,14 +63,15 @@ export const PaymentsPayouts = () => {
   };
 
   const handleNavigation = () => {
-    updateUiStore({ ui: "payments-and-payouts" });
-    console.log("is this working");
     navigate({ to: "/dashboard/settings" });
   };
 
   return (
     <>
-      <Box width="482px">
+      <Box
+        width={{ lg: "482px", md: "100%" }}
+        height={{ lg: "100%", md: "100vh", base: "100vh" }}
+      >
         <SettingsHeader
           title="Payment & Payouts"
           handleNavigation={handleNavigation}

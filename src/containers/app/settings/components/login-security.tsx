@@ -76,7 +76,6 @@ export const LoginSecurityCard = () => {
   };
 
   const handleNavigation = () => {
-    updateUiStore({ ui: "login-and-security" });
     navigate({ to: "/dashboard/settings" });
   };
 

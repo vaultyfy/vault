@@ -182,7 +182,6 @@ export const PersonalInfo = () => {
   };
 
   const handleNavigation = () => {
-    updateUiStore({ ui: "personal-info" });
     navigate({ to: "/dashboard/settings" });
   };
 
