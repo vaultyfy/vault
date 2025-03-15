@@ -54,6 +54,7 @@ export const Explore = () => {
               link="my-group"
               key={index}
               data={group}
+              groups={data}
             />
           );
         })}
@@ -171,7 +172,7 @@ export const Explore = () => {
       >
         {data?.map((group, index) => (
           <Box minHeight="240px" flex={1} key={index}>
-            <GroupCard groupType="available" data={group} />
+            <GroupCard groups={data} groupType="available" data={group} />
           </Box>
         ))}
       </SimpleGrid>

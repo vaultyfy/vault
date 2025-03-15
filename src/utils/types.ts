@@ -23,6 +23,10 @@ export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
 
+export type ReferalLinkResponse = {
+  referalLink: string;
+}
+
 export type Bank = {
   logo: string;
   name: string;
