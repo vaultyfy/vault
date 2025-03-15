@@ -3,12 +3,8 @@ import {
   CardBody,
   Flex,
   Box,
-  VStack,
   Text,
   HStack,
-  Image,
-  Avatar,
-  AvatarGroup,
   Button,
 } from "@chakra-ui/react";
 import { CurrencyNgn, ArrowRight } from "@phosphor-icons/react";
@@ -16,7 +12,12 @@ import { StackedAvatars } from "./stacked-avatars";
 import { useNavigate } from "@tanstack/react-router";
 import { MyGroupCardProps } from "./my-group-card";
 import { dicebear } from "@utils/misc";
-import { bgs, randomBg } from "@utils/constants";
+import { bgs, State } from "@utils/constants";
+import React from "react";
+import { getReferalLink } from "@queries/groups";
+import { useToastContext } from "@hooks/context";
+import { Group } from "@utils/types";
+import { useMobileScreens } from "@hooks/mobile-screen";
 
 interface GroupCardProps extends Pick<MyGroupCardProps, "data"> {
   bgColor?: string;
@@ -25,6 +26,7 @@ interface GroupCardProps extends Pick<MyGroupCardProps, "data"> {
   width?: string;
   height?: string;
   link?: string;
+  groups: Group[];
   groupType: "suggested" | "available";
 }
 
@@ -45,6 +47,7 @@ export const GroupCard = ({
   height,
   link,
   data,
+  groups,
   groupType = "suggested",
 }: GroupCardProps) => {
   const getNextGradient = () => {
@@ -56,8 +59,40 @@ export const GroupCard = ({
   const navigate = useNavigate();
   const avatars = data?.participants?.map((member, index) => {
     const memberBg = bgs[index % bgs.length];
-    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`
+    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
   });
+
+  const { openToast } = useToastContext();
+  const { isSmallViewPort } = useMobileScreens();
+  const [state, setState] = React.useState<State>("idle");
+  const [selectedGroup, setSelectedGroup] = React.useState<Group>();
+
+  const onShare = async (groupId: string) => {
+    const found = groups.find((group) => group.groupID === groupId);
+    if (!found) return;
+    try {
+      setState("loading");
+      setSelectedGroup(found);
+      const request = await getReferalLink(groupId);
+      const referalLink: string = request?.payload?.referalLink || ""
+      if (request?.success && navigator) {
+        if (isSmallViewPort) {
+          await navigator.share({
+            url: referalLink,
+            text: selectedGroup?.groupDescription,
+            title: `Join ${selectedGroup?.name} on Vaultyfy`,
+          })
+        } else {
+          await navigator.clipboard.writeText(referalLink)
+          openToast("The referal link has been copied.", "success")
+        }
+      }
+    } catch (error) {
+      console.error(`${(error as Error).message}`);
+    } finally {
+      setState("idle")
+    }
+  };
 
   return (
     <Card
@@ -175,9 +210,14 @@ export const GroupCard = ({
                 fontFamily="var(--poppins)"
                 fontWeight="regular"
                 fontSize="12px"
+                isLoading={
+                  state === "loading" &&
+                  selectedGroup?.groupID === data?.groupID
+                }
                 _hover={{
                   background: hasGradient ? "#fff" : "var(--main)",
                 }}
+                onClick={() => onShare(String(data?.groupID))}
                 color={hasGradient ? "#4f4f4f" : "var(--text-2)"}
               >
                 Share

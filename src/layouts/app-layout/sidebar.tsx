@@ -194,7 +194,7 @@ export const Sidebar = () => {
                 progress={kycPercentage}
                 size={150}
                 strokeWidth={5}
-                imageUrl={`${dicebear}?seed=${userName}&size=48&flip=true&background=${randomBg}`}
+                imageUrl={`${dicebear}?seed=${userName}&size=48&flip=true&backgroundColor=${randomBg}`}
               />
             )}
             {!isLoading ? (
