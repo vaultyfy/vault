@@ -1,5 +1,6 @@
 import { getAllGroups, getJoinedGroups } from "@queries/groups";
 import { swrOptions } from "@utils/constants";
+import { dicebear } from "@utils/misc";
 import useSWR, { mutate } from "swr";
 
 export const useJoinedGroups = () => {
@@ -20,7 +21,7 @@ export const useJoinedGroups = () => {
 };
 
 
-export const useMyGroups = () => {
+export const useAllGroups = () => {
   const key = "my-groups";
   const { data, error, isLoading } = useSWR(
     key,

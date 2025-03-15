@@ -41,7 +41,7 @@ export const PaymentCard = ({
           <Flex flexDirection="column" alignContent="center">
             <Text
               fontWeight="400"
-              fontSize={{ base: "14px", lg: "18px" }}
+              fontSize={{ base: "14px", xl: "18px", lg: "14px" }}
               color="var(--text-1)"
             >
               {`${dateArray?.[1]} - ${dateArray?.[2]}` || "November - 2025"}

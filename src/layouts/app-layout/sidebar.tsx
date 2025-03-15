@@ -84,6 +84,7 @@ const consoleNavBase = [
   },
   { iconBaseName: "user", name: "Users", path: "/console/users" },
 ];
+
 export const Sidebar = () => {
   const pathname = useCurrentPath();
   const isConsoleRoute = useConsolePath();
@@ -288,10 +289,10 @@ export const Sidebar = () => {
                     listStyleType="none"
                     display="flex"
                     alignItems="center"
-                    px="1.4em"
+                    px={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
                     height="54px"
                     borderRadius="8px"
-                    gap={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
+                    gap={{ "2xl": "1.4em", xl: ".6em", lg: "1em" }}
                     textTransform="capitalize"
                     color="#fff"
                     background={
