@@ -47,7 +47,7 @@ export type State =
   | "success"
   | "deleting";
 
-const bgs = ["b6e3f4", "c0aede", "d1d4f9", "ffd5dc", "ffdfbf"];
+export const bgs = ["b6e3f4", "c0aede", "d1d4f9", "ffd5dc", "ffdfbf"];
 const randomBgIndex = Math.floor(Math.random() * bgs.length);
 export const randomBg = bgs[randomBgIndex];
 

@@ -22,7 +22,7 @@ import {
 import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
 import { Icon } from "@components/icon";
 import { useMobileScreens } from "@hooks/mobile-screen";
-import { useMyGroups } from "@hooks/swr";
+import { useAllGroups } from "@hooks/swr";
 import { ChevronDown } from "lucide-react";
 import slugify from "slugify";
 
@@ -38,7 +38,7 @@ export const GROUPS_TAB_ITEMS = [
 
 export const Groups = () => {
   const { isMobile } = useMobileScreens();
-  const { data, isLoading } = useMyGroups();
+  const { data, isLoading } = useAllGroups();
 
   return (
     <Flex

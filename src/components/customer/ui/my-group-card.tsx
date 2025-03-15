@@ -17,7 +17,7 @@ import { Group } from "@utils/types";
 import { randomBg } from "@utils/constants";
 import { dicebear } from "@utils/misc";
 
-interface MyGroupCardProps extends Partial<ChakraProps> {
+export interface MyGroupCardProps extends Partial<ChakraProps> {
   bgColor?: string;
   data: Partial<Group>;
   acceptanceStatus?: GlobalStatus;
