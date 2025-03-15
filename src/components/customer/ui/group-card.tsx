@@ -3,12 +3,8 @@ import {
   CardBody,
   Flex,
   Box,
-  VStack,
   Text,
   HStack,
-  Image,
-  Avatar,
-  AvatarGroup,
   Button,
 } from "@chakra-ui/react";
 import { CurrencyNgn, ArrowRight } from "@phosphor-icons/react";
@@ -16,7 +12,7 @@ import { StackedAvatars } from "./stacked-avatars";
 import { useNavigate } from "@tanstack/react-router";
 import { MyGroupCardProps } from "./my-group-card";
 import { dicebear } from "@utils/misc";
-import { bgs, randomBg, State } from "@utils/constants";
+import { bgs, State } from "@utils/constants";
 import React from "react";
 import { getReferalLink } from "@queries/groups";
 import { useToastContext } from "@hooks/context";
