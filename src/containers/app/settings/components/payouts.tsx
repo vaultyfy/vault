@@ -11,6 +11,7 @@ import {
   Stack,
   HStack,
   useDisclosure,
+  IconButton,
 } from "@chakra-ui/react";
 import { BankInfoSkeleton } from "@components/skeletons";
 import { useToastContext } from "@hooks/context";
@@ -20,9 +21,13 @@ import { deleteBank } from "@mutations/banks";
 import { State } from "@utils/constants";
 import { UserBankAccount } from "@utils/types";
 import { PencilLine, PlusCircle, Trash2 } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 import React from "react";
+import { useUiComponentStore } from "@store/ui";
+import { SettingsHeader } from "./settings-header";
 
 export const PaymentsPayouts = () => {
+  const navigate = useNavigate();
   const { openToast } = useToastContext();
   const { data: userBanks, mutate, isLoading } = useMyBanks();
   const [state, setState] = React.useState<State>("idle");
@@ -57,12 +62,20 @@ export const PaymentsPayouts = () => {
     onOpen();
   };
 
+  const handleNavigation = () => {
+    navigate({ to: "/dashboard/settings" });
+  };
+
   return (
     <>
-      <Box width="482px">
-        <Text fontSize="24px" fontWeight="400" mb={4} color="var(--dark)">
-          Payment & Payouts
-        </Text>
+      <Box
+        width={{ lg: "482px", md: "100%" }}
+        height={{ lg: "100%", md: "100vh", base: "100vh" }}
+      >
+        <SettingsHeader
+          title="Payment & Payouts"
+          handleNavigation={handleNavigation}
+        />
 
         {isLoading ? (
           <Stack direction="column" gap=".8em">
@@ -188,11 +201,7 @@ export const PaymentsPayouts = () => {
                 ))}
               </VStack>
             ) : (
-              <Text
-                textAlign="left"
-                color="var(--grey)"
-                fontSize="14px"
-              >
+              <Text textAlign="left" color="var(--grey)" fontSize="14px">
                 You have not added any payment method. Click the button below to
                 get started
               </Text>

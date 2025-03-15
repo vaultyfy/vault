@@ -1,5 +1,5 @@
 import { Box, Flex, Stack } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   LoginSecurityCard,
   SettingCard,
@@ -8,12 +8,16 @@ import {
 } from "./components";
 import HelpSupportCard from "@containers/app/settings/components/help-support";
 import { useNavigate } from "@tanstack/react-router";
+import { useMobileScreens } from "@hooks/mobile-screen";
+import { UiComponents, useUiComponentStore } from "@store/ui";
+import slugify from "slugify";
 
 export type Setting = {
   id: string;
   iconName: string;
   title: string;
   description: string;
+  slug: UiComponents;
   component: React.ReactNode;
 };
 
@@ -47,9 +51,20 @@ const SETTINGS: Setting[] = [
       "Contact our support and learn more about our terms of services",
     component: <HelpSupportCard />,
   },
-];
+].map((setting) => ({
+  ...setting,
+  slug: slugify(setting.title, { lower: true, strict: true }) as UiComponents,
+}));
+
+const settingRoutes: Record<string, string> = {
+  "personal info": "/dashboard/settings/personal-info",
+  "Payments & payouts": "/dashboard/settings/payments-payouts",
+  "Login & security": "/dashboard/settings/login-security",
+};
 
 export const Settings = () => {
+  const { isMobile } = useMobileScreens();
+  const { store, updateUiStore } = useUiComponentStore();
   const [activeSetting, setActiveSetting] = React.useState<Setting>(
     SETTINGS[0],
   );
@@ -61,8 +76,12 @@ export const Settings = () => {
 
     if (found.title === "Help & Support") {
       navigate({ to: "/help-support" });
+    } else if (isMobile) {
+      const route = settingRoutes[found.title];
+      if (route) navigate({ to: route, search: { ui: found.slug } });
     } else {
       setActiveSetting(found);
+      updateUiStore({ ui: found.slug });
     }
   };
 
@@ -80,7 +99,8 @@ export const Settings = () => {
         width={{ lg: "48%", md: "48%", base: "100%" }}
       >
         {SETTINGS.map((setting) => {
-          const currentSetting = activeSetting.id === setting.id;
+          const currentSetting =
+            activeSetting.id === setting.id || store.ui === setting.slug;
 
           return (
             <SettingCard
@@ -95,7 +115,10 @@ export const Settings = () => {
           );
         })}
       </Stack>
-      <Box width={{ lg: "50%", base: "100%", md: "50%" }}>
+      <Box
+        width={{ lg: "50%", base: "100%", md: "50%" }}
+        display={{ base: "none", md: "block" }}
+      >
         {activeSetting.component}
       </Box>
     </Flex>

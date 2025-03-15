@@ -1,5 +1,6 @@
-import { Box, Divider, Flex, HStack, Skeleton, Stack } from "@chakra-ui/react";
+import { Box, Divider, Flex, Skeleton, Stack } from "@chakra-ui/react";
 import { skeleton } from "@utils/misc";
+import React from "react";
 
 export const BankInfoSkeleton = () => {
   return (
@@ -27,8 +28,8 @@ export const BankInfoSkeleton = () => {
       <Box py={3} mt="1em">
         {Array.from({ length: 3 }).map((_, index) => {
           return (
-            <>
-              <Stack direction="column" gap="1em" key={index}>
+            <React.Fragment key={index}>
+              <Stack direction="column" gap="1em">
                 <Skeleton
                   width="130px"
                   height="15px"
@@ -45,7 +46,7 @@ export const BankInfoSkeleton = () => {
                 />
               </Stack>
               {index <= 1 && <Divider my={3} />}
-            </>
+            </React.Fragment>
           );
         })}
       </Box>
