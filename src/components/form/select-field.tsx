@@ -2,7 +2,11 @@ import { FormControl, Text, FormLabel, Flex, Box } from "@chakra-ui/react";
 import makeAnimated from "react-select/animated";
 import { useField } from "formik";
 import React from "react";
-import Select, { components, DropdownIndicatorProps, Props } from "react-select";
+import Select, {
+  components,
+  DropdownIndicatorProps,
+  Props,
+} from "react-select";
 import { Icon } from "@components/icon";
 
 const animatedComponent = makeAnimated();
@@ -148,7 +152,9 @@ export const SelectField = ({
                 menuPortalTarget={document.body}
                 components={{
                   ...animatedComponent,
-                  DropdownIndicator: customCaret ? VaultyfyCaret : components.DropdownIndicator,
+                  DropdownIndicator: customCaret
+                    ? VaultyfyCaret
+                    : components.DropdownIndicator,
                 }}
                 placeholder={placeholder}
                 options={options}

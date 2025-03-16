@@ -11,14 +11,14 @@ import {
 } from "@chakra-ui/react";
 import { GradientIcon } from "@components/icon";
 import { Gear, SealCheck } from "@phosphor-icons/react";
-import { MAIN_GRADIENT } from "@utils/constants";
+import { MAIN_GRADIENT, randomBg } from "@utils/constants";
 import { Icon } from "@components/icon";
 import { Link, useLocation } from "@tanstack/react-router";
 import { FileRouteTypes } from "src/routeTree.gen";
 import { useConsolePath, useCurrentPath } from "@hooks/current-path";
 import { CircleProgress } from "@components/ui";
 import { useUser } from "@hooks/swr";
-import { skeleton } from "@utils/misc";
+import { dicebear, skeleton } from "@utils/misc";
 
 export type SidenavItems = {
   id: string;
@@ -84,6 +84,7 @@ const consoleNavBase = [
   },
   { iconBaseName: "user", name: "Users", path: "/console/users" },
 ];
+
 export const Sidebar = () => {
   const pathname = useCurrentPath();
   const isConsoleRoute = useConsolePath();
@@ -193,6 +194,7 @@ export const Sidebar = () => {
                 progress={kycPercentage}
                 size={150}
                 strokeWidth={5}
+                imageUrl={`${dicebear}?seed=${userName}&size=48&flip=true&backgroundColor=${randomBg}`}
               />
             )}
             {!isLoading ? (
@@ -287,10 +289,10 @@ export const Sidebar = () => {
                     listStyleType="none"
                     display="flex"
                     alignItems="center"
-                    px="1.4em"
+                    px={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
                     height="54px"
                     borderRadius="8px"
-                    gap={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
+                    gap={{ "2xl": "1.4em", xl: ".6em", lg: "1em" }}
                     textTransform="capitalize"
                     color="#fff"
                     background={

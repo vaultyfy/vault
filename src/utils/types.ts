@@ -6,6 +6,12 @@ export type Response<T = any> = {
   errors?: string[] | string;
 };
 
+export type Common = {
+  currentPage: number;
+  pageSize: number;
+  total: number;
+};
+
 export type LoginResponse = {
   token: { token: string };
   user: User;
@@ -15,6 +21,10 @@ export type LoginResponse = {
 
 export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
+}
+
+export type ReferalLinkResponse = {
+  referalLink: string;
 }
 
 export type Bank = {
@@ -38,10 +48,7 @@ export type UserBankAccount = BankInfo & {
   owner: User;
 };
 
-export type UserBanks = {
-  currentPage: number;
-  pageSize: number;
-  total: number;
+export type UserBanks = Common & {
   data: UserBankAccount[];
 };
 
@@ -134,7 +141,7 @@ export type Group = {
   groupDescription: string;
   groupInviteLink: string;
   contributionAmount: number;
-  contributionFrequency: "Daily" | string;
+  contributionFrequency: ContributionFrequency;
   numberOfdaysOrMembers: number;
   numberOfcircle: number;
   numberOfparticipantsAvailable: number;
@@ -147,8 +154,12 @@ export type Group = {
   joinedParticipantsCount: number;
   createdAT: string;
   updatedAT: string;
-  createdBy: string;
+  createdBy: Customer;
   participants: Participant[];
+};
+
+export type UserGroups = Common & {
+  data: Group[];
 };
 
 export type Participant = {
@@ -167,7 +178,7 @@ export type Participant = {
   createdAT: string;
   updatedAT: string;
   group: string;
-  customer: string;
+  customer: Customer;
   contributions: Contribution[];
 };
 
@@ -273,4 +284,13 @@ export type GroupPayload = {
   startDate: string;
   numberOfparticipantsAvailable: number;
   contributionFrequency: string | ContributionFrequency;
+};
+
+// type def for when a user wants to update their account info
+export type UserPayload = {
+  name: string;
+  phoneNumber: string;
+  address: string;
+  email: string;
+  acceptTermsAndConditions: boolean;
 };

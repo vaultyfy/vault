@@ -18,57 +18,47 @@ import {
 import { Icon } from "@components/icon";
 import { schema } from "@utils/validators";
 import { Form, Formik } from "formik";
-import { generateNoOfCycles, generateNoOfDays } from "@utils/misc";
-import { GroupPayload } from "@utils/types";
-import { createGroup } from "@mutations/groups";
-import { useToastContext } from "@hooks/context";
-import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
-import { useMyBanks } from "@hooks/swr";
 
-export const CreateGroupContent = ({
-  closeModal,
-}: {
-  closeModal?: () => void;
-}) => {
+import { generateNoOfCycles, generateNoOfDays } from "@utils/misc";
+
+const CONTRIBUTION_FREQUENCY: Option[] = [
+  {
+    label: "Daily",
+    value: "daily",
+  },
+  {
+    label: "Weekly",
+    value: "weekly",
+  },
+  {
+    label: "Monthly",
+    value: "monthly",
+  },
+  {
+    label: "Yearly",
+    value: "yearly",
+  },
+];
+
+export const CreateGroupContent = () => {
+  const initialValues = {
+    groupName: "",
+    startDate: "",
+    groupDescription: "",
+    contributionAmount: "",
+    constributionFrequency: "",
+    noOfDays: "",
+    noOfCycles: "",
+    noOfContributors: "",
+  };
   const navigate = useNavigate();
-  const { openToast } = useToastContext();
-  const { mutate } = useMyBanks();
 
   return (
-    <Formik<GroupPayload>
-      initialValues={{
-        name: "",
-        startDate: "",
-        groupDescription: "",
-        numberOfcircle: 0,
-        contributionFrequency: "",
-        // mapping this to number of members
-        numberOfparticipantsAvailable: 0,
-        contributionAmount: 0,
-        // mapping this to number of days
-        numberOfdaysOrMembers: 0,
-      }}
+    <Formik
+      initialValues={initialValues}
       validationSchema={schema.createGroup}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(async () => {
-          try {
-            const request = await createGroup({
-              ...values,
-              startDate: new Date(values.startDate).toISOString(),
-            });
-            const response = await request?.json();
-
-            if (request?.ok) {
-              openToast(response.message, "success");
-              mutate();
-              closeModal && closeModal();
-            }
-          } catch (error) {
-            console.error(error);
-          }
-
-          setSubmitting(false);
-        }, 600);
+        console.log(values);
       }}
     >
       {(formik) => {
@@ -108,7 +98,7 @@ export const CreateGroupContent = ({
               >
                 <Box flex={1}>
                   <InputField
-                    name="name"
+                    name="groupName"
                     label="Group Name"
                     labelColor="var(--grey)"
                     placeholder="Enter the Group name"
@@ -194,7 +184,7 @@ export const CreateGroupContent = ({
                 </Box>
                 <Box flex="1 0 33.33%">
                   <SelectField
-                    name="numberOfdaysOrMembers"
+                    name="noOfDays"
                     label="No of Days/members"
                     placeholder="10 days"
                     options={generateNoOfDays()}
@@ -210,7 +200,7 @@ export const CreateGroupContent = ({
                 </Box>
                 <Box flex="1 0 33.33%">
                   <SelectField
-                    name="numberOfcircle"
+                    name="noOfCycles"
                     label="No of cycles"
                     placeholder="1"
                     options={generateNoOfCycles()}
@@ -235,7 +225,7 @@ export const CreateGroupContent = ({
             />
             <Box flex={1} w="full">
               <InputField
-                name="numberOfparticipantsAvailable"
+                name="noOfContributors"
                 label="State the number of contributors you have available to join your group"
                 labelColor="var(--grey)"
                 labelSize="12px"
@@ -280,7 +270,7 @@ export const CreateGroupContent = ({
                 color="var(--white-fade)"
                 width="230px"
                 borderRadius="35px"
-                isLoading={formik.isSubmitting}
+                // isLoading={formik.isSubmitting}
               >
                 Submit request
               </Button>

@@ -39,7 +39,8 @@ export const Dashboard = () => {
     onClose();
   };
 
-  const { walletBalance, lastUpdated, isLoading, expectedReturns } = useWallet();
+  const { walletBalance, lastUpdated, isLoading, expectedReturns } =
+    useWallet();
 
   return (
     <>

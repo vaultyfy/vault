@@ -61,7 +61,7 @@ export const updateBankInfo = async (bankId: string, payload: BankInfo) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorizarion: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         ...HEADER_API_KEY,
       },
       body: JSON.stringify({

@@ -15,6 +15,7 @@ import { schema } from "@utils/validators";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { FunnelSimple } from "@phosphor-icons/react";
 import { ExploreFilter } from "@layouts/modal-layout/explore-filter";
+import { useAllGroups } from "@hooks/swr";
 
 const initialValues = {
   members: "",
@@ -25,6 +26,7 @@ const initialValues = {
 
 export const Explore = () => {
   const { isMobile } = useMobileScreens();
+  const { data, isLoading } = useAllGroups();
   const [isMobileFilter, setIsMobileFilter] = useState(false);
 
   return (
@@ -32,7 +34,6 @@ export const Explore = () => {
       <Text as="p" fontSize="24px" color="var(--text-1)" mb="0.5rem">
         Suggested for you
       </Text>
-
       <Box
         width="100%"
         maxWidth={{ lg: "1360px", "2xl": "100%" }}
@@ -45,18 +46,19 @@ export const Explore = () => {
           cursor: "grab",
         }}
       >
-        {Array.from({ length: 5 }).map((_, index: React.Key) => {
+        {data?.slice(0, 4)?.map((group, index: React.Key) => {
           return (
             <GroupCard
               groupType="suggested"
               hasGradient
               link="my-group"
               key={index}
+              data={group}
+              groups={data}
             />
           );
         })}
       </Box>
-
       <Box
         mt="1em"
         w="100%"
@@ -168,9 +170,9 @@ export const Explore = () => {
         width="100%"
         mt="17px"
       >
-        {Array.from({ length: 5 }).map((_, index) => (
+        {data?.map((group, index) => (
           <Box minHeight="240px" flex={1} key={index}>
-            <GroupCard groupType="available" />
+            <GroupCard groups={data} groupType="available" data={group} />
           </Box>
         ))}
       </SimpleGrid>

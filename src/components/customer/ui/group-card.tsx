@@ -3,36 +3,33 @@ import {
   CardBody,
   Flex,
   Box,
-  VStack,
   Text,
   HStack,
-  Image,
-  Avatar,
-  AvatarGroup,
   Button,
 } from "@chakra-ui/react";
 import { CurrencyNgn, ArrowRight } from "@phosphor-icons/react";
 import { StackedAvatars } from "./stacked-avatars";
 import { useNavigate } from "@tanstack/react-router";
+import { MyGroupCardProps } from "./my-group-card";
+import { dicebear } from "@utils/misc";
+import { bgs, State } from "@utils/constants";
+import React from "react";
+import { getReferalLink } from "@queries/groups";
+import { useToastContext } from "@hooks/context";
+import { Group } from "@utils/types";
+import { useMobileScreens } from "@hooks/mobile-screen";
 
-interface GroupCardProps {
+interface GroupCardProps extends Pick<MyGroupCardProps, "data"> {
   bgColor?: string;
   cardGradient?: string;
   hasGradient?: boolean;
   width?: string;
   height?: string;
   link?: string;
+  groups?: Group[];
   groupType: "suggested" | "available";
 }
 
-const avatars = [
-  "/img/person-1.svg",
-  "/img/person-2.svg",
-  "/img/person-3.svg",
-  "/img/person-4.svg",
-  "/img/person-1.svg",
-  "/img/person-4.svg",
-];
 const bgGradient = [
   "/img/frame-1.svg",
   "/img/frame-2.svg",
@@ -48,7 +45,8 @@ export const GroupCard = ({
   hasGradient,
   width,
   height,
-  link,
+  data,
+  groups,
   groupType = "suggested",
 }: GroupCardProps) => {
   const getNextGradient = () => {
@@ -58,6 +56,42 @@ export const GroupCard = ({
   };
   const gradient = getNextGradient();
   const navigate = useNavigate();
+  const avatars = data?.participants?.map((member, index) => {
+    const memberBg = bgs[index % bgs.length];
+    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
+  });
+
+  const { openToast } = useToastContext();
+  const { isSmallViewPort } = useMobileScreens();
+  const [state, setState] = React.useState<State>("idle");
+  const [selectedGroup, setSelectedGroup] = React.useState<Group>();
+
+  const onShare = async (groupId: string) => {
+    const found = groups?.find((group) => group.groupID === groupId);
+    if (!found) return;
+    try {
+      setState("loading");
+      setSelectedGroup(found);
+      const request = await getReferalLink(groupId);
+      const referalLink: string = request?.payload?.referalLink || ""
+      if (request?.success && navigator) {
+        if (isSmallViewPort) {
+          await navigator.share({
+            url: referalLink,
+            text: selectedGroup?.groupDescription,
+            title: `Join ${selectedGroup?.name} on Vaultyfy`,
+          })
+        } else {
+          await navigator.clipboard.writeText(referalLink)
+          openToast("The referal link has been copied.", "success")
+        }
+      }
+    } catch (error) {
+      console.error(`${(error as Error).message}`);
+    } finally {
+      setState("idle")
+    }
+  };
 
   return (
     <Card
@@ -91,14 +125,18 @@ export const GroupCard = ({
                 color={hasGradient ? "#ffffff" : "#000000"}
                 textTransform="capitalize"
               >
-                Delight Saver
+                {data?.name && data?.name?.length < 15
+                  ? data?.name
+                  : `${data?.name?.substring(0, 16)}...`}
               </Text>
               <HStack spacing="3px" mt="2px">
                 <Flex
                   height="25px"
                   borderRadius="18px"
                   px="1em"
-                  bg={hasGradient ? "rgba(255, 255, 255, 0.2)" : "#81818112"}
+                  bg={
+                    hasGradient ? "rgba(255, 255, 255, 0.2)" : "var(--grey-007)"
+                  }
                   alignItems="center"
                 >
                   <CurrencyNgn
@@ -112,13 +150,22 @@ export const GroupCard = ({
                     fontWeight="medium"
                     color={hasGradient ? "#ffffff" : "var(--text-1)"}
                   >
-                    10,000/week
+                    {data?.contributionAmount}/{data?.contributionFrequency}
                   </Text>
                 </Flex>
               </HStack>
             </Box>
             <Box w="full">
-              <StackedAvatars images={avatars} maxVisible={3} />
+              {avatars?.length === 0 ? (
+                <Text
+                  fontSize="12px"
+                  color={hasGradient ? "#fff" : "var(--grey)"}
+                >
+                  {avatars?.length} members
+                </Text>
+              ) : (
+                <StackedAvatars images={avatars} maxVisible={3} />
+              )}
             </Box>
             <Box w="full">
               <Text
@@ -133,7 +180,7 @@ export const GroupCard = ({
                 fontSize={{ base: "14px", lg: "18px" }}
                 color={hasGradient ? "#ffffff" : "var(--text-1)"}
               >
-                24th Nov 2025
+                {data?.startDate}
               </Text>
             </Box>
           </Flex>
@@ -162,6 +209,14 @@ export const GroupCard = ({
                 fontFamily="var(--poppins)"
                 fontWeight="regular"
                 fontSize="12px"
+                isLoading={
+                  state === "loading" &&
+                  selectedGroup?.groupID === data?.groupID
+                }
+                _hover={{
+                  background: hasGradient ? "#fff" : "var(--main)",
+                }}
+                onClick={() => onShare(String(data?.groupID))}
                 color={hasGradient ? "#4f4f4f" : "var(--text-2)"}
               >
                 Share
@@ -188,7 +243,7 @@ export const GroupCard = ({
                     color={hasGradient ? "#ffffff" : "var(--main)"}
                     fontWeight="bold"
                   >
-                    100,000
+                    {data?.payOutAmount}
                   </Text>
                 </HStack>
               </Box>
@@ -217,7 +272,9 @@ export const GroupCard = ({
                   ? "rgba(255, 255, 255, 0.3)"
                   : "var(--btn-secondary-7)",
               }}
-              onClick={() => navigate({ to: `/dashboard/explore/${link}` })}
+              onClick={() =>
+                navigate({ to: `/dashboard/explore/${data?.groupID}` })
+              }
             >
               <Text color={groupType === "suggested" ? "#fff" : "var(--main)"}>
                 Join

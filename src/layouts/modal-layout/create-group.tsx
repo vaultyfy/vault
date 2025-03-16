@@ -1,5 +1,5 @@
 import { ModalLayout } from "@components/ui";
-import { CreateGroupContent } from "./create-group-content";
+import { CreateGroupContent } from "./components/create-group-content";
 
 interface CreateGroupModalProps {
   isOpen: boolean;
@@ -19,7 +19,7 @@ export const CreateGroupModal = ({
       px="14px"
       py="32px"
     >
-      <CreateGroupContent closeModal={onClose} />
+      <CreateGroupContent />
     </ModalLayout>
   );
 };

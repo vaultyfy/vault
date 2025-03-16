@@ -29,8 +29,8 @@ export const skeleton = {
   startColor: "var(--pale-grey)",
   endColor: "var(--grey-sec)",
   light: {
-    startColor: "var(--white-fade)",
-    endColor: "var(--border-muted)"
+    startColor: "var(--platinum)",
+    endColor: "var(--grey-100)"
   }
 };
 
@@ -41,3 +41,5 @@ export const formatPrice = (price: number) => {
     maximumSignificantDigits: 3,
   }).format(price).replace("NGN", "₦");
 };
+
+export const dicebear = "https://api.dicebear.com/7.x/micah/svg"

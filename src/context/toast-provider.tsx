@@ -67,7 +67,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
                     ? "var(--success-700)"
                     : status === "error"
                       ? "var(--danger-700)"
-                      : "var(--warn-700)"
+                      : "var(--warn-500)"
                 }
                 fontSize="16px"
               >

@@ -1,45 +1,45 @@
 import { cookieOptions, HEADER_API_KEY, TOKEN_KEY } from "@utils/constants";
 import { app } from "@utils/endpoints";
-import { GroupPayload } from "@utils/types";
 import { getCookie } from "cookies-next";
 
-export const createGroup = async (payload: GroupPayload) => {
+export const bnvVerification = async (bvn: string) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;
 
   try {
-    const request = await fetch(app.groups.create, {
+    const request = await fetch(app.customer.bvnVerification, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
         ...HEADER_API_KEY,
       },
-      body: JSON.stringify({ ...payload }),
+      body: JSON.stringify({ bvn }),
     });
 
-    return request
+    return request;
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }
 };
 
-export const joinGroup = async (groupId: string) => {
-  const token = getCookie(TOKEN_KEY, {...cookieOptions})
-  if (!token) return
+export const ninVerification = async (nin: string) => {
+  const token = getCookie(TOKEN_KEY, { ...cookieOptions });
+  if (!token) return;
 
   try {
-    const request = await fetch(`${app.groups.join}/${groupId}`, {
+    const request = await fetch(app.customer.ninVerification, {
       method: "POST",
       headers: {
+        ...HEADER_API_KEY,
         Authorization: `Bearer ${token}`,
-        "Content-Type":"application/json",
-        ...HEADER_API_KEY
+        "Content-Type": "application/json",
       },
-    })
+      body: JSON.stringify({ nin }),
+    });
 
-    return request;
+    return request
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};

@@ -11,82 +11,126 @@ import {
   Checkbox,
   Button,
   IconButton,
+  Stack,
 } from "@chakra-ui/react";
-import { Icon } from "@components/icon";
 import { CurrencyNgn } from "@phosphor-icons/react";
-import { StackedAvatars } from "@components/customer/ui";
-import { useState } from "react";
+import { MyGroupCardProps, StackedAvatars } from "@components/customer/ui";
+import React, { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useToastContext } from "@hooks/context";
-import { avatars } from "@utils/constants";
+import { bgs, State } from "@utils/constants";
+import dayjs from "dayjs";
+import { dicebear } from "@utils/misc";
+import { CaretLeft } from "@phosphor-icons/react";
+import { joinGroup } from "@mutations/groups";
+import { ref } from "yup";
+import { Response } from "@utils/types";
 
-export const GroupDetails = () => {
+interface GroupDetailProps extends Pick<MyGroupCardProps, "data"> {}
+
+export const GroupDetails = ({ data }: GroupDetailProps) => {
   const [approval, setApproval] = useState(false);
   const navigate = useNavigate();
-
   const { openToast } = useToastContext();
+  const [state, setState] = React.useState<State>("idle");
+
+  const avatars = data?.participants?.map((member, index) => {
+    const memberBg = bgs[index % bgs.length];
+    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
+  });
+
+  const handleJoinGroup = async () => {
+    const groupId: string = data?.groupID || "";
+    if (!approval) {
+      openToast("Please agree before proceeding.", "warning");
+      return;
+    }
+
+    try {
+      setState("loading");
+      const request = await joinGroup(groupId);
+      const response: Response = await request?.json();
+      if (request?.ok) {
+        openToast(response.message, "success");
+        navigate({ to: "/dashboard/explore" });
+      } else {
+        openToast("Failed to join group. Please try again.", "error");
+      }
+    } catch (error) {
+      openToast("An error occurred while joining the group.", "error");
+    } finally {
+      setState("idle");
+    }
+  };
 
   return (
     <Box width="100%" minH="100dvh">
-      <HStack>
+      <HStack gap="0">
         <IconButton
           aria-label="back button"
-          icon={<Icon name="arrow-left" />}
+          icon={<CaretLeft size="20" />}
           bg="transparent"
+          _hover={{
+            background: "none",
+          }}
           onClick={() => navigate({ to: ".." })}
         />
         <Text
-          fontSize={{ base: "20px", lg: "24px" }}
+          fontSize={{ base: "16px", xl: "24px", lg: "20px" }}
           fontWeight="400"
           color="var(--text-1)"
           _firstLetter={{ textTransform: "capitalize" }}
         >
-          Unity savers
+          {data?.name}
         </Text>
       </HStack>
-      <Box pl={{ lg: 6 }} mt="8px">
+      <Box pl={{ lg: 6 }} mt="8px" maxWidth="594px">
         <Card
           width="full"
-          minHeight="312px"
-          maxWidth="594px"
+          height="full"
           border="0.5px solid var(--border-muted)"
           rounded="xl"
         >
           <CardBody px="19px" py="23px" w="full">
-            <VStack spacing="42px" w="full">
+            <Stack direction="column" gap=".8em">
               <Flex width="full">
                 <Box flex={1}>
                   <Text
-                    as="h5"
-                    fontSize={{ base: "16px", lg: "20px" }}
-                    fontFamily="var(--poppins)"
-                    color={"#000000"}
-                    fontWeight="medium"
+                    fontSize={{ base: "16px", xl: "18px", lg: "17px" }}
+                    color="#000000"
+                    fontWeight="500"
                     textTransform="capitalize"
                   >
-                    Unity Saver
+                    {data?.name && data?.name?.length > 15
+                      ? `${data?.name?.substring(0, 16)}...`
+                      : data?.name}
                   </Text>
-                  <HStack spacing="3px" mt="2px">
-                    <Flex
-                      rounded="full"
-                      px={4}
-                      py={1}
-                      bg="var(--main)"
-                      alignItems="center"
+                  <Flex
+                    rounded="full"
+                    px={4}
+                    py={1}
+                    bg="var(--main)"
+                    width="fit-content"
+                    alignItems="center"
+                  >
+                    <CurrencyNgn size={16} color="white" />
+                    <Text
+                      fontSize={{ base: "12px", lg: "14px" }}
+                      fontWeight=""
+                      color="white"
                     >
-                      <CurrencyNgn size={16} weight="duotone" color="white" />
-                      <Text
-                        as="p"
-                        fontSize={{ base: "12px", lg: "14px" }}
-                        fontWeight="medium"
-                        color="white"
-                      >
-                        10,000/week
-                      </Text>
-                    </Flex>
-                  </HStack>
+                      {data?.contributionAmount}/{data?.contributionFrequency}
+                    </Text>
+                  </Flex>
+
                   <Box w="full" mt="28px">
-                    <StackedAvatars images={avatars} maxVisible={3} />
+                    {avatars?.length === 0 ? (
+                      <Text fontSize="12px" color="var(--grey)">
+                        {avatars?.length} members
+                      </Text>
+                    ) : (
+                      <StackedAvatars images={avatars} maxVisible={3} />
+                    )}
                   </Box>
                 </Box>
                 <VStack spacing="28px" alignItems="flex-end" flex={1}>
@@ -100,7 +144,7 @@ export const GroupDetails = () => {
                     >
                       Pay-out
                     </Text>
-                    <HStack spacing={2}>
+                    <HStack gap="0">
                       <CurrencyNgn
                         size={20}
                         weight="duotone"
@@ -110,46 +154,44 @@ export const GroupDetails = () => {
                         }}
                       />
                       <Text
-                        as="h5"
                         fontSize={{ base: "16px", lg: "20px" }}
                         color="var(--main)"
-                        fontWeight="medium"
+                        fontWeight="500"
                       >
-                        100,000
+                        {data?.payOutAmount}
                       </Text>
                     </HStack>
                   </Box>
                   <Box w="fit-content">
                     <Text
                       as="p"
-                      fontSize={{ base: "12px", lg: "18px" }}
-                      fontWeight="medium"
+                      fontSize={{ base: "12px", lg: "14px" }}
+                      fontWeight="400"
                       color="var(--grey)"
+                      textAlign="right"
                     >
                       Start date
                     </Text>
                     <Text
                       as="p"
                       fontSize={{ base: "14px", lg: "18px" }}
-                      fontWeight="medium"
-                      color="var(--text-1)"
+                      fontWeight="400"
+                      color="var(--dark)"
                     >
-                      24th Nov 2025
+                      {dayjs(data?.startDate).format("DD MMM, YYYY")}
                     </Text>
                   </Box>
                 </VStack>
               </Flex>
               <Text
-                as="p"
+                mt=".8em"
                 fontSize={{ base: "14px", lg: "16px" }}
-                fontWeight="medium"
+                fontWeight="400"
                 color="var(--text-1)"
               >
-                This group is designed for parents and guardians saving for
-                school fees and supplies. Let’s plan ahead and make the
-                back-to-school season stress-free
+                {data?.groupDescription}
               </Text>
-            </VStack>
+            </Stack>
           </CardBody>
         </Card>
         <VStack
@@ -263,18 +305,12 @@ export const GroupDetails = () => {
             height="50px"
             rounded="full"
             bgColor="var(--main)"
-            fontFamily="var(--poppins)"
-            fontWeight="medium"
+            fontWeight="400"
             fontSize={{ base: "12px", lg: "14px" }}
             color="#ffffff"
             _hover={{ bgColor: "var(--main)" }}
-            _active={{ bgColor: "var(--main)" }}
-            _focus={{ bgColor: "var(--main)" }}
-            onClick={() => {
-              approval
-                ? navigate({ to: "/dashboard/explore" })
-                : openToast("Please agree before proceeding.", "warning");
-            }}
+            onClick={handleJoinGroup}
+            isLoading={state === "loading"}
           >
             Proceed to join
           </Button>
