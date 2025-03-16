@@ -14,7 +14,7 @@ import { RefreshCcw } from "lucide-react";
 import { StackedAvatars } from "./stacked-avatars";
 import { Status, GlobalStatus } from "@components/ui";
 import { Group } from "@utils/types";
-import { randomBg } from "@utils/constants";
+import { bgs, randomBg } from "@utils/constants";
 import { dicebear } from "@utils/misc";
 
 export interface MyGroupCardProps extends Partial<ChakraProps> {
@@ -30,10 +30,10 @@ export const MyGroupCard = ({
   ...props
 }: MyGroupCardProps) => {
   const groupData = data;
-  const groupMembersAvatar = groupData?.participants?.map(
-    (members) =>
-      `${members.customer?.profilePicture || `${dicebear}?seed=${members?.customer?.name}&size=48&flip=true&background=${randomBg}`}`,
-  );
+  const avatars = data?.participants?.map((member, index) => {
+    const memberBg = bgs[index % bgs.length];
+    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
+  });
 
   return (
     <Card
@@ -102,12 +102,12 @@ export const MyGroupCard = ({
                 </HStack>
               </HStack>
               <Box w="full" mt="28px">
-                {groupMembersAvatar?.length === 0 ? (
+                {avatars?.length === 0 ? (
                   <Text fontSize="12px" color="var(--grey)">
-                    No members yet...
+                    {avatars?.length} members
                   </Text>
                 ) : (
-                  <StackedAvatars images={groupMembersAvatar} maxVisible={3} />
+                  <StackedAvatars images={avatars} maxVisible={3} />
                 )}
               </Box>
             </Box>

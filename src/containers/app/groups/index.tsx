@@ -6,12 +6,6 @@ import {
   Image,
   Tabs,
   TabList,
-  VStack,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   Tab,
   TabPanels,
   TabPanel,
@@ -23,7 +17,6 @@ import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
 import { Icon } from "@components/icon";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useAllGroups, useJoinedGroups } from "@hooks/swr";
-import { ChevronDown } from "lucide-react";
 import slugify from "slugify";
 
 export const GROUPS_TAB_ITEMS = [

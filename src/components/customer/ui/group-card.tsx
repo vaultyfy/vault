@@ -26,7 +26,7 @@ interface GroupCardProps extends Pick<MyGroupCardProps, "data"> {
   width?: string;
   height?: string;
   link?: string;
-  groups: Group[];
+  groups?: Group[];
   groupType: "suggested" | "available";
 }
 
@@ -45,7 +45,6 @@ export const GroupCard = ({
   hasGradient,
   width,
   height,
-  link,
   data,
   groups,
   groupType = "suggested",
@@ -68,7 +67,7 @@ export const GroupCard = ({
   const [selectedGroup, setSelectedGroup] = React.useState<Group>();
 
   const onShare = async (groupId: string) => {
-    const found = groups.find((group) => group.groupID === groupId);
+    const found = groups?.find((group) => group.groupID === groupId);
     if (!found) return;
     try {
       setState("loading");
@@ -128,7 +127,7 @@ export const GroupCard = ({
               >
                 {data?.name && data?.name?.length < 15
                   ? data?.name
-                  : `${data.name?.substring(0, 16)}...`}
+                  : `${data?.name?.substring(0, 16)}...`}
               </Text>
               <HStack spacing="3px" mt="2px">
                 <Flex
@@ -151,7 +150,7 @@ export const GroupCard = ({
                     fontWeight="medium"
                     color={hasGradient ? "#ffffff" : "var(--text-1)"}
                   >
-                    {data.contributionAmount}/{data.contributionFrequency}
+                    {data?.contributionAmount}/{data?.contributionFrequency}
                   </Text>
                 </Flex>
               </HStack>
@@ -181,7 +180,7 @@ export const GroupCard = ({
                 fontSize={{ base: "14px", lg: "18px" }}
                 color={hasGradient ? "#ffffff" : "var(--text-1)"}
               >
-                {data.startDate}
+                {data?.startDate}
               </Text>
             </Box>
           </Flex>
@@ -244,7 +243,7 @@ export const GroupCard = ({
                     color={hasGradient ? "#ffffff" : "var(--main)"}
                     fontWeight="bold"
                   >
-                    {data.payOutAmount}
+                    {data?.payOutAmount}
                   </Text>
                 </HStack>
               </Box>
@@ -274,7 +273,7 @@ export const GroupCard = ({
                   : "var(--btn-secondary-7)",
               }}
               onClick={() =>
-                navigate({ to: `/dashboard/explore/${data.groupID}` })
+                navigate({ to: `/dashboard/explore/${data?.groupID}` })
               }
             >
               <Text color={groupType === "suggested" ? "#fff" : "var(--main)"}>

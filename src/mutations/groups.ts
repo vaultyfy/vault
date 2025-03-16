@@ -23,3 +23,23 @@ export const createGroup = async (payload: GroupPayload) => {
     console.error(`${(error as Error).message}`);
   }
 };
+
+export const joinGroup = async (groupId: string) => {
+  const token = getCookie(TOKEN_KEY, {...cookieOptions})
+  if (!token) return
+
+  try {
+    const request = await fetch(`${app.groups.join}/${groupId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type":"application/json",
+        ...HEADER_API_KEY
+      },
+    })
+
+    return request;
+  } catch (error) {
+    console.error(error)
+  }
+}

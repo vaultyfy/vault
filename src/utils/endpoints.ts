@@ -43,6 +43,8 @@ export const app = {
     create: `${BASE_URL}/groups/create`,
     all: `${BASE_URL}/groups/all-groups`,
     mine: `${BASE_URL}/groups/all-myParticipatoryGroups`,
-    share: `${BASE_URL}/groups/generate-referalLink`
+    share: `${BASE_URL}/groups/generate-referalLink`,
+    group: `${BASE_URL}/groups/one-group`,
+    join: `${BASE_URL}/groups/joinGroup`
   },
 } as const;
