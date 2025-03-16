@@ -54,7 +54,7 @@ export const GroupDetails = ({ data }: GroupDetailProps) => {
         openToast(response.message, "success");
         navigate({ to: "/dashboard/explore" });
       } else {
-        openToast("Failed to join group. Please try again.", "error");
+        openToast(response.message, "error");
       }
     } catch (error) {
       openToast("An error occurred while joining the group.", "error");
