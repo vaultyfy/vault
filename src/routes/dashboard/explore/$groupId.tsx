@@ -2,17 +2,30 @@ import { createFileRoute, useParams } from "@tanstack/react-router";
 import { GroupDetails } from "@containers/app";
 import { MetaData } from "@components/metadata";
 import { AppLayout } from "@layouts/app-layout";
-import { useGroup } from "@hooks/swr";
 import { getGroup } from "@queries/groups";
 import { Group } from "@utils/types";
+import ProgressBar from '@badrap/bar-of-progress'
+
+const progress = new ProgressBar({
+  size: 2,
+  delay: 80,
+  color: "",
+  className: "bar-of-progress"
+})
 
 export const Route = createFileRoute("/dashboard/explore/$groupId")({
   component: RouteComponent,
   loader: async ({params}) => {
-    const groupId: string = params.groupId || ""
-    const response = await getGroup(groupId)
-    return response?.payload
-  }
+    progress.start()
+
+    try {
+      const groupId: string = params.groupId || ""
+      const response = await getGroup(groupId)
+      return response?.payload
+    } finally {
+      progress.finish()
+    }
+  },
 });
 
 function RouteComponent() {
@@ -24,7 +37,7 @@ function RouteComponent() {
         pageTitle="Explore &mdash; Vaultify"
       />
 
-      <AppLayout routeTitle="My group details">
+      <AppLayout routeTitle="Explore">
         <GroupDetails data={data} />
       </AppLayout>
     </>

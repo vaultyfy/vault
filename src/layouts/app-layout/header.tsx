@@ -5,9 +5,11 @@ import {
   HStack,
   useDisclosure,
   Skeleton,
+  Box,
+  Image,
 } from "@chakra-ui/react";
 import { CalendarPopover, NotificationPopover } from "@components/customer/ui";
-import { CirclePlus } from "lucide-react";
+import { AlignRight, CirclePlus } from "lucide-react";
 import { AppLayoutProps } from ".";
 import { CreateGroupModal } from "@layouts/modal-layout";
 import { useMobileScreens } from "@hooks/mobile-screen";
@@ -17,6 +19,7 @@ import { useCurrentPath } from "@hooks/current-path";
 import { useUser } from "@hooks/swr";
 import { skeleton } from "@utils/misc";
 import { useConsolePath } from "@hooks/current-path";
+import { UserMenu } from "@components/ui";
 
 export const AppHeader = ({
   routeTitle,
@@ -46,14 +49,34 @@ export const AppHeader = ({
   return (
     <>
       <Flex
+        display={{ base: "flex", lg: "none" }}
+        height="65px"
+        width="100%"
+        px="1em"
+        alignItems="center"
+        boxShadow="var(--table-shadow)"
         position="sticky"
+        top="0"
+        zIndex="400"
+        justifyContent="space-between"
+      >
+        <HStack gap="1.4em">
+          <Box transform="scale(1) rotate(-180deg)">
+            <AlignRight size="30" color="var(--grey)" />
+          </Box>
+          <Image src="/img/logo.svg" boxSize="96px" />
+        </HStack>
+        <UserMenu />
+      </Flex>
+      <Flex
+        position={{ lg: "sticky", md: "static", base: "static" }}
         top="0"
         height="75px"
         mt={{ lg: "2em", md: "0em", base: "0em" }}
         justifyContent="space-between"
         alignItems="center"
         transition="all .3s ease-out"
-        zIndex="10"
+        zIndex={{ lg: "10", md: "1", base: "-10" }}
         backdropFilter="blur(10px)"
         px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }}
       >
