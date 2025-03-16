@@ -59,6 +59,7 @@ export const AppHeader = ({
         top="0"
         zIndex="400"
         justifyContent="space-between"
+        background="var(--mobile-header-bg)"
       >
         <HStack gap="1.4em">
           <Box transform="scale(1) rotate(-180deg)">
