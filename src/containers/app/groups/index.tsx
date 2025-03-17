@@ -121,9 +121,7 @@ export const Groups = () => {
             </TabList>
 
             {isLoading ? (
-              <Center height="450px">
-                <Spinner size="sm" color="var(--grey)" />
-              </Center>
+              <GroupCardSkeleton />
             ) : (
               <TabPanels>
                 <TabPanel px="0px" pt="1.4em">

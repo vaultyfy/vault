@@ -24,6 +24,7 @@ export const GroupCardSkeleton = () => {
             cursor="pointer"
             border="1px solid var(--outline)"
             boxShadow="none"
+            mb="10px"
           >
             <Box px=".6em" py="23px" w="full">
               <Stack direction="column" gap=".8em">
