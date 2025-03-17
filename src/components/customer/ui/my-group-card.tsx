@@ -16,17 +16,20 @@ import { Status, GlobalStatus } from "@components/ui";
 import { Group } from "@utils/types";
 import { bgs, randomBg } from "@utils/constants";
 import { dicebear } from "@utils/misc";
+import { SetStateAction } from "react";
 
 export interface MyGroupCardProps extends Partial<ChakraProps> {
   bgColor?: string;
   data: Partial<Group>;
   acceptanceStatus?: GlobalStatus;
+  setActiveGroup: React.Dispatch<SetStateAction<Partial<Group>>>
 }
 
 export const MyGroupCard = ({
   data,
   bgColor,
   acceptanceStatus,
+  setActiveGroup,
   ...props
 }: MyGroupCardProps) => {
   const groupData = data;
@@ -46,6 +49,7 @@ export const MyGroupCard = ({
       bg={bgColor || "#ffffff"}
       _hover={{ cursor: "pointer" }}
       {...props}
+      onClick={() => setActiveGroup(data)}
     >
       <CardBody px={{ lg: "1em", md: ".8em", base: ".6em" }} py="23px" w="full">
         {acceptanceStatus && (
