@@ -24,7 +24,7 @@ export const createGroup = async (payload: GroupPayload) => {
   }
 };
 
-export const joinGroup = async (groupId: string) => {
+export const joinGroup = async (groupId: number) => {
   const token = getCookie(TOKEN_KEY, {...cookieOptions})
   if (!token) return
 

@@ -23,6 +23,7 @@ import { ExploreFilter } from "@layouts/modal-layout/explore-filter";
 import { useAllGroups, useFilteredGroups } from "@hooks/swr";
 import { FilterGroupProps } from "@queries/groups";
 import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
+import { ExploreCardSkeleton } from "@components/skeletons";
 
 const initialValues = {
   members: "",
@@ -72,7 +73,7 @@ export const Explore = () => {
       <Box
         width="100%"
         maxWidth={{ lg: "1360px", "2xl": "100%" }}
-        height="246px"
+        height="255px"
         display="flex"
         alignItems="center"
         overflowX="auto"
@@ -81,18 +82,24 @@ export const Explore = () => {
           cursor: "grab",
         }}
       >
-        {data?.slice(0, 4)?.map((group, index: React.Key) => {
-          return (
-            <GroupCard
-              groupType="suggested"
-              hasGradient
-              link="my-group"
-              key={index}
-              data={group}
-              groups={data}
-            />
-          );
-        })}
+        {isLoading ? (
+          <ExploreCardSkeleton />
+        ) : (
+          <>
+            {data?.slice(0, 4)?.map((group, index: React.Key) => {
+              return (
+                <GroupCard
+                  groupType="suggested"
+                  hasGradient
+                  link="my-group"
+                  key={index}
+                  data={group}
+                  groups={data}
+                />
+              );
+            })}
+          </>
+        )}
       </Box>
       <Box
         mt="1em"
@@ -245,11 +252,17 @@ export const Explore = () => {
         width="100%"
         mt="17px"
       >
-        {groups?.map((group, index) => (
-          <Box minHeight="240px" flex={1} key={index}>
-            <GroupCard groups={data} groupType="available" data={group} />
-          </Box>
-        ))}
+        {isLoading ? (
+          <ExploreCardSkeleton />
+        ) : (
+          <>
+            {groups?.map((group, index) => (
+              <Box minHeight="240px" flex={1} key={index}>
+                <GroupCard groups={data} groupType="available" data={group} />
+              </Box>
+            ))}
+          </>
+        )}
       </SimpleGrid>
 
       <ExploreFilter
