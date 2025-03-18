@@ -18,6 +18,7 @@ import { Icon } from "@components/icon";
 import { GroupCardSkeleton, PaymentCardSkeleton } from "@components/skeletons";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useAllGroups, useJoinedGroups } from "@hooks/swr";
+import { useNavigate } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { Group } from "@utils/types";
 import dayjs, { Dayjs } from "dayjs";
@@ -35,6 +36,7 @@ export const GROUPS_TAB_ITEMS = [
 }));
 
 export const Groups = () => {
+  const navigate = useNavigate();
   const { isMobile } = useMobileScreens();
   const { data: joinedGroups, count, isLoading } = useJoinedGroups();
   const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
@@ -44,7 +46,11 @@ export const Groups = () => {
   const handleActiveGroup = (groupId: string) => {
     const group = joinedGroups?.find((group) => group.groupID === groupId);
     if (!group) return;
-    setActiveGroup(group);
+    if (isMobile) {
+      navigate({ to: `/dashboard/groups/${group.groupID}` });
+    } else {
+      setActiveGroup(group);
+    }
   };
 
   const contributionDates = activeGroup?.participants?.flatMap((participant) =>
