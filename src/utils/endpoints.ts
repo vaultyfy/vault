@@ -37,14 +37,15 @@ export const app = {
     deleteBankDetails: `${BASE_URL}/customer/delete-bankDetails`,
     yourBanks: `${BASE_URL}/customer/all-my-bankDetails`,
     changePassword: `${BASE_URL}/customer/change-password`,
-    updateRecord: `${BASE_URL}/customer/update-record`
+    updateRecord: `${BASE_URL}/customer/update-record`,
   },
   groups: {
     create: `${BASE_URL}/groups/create`,
     all: `${BASE_URL}/groups/all-groups`,
+    filterGroups: `${BASE_URL}/groups/all-groups-with-filter`,
     mine: `${BASE_URL}/groups/all-myParticipatoryGroups`,
     share: `${BASE_URL}/groups/generate-referalLink`,
     group: `${BASE_URL}/groups/one-group`,
-    join: `${BASE_URL}/groups/joinGroup`
+    join: `${BASE_URL}/groups/joinGroup`,
   },
 } as const;

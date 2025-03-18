@@ -1,14 +1,25 @@
+import { useEffect, useRef } from "react";
 import { Box, Flex, VStack, Button, IconButton } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
-import { FilterDatePicker, FilterInput } from "@components/form";
+import {
+  FilterDatePicker,
+  FilterInput,
+  FilterSelectField,
+} from "@components/form";
 import { schema } from "@utils/validators";
 import { Icon } from "@components/icon";
 import { XCircle } from "@phosphor-icons/react";
 import { ModalLayout } from "@components/ui";
+import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
 
 interface ExploreFilterProps {
   isOpen: boolean;
   onClose: () => void;
+  handleSubmit: (
+    values: typeof initialValues,
+    setSubmitting: (isSubmitting: boolean) => void,
+  ) => Promise<void>;
+  handleClearFilters: () => void;
 }
 
 const initialValues = {
@@ -18,7 +29,15 @@ const initialValues = {
   interval: "",
 };
 
-export const ExploreFilter = ({ isOpen, onClose }: ExploreFilterProps) => {
+export const ExploreFilter = ({
+  isOpen,
+  onClose,
+  handleSubmit,
+  handleClearFilters,
+}: ExploreFilterProps) => {
+  // Use useRef to persist form values
+  const formValuesRef = useRef<typeof initialValues>(initialValues);
+
   return (
     <ModalLayout
       isOpen={isOpen}
@@ -36,13 +55,36 @@ export const ExploreFilter = ({ isOpen, onClose }: ExploreFilterProps) => {
           onClick={onClose}
         />
         <Formik
-          initialValues={initialValues}
+          initialValues={formValuesRef.current}
           validationSchema={schema.exploreFilters}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
+            setTimeout(async () => {
+              try {
+                await handleSubmit(values, setSubmitting);
+              } catch (error) {
+                console.error("Submission failed:", error);
+              } finally {
+                setSubmitting(false);
+                onClose();
+              }
+            }, 600);
           }}
         >
           {(formik) => {
+            useEffect(() => {
+              formValuesRef.current = formik.values;
+            }, [formik.values]);
+
+            useEffect(() => {
+              const areAllFieldsEmpty = Object.values(formik.values).every(
+                (value) => value === "",
+              );
+
+              if (areAllFieldsEmpty) {
+                handleClearFilters();
+              }
+            }, [formik.values]);
+
             return (
               <VStack as={Form} w="full" spacing="14px" alignItems="stretch">
                 <Box w="full">
@@ -53,6 +95,7 @@ export const ExploreFilter = ({ isOpen, onClose }: ExploreFilterProps) => {
                     placeholder="06-10-2025"
                     icon={<Icon name="calendar-dots" />}
                     height="50px"
+                    my="0"
                   />
                   {formik.touched.startDate && formik.errors.startDate && (
                     <Box color="var(--deep-red)" mt={2}>
@@ -68,15 +111,17 @@ export const ExploreFilter = ({ isOpen, onClose }: ExploreFilterProps) => {
                       icon={<Icon name="users" />}
                       placeholder="10"
                       height="50px"
+                      my="0"
                     />
                   </Box>
                   <Box flex={1}>
-                    <FilterInput
+                    <FilterSelectField
                       name="interval"
                       title="Interval"
+                      placeholder="Interval"
                       icon={<Icon name="timer" />}
-                      placeholder="weekly"
                       height="50px"
+                      options={CONTRIBUTION_FREQUENCY}
                     />
                   </Box>
                 </Flex>
@@ -88,9 +133,11 @@ export const ExploreFilter = ({ isOpen, onClose }: ExploreFilterProps) => {
                       icon={<Icon name="money-send" />}
                       placeholder="100,000"
                       height="50px"
+                      my="0"
                     />
                   </Box>
                   <Button
+                    type="submit"
                     width="85px"
                     height="50px"
                     px="10px"
