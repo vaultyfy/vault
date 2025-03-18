@@ -15,8 +15,14 @@ import {
 } from "@chakra-ui/react";
 import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
 import { Icon } from "@components/icon";
+import { GroupCardSkeleton, PaymentCardSkeleton } from "@components/skeletons";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useAllGroups, useJoinedGroups } from "@hooks/swr";
+import { useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import { Group } from "@utils/types";
+import dayjs, { Dayjs } from "dayjs";
+import React from "react";
 import slugify from "slugify";
 
 export const GROUPS_TAB_ITEMS = [
@@ -30,11 +36,30 @@ export const GROUPS_TAB_ITEMS = [
 }));
 
 export const Groups = () => {
+  const navigate = useNavigate();
   const { isMobile } = useMobileScreens();
-  const { data, isLoading } = useAllGroups();
-  const { data: joinedGroups } = useJoinedGroups();
+  const { data: joinedGroups, count, isLoading } = useJoinedGroups();
+  const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
+    joinedGroups?.[0],
+  );
 
-  // console.log("joined groups", joinedGroups)
+  const handleActiveGroup = (groupId: string) => {
+    const group = joinedGroups?.find((group) => group.groupID === groupId);
+    if (!group) return;
+    if (isMobile) {
+      navigate({ to: `/dashboard/groups/${group.groupID}` });
+    } else {
+      setActiveGroup(group);
+    }
+  };
+
+  const contributionDates = activeGroup?.participants?.flatMap((participant) =>
+    Array.isArray(participant.contributionDates)
+      ? participant.contributionDates.map((date) =>
+          dayjs(date).format("DD-MMMM-YYYY"),
+        )
+      : [],
+  );
 
   return (
     <Flex
@@ -102,23 +127,50 @@ export const Groups = () => {
             </TabList>
 
             {isLoading ? (
-              <Center height="450px">
-                <Spinner size="sm" color="var(--grey)" />
-              </Center>
+              <GroupCardSkeleton />
             ) : (
               <TabPanels>
                 <TabPanel px="0px" pt="1.4em">
                   <Stack direction="column" gap=".8em">
-                    {data?.map((group, index) => {
-                      return (
-                        <MyGroupCard
-                          key={group.id}
-                          data={group}
-                          bgColor={index === 0 ? "var(--card-bg-active)" : ""}
-                          border={`0.5px solid ${index === 0 ? "var(--primary)" : "var(--border-muted)"}`}
-                        />
-                      );
-                    })}
+                    {count === 0 ? (
+                      <Center height="500px">
+                        <Text fontSize="md" color="var(--grey)">
+                          You have not joined any group. Find available ones{" "}
+                          <Link
+                            style={{ textDecoration: "underline" }}
+                            to="/dashboard/explore"
+                          >
+                            here
+                          </Link>
+                        </Text>
+                      </Center>
+                    ) : (
+                      <>
+                        {isLoading ? (
+                          <GroupCardSkeleton />
+                        ) : (
+                          <>
+                            {joinedGroups?.map((group, index) => {
+                              return (
+                                <MyGroupCard
+                                  key={group.id}
+                                  data={group}
+                                  bgColor={
+                                    activeGroup?.groupID === group.groupID
+                                      ? "var(--card-bg-active)"
+                                      : ""
+                                  }
+                                  setActiveGroup={() =>
+                                    handleActiveGroup(group.groupID)
+                                  }
+                                  border={`0.5px solid ${activeGroup?.groupID === group.groupID ? "var(--primary)" : "var(--border-muted)"}`}
+                                />
+                              );
+                            })}
+                          </>
+                        )}
+                      </>
+                    )}
                   </Stack>
                 </TabPanel>
               </TabPanels>
@@ -140,31 +192,51 @@ export const Groups = () => {
             fontSize={{ base: "20px", lg: "24px" }}
             color="var(--text-1)"
           >
-            Unity savers
+            {activeGroup?.name}
           </Text>
         </HStack>
-        <Box
-          width="full"
-          roundedTop="10px"
-          p="1rem"
-          border="0.5px solid var(--border-muted)"
-        >
-          <Calendar />
-        </Box>
-        <Box maxHeight="127px" width="full">
-          <PaymentCard
-            deadlineDate="23-December-2025"
-            dateType="Start date"
-            amount={200000}
-            isActive
-          />
-        </Box>
-        <Box maxHeight="127px" width="full">
-          <PaymentCard deadlineDate="24-December-2025" dateType="Missed date" />
-        </Box>
-        <Box maxHeight="127px" width="full">
-          <PaymentCard deadlineDate="24-December-2025" dateType="Missed date" />
-        </Box>
+        <Stack direction="column" gap=".25em">
+          <Box
+            width="full"
+            roundedTop="10px"
+            p="1rem"
+            border="0.5px solid var(--border-muted)"
+          >
+            <Calendar />
+          </Box>
+          {isLoading ? (
+            <PaymentCardSkeleton />
+          ) : (
+            <>
+              {/* we need to consider when to remove this from the DOM. after they've paid? or after the date has passed? */}
+              <PaymentCard
+                deadlineDate={dayjs(activeGroup?.startDate).format(
+                  "DD-MMMM-YYYY",
+                )}
+                dateType="start-date"
+                amount={activeGroup?.contributionAmount}
+                dayOfWeek={dayjs(activeGroup?.startDate).format("dddd")}
+                isActive
+              />
+              {contributionDates?.map((contributionDate, index) => {
+                return (
+                  <PaymentCard
+                    deadlineDate={contributionDate}
+                    dateType="due-date"
+                    amount={activeGroup?.contributionAmount}
+                    dayOfWeek={dayjs(contributionDate).format("dddd")}
+                    isActive={
+                      dayjs().format("DD-MMMM-YYYY") === contributionDate
+                    }
+                    roundedBottom={
+                      index === contributionDates?.length - 1 ? "10px" : ""
+                    }
+                  />
+                );
+              })}
+            </>
+          )}
+        </Stack>
       </Box>
     </Flex>
   );

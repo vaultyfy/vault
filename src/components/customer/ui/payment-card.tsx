@@ -1,19 +1,22 @@
-import { Flex, Box, Text, HStack, VStack, Button } from "@chakra-ui/react";
+import { Flex, Box, Text, HStack, VStack, Button, ChakraProps } from "@chakra-ui/react";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { ArrowRight } from "@phosphor-icons/react";
 
-interface PaymentCardProps {
+interface PaymentCardProps extends Partial<ChakraProps> {
   isActive?: boolean;
   amount?: number;
+  dayOfWeek: string;
   deadlineDate?: string;
-  dateType?: string;
+  dateType?: "start-date" | "due-date";
 }
 
 export const PaymentCard = ({
   isActive = false,
   amount,
+  dayOfWeek,
   deadlineDate,
   dateType,
+  ...props
 }: PaymentCardProps) => {
   const dateArray = deadlineDate?.split("-");
   return (
@@ -22,10 +25,11 @@ export const PaymentCard = ({
       py="23px"
       border="0.5px solid var(--border-muted)"
       justifyContent="space-between"
+      {...props}
     >
       <Box w="max-content">
         <Text fontSize="14px" fontWeight="400" color="var(--grey)">
-          {dateType || "Due date"}
+          {dateType === "start-date" ? "Start date" : "Due date"}
         </Text>
         <HStack spacing="7px">
           <Text
@@ -51,7 +55,7 @@ export const PaymentCard = ({
               fontSize={{ base: "14px", lg: "16px" }}
               color="var(--grey)"
             >
-              saturday
+              {dayOfWeek}
             </Text>
           </Flex>
         </HStack>
@@ -118,7 +122,7 @@ export const PaymentCard = ({
             fontWeight="500"
             fontSize="14px"
             _hover={{
-              bgGradient: "var(--main-gradient)"
+              bgGradient: "var(--main-gradient)",
             }}
             rounded="full"
             width="112px"

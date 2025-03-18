@@ -17,7 +17,7 @@ export const getJoinedGroups = async () => {
       },
     });
 
-    const response: Response = await request.json();
+    const response: Response<UserGroups> = await request.json();
     return response;
   } catch (error) {
     console.error(`${(error as Error).message}`);

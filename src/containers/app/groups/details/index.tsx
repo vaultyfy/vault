@@ -40,7 +40,7 @@ export const GroupDetails = ({ data }: GroupDetailProps) => {
   });
 
   const handleJoinGroup = async () => {
-    const groupId: string = data?.groupID || "";
+    const groupId: number = data?.id || 0;
     if (!approval) {
       openToast("Please agree before proceeding.", "warning");
       return;

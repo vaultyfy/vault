@@ -11,12 +11,17 @@ export const useJoinedGroups = () => {
     swrOptions,
   );
 
-  const payload = data?.payload;
+  const payload = data?.payload
+  const updateJoinedGroups = () => mutate(key)
 
   return {
     error,
     isLoading,
-    data: payload,
+    data: payload?.data,
+    pageSize: payload?.pageSize,
+    currentPage: payload?.currentPage,
+    mutate: updateJoinedGroups,
+    count: payload?.total,
   };
 };
 
