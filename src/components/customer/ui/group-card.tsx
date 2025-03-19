@@ -73,23 +73,23 @@ export const GroupCard = ({
       setState("loading");
       setSelectedGroup(found);
       const request = await getReferalLink(groupId);
-      const referalLink: string = request?.payload?.referalLink || ""
+      const referalLink: string = request?.payload?.referalLink || "";
       if (request?.success && navigator) {
         if (isSmallViewPort) {
           await navigator.share({
             url: referalLink,
-            text: selectedGroup?.groupDescription,
             title: `Join ${selectedGroup?.name} on Vaultyfy`,
-          })
+            text: `Join ${selectedGroup?.name} on Vaultyfy\n\n${selectedGroup?.groupDescription}`,
+          });
         } else {
-          await navigator.clipboard.writeText(referalLink)
-          openToast("The referal link has been copied.", "success")
+          await navigator.clipboard.writeText(referalLink);
+          openToast("The referal link has been copied.", "success");
         }
       }
     } catch (error) {
       console.error(`${(error as Error).message}`);
     } finally {
-      setState("idle")
+      setState("idle");
     }
   };
 

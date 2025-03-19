@@ -21,7 +21,7 @@ export const AdjustLoanContent = () => {
               <Box
                 width={"100%"}
                 height={"120px"}
-                borderBottom="0.5px solid #8181816B"
+                borderBottom="0.5px solid var(--border-muted)"
                 paddingY={"10px"}
               >
                 <InputField
@@ -81,7 +81,7 @@ export const AdjustLoanContent = () => {
                   width="100%"
                   gap="15px"
                   height={"130px"}
-                  borderBottom="0.5px solid #8181816B"
+                  borderBottom="0.5px solid var(--border-muted)"
                   paddingY={"10px"}
                 >
                   <Text
@@ -112,7 +112,7 @@ export const AdjustLoanContent = () => {
                       width="164px"
                       padding={"8px 19px"}
                       borderRadius={"6px"}
-                      border="0.5px solid #8181816B"
+                      border="0.5px solid var(--border-muted)"
                       display={"flex"}
                       alignItems={"center"}
                       justifyContent={"center"}
