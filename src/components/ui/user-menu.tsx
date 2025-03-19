@@ -8,14 +8,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useAuthContext } from "@hooks/context";
+import { useCurrentPath } from "@hooks/current-path";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useUser } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, UserRound } from "lucide-react";
 
 export const UserMenu = () => {
+  const currentPath = useCurrentPath();
   const { isSmallViewPort } = useMobileScreens();
-  const { data } = useUser()
+  const { user, logout, isAuthenticated } = useAuthContext();
 
   return (
     <Menu autoSelect={false}>
@@ -68,7 +70,7 @@ export const UserMenu = () => {
           </MenuItem>
         </Link>
 
-        {data && (
+        {user && currentPath !== "/dashboard" && (
           <Link to="/dashboard">
             <MenuItem
               as={Button}
@@ -85,6 +87,25 @@ export const UserMenu = () => {
               <Text className="main-accent">dashboard</Text>
             </MenuItem>
           </Link>
+        )}
+
+        {isAuthenticated && (
+          <MenuItem
+            as={Button}
+            background="#fff"
+            borderRadius="30px"
+            height="26px"
+            textTransform="capitalize"
+            _hover={{
+              background: "#fff",
+            }}
+            fontWeight="normal"
+            fontSize="12px"
+            className="main-accent"
+            onClick={logout}
+          >
+            Logout
+          </MenuItem>
         )}
       </MenuList>
     </Menu>
