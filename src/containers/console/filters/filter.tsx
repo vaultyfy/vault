@@ -207,7 +207,7 @@ export const Filter = () => {
 
       <HStack
         width={"20%"}
-        border="0.5px solid #8181816B"
+        border="0.5px solid var(--border-muted)"
         borderRadius={"31px"}
         padding="10px 21px"
         height="54px"

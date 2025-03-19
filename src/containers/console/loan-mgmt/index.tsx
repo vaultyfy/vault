@@ -83,7 +83,7 @@ export const LoanManagement = () => {
         </Tabs>
         <HStack
           width={"27%"}
-          border="0.5px solid #8181816B"
+          border="0.5px solid var(--border-muted)"
           borderRadius={"31px"}
           padding="10px 21px"
           height="44px"
@@ -108,7 +108,7 @@ export const LoanManagement = () => {
         boxShadow={"md"}
         borderRadius={"10px"}
         padding="16px 18px"
-        border={"0.5px solid #8181816B"}
+        border={"0.5px solid var(--border-muted)"}
       >
         <TableContainer width={"100%"} height={"100%"} overflowY={"auto"}>
           <Table variant="simple" gap={"29px"}>
@@ -274,7 +274,7 @@ export const LoanManagement = () => {
                           borderRadius={"30px"}
                           fontSize={"14px"}
                           fontWeight={"normal"}
-                          border="0.5px solid #8181816B"
+                          border="0.5px solid var(--border-muted)"
                           lineHeight={"21px"}
                           color="var(--grey)"
                           background={"white"}

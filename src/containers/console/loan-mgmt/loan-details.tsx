@@ -136,7 +136,7 @@ export const LoanDetails = () => {
           </Box>
           <Box
             overflowY={"auto"}
-            border="0.5px solid #8181816B"
+            border="0.5px solid var(--border-muted)"
             height={"342px"}
             width={"100%"}
             padding="23px 19px"

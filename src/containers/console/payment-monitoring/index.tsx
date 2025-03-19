@@ -235,7 +235,7 @@ export const PaymentMonitoring = () => {
                           borderRadius={"30px"}
                           fontSize={"14px"}
                           fontWeight={"normal"}
-                          border="0.5px solid #8181816B"
+                          border="0.5px solid var(--border-muted)"
                           lineHeight={"21px"}
                           color="var(--grey)"
                           background={"white"}

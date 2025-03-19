@@ -1,16 +1,10 @@
-import {
-  Table,
-  Tr,
-  Td,
-  Th,
-  Text,
-  AvatarGroup,
-  Avatar,
-  Box,
-  Thead,
-  Tbody,
-} from "@chakra-ui/react";
+import { Table, Tr, Td, Th, Text, Box, Thead, Tbody } from "@chakra-ui/react";
 import { Status, GlobalStatus } from "@components/ui";
+import { Group } from "@utils/types";
+import { StackedAvatars } from "../ui";
+import { bgs } from "@utils/constants";
+import { dicebear } from "@utils/misc";
+import dayjs from "dayjs";
 
 export const ACTIVITIES_TABLE_HEADINGS = [
   "Group name",
@@ -19,7 +13,14 @@ export const ACTIVITIES_TABLE_HEADINGS = [
   "Pay date",
 ];
 
-export const ActivitiesTable = () => {
+export const ActivitiesTable = ({ data }: { data: Group[] }) => {
+  const avatars = data.map((data) =>
+    data?.participants?.map((member, index) => {
+      const memberBg = bgs[index % bgs.length];
+      return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
+    }),
+  )?.[0];
+
   return (
     <Table variant="simple" size="sm">
       <Thead height="60px">
@@ -44,35 +45,42 @@ export const ActivitiesTable = () => {
         </Tr>
       </Thead>
       <Tbody>
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Tr key={i} borderBottom="1px solid red">
-            <Td height="80px">
-              <AvatarGroup size="md" max={3}>
-                <Avatar name="Ryan Florence" src="/img/person-1.svg" />
-                <Avatar name="Segun Adebayo" src="/img/person-2.svg" />
-                <Avatar name="Kent Dodds" src="/img/person-3.svg" />
-              </AvatarGroup>
-            </Td>
-            <Td textAlign="center">
-              <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
-                Unity savers
-              </Text>
-            </Td>
-            <Td textAlign="center">
-              <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
-                8
-              </Text>
-            </Td>
-            <Td textAlign="center">
-              <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
-                7th
-              </Text>
-            </Td>
-            <Td>
-              <Status status={"02-01-2025" as GlobalStatus} width="104px" />
-            </Td>
-          </Tr>
-        ))}
+        {data?.map((group) => {
+          return (
+            <Tr key={group?.groupID}>
+              <Td height="80px">
+                {avatars?.length === 0 ? (
+                  <Text fontSize="12px">{avatars?.length} members</Text>
+                ) : (
+                  <StackedAvatars images={avatars} maxVisible={3} />
+                )}
+              </Td>
+              <Td textAlign="center">
+                <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
+                  {group?.name}
+                </Text>
+              </Td>
+              <Td textAlign="center">
+                <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
+                  {group.joinedParticipantsCount}
+                </Text>
+              </Td>
+              <Td textAlign="center">
+                <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
+                  {group.participants.map((me) => me.position)}
+                </Text>
+              </Td>
+              <Td>
+                <Status
+                  status={
+                    `${dayjs(group.endDate || new Date()).format("DD-MM-YYYY")}` as GlobalStatus
+                  }
+                  width="104px"
+                />
+              </Td>
+            </Tr>
+          );
+        })}{" "}
       </Tbody>
     </Table>
   );
