@@ -40,8 +40,14 @@ export const Groups = () => {
   const { isMobile } = useMobileScreens();
   const { data: joinedGroups, count, isLoading } = useJoinedGroups();
   const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
-    joinedGroups?.[0],
+    undefined,
   );
+
+  React.useEffect(() => {
+    if (joinedGroups?.length && activeGroup === undefined) {
+      setActiveGroup(joinedGroups[0]);
+    }
+  }, [joinedGroups]);
 
   const handleActiveGroup = (groupId: string) => {
     const group = joinedGroups?.find((group) => group.groupID === groupId);
@@ -127,7 +133,9 @@ export const Groups = () => {
             </TabList>
 
             {isLoading ? (
-              <GroupCardSkeleton />
+              <Box mt=".8em">
+                <GroupCardSkeleton />
+              </Box>
             ) : (
               <TabPanels>
                 <TabPanel px="0px" pt="1.4em">
@@ -146,29 +154,23 @@ export const Groups = () => {
                       </Center>
                     ) : (
                       <>
-                        {isLoading ? (
-                          <GroupCardSkeleton />
-                        ) : (
-                          <>
-                            {joinedGroups?.map((group, index) => {
-                              return (
-                                <MyGroupCard
-                                  key={group.id}
-                                  data={group}
-                                  bgColor={
-                                    activeGroup?.groupID === group.groupID
-                                      ? "var(--card-bg-active)"
-                                      : ""
-                                  }
-                                  setActiveGroup={() =>
-                                    handleActiveGroup(group.groupID)
-                                  }
-                                  border={`0.5px solid ${activeGroup?.groupID === group.groupID ? "var(--primary)" : "var(--border-muted)"}`}
-                                />
-                              );
-                            })}
-                          </>
-                        )}
+                        {joinedGroups?.map((group, index) => {
+                          return (
+                            <MyGroupCard
+                              key={group.id}
+                              data={group}
+                              bgColor={
+                                activeGroup?.groupID === group.groupID
+                                  ? "var(--card-bg-active)"
+                                  : ""
+                              }
+                              setActiveGroup={() =>
+                                handleActiveGroup(group.groupID)
+                              }
+                              border={`0.5px solid ${activeGroup?.groupID === group.groupID ? "var(--primary)" : "var(--border-muted)"}`}
+                            />
+                          );
+                        })}
                       </>
                     )}
                   </Stack>
@@ -221,6 +223,7 @@ export const Groups = () => {
               {contributionDates?.map((contributionDate, index) => {
                 return (
                   <PaymentCard
+                    key={index}
                     deadlineDate={contributionDate}
                     dateType="due-date"
                     amount={activeGroup?.contributionAmount}

@@ -3,6 +3,7 @@ import {
   Box,
   Center,
   Flex,
+  HStack,
   Image,
   List,
   ListItem,
@@ -19,6 +20,8 @@ import { useConsolePath, useCurrentPath } from "@hooks/current-path";
 import { CircleProgress } from "@components/ui";
 import { useUser } from "@hooks/swr";
 import { dicebear, skeleton } from "@utils/misc";
+import { LogOut } from "lucide-react";
+import { useAuthContext } from "@hooks/context";
 
 export type SidenavItems = {
   id: string;
@@ -27,7 +30,7 @@ export type SidenavItems = {
   path: FileRouteTypes["fullPaths"];
 };
 
-const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
+export const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
   {
     id: crypto.randomUUID(),
     icon: <Icon name="dashboard" />,
@@ -87,6 +90,7 @@ const consoleNavBase = [
 
 export const Sidebar = () => {
   const pathname = useCurrentPath();
+  const { logout } = useAuthContext();
   const isConsoleRoute = useConsolePath();
   const CONSOLE_NAV_ITEMS: SidenavItems[] = consoleNavBase.map((item) => ({
     id: crypto.randomUUID(),
@@ -317,6 +321,18 @@ export const Sidebar = () => {
                 </Link>
               </List>
             ))}
+
+            <HStack
+              mt="4em"
+              _hover={{ cursor: "pointer" }}
+              onClick={logout}
+              px={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
+            >
+              <Icon name="logout" />
+              <Text color="var(--grey)" fontWeight="400" fontSize="16px">
+                Log out
+              </Text>
+            </HStack>
           </Flex>
         </Center>
       )}

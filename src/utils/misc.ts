@@ -29,7 +29,7 @@ export const skeleton = {
   startColor: "var(--pale-grey)",
   endColor: "var(--grey-sec)",
   light: {
-    startColor: "var(--platinum)",
+    startColor: "var(--white-smoke)",
     endColor: "var(--grey-100)"
   }
 };
