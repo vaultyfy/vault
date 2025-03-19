@@ -58,7 +58,7 @@ export interface FilterGroupProps {
   interval: ContributionFrequency;
 }
 
-export const filteredGroups = async ({
+export const filterGroups = async ({
   memberAmount,
   startDate,
   payout,

@@ -2,7 +2,7 @@ import {
   getAllGroups,
   getGroup,
   getJoinedGroups,
-  filteredGroups,
+  filterGroups,
   FilterGroupProps,
 } from "@queries/groups";
 import { swrOptions } from "@utils/constants";
@@ -17,8 +17,8 @@ export const useJoinedGroups = () => {
     swrOptions,
   );
 
-  const payload = data?.payload
-  const updateJoinedGroups = () => mutate(key)
+  const payload = data?.payload;
+  const updateJoinedGroups = () => mutate(key);
 
   return {
     error,
@@ -54,10 +54,10 @@ export const useAllGroups = () => {
 };
 
 export const useFilteredGroups = (filter: FilterGroupProps) => {
-  const key = filter ? ["my-groups", filter] : null;
+  const key = ["my-groups", filter];
   const { data, error, isLoading } = useSWR(
     key,
-    () => filteredGroups(filter),
+    () => filterGroups(filter),
     swrOptions,
   );
 

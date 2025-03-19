@@ -56,7 +56,6 @@ export const Explore = () => {
       payout: parseInt(values.payout, 10),
       interval: values.interval as ContributionFrequency,
     });
-    await new Promise((resolve) => setTimeout(resolve, 1000));
   };
 
   const handleClearFilters = () => {
@@ -133,17 +132,6 @@ export const Explore = () => {
             }}
           >
             {(formik) => {
-              // Monitor form values for changes
-              useEffect(() => {
-                const areAllFieldsEmpty = Object.values(formik.values).every(
-                  (value) => value === "",
-                );
-
-                if (areAllFieldsEmpty) {
-                  handleClearFilters(); // Perform action when all fields are cleared
-                }
-              }, [formik.values]);
-
               return (
                 <Flex
                   as={Form}
@@ -214,12 +202,13 @@ export const Explore = () => {
                   >
                     Apply
                   </Button>
-                  {/* <Button
+                  <Button
                     type="button"
                     width="107px"
                     px="10px"
                     py="8px"
                     bgColor="var(--grey-200)"
+                    border="1px solid var(--input-outline)"
                     fontFamily="var(--poppins)"
                     fontWeight="medium"
                     fontSize="11px"
@@ -227,10 +216,13 @@ export const Explore = () => {
                     _hover={{ bgColor: "var(--grey-300)" }}
                     _active={{ bgColor: "var(--grey-300)" }}
                     _focus={{ bgColor: "var(--grey-300)" }}
-                    onClick={() => formik.resetForm()} // Clear the form
+                    onClick={() => {
+                      formik.resetForm();
+                      handleClearFilters();
+                    }}
                   >
                     Clear
-                  </Button> */}
+                  </Button>
                 </Flex>
               );
             }}
@@ -252,7 +244,7 @@ export const Explore = () => {
         width="100%"
         mt="17px"
       >
-        {isLoading ? (
+        {isLoading || isFiltering ? (
           <ExploreCardSkeleton />
         ) : (
           <>

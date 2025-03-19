@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Flex, VStack, Button, IconButton } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
 import {
@@ -16,13 +16,14 @@ interface ExploreFilterProps {
   isOpen: boolean;
   onClose: () => void;
   handleSubmit: (
-    values: typeof initialValues,
+    values: typeof defaultValues,
     setSubmitting: (isSubmitting: boolean) => void,
   ) => Promise<void>;
   handleClearFilters: () => void;
+  initialFilters?: typeof defaultValues;
 }
 
-const initialValues = {
+const defaultValues = {
   members: "",
   startDate: "",
   payout: "",
@@ -34,14 +35,33 @@ export const ExploreFilter = ({
   onClose,
   handleSubmit,
   handleClearFilters,
+  initialFilters = defaultValues,
 }: ExploreFilterProps) => {
-  // Use useRef to persist form values
-  const formValuesRef = useRef<typeof initialValues>(initialValues);
+  const [savedValues, setSavedValues] = useState<typeof defaultValues>({
+    ...initialFilters,
+  });
+
+  const formikRef = useRef<any>(null);
+
+  const handleModalClose = () => {
+    if (formikRef.current) {
+      setSavedValues(formikRef.current.values);
+    }
+    onClose();
+  };
+
+  const handleClear = () => {
+    if (formikRef.current) {
+      formikRef.current.resetForm({ values: defaultValues });
+    }
+    setSavedValues({ ...defaultValues });
+    handleClearFilters();
+  };
 
   return (
     <ModalLayout
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleModalClose}
       size="full"
       px="4px"
       py="48px"
@@ -52,15 +72,18 @@ export const ExploreFilter = ({
           aria-label="close-modal"
           icon={<XCircle size={24} color="var(--main)" />}
           bg="transparent"
-          onClick={onClose}
+          onClick={handleModalClose}
         />
         <Formik
-          initialValues={formValuesRef.current}
+          innerRef={formikRef}
+          initialValues={savedValues}
           validationSchema={schema.exploreFilters}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(async () => {
               try {
                 await handleSubmit(values, setSubmitting);
+                // Save values after successful submission
+                setSavedValues(values);
               } catch (error) {
                 console.error("Submission failed:", error);
               } finally {
@@ -69,22 +92,9 @@ export const ExploreFilter = ({
               }
             }, 600);
           }}
+          enableReinitialize={true}
         >
           {(formik) => {
-            useEffect(() => {
-              formValuesRef.current = formik.values;
-            }, [formik.values]);
-
-            useEffect(() => {
-              const areAllFieldsEmpty = Object.values(formik.values).every(
-                (value) => value === "",
-              );
-
-              if (areAllFieldsEmpty) {
-                handleClearFilters();
-              }
-            }, [formik.values]);
-
             return (
               <VStack as={Form} w="full" spacing="14px" alignItems="stretch">
                 <Box w="full">
@@ -136,24 +146,49 @@ export const ExploreFilter = ({
                       my="0"
                     />
                   </Box>
-                  <Button
-                    type="submit"
-                    width="85px"
-                    height="50px"
-                    px="10px"
-                    py="8px"
-                    bgColor="var(--main)"
-                    fontFamily="var(--poppins)"
-                    fontWeight="medium"
-                    fontSize="11px"
-                    color="#ffffff"
-                    _hover={{ bgColor: "var(--main)" }}
-                    _active={{ bgColor: "var(--main)" }}
-                    _focus={{ bgColor: "var(--main)" }}
-                    isLoading={formik.isSubmitting}
-                  >
-                    Apply
-                  </Button>
+                </Flex>
+                <Flex columnGap={2} w="full" alignItems="center">
+                  <Box flex={1}>
+                    <Button
+                      type="submit"
+                      width="100%"
+                      height="50px"
+                      px="10px"
+                      py="8px"
+                      bgColor="var(--main)"
+                      fontFamily="var(--poppins)"
+                      fontWeight="medium"
+                      fontSize="11px"
+                      color="#ffffff"
+                      _hover={{ bgColor: "var(--main)" }}
+                      _active={{ bgColor: "var(--main)" }}
+                      _focus={{ bgColor: "var(--main)" }}
+                      isLoading={formik.isSubmitting}
+                    >
+                      Apply
+                    </Button>
+                  </Box>
+                  <Box flex={1}>
+                    <Button
+                      type="button"
+                      width="100%"
+                      height="50px"
+                      px="10px"
+                      py="8px"
+                      bgColor="var(--grey-200)"
+                      border="1px solid var(--input-outline)"
+                      fontFamily="var(--poppins)"
+                      fontWeight="medium"
+                      fontSize="11px"
+                      color="var(--text-1)"
+                      _hover={{ bgColor: "var(--grey-300)" }}
+                      _active={{ bgColor: "var(--grey-300)" }}
+                      _focus={{ bgColor: "var(--grey-300)" }}
+                      onClick={handleClear}
+                    >
+                      Clear
+                    </Button>
+                  </Box>
                 </Flex>
               </VStack>
             );
