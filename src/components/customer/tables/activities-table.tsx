@@ -59,7 +59,7 @@ export const ActivitiesTable = ({ data, loading }: ActivitiesTableProps) => {
                     const memberBg = bgs[index % bgs.length];
                     return (
                       participant.customer?.profilePicture ||
-                      `${dicebear}?seed=${participant.customer?.name?.split(" ")?.[0] || "unknown"}&size=48&flip=true&backgroundColor=${memberBg}`
+                      `${dicebear}?seed=${participant.customer?.name?.split(" ")?.[0]}&size=48&flip=true&backgroundColor=${memberBg}`
                     );
                   }) || [];
 

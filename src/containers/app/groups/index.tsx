@@ -18,6 +18,7 @@ import {
 import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
 import { Icon } from "@components/icon";
 import { GroupCardSkeleton, PaymentCardSkeleton } from "@components/skeletons";
+import { useAuthContext } from "@hooks/context";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useAllGroups, useJoinedGroups } from "@hooks/swr";
 import { useNavigate } from "@tanstack/react-router";
@@ -40,11 +41,14 @@ export const GROUPS_TAB_ITEMS = [
 
 export const Groups = () => {
   const navigate = useNavigate();
+  const { user } = useAuthContext();
   const { isMobile } = useMobileScreens();
   const { data: joinedGroups, count, isLoading } = useJoinedGroups();
   const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
     undefined,
   );
+
+  console.log("groups", joinedGroups);
 
   React.useEffect(() => {
     if (joinedGroups?.length && activeGroup === undefined) {
@@ -62,13 +66,18 @@ export const Groups = () => {
     }
   };
 
-  const contributionDates = activeGroup?.participants?.flatMap((participant) =>
-    Array.isArray(participant.contributionDates)
-      ? participant.contributionDates.map((date) =>
-          dayjs(date).format("DD-MMMM-YYYY"),
-        )
-      : [],
-  );
+  const contributionDates = activeGroup?.participants
+    .find((participant) => participant?.customer?.id === user?.id)
+    ?.contributionDates.map((date) => dayjs(date).format("DD-MMMM-YYYY"));
+
+  console.log("contribution dates", contributionDates)
+
+  //   Array.isArray(participant.contributionDates)
+  //     ? participant.contributionDates.map((date) =>
+  //         ,
+  //       )
+  //     : [],
+  // );
 
   return (
     <Flex

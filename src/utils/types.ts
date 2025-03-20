@@ -169,7 +169,7 @@ export type Participant = {
   completedCircleCount: number;
   missedContributionCount: number;
   hasCashedOut: boolean;
-  contributionDates: string;
+  contributionDates: string[];
   nextContributionDate: string;
   payoutDate: string;
   totalContributionsRequired: number;
