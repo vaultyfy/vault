@@ -64,13 +64,9 @@ export const Groups = () => {
     setActiveGroup(group);
   };
 
-  const contributionDates = activeGroup?.participants?.flatMap((participant) =>
-    Array.isArray(participant.contributionDates)
-      ? participant.contributionDates.map((date) =>
-          dayjs(date).format("DD-MMMM-YYYY"),
-        )
-      : [],
-  );
+  const contributionDates = activeGroup?.participants
+    .find((participant) => participant?.customer?.id === user?.id)
+    ?.contributionDates.map((date) => dayjs(date).format("DD-MMMM-YYYY"));
 
   return (
     <Flex
