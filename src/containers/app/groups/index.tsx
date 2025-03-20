@@ -72,7 +72,6 @@ export const Groups = () => {
 
   return (
     <Flex
-      border="1px solid red"
       as="section"
       width="100%"
       minHeight="100vh"
