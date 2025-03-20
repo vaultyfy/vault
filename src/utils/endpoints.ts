@@ -37,7 +37,8 @@ export const app = {
     deleteBankDetails: `${BASE_URL}/customer/delete-bankDetails`,
     yourBanks: `${BASE_URL}/customer/all-my-bankDetails`,
     changePassword: `${BASE_URL}/customer/change-password`,
-    updateRecord: `${BASE_URL}/customer/update-record`
+    updateRecord: `${BASE_URL}/customer/update-record`,
+    savingsTrend: `${BASE_URL}/customer/dashboard/savingsTrend`
   },
   groups: {
     create: `${BASE_URL}/groups/create`,

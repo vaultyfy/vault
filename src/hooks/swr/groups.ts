@@ -1,4 +1,9 @@
-import { getAllGroups, getGroup, getJoinedGroups } from "@queries/groups";
+import {
+  getAllGroups,
+  getGroup,
+  getJoinedGroups,
+  getSavingsTrend,
+} from "@queries/groups";
 import { swrOptions } from "@utils/constants";
 import { dicebear } from "@utils/misc";
 import useSWR, { mutate } from "swr";
@@ -11,8 +16,8 @@ export const useJoinedGroups = () => {
     swrOptions,
   );
 
-  const payload = data?.payload
-  const updateJoinedGroups = () => mutate(key)
+  const payload = data?.payload;
+  const updateJoinedGroups = () => mutate(key);
 
   return {
     error,
@@ -57,6 +62,17 @@ export const useGroup = (groupId: string) => {
 
   return {
     data: data?.payload,
+    error,
+    isLoading,
+  };
+};
+
+export const useSavingsTrend = () => {
+  const key = "savings-trend";
+  const { data, error, isLoading } = useSWR(key, () => getSavingsTrend());
+
+  return {
+    data,
     error,
     isLoading,
   };

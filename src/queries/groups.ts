@@ -86,3 +86,24 @@ export const getGroup = async (groupId: string) => {
     console.error(error)
   }
 };
+
+export const getSavingsTrend = async () => {
+  const token = getCookie(TOKEN_KEY, {...cookieOptions})
+  if (!token) return
+
+  try {
+    const request = await fetch(app.customer.savingsTrend, {
+      method: "GET",
+      headers: {
+        ...HEADER_API_KEY,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    const response = await request.json()
+    return response
+  } catch (error) {
+    console.error(`${(error as Error).message}`)
+  }
+}
