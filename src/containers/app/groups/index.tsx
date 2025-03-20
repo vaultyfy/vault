@@ -40,13 +40,14 @@ export const GROUPS_TAB_ITEMS = [
 }));
 
 export const Groups = () => {
-  const navigate = useNavigate();
   const { user } = useAuthContext();
   const { isMobile } = useMobileScreens();
   const { data: joinedGroups, count, isLoading } = useJoinedGroups();
   const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
     undefined,
   );
+  const [isGroupPaymentCardsVisible, setIsGroupPaymentCardsVisible] =
+    React.useState<boolean>(false);
 
   console.log("groups", joinedGroups);
 
@@ -60,24 +61,14 @@ export const Groups = () => {
     const group = joinedGroups?.find((group) => group.groupID === groupId);
     if (!group) return;
     if (isMobile) {
-      navigate({ to: `/dashboard/groups/${group.groupID}` });
-    } else {
-      setActiveGroup(group);
+      setIsGroupPaymentCardsVisible(true);
     }
+    setActiveGroup(group);
   };
 
   const contributionDates = activeGroup?.participants
     .find((participant) => participant?.customer?.id === user?.id)
     ?.contributionDates.map((date) => dayjs(date).format("DD-MMMM-YYYY"));
-
-  console.log("contribution dates", contributionDates)
-
-  //   Array.isArray(participant.contributionDates)
-  //     ? participant.contributionDates.map((date) =>
-  //         ,
-  //       )
-  //     : [],
-  // );
 
   return (
     <Flex
@@ -88,7 +79,14 @@ export const Groups = () => {
       gap={{ lg: "1em", md: "1em", base: "2em" }}
       flexWrap="wrap"
     >
-      <Box width={{ base: "100%", md: "50%", lg: "50%" }}>
+      <Box
+        width={{ base: "100%", md: "50%", lg: "50%" }}
+        display={{
+          lg: "block",
+          md: "block",
+          base: isGroupPaymentCardsVisible ? "none" : "block",
+        }}
+      >
         <HStack
           spacing="10px"
           rounded="10px"
@@ -198,6 +196,11 @@ export const Groups = () => {
         width={{ lg: "48%", xl: "35%", md: "45%", base: "100%" }}
         position="sticky"
         top="80px"
+        display={{
+          lg: "block",
+          md: "block",
+          base: isGroupPaymentCardsVisible ? "block" : "none",
+        }}
       >
         {isLoading ? (
           <Skeleton
@@ -210,7 +213,14 @@ export const Groups = () => {
           />
         ) : (
           <HStack justifyContent="flex-start" width="full">
-            {isMobile && <Icon name="arrow-left" />}
+            {isMobile && (
+              <Box
+                onClick={() => setIsGroupPaymentCardsVisible(false)}
+                cursor="pointer"
+              >
+                <Icon name="arrow-left" />
+              </Box>
+            )}
             <Text
               fontFamily="var(--clash-grotesk-400)"
               fontWeight={{ base: "500", lg: "400" }}
@@ -234,22 +244,36 @@ export const Groups = () => {
             <PaymentCardSkeleton />
           ) : (
             <>
-              {/* we need to consider when to remove this from the DOM. after they've paid? or after the date has passed? */}
-              <PaymentCard
-                deadlineDate={dayjs(activeGroup?.startDate).format(
-                  "DD-MMMM-YYYY",
-                )}
-                dateType="start-date"
-                amount={activeGroup?.contributionAmount}
-                dayOfWeek={dayjs(activeGroup?.startDate).format("dddd")}
-                isActive
-              />
+              {dayjs().format("DD-MM-YYYY") ===
+                dayjs(activeGroup?.startDate).format("DD-MM-YYYY") && (
+                <PaymentCard
+                  deadlineDate={dayjs(activeGroup?.startDate).format(
+                    "DD-MMMM-YYYY",
+                  )}
+                  dateType="start-date"
+                  amount={activeGroup?.contributionAmount}
+                  dayOfWeek={dayjs(activeGroup?.startDate).format("dddd")}
+                  isActive
+                  groupId={activeGroup?.groupID || ""}
+                  participantId={
+                    activeGroup?.participants.find(
+                      (participant) => participant?.customer?.id === user?.id,
+                    )?.participantID || ""
+                  }
+                />
+              )}
               {contributionDates?.map((contributionDate, index) => {
                 return (
                   <PaymentCard
                     key={index}
                     deadlineDate={contributionDate}
                     dateType="due-date"
+                    groupId={activeGroup?.groupID || ""}
+                    participantId={
+                      activeGroup?.participants.find(
+                        (participant) => participant?.customer?.id === user?.id,
+                      )?.participantID || ""
+                    }
                     amount={activeGroup?.contributionAmount}
                     dayOfWeek={dayjs(contributionDate).format("dddd")}
                     isActive={
