@@ -16,10 +16,7 @@ export const StackedAvatars = ({
 
   return (
     <Flex alignItems="center">
-      <AvatarGroup
-        spacing="-12px"
-        max={maxVisible}
-      >
+      <AvatarGroup spacing="-12px" max={maxVisible}>
         {visibleImages.map((src, index) => (
           <Avatar
             key={index}
@@ -45,12 +42,7 @@ export const StackedAvatars = ({
           border="2px solid var(--grey)"
           ml="-12px"
         >
-          <Text
-            as="span"
-            fontWeight="400"
-            color="var(--grey)"
-            fontSize="14px"
-          >
+          <Text as="span" fontWeight="400" color="var(--grey)" fontSize="14px">
             {remainingCount}/{images.length}
           </Text>
         </Box>

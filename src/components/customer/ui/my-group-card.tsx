@@ -22,7 +22,7 @@ export interface MyGroupCardProps extends Partial<ChakraProps> {
   bgColor?: string;
   data: Partial<Group>;
   acceptanceStatus?: GlobalStatus;
-  setActiveGroup: React.Dispatch<SetStateAction<Partial<Group>>>
+  setActiveGroup: React.Dispatch<SetStateAction<Partial<Group>>>;
 }
 
 export const MyGroupCard = ({
@@ -35,7 +35,7 @@ export const MyGroupCard = ({
   const groupData = data;
   const avatars = data?.participants?.map((member, index) => {
     const memberBg = bgs[index % bgs.length];
-    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
+    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name?.split(" ")?.[0]}&size=48&flip=true&backgroundColor=${memberBg}`}`;
   });
 
   return (
@@ -90,7 +90,14 @@ export const MyGroupCard = ({
                     {groupData?.contributionFrequency}
                   </Text>
                 </Flex>
-                <HStack gap=".2em" px={2} rounded="full" py={1} bg="var(--grey-007)" alignItems="center">
+                <HStack
+                  gap=".2em"
+                  px={2}
+                  rounded="full"
+                  py={1}
+                  bg="var(--grey-007)"
+                  alignItems="center"
+                >
                   <RefreshCcw
                     size={16}
                     strokeWidth={2.5}

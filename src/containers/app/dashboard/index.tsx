@@ -22,7 +22,7 @@ import React from "react";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { CreateGroupModal } from "@layouts/modal-layout";
 import { useUiComponentStore } from "@store/ui";
-import { useJoinedGroups, useWallet } from "@hooks/swr";
+import { useJoinedGroups, useSavingsTrend, useWallet } from "@hooks/swr";
 
 export const Dashboard = () => {
   const { store, updateUiStore } = useUiComponentStore();
@@ -40,9 +40,17 @@ export const Dashboard = () => {
     onClose();
   };
 
-  const { data: joinedGroups, count } = useJoinedGroups();
+  const {
+    data: joinedGroups,
+    count,
+    isLoading: loadingGroups,
+  } = useJoinedGroups();
   const { walletBalance, lastUpdated, isLoading, expectedReturns } =
     useWallet();
+
+  const { data } = useSavingsTrend();
+
+  console.log("data", data)
 
   return (
     <>
@@ -61,7 +69,7 @@ export const Dashboard = () => {
           />
           <OverviewCard
             cardIcon="time-is-money"
-            cardTitle="Wallet balance"
+            cardTitle="Remaining contribution"
             amount={walletBalance}
             hasFilter={true}
             hasProgress={true}
@@ -217,7 +225,10 @@ export const Dashboard = () => {
               </HStack>
 
               <TableContainer w="full" mt="2rem">
-                <ActivitiesTable data={joinedGroups || []} />
+                <ActivitiesTable
+                  data={joinedGroups || []}
+                  loading={loadingGroups}
+                />
               </TableContainer>
             </Box>
           </Flex>

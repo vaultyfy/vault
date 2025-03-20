@@ -100,7 +100,12 @@ export const AppHeader = ({
         border="1px solid var(--outline)"
         animate={
           isMobileSideNavOpen
-            ? { width: "67%", x: 0, opacity: 1, display: "block" }
+            ? {
+                width: isMobile ? "67%" : "36%",
+                x: 0,
+                opacity: 1,
+                display: "block",
+              }
             : { x: -20, opacity: 0, display: "none" }
         }
       >
@@ -180,13 +185,13 @@ export const AppHeader = ({
         transition="all .3s ease-out"
         zIndex={{ lg: "10", md: "1", base: "-10" }}
         backdropFilter="blur(10px)"
-        px={{ base: "1em", "2xl": "2em", xl: "1em", lg: ".8em" }}
+        px={{ base: ".6em", "2xl": "2em", xl: "1em", lg: ".8em" }}
       >
         <HStack gap=".4em">
           <Text
             as="h2"
-            fontSize={{ base: "24px", lg: "32px" }}
             fontWeight="500"
+            fontSize={{ base: "22px", lg: "32px" }}
           >
             {routeTitle}
           </Text>

@@ -5,6 +5,8 @@ import { StackedAvatars } from "../ui";
 import { bgs } from "@utils/constants";
 import { dicebear } from "@utils/misc";
 import dayjs from "dayjs";
+import { ActivitiesTableSkeleton } from "@components/skeletons";
+import { useAuthContext } from "@hooks/context";
 
 export const ACTIVITIES_TABLE_HEADINGS = [
   "Group name",
@@ -13,13 +15,13 @@ export const ACTIVITIES_TABLE_HEADINGS = [
   "Pay date",
 ];
 
-export const ActivitiesTable = ({ data }: { data: Group[] }) => {
-  const avatars = data.map((data) =>
-    data?.participants?.map((member, index) => {
-      const memberBg = bgs[index % bgs.length];
-      return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
-    }),
-  )?.[0];
+interface ActivitiesTableProps {
+  data: Group[];
+  loading: boolean;
+}
+
+export const ActivitiesTable = ({ data, loading }: ActivitiesTableProps) => {
+  const { user } = useAuthContext();
 
   return (
     <Table variant="simple" size="sm">
@@ -45,42 +47,74 @@ export const ActivitiesTable = ({ data }: { data: Group[] }) => {
         </Tr>
       </Thead>
       <Tbody>
-        {data?.map((group) => {
-          return (
-            <Tr key={group?.groupID}>
-              <Td height="80px">
-                {avatars?.length === 0 ? (
-                  <Text fontSize="12px">{avatars?.length} members</Text>
-                ) : (
-                  <StackedAvatars images={avatars} maxVisible={3} />
-                )}
-              </Td>
-              <Td textAlign="center">
-                <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
-                  {group?.name}
-                </Text>
-              </Td>
-              <Td textAlign="center">
-                <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
-                  {group.joinedParticipantsCount}
-                </Text>
-              </Td>
-              <Td textAlign="center">
-                <Text fontWeight="400" fontSize={{ base: "14px", lg: "18px" }}>
-                  {group.participants.map((me) => me.position)}
-                </Text>
-              </Td>
-              <Td>
-                <Status
-                  status={
-                    `${dayjs(group.endDate || new Date()).format("DD-MM-YYYY")}` as GlobalStatus
-                  }
-                  width="104px"
-                />
-              </Td>
-            </Tr>
-          );
-        })}{" "}
+        {loading ? (
+          <ActivitiesTableSkeleton />
+        ) : (
+          <>
+            {data?.map((group) => {
+              const groupAvatars =
+                group?.participants
+                  ?.filter((participant) => participant.customer)
+                  ?.map((participant, index) => {
+                    const memberBg = bgs[index % bgs.length];
+                    return (
+                      participant.customer?.profilePicture ||
+                      `${dicebear}?seed=${participant.customer?.name?.split(" ")?.[0] || "unknown"}&size=48&flip=true&backgroundColor=${memberBg}`
+                    );
+                  }) || [];
+
+              return (
+                <Tr key={group?.groupID}>
+                  <Td height="80px">
+                    {group?.participants?.length === 0 ? (
+                      <Text fontSize="12px">0 members</Text>
+                    ) : (
+                      <StackedAvatars images={groupAvatars} maxVisible={3} />
+                    )}
+                  </Td>
+                  <Td textAlign="center">
+                    <Text
+                      fontWeight="400"
+                      color="var(--dark)"
+                      fontSize={{ base: "14px", lg: "14px" }}
+                    >
+                      {group?.name}
+                    </Text>
+                  </Td>
+                  <Td textAlign="center">
+                    <Text
+                      fontWeight="400"
+                      fontSize={{ base: "14px", lg: "18px" }}
+                    >
+                      {group.joinedParticipantsCount}
+                    </Text>
+                  </Td>
+                  <Td textAlign="center">
+                    <Text
+                      fontWeight="400"
+                      fontSize={{ base: "14px", lg: "18px" }}
+                    >
+                      {
+                        group.participants.find(
+                          (participant) =>
+                            participant.customer?.id === user?.id,
+                        )?.position
+                      }
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Status
+                      status={
+                        `${dayjs(group.endDate || new Date()).format("DD-MM-YYYY")}` as GlobalStatus
+                      }
+                      width="104px"
+                    />
+                  </Td>
+                </Tr>
+              );
+            })}
+          </>
+        )}
       </Tbody>
     </Table>
   );

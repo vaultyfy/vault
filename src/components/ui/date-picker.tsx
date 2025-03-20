@@ -94,7 +94,7 @@ const CustomSelect = ({ options, onChange, placeholder }: SelectProps) => {
         }),
         menu: (baseStyle) => ({
           ...baseStyle,
-          backgroundColor: "#F6F6F6",
+          backgroundColor: "var(--grey-100)",
         }),
       }}
     />

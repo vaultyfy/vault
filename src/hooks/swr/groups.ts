@@ -1,4 +1,11 @@
-import { getAllGroups, getGroup, getJoinedGroups } from "@queries/groups";
+import {
+  getAllGroups,
+  getGroup,
+  getJoinedGroups,
+  getSavingsTrend,
+  filterGroups,
+  FilterGroupProps,
+} from "@queries/groups";
 import { swrOptions } from "@utils/constants";
 import { dicebear } from "@utils/misc";
 import useSWR, { mutate } from "swr";
@@ -11,8 +18,8 @@ export const useJoinedGroups = () => {
     swrOptions,
   );
 
-  const payload = data?.payload
-  const updateJoinedGroups = () => mutate(key)
+  const payload = data?.payload;
+  const updateJoinedGroups = () => mutate(key);
 
   return {
     error,
@@ -47,6 +54,26 @@ export const useAllGroups = () => {
   };
 };
 
+export const useFilteredGroups = (filter: FilterGroupProps) => {
+  const key = ["my-groups", filter];
+  const { data, error, isLoading } = useSWR(
+    key,
+    () => filterGroups(filter),
+    swrOptions,
+  );
+
+  const payload = data?.payload;
+
+  return {
+    error,
+    isLoading,
+    data: payload?.data,
+    pageSize: payload?.pageSize,
+    currentPage: payload?.currentPage,
+    count: payload?.total,
+  };
+};
+
 export const useGroup = (groupId: string) => {
   const key = ["group", groupId];
   const { data, error, isLoading } = useSWR(
@@ -57,6 +84,17 @@ export const useGroup = (groupId: string) => {
 
   return {
     data: data?.payload,
+    error,
+    isLoading,
+  };
+};
+
+export const useSavingsTrend = () => {
+  const key = "savings-trend";
+  const { data, error, isLoading } = useSWR(key, () => getSavingsTrend());
+
+  return {
+    data,
     error,
     isLoading,
   };

@@ -142,7 +142,6 @@ export const GroupCardSkeleton = () => {
   );
 };
 
-
 export const ExploreCardSkeleton = ({ count = 4 }) => {
   return (
     <>

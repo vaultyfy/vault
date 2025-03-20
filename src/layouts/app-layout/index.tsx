@@ -12,7 +12,6 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
   return (
     <Flex height="100vh" background="#fff">
       <Sidebar />
-
       <Box
         width={{
           "2xl": "70%",
@@ -27,8 +26,8 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
       >
         <AppHeader routeTitle={routeTitle} />
         <Box
-          pt="1.4em"
-          px={{ base: ".6em", "2xl": "2em", xl: "1em", lg: ".8em" }}
+          pt={{ xl: "1.4em", lg: "1em", md: "-.6em", base: "-1em" }}
+          px={{ base: ".6em", "2xl": "2em", xl: "1em", md: ".4em", lg: ".8em" }}
         >
           {children}
         </Box>

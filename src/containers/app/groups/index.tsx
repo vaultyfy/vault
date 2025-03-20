@@ -12,6 +12,8 @@ import {
   Stack,
   Center,
   Spinner,
+  SkeletonText,
+  Skeleton,
 } from "@chakra-ui/react";
 import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
 import { Icon } from "@components/icon";
@@ -20,6 +22,7 @@ import { useMobileScreens } from "@hooks/mobile-screen";
 import { useAllGroups, useJoinedGroups } from "@hooks/swr";
 import { useNavigate } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { skeleton } from "@utils/misc";
 import { Group } from "@utils/types";
 import dayjs, { Dayjs } from "dayjs";
 import React from "react";
@@ -69,6 +72,7 @@ export const Groups = () => {
 
   return (
     <Flex
+      border="1px solid red"
       as="section"
       width="100%"
       minHeight="100vh"
@@ -186,17 +190,28 @@ export const Groups = () => {
         position="sticky"
         top="80px"
       >
-        <HStack justifyContent="flex-start" width="full">
-          {isMobile && <Icon name="arrow-left" />}
-          <Text
-            fontFamily="var(--clash-grotesk-400)"
-            fontWeight={{ base: "500", lg: "400" }}
-            fontSize={{ base: "20px", lg: "24px" }}
-            color="var(--text-1)"
-          >
-            {activeGroup?.name}
-          </Text>
-        </HStack>
+        {isLoading ? (
+          <Skeleton
+            width={{ lg: "220px", md: "80%" }}
+            height="16px"
+            borderRadius="6px"
+            mb=".4em"
+            startColor={skeleton.light.startColor}
+            endColor={skeleton.light.endColor}
+          />
+        ) : (
+          <HStack justifyContent="flex-start" width="full">
+            {isMobile && <Icon name="arrow-left" />}
+            <Text
+              fontFamily="var(--clash-grotesk-400)"
+              fontWeight={{ base: "500", lg: "400" }}
+              fontSize={{ base: "20px", lg: "24px" }}
+              color="var(--text-1)"
+            >
+              {activeGroup?.name}
+            </Text>
+          </HStack>
+        )}
         <Stack direction="column" gap=".25em">
           <Box
             width="full"
