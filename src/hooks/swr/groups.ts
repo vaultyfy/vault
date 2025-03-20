@@ -1,4 +1,10 @@
-import { getAllGroups, getGroup, getJoinedGroups } from "@queries/groups";
+import {
+  getAllGroups,
+  getGroup,
+  getJoinedGroups,
+  filterGroups,
+  FilterGroupProps,
+} from "@queries/groups";
 import { swrOptions } from "@utils/constants";
 import { dicebear } from "@utils/misc";
 import useSWR, { mutate } from "swr";
@@ -11,8 +17,8 @@ export const useJoinedGroups = () => {
     swrOptions,
   );
 
-  const payload = data?.payload
-  const updateJoinedGroups = () => mutate(key)
+  const payload = data?.payload;
+  const updateJoinedGroups = () => mutate(key);
 
   return {
     error,
@@ -43,6 +49,26 @@ export const useAllGroups = () => {
     pageSize: payload?.pageSize,
     currentPage: payload?.currentPage,
     mutate: updateGroupsList,
+    count: payload?.total,
+  };
+};
+
+export const useFilteredGroups = (filter: FilterGroupProps) => {
+  const key = ["my-groups", filter];
+  const { data, error, isLoading } = useSWR(
+    key,
+    () => filterGroups(filter),
+    swrOptions,
+  );
+
+  const payload = data?.payload;
+
+  return {
+    error,
+    isLoading,
+    data: payload?.data,
+    pageSize: payload?.pageSize,
+    currentPage: payload?.currentPage,
     count: payload?.total,
   };
 };
