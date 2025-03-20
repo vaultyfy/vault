@@ -21,6 +21,7 @@ import { useField } from "formik";
 import { CaretRight, CaretLeft } from "@phosphor-icons/react";
 import { FormikProps } from "formik";
 import { format, addMonths, isAfter, isSameDay, startOfToday } from "date-fns";
+import { Option } from "./select-field";
 
 interface FilterInputProps {
   name: string;
@@ -45,6 +46,7 @@ export const FilterInput = ({
   ...props
 }: FilterInputProps) => {
   const [field, meta] = useField(name);
+
   const [isFocused, setIsFocused] = React.useState(false);
 
   const inputBorderRadius = typeof radius === "string" ? radius : `${radius}px`;
@@ -58,7 +60,7 @@ export const FilterInput = ({
     border:
       meta.touched && meta.error
         ? "1px solid var(--deep-blood)"
-        : "1px solid var(--outlne-color)",
+        : "1px solid var(--outline)",
     transition: "border-color 0.2s ease",
     padding: "7px 8px",
   };
@@ -323,6 +325,182 @@ export const FilterDatePicker = ({
           </PopoverBody>
         </PopoverContent>
       </Popover>
+    </FormControl>
+  );
+};
+
+interface SelectFieldProps {
+  name: string;
+  placeholder?: string;
+  options: Option[];
+  onChange?: (selectedOption: Option) => void;
+  defaultValue?: Option | undefined;
+  outlineColor?: string;
+  width?: string;
+  height?: string;
+  caretColor?: string;
+  background?: string;
+  fontSize?: string;
+  menuBg?: string;
+  labelColor?: string;
+  label?: string;
+  labelSize?: string;
+  radius?: string;
+  menuWidth?: string;
+  noBorder?: boolean;
+  fontWeight?: string;
+  color?: string;
+  labelInfo?: string;
+  multi?: "yes" | "no";
+  isDisabled?: boolean;
+  title: string;
+  icon?: React.ReactElement;
+  customCaret?: boolean;
+}
+
+export const FilterSelectField = ({
+  options,
+  placeholder,
+  onChange,
+  defaultValue,
+  outlineColor,
+  width,
+  height = "40px",
+  caretColor,
+  background,
+  fontSize = "12px",
+  menuBg,
+  label,
+  labelColor,
+  labelSize,
+  menuWidth,
+  radius = "8px",
+  name,
+  labelInfo,
+  noBorder,
+  multi,
+  fontWeight,
+  color,
+  icon,
+  customCaret,
+  title,
+  ...props
+}: SelectFieldProps) => {
+  const [field, meta, helpers] = useField(name);
+  const { value } = meta;
+  const { setValue } = helpers;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleChange = (selectedOption: Option) => {
+    setValue(selectedOption.value);
+    if (onChange) {
+      onChange(selectedOption);
+    }
+    setIsOpen(false);
+  };
+
+  const selectedOption = options.find((opt) => opt.value === value);
+
+  return (
+    <FormControl width={width || "100%"} my={{ base: "0", md: "1em" }}>
+      {label && (
+        <Text
+          fontSize={labelSize || "11px"}
+          fontWeight={fontWeight || "medium"}
+          color={labelColor || "#575757"}
+          mb="0.5em"
+        >
+          {label}{" "}
+          {labelInfo && (
+            <Text as="span" color="var(--deep-blood)">
+              *{labelInfo}
+            </Text>
+          )}
+        </Text>
+      )}
+
+      <Popover isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <PopoverTrigger>
+          <InputGroup>
+            {icon && (
+              <InputLeftElement
+                pointerEvents="none"
+                height="100%"
+                children={icon}
+                width="auto"
+                paddingLeft="3"
+              />
+            )}
+            <InputLeftAddon
+              pl="2.5rem"
+              bgColor="#ffffff"
+              width="auto"
+              height={height}
+            >
+              <Text
+                color="#575757"
+                fontSize="11px"
+                borderRight="none"
+                fontWeight="medium"
+                whiteSpace="nowrap"
+              >
+                {title}
+              </Text>
+            </InputLeftAddon>
+            <Input
+              type="text"
+              placeholder={placeholder || ""}
+              _placeholder={{
+                fontWeight: "medium",
+                color: "var(--grey)",
+                fontSize: "12px",
+                lineHeight: "19px",
+              }}
+              height={height}
+              borderRadius={radius}
+              border={
+                meta.touched && meta.error
+                  ? "1px solid var(--deep-blood)"
+                  : "1px solid var(--outline)"
+              }
+              bg={background || "#fff"}
+              fontSize={fontSize}
+              onClick={() => setIsOpen(!isOpen)}
+              cursor="pointer"
+              readOnly
+              value={selectedOption ? selectedOption.label : ""}
+            />
+          </InputGroup>
+        </PopoverTrigger>
+
+        <PopoverContent width={menuWidth || "auto"}>
+          <PopoverBody>
+            <SimpleGrid columns={1} spacing={2}>
+              {options.map((option) => (
+                <Button
+                  key={option.value}
+                  variant="ghost"
+                  justifyContent="flex-start"
+                  onClick={() => handleChange(option)}
+                  leftIcon={option.icon}
+                  fontSize={fontSize}
+                  fontWeight="500"
+                  color={color || "var(--text-primary)"}
+                  _hover={{ bg: "var(--grey-100)" }}
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </SimpleGrid>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+
+      {meta.touched && meta.error && (
+        <Text color="var(--deep-blood)" fontSize="12px" pt=".3em">
+          {meta.error}
+        </Text>
+      )}
     </FormControl>
   );
 };
