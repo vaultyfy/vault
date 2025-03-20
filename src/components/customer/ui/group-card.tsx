@@ -58,7 +58,7 @@ export const GroupCard = ({
   const navigate = useNavigate();
   const avatars = data?.participants?.map((member, index) => {
     const memberBg = bgs[index % bgs.length];
-    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
+    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name?.split(" ")?.[0]}&size=48&flip=true&backgroundColor=${memberBg}`}`;
   });
 
   const { openToast } = useToastContext();
@@ -106,20 +106,19 @@ export const GroupCard = ({
           : {}
       }
       minW={{ base: "364px", xl: "435px" }}
+      px={{ lg: "1.2em", base: ".8em", md: ".6em" }}
     >
-      <CardBody py="23px" px="19px">
+      <CardBody py="23px" px="0">
         <Flex w="full" h="full">
           <Flex
             flex={1}
             flexDirection="column"
-            px="8px"
             h="full"
             rowGap="15px"
             justifyContent="space-between"
           >
             <Box w="full">
               <Text
-                as="h5"
                 fontSize={{ base: "16px", lg: "20px" }}
                 fontFamily="var(--poppins)"
                 color={hasGradient ? "#ffffff" : "#000000"}

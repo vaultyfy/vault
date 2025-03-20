@@ -12,6 +12,7 @@ import { useCurrentPath } from "@hooks/current-path";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useUser } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
+import { dicebear } from "@utils/misc";
 import { ChevronDown, UserRound } from "lucide-react";
 
 export const UserMenu = () => {
@@ -38,9 +39,10 @@ export const UserMenu = () => {
       >
         <Avatar
           ml="-.4rem"
-          boxSize={{ lg: "35px", md: "30px", base: "28px" }}
+          boxSize={{ lg: "35px", md: "30px", base: "30px" }}
           bg="var(--main)"
           border="2px solid var(--primary)"
+          src={`${dicebear}?seed=${user?.name?.split(" ")[0]}&flip=true`}
           icon={<UserRound size={isSmallViewPort ? "20px" : ""} />}
         />
       </MenuButton>
@@ -52,23 +54,25 @@ export const UserMenu = () => {
         flexFlow="column"
         gap=".6rem"
       >
-        <Link to={isSmallViewPort ? "/auth" : "/auth/login"}>
-          <MenuItem
-            as={Button}
-            background="var(--main)"
-            borderRadius="30px"
-            height="26px"
-            color="#fff"
-            textTransform="capitalize"
-            _hover={{
-              background: "var(--main)",
-            }}
-            fontWeight="normal"
-            fontSize="12px"
-          >
-            login
-          </MenuItem>
-        </Link>
+        {!user && !currentPath.includes("/dashboard") && (
+          <Link to={isSmallViewPort ? "/auth" : "/auth/login"}>
+            <MenuItem
+              as={Button}
+              background="var(--main)"
+              borderRadius="30px"
+              height="26px"
+              color="#fff"
+              textTransform="capitalize"
+              _hover={{
+                background: "var(--main)",
+              }}
+              fontWeight="normal"
+              fontSize="12px"
+            >
+              login
+            </MenuItem>
+          </Link>
+        )}
 
         {user && currentPath !== "/dashboard" && (
           <Link to="/dashboard">

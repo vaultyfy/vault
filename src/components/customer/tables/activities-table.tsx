@@ -52,13 +52,16 @@ export const ActivitiesTable = ({ data, loading }: ActivitiesTableProps) => {
         ) : (
           <>
             {data?.map((group) => {
-              const groupAvatars = group?.participants
-                ?.filter(participant => participant.customer)
-                ?.map((participant, index) => {
-                  const memberBg = bgs[index % bgs.length];
-                  return participant.customer?.profilePicture ||
-                    `${dicebear}?seed=${participant.customer?.name || 'unknown'}&size=48&flip=true&backgroundColor=${memberBg}`;
-                }) || [];
+              const groupAvatars =
+                group?.participants
+                  ?.filter((participant) => participant.customer)
+                  ?.map((participant, index) => {
+                    const memberBg = bgs[index % bgs.length];
+                    return (
+                      participant.customer?.profilePicture ||
+                      `${dicebear}?seed=${participant.customer?.name?.split(" ")?.[0] || "unknown"}&size=48&flip=true&backgroundColor=${memberBg}`
+                    );
+                  }) || [];
 
               return (
                 <Tr key={group?.groupID}>

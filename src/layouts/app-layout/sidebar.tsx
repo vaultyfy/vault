@@ -2,12 +2,14 @@ import {
   Badge,
   Box,
   Center,
+  Divider,
   Flex,
   HStack,
   Image,
   List,
   ListItem,
   Skeleton,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import { GradientIcon } from "@components/icon";
@@ -253,7 +255,34 @@ export const Sidebar = () => {
               </Text>
             </Badge>
           ) : null}
-
+          <Link to="/dashboard/settings">
+            <Badge
+              background="var(--white-fade-8)"
+              display="flex"
+              justifyContent="center"
+              gap=".6em"
+              height="37px"
+              width="158px"
+              borderRadius="30px"
+              alignItems="center"
+            >
+              <Text
+                textTransform="capitalize"
+                fontSize="14px"
+                fontWeight="400"
+                bgClip="text"
+                bgGradient={MAIN_GRADIENT}
+              >
+                Complete profile
+              </Text>
+            </Badge>
+          </Link>
+          {kycPercentage !== 100 && (
+            <Box
+            width="80%"
+              border="0.2px solid var(--border-muted)"
+            />
+          )}
           <Flex flexFlow="column" gap=".1em">
             <Text
               textAlign="center"
