@@ -39,10 +39,9 @@ export const CONTRIBUTION_FREQUENCY = Array.from([
 const calculatePayout = (
   contributionAmount: number,
   participants: number,
-  cycles: number,
 ) => {
   if (!contributionAmount || !participants || !cycles) return 0;
-  return contributionAmount * participants * cycles;
+  return contributionAmount * participants;
 };
 
 export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
@@ -93,12 +92,10 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
             calculatePayout(
               formik.values.contributionAmount,
               formik.values.numberOfparticipantsAvailable,
-              formik.values.numberOfcircle,
             ),
           [
             formik.values.contributionAmount,
             formik.values.numberOfparticipantsAvailable,
-            formik.values.numberOfcircle,
           ],
         );
 

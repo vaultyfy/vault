@@ -12,7 +12,7 @@ import { makeContribution } from "@mutations/groups";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { State } from "@utils/constants";
-import { Response } from "@utils/types";
+import { PaymentResponse, Response } from "@utils/types";
 import React from "react";
 
 interface PaymentCardProps extends Partial<ChakraProps> {
@@ -43,9 +43,11 @@ export const PaymentCard = ({
     try {
       setState("loading");
       const request = await makeContribution({ groupId, participantId });
-      const response: Response = await request?.json();
+      const response: Response<PaymentResponse> = await request?.json();
       if (request?.ok) {
         openToast(response.message, "success");
+        typeof window !== "undefined" &&
+          window.open(response.payload?.paymentResponse.data.authorization_url, "_blank");
       } else {
         openToast(response.message, "error");
       }
