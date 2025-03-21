@@ -11,57 +11,97 @@ import {
 import {
   DatePicker,
   InputField,
-  Option,
   SelectField,
   TextAreaField,
 } from "@components/form";
 import { Icon } from "@components/icon";
 import { schema } from "@utils/validators";
 import { Form, Formik } from "formik";
-
 import { generateNoOfCycles, generateNoOfDays } from "@utils/misc";
+import { GroupPayload } from "@utils/types";
+import { createGroup } from "@mutations/groups";
+import { useToastContext } from "@hooks/context";
+import React from "react";
+import { useAllGroups } from "@hooks/swr";
 
-const CONTRIBUTION_FREQUENCY: Option[] = [
-  {
-    label: "Daily",
-    value: "daily",
-  },
-  {
-    label: "Weekly",
-    value: "weekly",
-  },
-  {
-    label: "Monthly",
-    value: "monthly",
-  },
-  {
-    label: "Yearly",
-    value: "yearly",
-  },
-];
+export const CONTRIBUTION_FREQUENCY = Array.from([
+  "Daily",
+  "Weekly",
+  "Monthly",
+  "Yearly",
+  "Three_Months",
+  "Six_Months",
+]).map((frequency) => ({
+  label: frequency.replaceAll("_", " "),
+  value: frequency,
+}));
 
-export const CreateGroupContent = () => {
-  const initialValues = {
-    groupName: "",
-    startDate: "",
-    groupDescription: "",
-    contributionAmount: "",
-    constributionFrequency: "",
-    noOfDays: "",
-    noOfCycles: "",
-    noOfContributors: "",
-  };
+const calculatePayout = (
+  contributionAmount: number,
+  participants: number,
+  cycles: number,
+) => {
+  if (!contributionAmount || !participants || !cycles) return 0;
+  return contributionAmount * participants * cycles;
+};
+
+export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
   const navigate = useNavigate();
+  const { mutate } = useAllGroups();
+  const { openToast } = useToastContext();
 
   return (
-    <Formik
-      initialValues={initialValues}
+    <Formik<GroupPayload>
+      initialValues={{
+        name: "",
+        startDate: "",
+        groupDescription: "",
+        numberOfcircle: 0,
+        contributionFrequency: "",
+        // mapping this to number of members
+        numberOfparticipantsAvailable: 0,
+        contributionAmount: 0,
+        // mapping this to number of days
+        numberOfdaysOrMembers: 0,
+      }}
       validationSchema={schema.createGroup}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
+        setTimeout(async () => {
+          try {
+            const request = await createGroup({
+              ...values,
+              startDate: new Date(values.startDate).toISOString(),
+            });
+            const response = await request?.json();
+
+            if (request?.ok) {
+              openToast(response.message, "success");
+              mutate();
+              onClose();
+            }
+          } catch (error) {
+            console.error(error);
+          }
+
+          setSubmitting(false);
+        }, 600);
       }}
     >
       {(formik) => {
+        const payout = React.useMemo(
+          () =>
+            calculatePayout(
+              formik.values.contributionAmount,
+              formik.values.numberOfparticipantsAvailable,
+              formik.values.numberOfcircle,
+            ),
+          [
+            formik.values.contributionAmount,
+            formik.values.numberOfparticipantsAvailable,
+            formik.values.numberOfcircle,
+          ],
+        );
+
         return (
           <Form>
             <VStack spacing="14px" width="100%">
@@ -98,7 +138,7 @@ export const CreateGroupContent = () => {
               >
                 <Box flex={1}>
                   <InputField
-                    name="groupName"
+                    name="name"
                     label="Group Name"
                     labelColor="var(--grey)"
                     placeholder="Enter the Group name"
@@ -184,7 +224,7 @@ export const CreateGroupContent = () => {
                 </Box>
                 <Box flex="1 0 33.33%">
                   <SelectField
-                    name="noOfDays"
+                    name="numberOfdaysOrMembers"
                     label="No of Days/members"
                     placeholder="10 days"
                     options={generateNoOfDays()}
@@ -200,7 +240,7 @@ export const CreateGroupContent = () => {
                 </Box>
                 <Box flex="1 0 33.33%">
                   <SelectField
-                    name="noOfCycles"
+                    name="numberOfcircle"
                     label="No of cycles"
                     placeholder="1"
                     options={generateNoOfCycles()}
@@ -225,7 +265,7 @@ export const CreateGroupContent = () => {
             />
             <Box flex={1} w="full">
               <InputField
-                name="noOfContributors"
+                name="numberOfparticipantsAvailable"
                 label="State the number of contributors you have available to join your group"
                 labelColor="var(--grey)"
                 labelSize="12px"
@@ -254,7 +294,11 @@ export const CreateGroupContent = () => {
                   color="var(--main)"
                   fontWeight="semibold"
                 >
-                  N100,000
+                  {new Intl.NumberFormat("en-NG", {
+                    style: "currency",
+                    currency: "NGN",
+                    maximumFractionDigits: 0,
+                  }).format(payout)}
                 </Text>
               </Box>
               <Button
@@ -270,7 +314,7 @@ export const CreateGroupContent = () => {
                 color="var(--white-fade)"
                 width="230px"
                 borderRadius="35px"
-                // isLoading={formik.isSubmitting}
+                isLoading={formik.isSubmitting}
               >
                 Submit request
               </Button>

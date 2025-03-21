@@ -46,8 +46,6 @@ export const Groups = () => {
   const [isGroupPaymentCardsVisible, setIsGroupPaymentCardsVisible] =
     React.useState<boolean>(false);
 
-  console.log("groups", joinedGroups);
-
   React.useEffect(() => {
     if (joinedGroups?.length && activeGroup === undefined) {
       setActiveGroup(joinedGroups[0]);
