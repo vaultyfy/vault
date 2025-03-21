@@ -11,8 +11,6 @@ import {
   TabPanel,
   Stack,
   Center,
-  Spinner,
-  SkeletonText,
   Skeleton,
 } from "@chakra-ui/react";
 import { MyGroupCard, PaymentCard, Calendar } from "@components/customer/ui";
@@ -20,8 +18,7 @@ import { Icon } from "@components/icon";
 import { GroupCardSkeleton, PaymentCardSkeleton } from "@components/skeletons";
 import { useAuthContext } from "@hooks/context";
 import { useMobileScreens } from "@hooks/mobile-screen";
-import { useAllGroups, useJoinedGroups } from "@hooks/swr";
-import { useNavigate } from "@tanstack/react-router";
+import { useJoinedGroups } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
 import { skeleton } from "@utils/misc";
 import { Group } from "@utils/types";

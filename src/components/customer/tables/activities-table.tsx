@@ -53,15 +53,18 @@ export const ActivitiesTable = ({ data, loading }: ActivitiesTableProps) => {
           <>
             {data?.map((group) => {
               const groupAvatars =
-                group?.participants
-                  ?.filter((participant) => participant.customer)
-                  ?.map((participant, index) => {
-                    const memberBg = bgs[index % bgs.length];
-                    return (
-                      participant.customer?.profilePicture ||
-                      `${dicebear}?seed=${participant.customer?.name?.split(" ")?.[0] || "unknown"}&size=48&flip=true&backgroundColor=${memberBg}`
-                    );
-                  }) || [];
+                group?.participants?.map((participant, index) => {
+                  const memberBg = bgs[index % bgs.length];
+                  return (
+                    participant.customer?.profilePicture ||
+                    `${dicebear}?seed=${participant?.customer?.name?.split(" ")?.[0] || "unknown"}&size=48&flip=true&backgroundColor=${memberBg}`
+                  );
+                }) || [];
+
+              const currentUserParticipant = group?.participants.find(
+                (participant) => participant?.customer?.id === user?.id,
+              );
+              const userPosition = currentUserParticipant?.position || "N/A";
 
               return (
                 <Tr key={group?.groupID}>
@@ -92,14 +95,9 @@ export const ActivitiesTable = ({ data, loading }: ActivitiesTableProps) => {
                   <Td textAlign="center">
                     <Text
                       fontWeight="400"
-                      fontSize={{ base: "14px", lg: "18px" }}
+                      fontSize={{ base: "14px", lg: "16px" }}
                     >
-                      {
-                        group.participants.find(
-                          (participant) =>
-                            participant.customer?.id === user?.id,
-                        )?.position
-                      }
+                      {userPosition}
                     </Text>
                   </Td>
                   <Td>
