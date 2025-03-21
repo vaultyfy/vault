@@ -6,6 +6,7 @@ import {
   Response,
   UserGroups,
   ContributionFrequency,
+  GroupTypeFilter,
 } from "@utils/types";
 import { getCookie } from "cookies-next";
 
@@ -163,5 +164,29 @@ export const getSavingsTrend = async () => {
     return response
   } catch (error) {
     console.error(`${(error as Error).message}`)
+  }
+}
+
+export const filterMyGroups = async (status: GroupTypeFilter) => {
+  const token = getCookie(TOKEN_KEY, { ...cookieOptions });
+  if (!token) return
+
+  const url = new URL(app.groups.status)
+  url.searchParams.append("status", String(status))
+
+  try {
+    const request = await fetch(url.toString(), {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        ...HEADER_API_KEY
+      }
+    })
+
+    const response: Response<UserGroups> = await request.json()
+    return response
+  } catch (error) {
+    console.error(error)
   }
 }

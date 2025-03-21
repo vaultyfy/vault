@@ -5,9 +5,11 @@ import {
   getSavingsTrend,
   filterGroups,
   FilterGroupProps,
+  filterMyGroups,
 } from "@queries/groups";
 import { swrOptions } from "@utils/constants";
 import { dicebear } from "@utils/misc";
+import { GroupTypeFilter } from "@utils/types";
 import useSWR, { mutate } from "swr";
 
 export const useJoinedGroups = () => {
@@ -97,5 +99,25 @@ export const useSavingsTrend = () => {
     data,
     error,
     isLoading,
+  };
+};
+
+export const useMyGroupsWithStatus = (status: GroupTypeFilter) => {
+  const key = `my-${status}-group`;
+  const { data, error, isLoading } = useSWR(key, () => filterMyGroups(status), {
+    ...swrOptions,
+  });
+
+  const payload = data?.payload;
+  const updateGroupsList = () => mutate(key);
+
+  return {
+    error,
+    isLoading,
+    data: payload?.data,
+    pageSize: payload?.pageSize,
+    currentPage: payload?.currentPage,
+    mutate: updateGroupsList,
+    count: payload?.total,
   };
 };

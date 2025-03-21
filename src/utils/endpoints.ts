@@ -48,6 +48,7 @@ export const app = {
     share: `${BASE_URL}/groups/generate-referalLink`,
     group: `${BASE_URL}/groups/one-group`,
     join: `${BASE_URL}/groups/joinGroup`,
-    pay: `${BASE_URL}/groups/makeContribution`
+    pay: `${BASE_URL}/groups/makeContribution`,
+    status: `${BASE_URL}/groups/all-myParticipatoryGroupswithStatusFilter`
   },
 } as const;

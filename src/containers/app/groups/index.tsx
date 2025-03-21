@@ -19,9 +19,10 @@ import { GroupCardSkeleton, PaymentCardSkeleton } from "@components/skeletons";
 import { useAuthContext } from "@hooks/context";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useJoinedGroups } from "@hooks/swr";
+import { useMyGroupsWithStatus } from "@hooks/swr"; // Import the hook
 import { Link } from "@tanstack/react-router";
 import { skeleton } from "@utils/misc";
-import { Group } from "@utils/types";
+import { Group, GroupTypeFilter } from "@utils/types"; // Make sure to import GroupTypeFilter
 import dayjs, { Dayjs } from "dayjs";
 import React from "react";
 import slugify from "slugify";
@@ -40,11 +41,14 @@ export const Groups = () => {
   const { user } = useAuthContext();
   const { isMobile } = useMobileScreens();
   const { data: joinedGroups, count, isLoading } = useJoinedGroups();
+  const { data: activeGroups, isLoading: isActiveGroupsLoading } = useMyGroupsWithStatus("Active");
+  const { data: completedGroups, isLoading: isCompletedGroupsLoading } = useMyGroupsWithStatus("Completed");
   const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
     undefined,
   );
   const [isGroupPaymentCardsVisible, setIsGroupPaymentCardsVisible] =
     React.useState<boolean>(false);
+  const [tabIndex, setTabIndex] = React.useState(0);
 
   React.useEffect(() => {
     if (joinedGroups?.length && activeGroup === undefined) {
@@ -53,7 +57,15 @@ export const Groups = () => {
   }, [joinedGroups]);
 
   const handleActiveGroup = (groupId: string) => {
-    const group = joinedGroups?.find((group) => group.groupID === groupId);
+    let group;
+    if (tabIndex === 0) {
+      group = joinedGroups?.find((group) => group.groupID === groupId);
+    } else if (tabIndex === 1) {
+      group = activeGroups?.find((group) => group.groupID === groupId);
+    } else {
+      group = completedGroups?.find((group) => group.groupID === groupId);
+    }
+
     if (!group) return;
     if (isMobile) {
       setIsGroupPaymentCardsVisible(true);
@@ -64,6 +76,17 @@ export const Groups = () => {
   const contributionDates = activeGroup?.participants
     .find((participant) => participant?.customer?.id === user?.id)
     ?.contributionDates.map((date) => dayjs(date).format("DD-MMMM-YYYY"));
+
+  const handleTabChange = (index: number) => {
+    setTabIndex(index);
+    if (index === 0 && joinedGroups?.length) {
+      setActiveGroup(joinedGroups[0]);
+    } else if (index === 1 && activeGroups?.length) {
+      setActiveGroup(activeGroups[0]);
+    } else if (index === 2 && completedGroups?.length) {
+      setActiveGroup(completedGroups[0]);
+    }
+  };
 
   return (
     <Flex
@@ -109,7 +132,7 @@ export const Groups = () => {
         </HStack>
 
         <Box width="full" mt="1em">
-          <Tabs variant="soft-rounded">
+          <Tabs variant="soft-rounded" index={tabIndex} onChange={handleTabChange}>
             <TabList
               gap={{ lg: ".6em", md: ".6em", base: ".4em" }}
               overflowX="auto"
@@ -137,13 +160,13 @@ export const Groups = () => {
               })}
             </TabList>
 
-            {isLoading ? (
-              <Box mt=".8em">
-                <GroupCardSkeleton />
-              </Box>
-            ) : (
-              <TabPanels>
-                <TabPanel px="0px" pt="1.4em">
+            <TabPanels>
+              <TabPanel px="0px" pt="1.4em">
+                {isLoading ? (
+                  <Box mt=".8em">
+                    <GroupCardSkeleton />
+                  </Box>
+                ) : (
                   <Stack direction="column" gap=".8em">
                     {count === 0 ? (
                       <Center height="500px">
@@ -159,29 +182,105 @@ export const Groups = () => {
                       </Center>
                     ) : (
                       <>
-                        {joinedGroups?.map((group, index) => {
-                          return (
-                            <MyGroupCard
-                              key={group.id}
-                              data={group}
-                              bgColor={
-                                activeGroup?.groupID === group.groupID
-                                  ? "var(--card-bg-active)"
-                                  : ""
-                              }
-                              setActiveGroup={() =>
-                                handleActiveGroup(group.groupID)
-                              }
-                              border={`0.5px solid ${activeGroup?.groupID === group.groupID ? "var(--primary)" : "var(--border-muted)"}`}
-                            />
-                          );
-                        })}
+                        {joinedGroups?.map((group) => (
+                          <MyGroupCard
+                            key={group.id}
+                            data={group}
+                            bgColor={
+                              activeGroup?.groupID === group.groupID
+                                ? "var(--card-bg-active)"
+                                : ""
+                            }
+                            setActiveGroup={() =>
+                              handleActiveGroup(group.groupID)
+                            }
+                            border={`0.5px solid ${activeGroup?.groupID === group.groupID ? "var(--primary)" : "var(--border-muted)"}`}
+                          />
+                        ))}
                       </>
                     )}
                   </Stack>
-                </TabPanel>
-              </TabPanels>
-            )}
+                )}
+              </TabPanel>
+
+              <TabPanel px="0px" pt="1.4em">
+                {isActiveGroupsLoading ? (
+                  <Box mt=".8em">
+                    <GroupCardSkeleton />
+                  </Box>
+                ) : (
+                  <Stack direction="column" gap=".8em">
+                    {!activeGroups?.length ? (
+                      <Center height="500px">
+                        <Text fontSize="md" color="var(--grey)">
+                          You don't have any active groups. Find available ones{" "}
+                          <Link
+                            style={{ textDecoration: "underline" }}
+                            to="/dashboard/explore"
+                          >
+                            here
+                          </Link>
+                        </Text>
+                      </Center>
+                    ) : (
+                      <>
+                        {activeGroups?.map((group) => (
+                          <MyGroupCard
+                            key={group.id}
+                            data={group}
+                            bgColor={
+                              activeGroup?.groupID === group.groupID
+                                ? "var(--card-bg-active)"
+                                : ""
+                            }
+                            setActiveGroup={() =>
+                              handleActiveGroup(group.groupID)
+                            }
+                            border={`0.5px solid ${activeGroup?.groupID === group.groupID ? "var(--primary)" : "var(--border-muted)"}`}
+                          />
+                        ))}
+                      </>
+                    )}
+                  </Stack>
+                )}
+              </TabPanel>
+
+              <TabPanel px="0px" pt="1.4em">
+                {isCompletedGroupsLoading ? (
+                  <Box mt=".8em">
+                    <GroupCardSkeleton />
+                  </Box>
+                ) : (
+                  <Stack direction="column" gap=".8em">
+                    {!completedGroups?.length ? (
+                      <Center height="500px">
+                        <Text fontSize="md" color="var(--grey)">
+                          You don't have any completed groups yet.
+                        </Text>
+                      </Center>
+                    ) : (
+                      <>
+                        {completedGroups?.map((group) => (
+                          <MyGroupCard
+                            key={group.id}
+                            data={group}
+                            bgColor={
+                              activeGroup?.groupID === group.groupID
+                                ? "var(--card-bg-active)"
+                                : ""
+                            }
+                            setActiveGroup={() =>
+                              handleActiveGroup(group.groupID)
+                            }
+                            border={`0.5px solid ${activeGroup?.groupID === group.groupID ? "var(--primary)" : "var(--border-muted)"}`}
+                          />
+                        ))}
+                      </>
+                    )}
+                  </Stack>
+                )}
+              </TabPanel>
+            </TabPanels>
           </Tabs>
         </Box>
       </Box>
