@@ -11,7 +11,7 @@ import { CurrencyNgn, ArrowRight } from "@phosphor-icons/react";
 import { StackedAvatars } from "./stacked-avatars";
 import { useNavigate } from "@tanstack/react-router";
 import { MyGroupCardProps } from "./my-group-card";
-import { dicebear } from "@utils/misc";
+import { dicebear, formatPrice } from "@utils/misc";
 import { bgs, State } from "@utils/constants";
 import React from "react";
 import { getReferalLink } from "@queries/groups";
@@ -69,9 +69,9 @@ export const GroupCard = ({
   const onShare = async (groupId: string) => {
     const found = groups?.find((group) => group.groupID === groupId);
     if (!found) return;
+    setSelectedGroup(found);
     try {
       setState("loading");
-      setSelectedGroup(found);
       const request = await getReferalLink(groupId);
       const referalLink: string = request?.payload?.referalLink || "";
       if (request?.success && navigator) {
@@ -138,18 +138,14 @@ export const GroupCard = ({
                   }
                   alignItems="center"
                 >
-                  <CurrencyNgn
-                    size={16}
-                    weight="duotone"
-                    color={hasGradient ? "#ffffff" : "var(--text-1)"}
-                  />
                   <Text
                     as="p"
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="medium"
                     color={hasGradient ? "#ffffff" : "var(--text-1)"}
                   >
-                    {data?.contributionAmount}/{data?.contributionFrequency}
+                    {formatPrice(Number(data?.contributionAmount))}/
+                    {data?.contributionFrequency}
                   </Text>
                 </Flex>
               </HStack>
@@ -230,21 +226,14 @@ export const GroupCard = ({
                 >
                   Pay-out
                 </Text>
-                <HStack gap="0">
-                  <CurrencyNgn
-                    size={28}
-                    color={hasGradient ? "#ffffff" : "var(--main)"}
-                    fontWeight={500}
-                  />
-                  <Text
-                    as="h5"
-                    fontSize={{ base: "24px", lg: "28px" }}
-                    color={hasGradient ? "#ffffff" : "var(--main)"}
-                    fontWeight="bold"
-                  >
-                    {data?.payOutAmount}
-                  </Text>
-                </HStack>
+                <Text
+                  as="h5"
+                  fontSize={{ base: "24px", lg: "28px" }}
+                  color={hasGradient ? "#ffffff" : "var(--main)"}
+                  fontWeight="bold"
+                >
+                  {formatPrice(Number(data?.payOutAmount))}
+                </Text>
               </Box>
             </Flex>
             <Button

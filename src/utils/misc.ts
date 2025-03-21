@@ -37,11 +37,21 @@ export const skeleton = {
 export const dicebear = "https://api.dicebear.com/7.x/micah/svg";
 
 export const formatPrice = (price: number) => {
-  const formattedPrice = new Intl.NumberFormat("en-NG", {
+  const currencySymbol = "₦";
+
+  if (price >= 1000000) {
+    const millions = price / 1000000;
+    return `${currencySymbol}${millions.toFixed(millions % 1 === 0 ? 0 : 1)}M`;
+  }
+
+  if (price >= 1000) {
+    const thousands = price / 1000;
+    return `${currencySymbol}${thousands.toFixed(thousands % 1 === 0 ? 0 : 1)}K`;
+  }
+
+  return new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
     maximumFractionDigits: 0,
   }).format(price);
-
-  return formattedPrice;
 };
