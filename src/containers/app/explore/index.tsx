@@ -243,7 +243,7 @@ export const Explore = () => {
       </Box>
 
       <SimpleGrid
-        columns={{ md: 2, base: 1 }}
+        columns={{ "2xl": 3, xl: 2, lg: 2, md: 2, base: 1 }}
         rowGap="24px"
         columnGap="27px"
         width="100%"
@@ -254,8 +254,14 @@ export const Explore = () => {
         ) : (
           <>
             {groups?.map((group, index) => (
-              <Box minHeight="240px" flex={1} key={index}>
-                <GroupCard groups={data} groupType="available" data={group} />
+              <Box key={index} width="100%" height="100%">
+                <GroupCard
+                  groups={data}
+                  groupType="available"
+                  data={group}
+                  width="100%"
+                  height="100%"
+                />
               </Box>
             ))}
           </>
