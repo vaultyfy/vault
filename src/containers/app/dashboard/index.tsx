@@ -50,8 +50,6 @@ export const Dashboard = () => {
 
   const { data } = useSavingsTrend();
 
-  console.log("data", data)
-
   return (
     <>
       <Box width="100%" minH="100dvh">
