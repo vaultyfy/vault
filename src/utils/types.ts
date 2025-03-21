@@ -12,6 +12,8 @@ export type Common = {
   total: number;
 };
 
+export type GroupTypeFilter = "Active" | "Completed"
+
 export type LoginResponse = {
   token: { token: string };
   user: User;
