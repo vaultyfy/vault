@@ -30,16 +30,18 @@ export const skeleton = {
   endColor: "var(--grey-sec)",
   light: {
     startColor: "var(--white-smoke)",
-    endColor: "var(--grey-100)"
-  }
+    endColor: "var(--grey-100)",
+  },
 };
+
+export const dicebear = "https://api.dicebear.com/7.x/micah/svg";
 
 export const formatPrice = (price: number) => {
-  return new Intl.NumberFormat("en-US", {
+  const formattedPrice = new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
-    maximumSignificantDigits: 3,
-  }).format(price).replace("NGN", "₦");
-};
+    maximumFractionDigits: 0,
+  }).format(price);
 
-export const dicebear = "https://api.dicebear.com/7.x/micah/svg"
+  return formattedPrice;
+};

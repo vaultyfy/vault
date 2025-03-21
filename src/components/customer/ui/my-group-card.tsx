@@ -15,7 +15,7 @@ import { StackedAvatars } from "./stacked-avatars";
 import { Status, GlobalStatus } from "@components/ui";
 import { Group } from "@utils/types";
 import { bgs, randomBg } from "@utils/constants";
-import { dicebear } from "@utils/misc";
+import { dicebear, formatPrice } from "@utils/misc";
 import { SetStateAction } from "react";
 
 export interface MyGroupCardProps extends Partial<ChakraProps> {
@@ -71,14 +71,12 @@ export const MyGroupCard = ({
                 {groupData?.name}
               </Text>
               <HStack spacing="3px" mt="2px">
-                <Flex
-                  rounded="full"
-                  px={{ lg: ".8em", base: ".4em", md: ".6em" }}
+                <Box
                   py={1}
+                  rounded="full"
                   bg="var(--grey-007)"
-                  alignItems="center"
+                  px={{ lg: ".8em", base: ".4em", md: ".6em" }}
                 >
-                  <CurrencyNgn size={16} weight="bold" color="var(--text-1)" />
                   <Text
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="400"
@@ -86,10 +84,10 @@ export const MyGroupCard = ({
                     whiteSpace="nowrap"
                     textTransform="lowercase"
                   >
-                    {groupData?.contributionAmount}/
+                    {formatPrice(Number(groupData?.contributionAmount))}/
                     {groupData?.contributionFrequency}
                   </Text>
-                </Flex>
+                </Box>
                 <HStack
                   gap=".2em"
                   px={2}
@@ -133,23 +131,14 @@ export const MyGroupCard = ({
                 >
                   Pay-out
                 </Text>
-                <HStack gap="0px">
-                  <CurrencyNgn
-                    size={20}
-                    weight="bold"
-                    color="var(--main)"
-                    style={{
-                      fontWeight: "bold",
-                    }}
-                  />
-                  <Text
-                    fontSize={{ base: "16px", lg: "20px" }}
-                    color="var(--main)"
-                    fontWeight="500"
-                  >
-                    {groupData?.payOutAmount}
-                  </Text>
-                </HStack>
+
+                <Text
+                  fontSize={{ base: "16px", lg: "20px" }}
+                  color="var(--main)"
+                  fontWeight="500"
+                >
+                  {formatPrice(Number(groupData?.payOutAmount))}
+                </Text>
               </Box>
 
               <Box w="fit-content">

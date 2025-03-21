@@ -12,6 +12,7 @@ import { makeContribution } from "@mutations/groups";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { State } from "@utils/constants";
+import { formatPrice } from "@utils/misc";
 import { PaymentResponse, Response } from "@utils/types";
 import React from "react";
 
@@ -47,7 +48,10 @@ export const PaymentCard = ({
       if (request?.ok) {
         openToast(response.message, "success");
         typeof window !== "undefined" &&
-          window.open(response.payload?.paymentResponse.data.authorization_url, "_blank");
+          window.open(
+            response.payload?.paymentResponse.data.authorization_url,
+            "_blank",
+          );
       } else {
         openToast(response.message, "error");
       }
@@ -102,23 +106,13 @@ export const PaymentCard = ({
       </Box>
       <VStack justifyContent={isActive ? "space-between" : "center"}>
         {amount && isActive && (
-          <HStack gap="0">
-            <CurrencyNgn
-              size={20}
-              weight="duotone"
-              color="var(--main)"
-              style={{
-                fontWeight: "bold",
-              }}
-            />
-            <Text
-              color="var(--main)"
-              fontWeight="500"
-              fontSize={{ base: "16px", lg: "20px" }}
-            >
-              {amount || "100,000"}
-            </Text>
-          </HStack>
+          <Text
+            color="var(--main)"
+            fontWeight="500"
+            fontSize={{ base: "16px", lg: "20px" }}
+          >
+            {formatPrice(amount) || "100,000"}
+          </Text>
         )}
         {!isActive ? (
           <Button
