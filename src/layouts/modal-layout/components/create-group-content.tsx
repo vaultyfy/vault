@@ -17,7 +17,7 @@ import {
 import { Icon } from "@components/icon";
 import { schema } from "@utils/validators";
 import { Form, Formik } from "formik";
-import { generateNoOfCycles, generateNoOfDays } from "@utils/misc";
+import { formatPrice, generateNoOfCycles, generateNoOfDays } from "@utils/misc";
 import { GroupPayload } from "@utils/types";
 import { createGroup } from "@mutations/groups";
 import { useToastContext } from "@hooks/context";
@@ -39,10 +39,9 @@ export const CONTRIBUTION_FREQUENCY = Array.from([
 const calculatePayout = (
   contributionAmount: number,
   participants: number,
-  cycles: number,
 ) => {
-  if (!contributionAmount || !participants || !cycles) return 0;
-  return contributionAmount * participants * cycles;
+  if (!contributionAmount || !participants) return 0;
+  return contributionAmount * participants;
 };
 
 export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
@@ -78,6 +77,8 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
               openToast(response.message, "success");
               mutate();
               onClose();
+            } else {
+              openToast(response.message, "error")
             }
           } catch (error) {
             console.error(error);
@@ -93,12 +94,10 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
             calculatePayout(
               formik.values.contributionAmount,
               formik.values.numberOfparticipantsAvailable,
-              formik.values.numberOfcircle,
             ),
           [
             formik.values.contributionAmount,
             formik.values.numberOfparticipantsAvailable,
-            formik.values.numberOfcircle,
           ],
         );
 
@@ -294,11 +293,7 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
                   color="var(--main)"
                   fontWeight="semibold"
                 >
-                  {new Intl.NumberFormat("en-NG", {
-                    style: "currency",
-                    currency: "NGN",
-                    maximumFractionDigits: 0,
-                  }).format(payout)}
+                  {formatPrice(payout)}
                 </Text>
               </Box>
               <Button

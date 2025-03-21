@@ -238,8 +238,7 @@ export const Groups = () => {
             <PaymentCardSkeleton />
           ) : (
             <>
-              {dayjs().format("DD-MM-YYYY") ===
-                dayjs(activeGroup?.startDate).format("DD-MM-YYYY") && (
+              {dayjs().format("DD-MM-YYYY") === contributionDates?.[0] && (
                 <PaymentCard
                   deadlineDate={dayjs(activeGroup?.startDate).format(
                     "DD-MMMM-YYYY",

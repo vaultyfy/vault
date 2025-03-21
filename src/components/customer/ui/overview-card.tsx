@@ -18,7 +18,7 @@ import { Icon } from "@components/icon";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { ChevronDown } from "lucide-react";
 import { CustomProgress } from "@components/ui";
-import { skeleton } from "@utils/misc";
+import { formatPrice, skeleton } from "@utils/misc";
 
 interface OverviewCardProps {
   bgColor?: string;
@@ -168,7 +168,7 @@ export const OverviewCard = ({
                     <Text
                       fontSize="12px"
                       color="#fff"
-                      fontWeight="500" // please stop doing this: fontWeight="medium". instead use the exact values from Figma
+                      fontWeight="500"
                     >
                       {paidMonths} | 12
                     </Text>
@@ -193,9 +193,8 @@ export const OverviewCard = ({
               <>
                 {!cycle && (
                   <HStack gap=".1em">
-                    <CurrencyNgn size={28} color="#ffffff" /> herr
                     <Text fontFamily="var(--clash-grotesk-700)" fontSize="28px">
-                      {amount}
+                      {formatPrice(Number(amount))}
                     </Text>
                   </HStack>
                 )}
