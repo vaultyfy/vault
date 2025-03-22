@@ -19,10 +19,10 @@ import { GroupCardSkeleton, PaymentCardSkeleton } from "@components/skeletons";
 import { useAuthContext } from "@hooks/context";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useJoinedGroups } from "@hooks/swr";
-import { useMyGroupsWithStatus } from "@hooks/swr"; // Import the hook
+import { useMyGroupsWithStatus } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
 import { skeleton } from "@utils/misc";
-import { Group, GroupTypeFilter } from "@utils/types"; // Make sure to import GroupTypeFilter
+import { Group, GroupTypeFilter } from "@utils/types";
 import dayjs, { Dayjs } from "dayjs";
 import React from "react";
 import slugify from "slugify";
