@@ -86,7 +86,7 @@ export const Users = () => {
         </Tabs>
         <HStack
           width={"27%"}
-          border="0.5px solid #8181816B"
+          border="0.5px solid var(--border-muted)"
           borderRadius={"31px"}
           padding="10px 21px"
           height="44px"
@@ -111,7 +111,7 @@ export const Users = () => {
         boxShadow={"md"}
         borderRadius={"10px"}
         padding="16px 18px"
-        border={"0.5px solid #8181816B"}
+        border={"0.5px solid var(--border-muted)"}
       >
         <TableContainer width={"100%"} height={"100%"} overflowY={"auto"}>
           <Table variant="simple" gap={"29px"}>

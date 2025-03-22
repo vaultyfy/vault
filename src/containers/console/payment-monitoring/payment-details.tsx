@@ -42,7 +42,7 @@ const ContactDetails = ({
   return (
     <VStack
       overflowY={"auto"}
-      border="0.5px solid #8181816B"
+      border="0.5px solid var(--border-muted)"
       height={"611px"}
       width={"42%"}
       padding="23px 19px"
@@ -52,7 +52,7 @@ const ContactDetails = ({
     >
       <VStack
         height="65px"
-        borderBottom={"0.5px solid #8181816B"}
+        borderBottom={"0.5px solid var(--border-muted)"}
         justifyContent={"space-between"}
         alignItems={"start"}
         gap="8px"
@@ -78,7 +78,7 @@ const ContactDetails = ({
       </VStack>
       <VStack
         height="65px"
-        borderBottom={"0.5px solid #8181816B"}
+        borderBottom={"0.5px solid var(--border-muted)"}
         justifyContent={"space-between"}
         alignItems={"start"}
         gap="8px"
@@ -104,7 +104,7 @@ const ContactDetails = ({
       </VStack>
       <VStack
         height="65px"
-        borderBottom={"0.5px solid #8181816B"}
+        borderBottom={"0.5px solid var(--border-muted)"}
         justifyContent={"space-between"}
         alignItems={"start"}
         gap="8px"
@@ -130,7 +130,7 @@ const ContactDetails = ({
       </VStack>
       <VStack
         height="65px"
-        borderBottom={"0.5px solid #8181816B"}
+        borderBottom={"0.5px solid var(--border-muted)"}
         justifyContent={"space-between"}
         alignItems={"start"}
         gap="8px"
@@ -156,7 +156,7 @@ const ContactDetails = ({
       </VStack>
       <VStack
         height="65px"
-        borderBottom={"0.5px solid #8181816B"}
+        borderBottom={"0.5px solid var(--border-muted)"}
         justifyContent={"space-between"}
         alignItems={"start"}
         gap="8px"
@@ -182,7 +182,7 @@ const ContactDetails = ({
       </VStack>
       <VStack
         height="65px"
-        borderBottom={"0.5px solid #8181816B"}
+        borderBottom={"0.5px solid var(--border-muted)"}
         justifyContent={"space-between"}
         alignItems={"start"}
         gap="8px"
@@ -208,7 +208,7 @@ const ContactDetails = ({
       </VStack>
       <VStack
         height="65px"
-        borderBottom={"0.5px solid #8181816B"}
+        borderBottom={"0.5px solid var(--border-muted)"}
         justifyContent={"space-between"}
         alignItems={"start"}
         gap="8px"
@@ -347,7 +347,7 @@ export const PaymentDetails = () => {
               height={"100%"}
               overflowY={"auto"}
               borderRadius={"10px"}
-              border="0.5px solid #8181816B"
+              border="0.5px solid var(--border-muted)"
               padding="17px 18px"
             >
               <Table variant="simple">

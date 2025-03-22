@@ -8,14 +8,17 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useAuthContext } from "@hooks/context";
+import { useCurrentPath } from "@hooks/current-path";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { useUser } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
+import { dicebear } from "@utils/misc";
 import { ChevronDown, UserRound } from "lucide-react";
 
 export const UserMenu = () => {
+  const currentPath = useCurrentPath();
   const { isSmallViewPort } = useMobileScreens();
-  const { data } = useUser()
+  const { user, logout, isAuthenticated } = useAuthContext();
 
   return (
     <Menu autoSelect={false}>
@@ -36,9 +39,10 @@ export const UserMenu = () => {
       >
         <Avatar
           ml="-.4rem"
-          boxSize={{ lg: "35px", md: "30px", base: "28px" }}
+          boxSize={{ lg: "35px", md: "30px", base: "30px" }}
           bg="var(--main)"
           border="2px solid var(--primary)"
+          src={`${dicebear}?seed=${user?.name?.split(" ")[0]}&flip=true`}
           icon={<UserRound size={isSmallViewPort ? "20px" : ""} />}
         />
       </MenuButton>
@@ -50,25 +54,27 @@ export const UserMenu = () => {
         flexFlow="column"
         gap=".6rem"
       >
-        <Link to={isSmallViewPort ? "/auth" : "/auth/login"}>
-          <MenuItem
-            as={Button}
-            background="var(--main)"
-            borderRadius="30px"
-            height="26px"
-            color="#fff"
-            textTransform="capitalize"
-            _hover={{
-              background: "var(--main)",
-            }}
-            fontWeight="normal"
-            fontSize="12px"
-          >
-            login
-          </MenuItem>
-        </Link>
+        {!user && !currentPath.includes("/dashboard") && (
+          <Link to={isSmallViewPort ? "/auth" : "/auth/login"}>
+            <MenuItem
+              as={Button}
+              background="var(--main)"
+              borderRadius="30px"
+              height="26px"
+              color="#fff"
+              textTransform="capitalize"
+              _hover={{
+                background: "var(--main)",
+              }}
+              fontWeight="normal"
+              fontSize="12px"
+            >
+              login
+            </MenuItem>
+          </Link>
+        )}
 
-        {data && (
+        {user && currentPath !== "/dashboard" && (
           <Link to="/dashboard">
             <MenuItem
               as={Button}
@@ -85,6 +91,25 @@ export const UserMenu = () => {
               <Text className="main-accent">dashboard</Text>
             </MenuItem>
           </Link>
+        )}
+
+        {isAuthenticated && (
+          <MenuItem
+            as={Button}
+            background="#fff"
+            borderRadius="30px"
+            height="26px"
+            textTransform="capitalize"
+            _hover={{
+              background: "#fff",
+            }}
+            fontWeight="normal"
+            fontSize="12px"
+            className="main-accent"
+            onClick={logout}
+          >
+            Logout
+          </MenuItem>
         )}
       </MenuList>
     </Menu>

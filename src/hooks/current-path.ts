@@ -3,7 +3,7 @@ import { FileRouteTypes } from "@tanstack/react-router";
 
 export const useCurrentPath = () => {
   const location = useLocation();
-  const currentRoute = location.pathname as FileRouteTypes["fullPaths"];
+  const currentRoute: FileRouteTypes["fullPaths"] = location.pathname;
   return currentRoute;
 };
 

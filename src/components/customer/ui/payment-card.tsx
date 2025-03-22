@@ -1,6 +1,20 @@
-import { Flex, Box, Text, HStack, VStack, Button, ChakraProps } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  Text,
+  HStack,
+  VStack,
+  Button,
+  ChakraProps,
+} from "@chakra-ui/react";
+import { useToastContext } from "@hooks/context";
+import { makeContribution } from "@mutations/groups";
 import { CurrencyNgn } from "@phosphor-icons/react";
 import { ArrowRight } from "@phosphor-icons/react";
+import { State } from "@utils/constants";
+import { formatPrice } from "@utils/misc";
+import { PaymentResponse, Response } from "@utils/types";
+import React from "react";
 
 interface PaymentCardProps extends Partial<ChakraProps> {
   isActive?: boolean;
@@ -8,6 +22,8 @@ interface PaymentCardProps extends Partial<ChakraProps> {
   dayOfWeek: string;
   deadlineDate?: string;
   dateType?: "start-date" | "due-date";
+  groupId: string;
+  participantId: string;
 }
 
 export const PaymentCard = ({
@@ -16,9 +32,37 @@ export const PaymentCard = ({
   dayOfWeek,
   deadlineDate,
   dateType,
+  groupId,
+  participantId,
   ...props
 }: PaymentCardProps) => {
+  const { openToast } = useToastContext();
   const dateArray = deadlineDate?.split("-");
+  const [state, setState] = React.useState<State>("idle");
+
+  const payNow = async () => {
+    try {
+      setState("loading");
+      const request = await makeContribution({ groupId, participantId });
+      const response: Response<PaymentResponse> = await request?.json();
+      if (request?.ok) {
+        openToast(response.message, "success");
+        typeof window !== "undefined" &&
+          window.open(
+            response.payload?.paymentResponse.data.authorization_url,
+            "_blank",
+          );
+      } else {
+        openToast(response.message, "error");
+      }
+    } catch (error) {
+      console.error(`${(error as Error).message}`);
+      openToast(`${(error as Error).message}`, "error");
+    } finally {
+      setState("idle");
+    }
+  };
+
   return (
     <Flex
       px="19px"
@@ -62,23 +106,13 @@ export const PaymentCard = ({
       </Box>
       <VStack justifyContent={isActive ? "space-between" : "center"}>
         {amount && isActive && (
-          <HStack gap="0">
-            <CurrencyNgn
-              size={20}
-              weight="duotone"
-              color="var(--main)"
-              style={{
-                fontWeight: "bold",
-              }}
-            />
-            <Text
-              color="var(--main)"
-              fontWeight="500"
-              fontSize={{ base: "16px", lg: "20px" }}
-            >
-              {amount || "100,000"}
-            </Text>
-          </HStack>
+          <Text
+            color="var(--main)"
+            fontWeight="500"
+            fontSize={{ base: "16px", lg: "20px" }}
+          >
+            {formatPrice(amount) || "100,000"}
+          </Text>
         )}
         {!isActive ? (
           <Button
@@ -126,6 +160,8 @@ export const PaymentCard = ({
             }}
             rounded="full"
             width="112px"
+            isLoading={state === "loading"}
+            onClick={payNow}
           >
             Pay now
           </Button>

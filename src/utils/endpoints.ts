@@ -38,6 +38,7 @@ export const app = {
     yourBanks: `${BASE_URL}/customer/all-my-bankDetails`,
     changePassword: `${BASE_URL}/customer/change-password`,
     updateRecord: `${BASE_URL}/customer/update-record`,
+    savingsTrend: `${BASE_URL}/customer/dashboard/savingsTrend`,
   },
   groups: {
     create: `${BASE_URL}/groups/create`,
@@ -47,5 +48,7 @@ export const app = {
     share: `${BASE_URL}/groups/generate-referalLink`,
     group: `${BASE_URL}/groups/one-group`,
     join: `${BASE_URL}/groups/joinGroup`,
+    pay: `${BASE_URL}/groups/makeContribution`,
+    status: `${BASE_URL}/groups/all-myParticipatoryGroupswithStatusFilter`,
   },
 } as const;

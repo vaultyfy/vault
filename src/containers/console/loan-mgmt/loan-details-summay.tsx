@@ -28,7 +28,7 @@ export const LoanDetailsSummary = ({
     <VStack
       width="100%"
       maxHeight="420px"
-      border="0.5px solid #8181816B"
+      border="0.5px solid var(--border-muted)"
       gap="42px"
       padding="23px 19px"
       borderRadius={"10px"}

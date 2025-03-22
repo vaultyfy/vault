@@ -77,7 +77,11 @@ export const Explore = () => {
 
   return (
     <Box>
-      <Text as="p" fontSize="24px" color="var(--text-1)" mb="0.5rem">
+      <Text
+        color="var(--text-1)"
+        mb="0.5rem"
+        fontSize={{ lg: "24px", md: "20px", base: "18px" }}
+      >
         Suggested for you
       </Text>
       <Box
@@ -114,15 +118,15 @@ export const Explore = () => {
       <Box
         mt="1em"
         w="100%"
+        alignItems="center"
         sx={
           isMobile ? { display: "flex", justifyContent: "space-between" } : {}
         }
       >
         <Text
-          fontFamily="var(--poppins)"
           color="var(--text-1)"
-          fontSize="24px"
-          fontWeight="medium"
+          fontWeight="400"
+          fontSize={{ lg: "24px", md: "20px", base: "18px" }}
         >
           More Groups
         </Text>
@@ -243,13 +247,14 @@ export const Explore = () => {
             aria-label="filter"
             icon={<FunnelSimple size={24} />}
             rounded="full"
+            background="var(--grey-100)"
             onClick={() => setIsMobileFilter(true)}
           />
         )}
       </Box>
 
       <SimpleGrid
-        columns={{ md: 2, base: 1 }}
+        columns={{ "2xl": 3, xl: 2, lg: 2, md: 2, base: 1 }}
         rowGap="24px"
         columnGap="27px"
         width="100%"

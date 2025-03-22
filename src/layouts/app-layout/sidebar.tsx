@@ -2,11 +2,14 @@ import {
   Badge,
   Box,
   Center,
+  Divider,
   Flex,
+  HStack,
   Image,
   List,
   ListItem,
   Skeleton,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import { GradientIcon } from "@components/icon";
@@ -19,6 +22,8 @@ import { useConsolePath, useCurrentPath } from "@hooks/current-path";
 import { CircleProgress } from "@components/ui";
 import { useUser } from "@hooks/swr";
 import { dicebear, skeleton } from "@utils/misc";
+import { LogOut } from "lucide-react";
+import { useAuthContext } from "@hooks/context";
 
 export type SidenavItems = {
   id: string;
@@ -27,7 +32,7 @@ export type SidenavItems = {
   path: FileRouteTypes["fullPaths"];
 };
 
-const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
+export const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
   {
     id: crypto.randomUUID(),
     icon: <Icon name="dashboard" />,
@@ -87,6 +92,7 @@ const consoleNavBase = [
 
 export const Sidebar = () => {
   const pathname = useCurrentPath();
+  const { logout } = useAuthContext();
   const isConsoleRoute = useConsolePath();
   const CONSOLE_NAV_ITEMS: SidenavItems[] = consoleNavBase.map((item) => ({
     id: crypto.randomUUID(),
@@ -249,7 +255,33 @@ export const Sidebar = () => {
               </Text>
             </Badge>
           ) : null}
-
+          {!hasUserCompletedKyc && (
+            <Link to="/dashboard/settings">
+              <Badge
+                background="var(--white-fade-8)"
+                display="flex"
+                justifyContent="center"
+                gap=".6em"
+                height="37px"
+                width="158px"
+                borderRadius="30px"
+                alignItems="center"
+              >
+                <Text
+                  textTransform="capitalize"
+                  fontSize="14px"
+                  fontWeight="400"
+                  bgClip="text"
+                  bgGradient={MAIN_GRADIENT}
+                >
+                  Complete profile
+                </Text>
+              </Badge>
+            </Link>
+          )}
+          {kycPercentage !== 100 && (
+            <Box width="80%" border="0.2px solid var(--border-muted)" />
+          )}
           <Flex flexFlow="column" gap=".1em">
             <Text
               textAlign="center"
@@ -317,6 +349,18 @@ export const Sidebar = () => {
                 </Link>
               </List>
             ))}
+
+            <HStack
+              mt="4em"
+              _hover={{ cursor: "pointer" }}
+              onClick={logout}
+              px={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
+            >
+              <Icon name="logout" />
+              <Text color="var(--grey)" fontWeight="400" fontSize="16px">
+                Log out
+              </Text>
+            </HStack>
           </Flex>
         </Center>
       )}

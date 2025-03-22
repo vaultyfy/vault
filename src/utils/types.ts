@@ -12,6 +12,8 @@ export type Common = {
   total: number;
 };
 
+export type GroupTypeFilter = "Active" | "Completed"
+
 export type LoginResponse = {
   token: { token: string };
   user: User;
@@ -23,9 +25,21 @@ export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
 
+export type PaymentResponse = {
+  paymentResponse: {
+    status: boolean;
+    message: string;
+    data: {
+      authorization_url: string;
+      access_code: string;
+      reference: string;
+    };
+  };
+};
+
 export type ReferalLinkResponse = {
   referalLink: string;
-}
+};
 
 export type Bank = {
   logo: string;
@@ -169,7 +183,7 @@ export type Participant = {
   completedCircleCount: number;
   missedContributionCount: number;
   hasCashedOut: boolean;
-  contributionDates: string;
+  contributionDates: string[];
   nextContributionDate: string;
   payoutDate: string;
   totalContributionsRequired: number;

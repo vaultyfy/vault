@@ -3,20 +3,22 @@ import { LayoutProps } from "@layouts/home-layout";
 import { Sidebar } from "./sidebar";
 
 import { AppHeader } from "./header";
+import { useCurrentPath } from "@hooks/current-path";
 
 export interface AppLayoutProps extends Readonly<LayoutProps> {
   routeTitle: string;
 }
 
 export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
+  const currentPath = useCurrentPath();
+
   return (
     <Flex height="100vh" background="#fff">
       <Sidebar />
-
       <Box
         width={{
-          "2xl": "70%",
-          xl: "84%",
+          "2xl": currentPath === "/dashboard/explore" ? "100%" : "70%",
+          xl: currentPath === "/dashboard/explore" ? "100%" : "84%",
           md: "100%",
           base: "100%",
           lg: "100%",
@@ -27,8 +29,8 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
       >
         <AppHeader routeTitle={routeTitle} />
         <Box
-          pt="1.4em"
-          px={{ base: ".6em", "2xl": "2em", xl: "1em", lg: ".8em" }}
+          pt={{ xl: "1.4em", lg: "1em", md: "-.6em", base: "-1em" }}
+          px={{ base: ".6em", "2xl": "2em", xl: "1em", md: ".4em", lg: ".8em" }}
         >
           {children}
         </Box>

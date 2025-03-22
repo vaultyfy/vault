@@ -36,7 +36,7 @@ export const GroupDetails = ({ data }: GroupDetailProps) => {
 
   const avatars = data?.participants?.map((member, index) => {
     const memberBg = bgs[index % bgs.length];
-    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name}&size=48&flip=true&backgroundColor=${memberBg}`}`;
+    return `${member.customer?.profilePicture || `${dicebear}?seed=${member?.customer?.name?.split(" ")?.[0]}&size=48&flip=true&backgroundColor=${memberBg}`}`;
   });
 
   const handleJoinGroup = async () => {
