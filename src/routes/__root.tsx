@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
-import { AuthContextValues, AuthProvider } from "@context/auth-provider";
+import { AuthContextValues } from "@context/auth-provider";
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"

@@ -5,6 +5,7 @@ import { AppLayout } from "@layouts/app-layout";
 import { getGroup } from "@queries/groups";
 import { Group } from "@utils/types";
 import ProgressBar from '@badrap/bar-of-progress'
+import { requireAuth } from "@utils/route-guard";
 
 const progress = new ProgressBar({
   size: 2,
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/dashboard/explore/$groupId")({
       progress.finish()
     }
   },
+  beforeLoad: requireAuth()
 });
 
 function RouteComponent() {

@@ -4,6 +4,7 @@ import { MetaData } from "@components/metadata";
 import { AppLayout } from "@layouts/app-layout";
 import { useParams } from "@tanstack/react-router";
 import { useGroup } from "@hooks/swr";
+import { requireAuth } from "@utils/route-guard";
 
 export const Route = createFileRoute("/dashboard/groups/$groupId")({
   beforeLoad: () => {
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/dashboard/groups/$groupId")({
         to: "/dashboard/groups",
       });
     }
+    return requireAuth();
   },
   component: RouteComponent,
 });
