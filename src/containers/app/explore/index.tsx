@@ -6,6 +6,7 @@ import {
   Flex,
   Button,
   IconButton,
+  Center,
 } from "@chakra-ui/react";
 import {
   FilterDatePicker,
@@ -24,6 +25,7 @@ import { useAllGroups, useFilteredGroups } from "@hooks/swr";
 import { FilterGroupProps } from "@queries/groups";
 import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
 import { ExploreCardSkeleton } from "@components/skeletons";
+import { formatISO } from "date-fns";
 
 const initialValues = {
   members: "",
@@ -50,19 +52,28 @@ export const Explore = () => {
   ) => {
     setSubmitting(true);
 
+    let isoDateString: string = "";
+
+    if (values.startDate !== "") {
+      const parsedDate = new Date(values.startDate);
+      isoDateString = formatISO(parsedDate);
+    }
+
     setFilters({
       memberAmount: parseInt(values.members, 10),
-      startDate: values.startDate,
+      startDate: isoDateString,
       payout: parseInt(values.payout, 10),
       interval: values.interval as ContributionFrequency,
     });
+
+    setSubmitting(false);
   };
 
   const handleClearFilters = () => {
     setFilters(null);
   };
 
-  const groups = filteredData || data;
+  const groups = filteredData || data || [];
 
   return (
     <Box>
@@ -248,11 +259,21 @@ export const Explore = () => {
           <ExploreCardSkeleton />
         ) : (
           <>
-            {groups?.map((group, index) => (
-              <Box minHeight="240px" flex={1} key={index}>
-                <GroupCard groups={data} groupType="available" data={group} />
+            {groups?.length > 0 ? (
+              groups?.map((group, index) => (
+                <Box minHeight="240px" flex={1} key={index}>
+                  <GroupCard groups={data} groupType="available" data={group} />
+                </Box>
+              ))
+            ) : (
+              <Box gridColumn="1 / -1" width="100%">
+                <Center width="100%" height="500px">
+                  <Text fontSize="md" color="var(--grey)">
+                    No groups found
+                  </Text>
+                </Center>
               </Box>
-            ))}
+            )}
           </>
         )}
       </SimpleGrid>

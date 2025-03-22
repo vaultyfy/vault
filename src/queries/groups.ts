@@ -76,9 +76,17 @@ export const filterGroups = async ({
     interval,
   };
 
-  // Add non-empty and non-NaN parameters to the query
   Object.entries(params).forEach(([key, value]) => {
-    if (value && !Number.isNaN(Number(value))) {
+    if (value === undefined || value === "" || value === null) return;
+
+    if (key === "startDate" || key === "interval") {
+      if (typeof value === "string") {
+        queryString.set(key, value);
+      }
+      return;
+    }
+
+    if (!Number.isNaN(Number(value))) {
       queryString.set(key, value);
     }
   });
