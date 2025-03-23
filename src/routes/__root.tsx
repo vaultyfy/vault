@@ -11,7 +11,10 @@ export interface AppContext {
 
 export const Route = createRootRouteWithContext<AppContext>()({
   component: RootComponent,
-  validateSearch: (search: Record<string, keyof AppSearchParams>): AppSearchParams => {
+  // occasionally turn this partial return type of AppSearchParams
+  // for type-safety in the Link component
+  // just in dev mode though.. if not. production builds will fail
+  validateSearch: (search: Record<string, keyof AppSearchParams>): Partial<AppSearchParams> => {
     return {
       ui: search.ui as UiComponents,
       redirect: search.redirect,
