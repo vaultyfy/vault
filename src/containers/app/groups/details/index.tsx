@@ -20,15 +20,17 @@ import { useNavigate } from "@tanstack/react-router";
 import { useToastContext } from "@hooks/context";
 import { bgs, State } from "@utils/constants";
 import dayjs from "dayjs";
-import { dicebear } from "@utils/misc";
+import { dicebear, formatPrice } from "@utils/misc";
 import { CaretLeft } from "@phosphor-icons/react";
 import { joinGroup } from "@mutations/groups";
 import { ref } from "yup";
 import { Response } from "@utils/types";
 
-interface GroupDetailProps extends Pick<MyGroupCardProps, "data"> {}
+interface GroupDetailProps extends Pick<MyGroupCardProps, "data"> {
+  referrerId?: string;
+}
 
-export const GroupDetails = ({ data }: GroupDetailProps) => {
+export const GroupDetails = ({ data, referrerId }: GroupDetailProps) => {
   const [approval, setApproval] = useState(false);
   const navigate = useNavigate();
   const { openToast } = useToastContext();
@@ -48,7 +50,7 @@ export const GroupDetails = ({ data }: GroupDetailProps) => {
 
     try {
       setState("loading");
-      const request = await joinGroup(groupId);
+      const request = await joinGroup({ groupId, referrerId });
       const response: Response = await request?.json();
       if (request?.ok) {
         openToast(response.message, "success");
@@ -113,16 +115,15 @@ export const GroupDetails = ({ data }: GroupDetailProps) => {
                     width="fit-content"
                     alignItems="center"
                   >
-                    <CurrencyNgn size={16} color="white" />
                     <Text
                       fontSize={{ base: "12px", lg: "14px" }}
                       fontWeight=""
                       color="white"
                     >
-                      {data?.contributionAmount}/{data?.contributionFrequency}
+                      {formatPrice(Number(data?.contributionAmount))}/
+                      {data?.contributionFrequency}
                     </Text>
                   </Flex>
-
                   <Box w="full" mt="28px">
                     {avatars?.length === 0 ? (
                       <Text fontSize="12px" color="var(--grey)">
@@ -144,23 +145,13 @@ export const GroupDetails = ({ data }: GroupDetailProps) => {
                     >
                       Pay-out
                     </Text>
-                    <HStack gap="0">
-                      <CurrencyNgn
-                        size={20}
-                        weight="duotone"
-                        color="var(--main)"
-                        style={{
-                          fontWeight: "bold",
-                        }}
-                      />
-                      <Text
-                        fontSize={{ base: "16px", lg: "20px" }}
-                        color="var(--main)"
-                        fontWeight="500"
-                      >
-                        {data?.payOutAmount}
-                      </Text>
-                    </HStack>
+                    <Text
+                      fontSize={{ base: "16px", lg: "20px" }}
+                      color="var(--main)"
+                      fontWeight="500"
+                    >
+                      {formatPrice(Number(data?.payOutAmount))}
+                    </Text>
                   </Box>
                   <Box w="fit-content">
                     <Text

@@ -21,17 +21,15 @@ export const Route = createFileRoute("/dashboard/groups/$groupId")({
 
 function RouteComponent() {
   const { groupId } = useParams({ strict: false });
-  const { data, isLoading } = useGroup(String(groupId));
+  const { data } = useGroup(String(groupId));
   return (
     <>
       <MetaData
         url="vaultyfy.vercel.app"
         pageTitle="Explore &mdash; Vaultify"
       />
-
       <AppLayout routeTitle="My group details">
-        {/* @ts-ignore */}
-        <GroupDetails data={data?.payload} />
+        <GroupDetails data={{ ...data }} />
       </AppLayout>
     </>
   );

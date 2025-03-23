@@ -108,9 +108,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           type: "SET_USER",
           payload: data?.payload as User | undefined,
         });
-        // we should update the route context at this point
-        // with the `invalidate` call
-        router.invalidate();
+        // // we should update the route context at this point
+        // // with the `invalidate` call
+        // router.invalidate();
       } catch (error) {
         console.error(error);
         openToast("Failed to fetch", "error");
