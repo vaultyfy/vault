@@ -57,6 +57,10 @@ export const OverviewCard = ({
   paidMonths,
   loading,
 }: OverviewCardProps) => {
+  const isMilestonesCard = cardTitle
+    .toLowerCase()
+    .includes("rewards & milestones");
+
   return (
     <Card
       bgColor={bgColor || ""}
@@ -165,11 +169,7 @@ export const OverviewCard = ({
                     px={4}
                     rounded={"10px"}
                   >
-                    <Text
-                      fontSize="12px"
-                      color="#fff"
-                      fontWeight="500"
-                    >
+                    <Text fontSize="12px" color="#fff" fontWeight="500">
                       {paidMonths} | 12
                     </Text>
                   </Box>
@@ -181,7 +181,7 @@ export const OverviewCard = ({
             <Text fontSize={{ base: "12px", lg: "16px" }} fontWeight={"medium"}>
               {cardTitle}
             </Text>
-            {loading && !cycle ? (
+            {loading && !isMilestonesCard ? (
               <Skeleton
                 height="18px"
                 width="130px"
@@ -191,7 +191,7 @@ export const OverviewCard = ({
               />
             ) : (
               <>
-                {!cycle && (
+                {!isMilestonesCard && (
                   <HStack gap=".1em">
                     <Text fontFamily="var(--clash-grotesk-700)" fontSize="28px">
                       {formatPrice(Number(amount))}
@@ -200,7 +200,7 @@ export const OverviewCard = ({
                 )}
               </>
             )}
-            {cycle && (
+            {isMilestonesCard && (
               <Text
                 fontSize="28px"
                 fontWeight="700"
@@ -214,7 +214,7 @@ export const OverviewCard = ({
                   fontSize="16px"
                   fontFamily="var(--poppins)"
                 >
-                  cycle completed
+                  cycle{cycle && cycle > 1 ? "s": ""} completed
                 </Text>
               </Text>
             )}

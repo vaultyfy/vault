@@ -7,15 +7,17 @@ export const useUser = () => {
   const key = "user";
   const { data, error, isLoading } = useSWR(key, () => getUser(), swrOptions);
 
-  const walletBalance = data?.payload?.my_wallet.balance;
+  const payload = data?.payload
+  const walletBalance = payload?.my_wallet.balance;
 
   return {
-    data: data?.payload,
-    userName: data?.payload?.name?.split(" ")[0],
+    data: payload,
     error,
     isLoading,
+    userName: payload?.name?.split(" ")[0],
     walletBalance: formatPrice(walletBalance as number),
-    kycPercentage: Number(data?.payload?.Kycpercentage),
-    hasUserCompletedKyc: Number(data?.payload?.Kycpercentage) === 100,
+    kycPercentage: Number(payload?.Kycpercentage),
+    cyclesCompleted: payload?.completedCyclesCount,
+    hasUserCompletedKyc: Number(payload?.Kycpercentage) === 100,
   };
 };

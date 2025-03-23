@@ -12,7 +12,7 @@ export type Common = {
   total: number;
 };
 
-export type GroupTypeFilter = "Active" | "Completed"
+export type GroupTypeFilter = "Active" | "Completed";
 
 export type LoginResponse = {
   token: { token: string };
@@ -101,6 +101,11 @@ export type User = {
   resetPasswordTokenExpTime: null | string;
   role: string;
   updatedAT: string;
+  referralCount: number;
+  referralPercentage: string | number;
+  rewardEligible: boolean;
+  completedCyclesCount: number;
+  consistencyRewardEligible: boolean;
 };
 
 export type Customer = {

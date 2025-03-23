@@ -22,12 +22,13 @@ import React from "react";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { CreateGroupModal } from "@layouts/modal-layout";
 import { useUiComponentStore } from "@store/ui";
-import { useJoinedGroups, useSavingsTrend, useWallet } from "@hooks/swr";
+import { useJoinedGroups, useSavingsTrend, useUser, useWallet } from "@hooks/swr";
 
 export const Dashboard = () => {
   const { store, updateUiStore } = useUiComponentStore();
   const { isMobile } = useMobileScreens();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { cyclesCompleted, isLoading: loadingCycleCount } = useUser();
 
   React.useEffect(() => {
     if (store.ui === "create-group" && !isMobile) {
@@ -47,8 +48,8 @@ export const Dashboard = () => {
   } = useJoinedGroups();
   const { walletBalance, lastUpdated, isLoading, expectedReturns } =
     useWallet();
-
-  const { data } = useSavingsTrend();
+  // const { data } = useSavingsTrend();
+  //
 
   return (
     <>
@@ -95,8 +96,8 @@ export const Dashboard = () => {
             progressColor="var(--main-gradient)"
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
-            cycle={1}
-            loading={isLoading}
+            cycle={cyclesCompleted ?? 0}
+            loading={loadingCycleCount}
           />
         </SimpleGrid>
         {count === 0 ? (
