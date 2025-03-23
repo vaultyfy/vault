@@ -36,7 +36,7 @@ export const Route = createFileRoute("/dashboard/explore/$groupId")({
   },
   validateSearch: (search: Record<string, unknown>): AppSearchParams => {
     return {
-      ui: "",
+      ui: search.ui as UiComponents,
       redirect: DEFAULT_REDIRECT_URL,
       referrer: String(search.referrer) || "",
     };
