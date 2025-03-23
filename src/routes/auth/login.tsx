@@ -7,9 +7,10 @@ export const Route = createFileRoute("/auth/login")({
 });
 
 function RouteComponent() {
+  const { referrer, redirect } = Route.useSearch();
   return (
     <AuthLayout>
-      <LoginPage />
+      <LoginPage redirect={redirect} referrer={referrer} />
     </AuthLayout>
   );
 }

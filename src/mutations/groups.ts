@@ -24,7 +24,7 @@ export const createGroup = async (payload: GroupPayload) => {
   }
 };
 
-type JoinGroupParams = {
+export type JoinGroupParams = {
   groupId: number;
   referrerId?: string;
 };

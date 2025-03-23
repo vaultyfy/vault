@@ -22,6 +22,8 @@ export const requireAuth = (
         to: redirectUrl,
         search: {
           redirect: location.href,
+          // @ts-ignore
+          referrer: location.search.referrer || "",
         },
       });
     }

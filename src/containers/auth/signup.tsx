@@ -11,9 +11,12 @@ import { HeaderText } from "@components/typography";
 import { OtpScreen } from "./otp";
 import { SignupResponse } from "@utils/types";
 import { SignupFormValues } from "@utils/validators/auth-schemas";
+import { useUiComponentStore } from "@store/ui";
+import { AuthPageProps } from "./login";
 
-export default function Signup() {
+export default function Signup({ redirect, referrer }: AuthPageProps) {
   const { openToast } = useToastContext();
+  const { store } = useUiComponentStore();
   const [otpScreen, setOtpScreen] = React.useState<boolean>(false);
 
   return (
@@ -26,7 +29,7 @@ export default function Signup() {
       />
 
       {otpScreen ? (
-        <OtpScreen />
+        <OtpScreen redirect={redirect} referrer={referrer} />
       ) : (
         <Formik<SignupFormValues>
           initialValues={{
@@ -70,7 +73,14 @@ export default function Signup() {
           {(formik) => (
             <Form>
               <Flex flexFlow="column" gap="4em" position="relative">
-                <Link to="/">
+                <Link
+                  to="/"
+                  search={{
+                    ui: store.ui,
+                    redirect: String(redirect),
+                    referrer: String(referrer),
+                  }}
+                >
                   <Image
                     src="/img/logo.svg"
                     alt="Vaultyfy logo"
@@ -129,7 +139,14 @@ export default function Signup() {
                     fontSize={{ lg: "16px", md: "16px", base: "14px" }}
                   >
                     Already have an account?{" "}
-                    <Link to="/auth/login">
+                    <Link
+                      to="/auth/login"
+                      search={{
+                        ui: store.ui,
+                        redirect: String(redirect),
+                        referrer: String(referrer),
+                      }}
+                    >
                       <Box
                         cursor="pointer"
                         as="span"
