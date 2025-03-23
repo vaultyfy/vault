@@ -11,15 +11,18 @@ import {
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { schema } from "@utils/validators";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { InputField } from "@components/form";
 import { auth } from "@utils/endpoints";
 import { Response } from "@utils/types";
 import { useToastContext } from "@hooks/context";
 import { OtpScreen } from "../otp";
+import { useUiComponentStore } from "@store/ui";
+import { AuthPageProps } from "../login";
 
-export const ForgotPassword = () => {
+export const ForgotPassword = ({ redirect, referrer }: AuthPageProps) => {
   const { openToast } = useToastContext();
+  const { store } = useUiComponentStore();
   const [otpScreen, setOtpScreen] = React.useState<boolean>(false);
 
   return (
@@ -32,7 +35,7 @@ export const ForgotPassword = () => {
 
       <Center>
         {otpScreen ? (
-          <OtpScreen />
+          <OtpScreen redirect={redirect} referrer={referrer} />
         ) : (
           <Formik
             initialValues={{
@@ -71,7 +74,14 @@ export const ForgotPassword = () => {
             {(formik) => (
               <Form>
                 <Flex flexFlow="column" gap="4em">
-                  <Link to="/">
+                  <Link
+                    to="/"
+                    search={{
+                      ui: store.ui,
+                      redirect: String(redirect),
+                      referrer: String(referrer),
+                    }}
+                  >
                     <Image
                       src="/img/logo.svg"
                       alt="Vaultyfy logo"
@@ -126,4 +136,4 @@ export const ForgotPassword = () => {
       </Center>
     </>
   );
-}
+};

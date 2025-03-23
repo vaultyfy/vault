@@ -16,7 +16,7 @@ const progress = new ProgressBar({
   className: "bar-of-progress",
 });
 
-type AppSearchParams = {
+export type AppSearchParams = {
   ui: UiComponents;
   referrer: string;
   redirect: string;
@@ -34,17 +34,7 @@ export const Route = createFileRoute("/dashboard/explore/$groupId")({
       progress.finish();
     }
   },
-  validateSearch: (search: Record<string, unknown>): AppSearchParams => {
-    return {
-      ui: "",
-      redirect: DEFAULT_REDIRECT_URL,
-      referrer: String(search.referrer) || "",
-    };
-  },
-  beforeLoad: ({ search }) => {
-    search;
-    requireAuth();
-  },
+  beforeLoad: requireAuth(),
 });
 
 function RouteComponent() {
