@@ -7,6 +7,7 @@ import { Group } from "@utils/types";
 import ProgressBar from "@badrap/bar-of-progress";
 import { requireAuth } from "@utils/route-guard";
 import { UiComponents } from "@store/ui";
+import { DEFAULT_REDIRECT_URL } from "@utils/constants";
 
 const progress = new ProgressBar({
   size: 2,
@@ -18,6 +19,7 @@ const progress = new ProgressBar({
 type AppSearchParams = {
   ui: UiComponents;
   referrer: string;
+  redirect: string;
 };
 
 export const Route = createFileRoute("/dashboard/explore/$groupId")({
@@ -32,8 +34,10 @@ export const Route = createFileRoute("/dashboard/explore/$groupId")({
       progress.finish();
     }
   },
-  validateSearch: (search: Record<string, unknown>): Pick<AppSearchParams, "referrer"> => {
+  validateSearch: (search: Record<string, unknown>): AppSearchParams => {
     return {
+      ui: "",
+      redirect: DEFAULT_REDIRECT_URL,
       referrer: String(search.referrer) || "",
     };
   },

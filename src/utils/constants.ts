@@ -7,6 +7,7 @@ export const HEADER_API_KEY = {
 };
 
 export const BANKS_LIST = "https://nigerianbanks.xyz/";
+export const DEFAULT_REDIRECT_URL = "/auth/login";
 
 export const CONTRIBUTION_FREQUENCY = Array.from([
   "Daily",
