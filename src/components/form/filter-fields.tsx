@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import {
   FormControl,
   Input,
@@ -16,12 +16,27 @@ import {
   IconButton,
   PopoverHeader,
   PopoverCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useField } from "formik";
-import { CaretRight, CaretLeft } from "@phosphor-icons/react";
 import { FormikProps } from "formik";
-import { format, addMonths, isAfter, isSameDay, startOfToday } from "date-fns";
 import { Option } from "./select-field";
+import {
+  CaretLeft,
+  CaretRight,
+  CaretUp,
+  CaretDown,
+} from "@phosphor-icons/react";
+import {
+  format,
+  isAfter,
+  isSameDay,
+  addMonths,
+  addYears,
+  startOfToday,
+  parseISO,
+} from "date-fns";
+import { borderGradientStyle } from "@utils/constants";
 
 interface FilterInputProps {
   name: string;
@@ -150,9 +165,11 @@ export const FilterDatePicker = ({
   ...props
 }: DatePickerProps) => {
   const [date, setDate] = useState<Date | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [currentYear, setCurrentYear] = useState(new Date());
   const initialFocusRef = useRef<HTMLButtonElement>(null);
+  const today = startOfToday();
 
   const inputBorderRadius = typeof radius === "string" ? radius : `${radius}px`;
 
@@ -168,31 +185,36 @@ export const FilterDatePicker = ({
   };
 
   const handleDateChange = (newDate: Date) => {
-    if (isAfter(newDate, startOfToday())) {
+    if (isAfter(newDate, today)) {
       setDate(newDate);
-      setIsOpen(false);
+      onClose();
       formik.setFieldValue(fieldName, newDate);
     }
   };
 
-  const formattedDate = date ? format(date, "dd-MM-yyyy") : "";
+  const isDateSelected = (d: Date) =>
+    date && isSameDay(d, parseISO(format(date, "yyyy-MM-dd")));
+
+  const formattedDate = date ? format(date, "dd-MM-yyyy") : "Select date";
 
   const generateDates = (year: number, month: number) => {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const dates = [];
-    const today = startOfToday();
 
+    // Previous month padding
     for (let i = 0; i < firstDay.getDay(); i++) {
       const d = new Date(year, month, -i);
       dates.unshift({ date: d, isCurrentMonth: false, isPast: d < today });
     }
 
+    // Current month
     for (let i = 1; i <= lastDay.getDate(); i++) {
       const d = new Date(year, month, i);
       dates.push({ date: d, isCurrentMonth: true, isPast: d < today });
     }
 
+    // Next month padding
     const remainingDays = 7 - (dates.length % 7);
     if (remainingDays < 7) {
       for (let i = 1; i <= remainingDays; i++) {
@@ -208,11 +230,15 @@ export const FilterDatePicker = ({
     setCurrentMonth((prevMonth) => addMonths(prevMonth, increment));
   };
 
+  const changeYear = (increment: number) => {
+    setCurrentYear((prevYear) => addYears(prevYear, increment));
+  };
+
   return (
     <FormControl my={my || "1em"} width="100%">
       <Popover
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={onClose}
         initialFocusRef={initialFocusRef}
         placement="bottom-start"
       >
@@ -253,7 +279,7 @@ export const FilterDatePicker = ({
                 fontSize: "12px",
                 lineHeight: "19px",
               }}
-              onClick={() => setIsOpen(true)}
+              onClick={onOpen}
               {...inputStyle}
               _focus={{
                 borderColor: "var(--primary)",
@@ -274,47 +300,125 @@ export const FilterDatePicker = ({
           <PopoverCloseButton />
 
           <PopoverBody mx="1em">
-            <Flex justifyContent="space-between" alignItems="center" mb={2}>
-              <IconButton
-                aria-label="Previous month"
-                icon={<CaretLeft />}
-                onClick={() => changeMonth(-1)}
-                size="sm"
-              />
-              <Text fontWeight="500">{format(currentMonth, "MMMM yyyy")}</Text>
-              <IconButton
-                aria-label="Next month"
-                icon={<CaretRight />}
-                onClick={() => changeMonth(1)}
-                size="sm"
-              />
+            <Flex columnGap={4} alignItems="center" mb={4}>
+              <Flex
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+                flex={1}
+              >
+                <IconButton
+                  aria-label="Previous month"
+                  icon={<CaretLeft color="#000" weight="bold" />}
+                  onClick={() => changeMonth(-1)}
+                  size="sm"
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "transparent",
+                  }}
+                />
+                <Text fontWeight="400" fontSize="14px">
+                  {format(currentMonth, "MMMM")}
+                </Text>
+                <IconButton
+                  aria-label="Next month"
+                  icon={<CaretRight color="#000" weight="bold" />}
+                  onClick={() => changeMonth(1)}
+                  size="sm"
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "transparent",
+                  }}
+                />
+              </Flex>
+              <Flex justifyContent="space-between" alignItems="center" mb={2}>
+                <IconButton
+                  aria-label="Previous year"
+                  icon={<CaretUp color="#000" weight="fill" />}
+                  onClick={() => changeYear(-1)}
+                  size="sm"
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "transparent",
+                  }}
+                />
+                <Text fontWeight="400" fontSize="14px">
+                  {format(currentYear, "yyyy")}
+                </Text>
+                <IconButton
+                  aria-label="Next year"
+                  icon={<CaretDown color="#000" weight="fill" />}
+                  onClick={() => changeYear(1)}
+                  size="sm"
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "transparent",
+                  }}
+                />
+              </Flex>
             </Flex>
 
             <SimpleGrid columns={7} spacing={2} mb={4}>
               {daysOfWeek.map((day) => (
-                <Text key={day} textAlign="center" fontWeight="bold">
+                <Text
+                  key={day}
+                  textAlign="center"
+                  fontWeight="semibold"
+                  fontSize={"13px"}
+                  color="var(--grey)"
+                  fontFamily="var(--maven-pro-500)"
+                >
                   {day}
                 </Text>
               ))}
             </SimpleGrid>
-
-            <SimpleGrid columns={7} spacing={2}>
+            <SimpleGrid columns={7} spacing={2} mb="16px">
               {generateDates(
-                currentMonth.getFullYear(),
+                currentYear.getFullYear(),
                 currentMonth.getMonth(),
               ).map(({ date: d, isCurrentMonth, isPast }) => (
                 <Button
                   key={d.toISOString()}
-                  height="32px"
-                  p={0}
-                  borderRadius="md"
+                  boxSize="40px"
+                  borderRadius={
+                    isDateSelected(d) ||
+                    !!isDateSelected(d) ||
+                    isSameDay(d, today)
+                      ? "full"
+                      : "md"
+                  }
+                  border="1px solid"
+                  borderColor="transparent"
                   background={
-                    date && isSameDay(d, date) ? "var(--coral)" : "white"
+                    isDateSelected(d) ||
+                    (isDateSelected(d) === null && isSameDay(d, today))
+                      ? "var(--main)"
+                      : "white"
                   }
+                  sx={
+                    isDateSelected(d) ||
+                    (isDateSelected(d) === null && isSameDay(d, today))
+                      ? borderGradientStyle
+                      : {
+                          _hover: !isPast
+                            ? { ...borderGradientStyle, borderRadius: "full" }
+                            : {},
+                        }
+                  }
+                  _hover={{ background: "var(--main)" }}
+                  fontFamily="var(--poppins)"
+                  fontSize="14px"
+                  fontWeight="400"
                   color={
-                    isPast ? "gray.400" : isCurrentMonth ? "black" : "gray.300"
+                    isPast
+                      ? "var(--calendar-days-color)"
+                      : isDateSelected(d) ||
+                          (isDateSelected(d) === null &&
+                            isCurrentMonth &&
+                            isSameDay(d, today))
+                        ? "white"
+                        : "var(--text-1)"
                   }
-                  _hover={{ background: isPast ? "none" : "var(--coral-400)" }}
                   isDisabled={isPast}
                   onClick={() => handleDateChange(d)}
                 >
