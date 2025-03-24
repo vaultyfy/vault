@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { schema } from "@utils/validators";
-import { Link } from "@tanstack/react-router";
+import { Link } from "@components/link";
 import { InputField } from "@components/form";
 import { auth } from "@utils/endpoints";
 import { Response } from "@utils/types";

@@ -14,11 +14,12 @@ import { MetaData } from "@components/metadata";
 import { cookieOptions, TOKEN_KEY } from "@utils/constants";
 import { useToastContext } from "@hooks/context";
 import { setCookie } from "cookies-next";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { auth } from "@utils/endpoints";
 import { LoginResponse, Response } from "@utils/types";
 import { AppSearchParams } from "src/routes/dashboard/explore/$groupId";
 import { useUiComponentStore } from "@store/ui";
+import { Link } from "@components/link";
 
 export interface AuthPageProps
   extends Partial<Pick<AppSearchParams, "redirect" | "referrer">> {}

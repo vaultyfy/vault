@@ -10,7 +10,6 @@ import {
 import { useAuthContext } from "@hooks/context";
 import { useCurrentPath } from "@hooks/current-path";
 import { useMobileScreens } from "@hooks/mobile-screen";
-import { useUser } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
 import { dicebear } from "@utils/misc";
 import { ChevronDown, UserRound } from "lucide-react";

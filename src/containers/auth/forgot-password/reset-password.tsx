@@ -10,11 +10,12 @@ import {
 import { InputField, PrimaryButton } from "@components/form";
 import { MetaData } from "@components/metadata";
 import { useToastContext } from "@hooks/context";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { auth } from "@utils/endpoints";
 import { Response } from "@utils/types";
 import { schema } from "@utils/validators";
 import { Form, Formik } from "formik";
+import { Link } from "@components/link";
 
 export const ResetPassword = () => {
   const { openToast } = useToastContext();

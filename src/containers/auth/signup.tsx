@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Image, Stack, Text } from "@chakra-ui/react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "@components/link";
 import { InputField } from "@components/form";
 import { Form, Formik } from "formik";
 import { schema } from "@utils/validators";
