@@ -28,7 +28,7 @@ import { GroupCardSkeleton } from "@components/skeletons";
 
 interface GroupDetailProps extends Pick<MyGroupCardProps, "data"> {
   referrerId?: string;
-  loading: boolean;
+  loading?: boolean;
 }
 
 export const GroupDetails = ({
