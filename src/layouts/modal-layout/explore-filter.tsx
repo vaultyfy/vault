@@ -11,6 +11,7 @@ import { Icon } from "@components/icon";
 import { XCircle } from "@phosphor-icons/react";
 import { ModalLayout } from "@components/ui";
 import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
+import { parseISO } from "date-fns";
 
 interface ExploreFilterProps {
   isOpen: boolean;
@@ -45,7 +46,15 @@ export const ExploreFilter = ({
 
   const handleModalClose = () => {
     if (formikRef.current) {
-      setSavedValues(formikRef.current.values);
+      const { startDate, ...rest } = formikRef.current.values;
+
+      const parsedStartDate =
+        typeof startDate === "string" && startDate.trim() !== ""
+          ? parseISO(startDate)
+          : null;
+
+      const newValues = { ...rest, startDate: parsedStartDate };
+      setSavedValues(newValues);
     }
     onClose();
   };

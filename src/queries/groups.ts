@@ -77,9 +77,17 @@ export const filterGroups = async ({
     interval,
   };
 
-  // Add non-empty and non-NaN parameters to the query
   Object.entries(params).forEach(([key, value]) => {
-    if (value && !Number.isNaN(Number(value))) {
+    if (value === undefined || value === "" || value === null) return;
+
+    if (key === "startDate" || key === "interval") {
+      if (typeof value === "string") {
+        queryString.set(key, value);
+      }
+      return;
+    }
+
+    if (!Number.isNaN(Number(value))) {
       queryString.set(key, value);
     }
   });
@@ -147,8 +155,8 @@ export const getGroup = async (groupId: string) => {
 };
 
 export const getSavingsTrend = async () => {
-  const token = getCookie(TOKEN_KEY, {...cookieOptions})
-  if (!token) return
+  const token = getCookie(TOKEN_KEY, { ...cookieOptions });
+  if (!token) return;
 
   try {
     const request = await fetch(app.customer.savingsTrend, {
@@ -156,23 +164,23 @@ export const getSavingsTrend = async () => {
       headers: {
         ...HEADER_API_KEY,
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
-    })
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    const response = await request.json()
-    return response
+    const response = await request.json();
+    return response;
   } catch (error) {
-    console.error(`${(error as Error).message}`)
+    console.error(`${(error as Error).message}`);
   }
-}
+};
 
 export const filterMyGroups = async (status: GroupTypeFilter) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
-  if (!token) return
+  if (!token) return;
 
-  const url = new URL(app.groups.status)
-  url.searchParams.append("status", String(status))
+  const url = new URL(app.groups.status);
+  url.searchParams.append("status", String(status));
 
   try {
     const request = await fetch(url.toString(), {
@@ -180,13 +188,13 @@ export const filterMyGroups = async (status: GroupTypeFilter) => {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        ...HEADER_API_KEY
-      }
-    })
+        ...HEADER_API_KEY,
+      },
+    });
 
-    const response: Response<UserGroups> = await request.json()
-    return response
+    const response: Response<UserGroups> = await request.json();
+    return response;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
