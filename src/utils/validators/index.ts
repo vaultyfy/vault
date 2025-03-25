@@ -9,6 +9,7 @@ import {
 
 import { createGroupSchema } from "./create-group";
 import { exploreFilterSchema } from "./explore-schemas";
+import { createGoalSchema } from "./goals";
 
 export const schema = {
   login: signInSchema,
@@ -18,5 +19,6 @@ export const schema = {
   profile: personalInfoSchema,
   createGroup: createGroupSchema,
   exploreFilters: exploreFilterSchema,
-  adjustLoan: adjustLoanSchema
+  adjustLoan: adjustLoanSchema,
+  createGoal: createGoalSchema
 };
