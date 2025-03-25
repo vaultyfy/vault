@@ -39,6 +39,10 @@ export const app = {
     changePassword: `${BASE_URL}/customer/change-password`,
     updateRecord: `${BASE_URL}/customer/update-record`,
     savingsTrend: `${BASE_URL}/customer/dashboard/savingsTrend`,
+    setGoal: `${BASE_URL}/customer/set-goal`,
+    allGoals: `${BASE_URL}/customer/all-my-goals`,
+    updateGoal: `${BASE_URL}/customer/update-goal`,
+    deleteGoal: `${BASE_URL}/customer/delete-goal`,
   },
   groups: {
     create: `${BASE_URL}/groups/create`,

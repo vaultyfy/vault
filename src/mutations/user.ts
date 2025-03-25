@@ -26,3 +26,83 @@ export const updateUserInfo = async (payload: UserPayload) => {
     console.error(`${(error as Error).message}`);
   }
 };
+
+export type GoalPayload = {
+  name: string;
+  target: number;
+  duration: string;
+};
+
+export const setGoal = async (payload: GoalPayload) => {
+  const token = getCookie(TOKEN_KEY, { ...cookieOptions });
+  if (!token) return;
+
+  try {
+    const request = await fetch(app.customer.setGoal, {
+      method: "POST",
+      headers: {
+        ...HEADER_API_KEY,
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...payload,
+      }),
+    });
+
+    return request
+  } catch (error) {
+    console.error(`${(error as Error).message}`);
+  }
+};
+
+export const updateGoal = async (goalId: string, payload: GoalPayload) => {
+  const token = getCookie(TOKEN_KEY, { ...cookieOptions });
+  if (!token) return;
+  if (!goalId) {
+    console.log("goalId is missing")
+    return;
+  }
+
+  try {
+    const request = await fetch(`${app.customer.setGoal}/${goalId}`, {
+      method: "PATCH",
+      headers: {
+        ...HEADER_API_KEY,
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...payload,
+      }),
+    });
+
+    return request
+  } catch (error) {
+    console.error(`${(error as Error).message}`);
+  }
+};
+
+export const deletGoal = async (goalId: string) => {
+  const token = getCookie(TOKEN_KEY, { ...cookieOptions });
+  if (!token) return;
+  if (!goalId) {
+    console.log("goalId is missing")
+    return;
+  }
+
+  try {
+    const request = await fetch(`${app.customer.setGoal}/${goalId}`, {
+      method: "DELETE",
+      headers: {
+        ...HEADER_API_KEY,
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    return request
+  } catch (error) {
+    console.error(`${(error as Error).message}`);
+  }
+};
