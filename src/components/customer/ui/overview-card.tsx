@@ -13,6 +13,7 @@ import {
   Flex,
   Stack,
   Skeleton,
+  ChakraProps,
 } from "@chakra-ui/react";
 import { Icon } from "@components/icon";
 import { CurrencyNgn } from "@phosphor-icons/react";
@@ -20,7 +21,7 @@ import { ChevronDown } from "lucide-react";
 import { CustomProgress } from "@components/ui";
 import { formatPrice, skeleton } from "@utils/misc";
 
-interface OverviewCardProps {
+interface OverviewCardProps extends Partial<ChakraProps> {
   bgColor?: string;
   cardGradient?: string;
   hasProgress?: boolean;

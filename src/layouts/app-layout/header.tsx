@@ -186,6 +186,11 @@ export const AppHeader = ({
         zIndex={{ lg: "10", md: "1", base: "-10" }}
         backdropFilter="blur(10px)"
         px={{ base: ".6em", "2xl": "2em", xl: "1em", lg: ".8em" }}
+        display={{
+          lg: "flex",
+          md: pathname === "/dashboard/milestones" ? "none" : "flex",
+          base: pathname === "/dashboard/milestones" ? "none" : "flex",
+        }}
       >
         <HStack gap=".4em">
           <Text
@@ -195,7 +200,7 @@ export const AppHeader = ({
           >
             {routeTitle}
           </Text>
-          {pathname === "/dashboard" && (
+          {["/dashboard", "/dashboard/milestones"].includes(pathname) && (
             <>
               {isLoading ? (
                 <Skeleton

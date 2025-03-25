@@ -9,12 +9,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { skeleton } from "@utils/misc";
-import React from "react";
 
-export const GroupCardSkeleton = () => {
+export const GroupCardSkeleton = ({ total = 3 }: { total?: number }) => {
   return (
     <>
-      {Array.from({ length: 3 }, (__, index) => {
+      {Array.from({ length: total }, (__, index) => {
         return (
           <Box
             key={index}

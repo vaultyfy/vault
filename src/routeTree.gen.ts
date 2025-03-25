@@ -18,6 +18,7 @@ import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as ConsoleIndexImport } from './routes/console/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
+import { Route as DashboardMilestonesImport } from './routes/dashboard/milestones'
 import { Route as DashboardCreateGroupImport } from './routes/dashboard/create-group'
 import { Route as ConsoleRulesImport } from './routes/console/rules'
 import { Route as AuthSignupImport } from './routes/auth/signup'
@@ -82,6 +83,12 @@ const AuthIndexRoute = AuthIndexImport.update({
 const DashboardPaymentsRoute = DashboardPaymentsImport.update({
   id: '/dashboard/payments',
   path: '/dashboard/payments',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardMilestonesRoute = DashboardMilestonesImport.update({
+  id: '/dashboard/milestones',
+  path: '/dashboard/milestones',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -292,6 +299,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardCreateGroupImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/milestones': {
+      id: '/dashboard/milestones'
+      path: '/dashboard/milestones'
+      fullPath: '/dashboard/milestones'
+      preLoaderRoute: typeof DashboardMilestonesImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/payments': {
       id: '/dashboard/payments'
       path: '/dashboard/payments'
@@ -447,6 +461,7 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthSignupRoute
   '/console/rules': typeof ConsoleRulesRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
+  '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/auth': typeof AuthIndexRoute
   '/console': typeof ConsoleIndexRoute
@@ -479,6 +494,7 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthSignupRoute
   '/console/rules': typeof ConsoleRulesRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
+  '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/auth': typeof AuthIndexRoute
   '/console': typeof ConsoleIndexRoute
@@ -512,6 +528,7 @@ export interface FileRoutesById {
   '/auth/signup': typeof AuthSignupRoute
   '/console/rules': typeof ConsoleRulesRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
+  '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
   '/auth/': typeof AuthIndexRoute
   '/console/': typeof ConsoleIndexRoute
@@ -546,6 +563,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/console/rules'
     | '/dashboard/create-group'
+    | '/dashboard/milestones'
     | '/dashboard/payments'
     | '/auth'
     | '/console'
@@ -577,6 +595,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/console/rules'
     | '/dashboard/create-group'
+    | '/dashboard/milestones'
     | '/dashboard/payments'
     | '/auth'
     | '/console'
@@ -608,6 +627,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/console/rules'
     | '/dashboard/create-group'
+    | '/dashboard/milestones'
     | '/dashboard/payments'
     | '/auth/'
     | '/console/'
@@ -641,6 +661,7 @@ export interface RootRouteChildren {
   AuthSignupRoute: typeof AuthSignupRoute
   ConsoleRulesRoute: typeof ConsoleRulesRoute
   DashboardCreateGroupRoute: typeof DashboardCreateGroupRoute
+  DashboardMilestonesRoute: typeof DashboardMilestonesRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
   AuthIndexRoute: typeof AuthIndexRoute
   ConsoleIndexRoute: typeof ConsoleIndexRoute
@@ -673,6 +694,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthSignupRoute: AuthSignupRoute,
   ConsoleRulesRoute: ConsoleRulesRoute,
   DashboardCreateGroupRoute: DashboardCreateGroupRoute,
+  DashboardMilestonesRoute: DashboardMilestonesRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
   AuthIndexRoute: AuthIndexRoute,
   ConsoleIndexRoute: ConsoleIndexRoute,
@@ -715,6 +737,7 @@ export const routeTree = rootRoute
         "/auth/signup",
         "/console/rules",
         "/dashboard/create-group",
+        "/dashboard/milestones",
         "/dashboard/payments",
         "/auth/",
         "/console/",
@@ -763,6 +786,9 @@ export const routeTree = rootRoute
     },
     "/dashboard/create-group": {
       "filePath": "dashboard/create-group.tsx"
+    },
+    "/dashboard/milestones": {
+      "filePath": "dashboard/milestones.tsx"
     },
     "/dashboard/payments": {
       "filePath": "dashboard/payments.tsx"
