@@ -15,15 +15,16 @@ import { GoalsSkeleton } from "@components/skeletons";
 import { CircleProgress } from "@components/ui";
 import { MotionBox } from "@config/motion";
 import { useToastContext } from "@hooks/context";
+import { useMobileScreens } from "@hooks/mobile-screen";
 import { useGoals } from "@hooks/swr";
 import { CreateGoalModal } from "@layouts/modal-layout";
 import { deleteGoal } from "@mutations/user";
-import { CaretLeft, CaretRight, CaretDown } from "@phosphor-icons/react";
+import { CaretLeft } from "@phosphor-icons/react";
 import { useNavigate } from "@tanstack/react-router";
 import { State } from "@utils/constants";
 import { formatPrice } from "@utils/misc";
 import { Goal } from "@utils/types";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import React from "react";
 
 interface MilestoneItemProps extends Partial<ChakraProps> {
@@ -42,7 +43,7 @@ interface MilestoneItemProps extends Partial<ChakraProps> {
   noBottomBorder?: boolean;
 }
 
-const MilestoneItem: React.FC<MilestoneItemProps> = ({
+const MilestoneItem = ({
   progress,
   gradient,
   imageUrl,
@@ -57,7 +58,8 @@ const MilestoneItem: React.FC<MilestoneItemProps> = ({
   noBottomBorder = false,
   goalsCount = 0,
   ...props
-}) => {
+}: MilestoneItemProps) => {
+  const { isMobile } = useMobileScreens();
   const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
   return (
     <Flex
@@ -67,13 +69,13 @@ const MilestoneItem: React.FC<MilestoneItemProps> = ({
       borderBottom={noBottomBorder ? "none" : "0.5px solid var(--border-muted)"}
       {...props}
     >
-      <Flex alignItems="center" gap={{ lg: "1em", base: ".1em" }}>
+      <Flex alignItems="center" gap={{ lg: "1em", base: ".6em" }}>
         <Box>
           <CircleProgress
             progress={progress}
-            strokeWidth={8.5}
+            strokeWidth={isMobile ? 7 : 8.5}
             imgSize="90%"
-            size={100}
+            size={isMobile ? 85 : 100}
             gradient={gradient}
             imageUrl={imageUrl}
             isMilestoneProgress
@@ -144,7 +146,7 @@ const MilestoneItem: React.FC<MilestoneItemProps> = ({
           </HStack>
 
           <Text
-            fontSize="16px"
+            fontSize={{ lg: "16px", md: "16px", base: "14px" }}
             color="#2a2a2a"
             fontWeight="300"
             lineHeight={{ lg: "30px", md: "30px", base: "25px" }}
@@ -156,7 +158,7 @@ const MilestoneItem: React.FC<MilestoneItemProps> = ({
 
       <AnimatePresence>
         {isExpanded && children && (
-          <motion.div
+          <MotionBox
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -164,7 +166,7 @@ const MilestoneItem: React.FC<MilestoneItemProps> = ({
             style={{ overflow: "hidden" }}
           >
             {children}
-          </motion.div>
+          </MotionBox>
         )}
       </AnimatePresence>
     </Flex>
