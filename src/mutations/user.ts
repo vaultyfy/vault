@@ -29,7 +29,7 @@ export const updateUserInfo = async (payload: UserPayload) => {
 
 export type GoalPayload = {
   name: string;
-  target: number;
+  taget: number;
   duration: string;
 };
 
@@ -83,7 +83,7 @@ export const updateGoal = async (goalId: string, payload: GoalPayload) => {
   }
 };
 
-export const deletGoal = async (goalId: string) => {
+export const deleteGoal = async (goalId: string) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;
   if (!goalId) {
@@ -92,7 +92,7 @@ export const deletGoal = async (goalId: string) => {
   }
 
   try {
-    const request = await fetch(`${app.customer.setGoal}/${goalId}`, {
+    const request = await fetch(`${app.customer.deleteGoal}/${goalId}`, {
       method: "DELETE",
       headers: {
         ...HEADER_API_KEY,

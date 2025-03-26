@@ -1,6 +1,6 @@
 import { cookieOptions, HEADER_API_KEY, TOKEN_KEY } from "@utils/constants";
 import { app, auth } from "@utils/endpoints";
-import { Response, User } from "@utils/types";
+import { GoalsResponse, Response, User } from "@utils/types";
 import { getCookie } from "cookies-next";
 
 export const getUser = async () => {
@@ -36,7 +36,7 @@ export const getGoals = async () => {
       },
     });
 
-    const response = await request.json()
+    const response: GoalsResponse = await request.json()
     return response
   } catch (error) {
     console.error(`${(error as Error).message}`);
