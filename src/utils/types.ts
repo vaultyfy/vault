@@ -37,6 +37,22 @@ export type PaymentResponse = {
   };
 };
 
+export type Goal = {
+  id: number;
+  goalID: string;
+  name: string;
+  target: string;
+  duration: string;
+  goalReached: boolean;
+  createdAT: string;
+  updatedAT: string | null;
+  owner: User;
+}
+
+export type GoalsResponse = Response<Common & {
+  data: Goal[];
+}>;
+
 export type ReferalLinkResponse = {
   referalLink: string;
 };
@@ -215,18 +231,6 @@ export type BankDetail = {
   bankName: string;
   accountNumber: string;
   accountName: string;
-  createdAT: string;
-  updatedAT: string;
-  owner: string;
-};
-
-export type Goal = {
-  id: number;
-  goalID: string;
-  name: string;
-  target: number;
-  duration: string;
-  goalReached: boolean;
   createdAT: string;
   updatedAT: string;
   owner: string;

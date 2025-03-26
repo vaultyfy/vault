@@ -27,11 +27,15 @@ export const useGoals = () => {
   const { data, error, isLoading } = useSWR(key, () => getGoals(), swrOptions);
 
   const getUpdatedGoalsList = () => mutate(key);
+  const payload = data?.payload;
 
   return {
-    data,
+    data: payload?.data,
     error,
     isLoading,
+    pageSize: payload?.pageSize,
     mutate: getUpdatedGoalsList,
+    currentPage: payload?.currentPage,
+    count: payload?.total,
   };
 };

@@ -26,7 +26,7 @@ export const CreateGoalModal = ({
         initialValues={{
           duration: "",
           name: "",
-          target: 0,
+          taget: 0,
         }}
         validationSchema={schema.createGoal}
         onSubmit={(values, { setSubmitting }) => {
@@ -105,7 +105,7 @@ export const CreateGoalModal = ({
                 placeholder="House rent"
               />
               <InputField
-                name="target"
+                name="taget"
                 type="number"
                 label="Goal target"
                 placeholder="N500,000"

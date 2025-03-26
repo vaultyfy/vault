@@ -1,7 +1,6 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 import { MAIN_GRADIENT } from "@utils/constants";
 import { motion } from "motion/react";
-import React from "react";
 
 interface CircleProgressProps {
   progress?: number;
@@ -28,6 +27,7 @@ export const CircleProgress = ({
   const center = size / 2;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
+  const [gradientStart, gradientEnd] = gradient.split(",").map(color => color.trim());
   return (
     <Box position="relative" width={size} height={size}>
       <Box
@@ -40,14 +40,14 @@ export const CircleProgress = ({
       >
         <defs>
           <linearGradient
-            id="progressGradient"
+            id={`progressGradient-${gradientStart}-${gradientEnd}`}
             x1="0%"
             y1="0%"
             x2="100%"
             y2="0%"
           >
-            <stop offset="0%" style={{ stopColor: gradient?.split(",")[0] }} />
-            <stop offset="100%" style={{ stopColor: gradient.split(",")[1] }} />
+            <stop offset="0%" stopColor={gradientStart} />
+            <stop offset="100%" stopColor={gradientEnd} />
           </linearGradient>
         </defs>
 
@@ -68,7 +68,7 @@ export const CircleProgress = ({
           cy={center}
           r={radius}
           fill="none"
-          stroke="url(#progressGradient)"
+          stroke={`url(#progressGradient-${gradientStart}-${gradientEnd})`}
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={`${circumference} ${circumference}`}
@@ -121,7 +121,7 @@ export const CircleProgress = ({
             fontSize={`calc(${size}px * 0.12)`}
             fontWeight="500"
             bgClip="text"
-            bgGradient={`linear(to-r, ${gradient.split(",")[0]}, ${gradient.split(",")[1]})`}
+            bgGradient={`linear(to-r, ${gradientStart}, ${gradientEnd})`}
           >
             {progress}%
           </Text>
