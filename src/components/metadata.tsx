@@ -34,7 +34,7 @@ export const MetaData = ({
       <meta
         name="description"
         property="og:description"
-        content={description}></meta>
+        content={finalDescription}></meta>
 
       {/* Google's meta */}
       <meta itemProp="name" content={pageTitle} />
@@ -48,7 +48,7 @@ export const MetaData = ({
       {/* Twitter's meta */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={pageTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:site" content={url} />
       <meta name="twitter:image" content={previewImage} />
 

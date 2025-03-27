@@ -8,6 +8,8 @@ import {
   Box,
   Image,
   List,
+  Center,
+  Badge,
 } from "@chakra-ui/react";
 import { CalendarPopover, NotificationPopover } from "@components/customer/ui";
 import { AlignRight, CirclePlus } from "lucide-react";
@@ -18,16 +20,38 @@ import { useNavigate } from "@tanstack/react-router";
 import { useUiComponentStore } from "@store/ui";
 import { useCurrentPath } from "@hooks/current-path";
 import { useUser } from "@hooks/swr";
-import { skeleton } from "@utils/misc";
+import { dicebear, skeleton } from "@utils/misc";
 import { useConsolePath } from "@hooks/current-path";
-import { UserMenu } from "@components/ui";
+import { CircleProgress, UserMenu } from "@components/ui";
 import { MotionBox, MotionListItem } from "@config/motion";
 import React from "react";
-import { SIDEBAR_NAV_ITEMS } from "./sidebar";
+import { SIDEBAR_NAV_ITEMS, SidenavItems } from "./sidebar";
 import { Link } from "@tanstack/react-router";
-import { X } from "@phosphor-icons/react";
-import { Icon } from "@components/icon";
+import { PlusCircle, SealCheck, X } from "@phosphor-icons/react";
+import { GradientIcon, Icon } from "@components/icon";
 import { useAuthContext } from "@hooks/context";
+import { MAIN_GRADIENT, randomBg } from "@utils/constants";
+
+const MOBILE_FOOT_NAV_ITEMS: SidenavItems[] = [
+  {
+    id: crypto.randomUUID(),
+    name: "notification",
+    path: "/",
+    icon: <Icon name="bell-light" />,
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "calendar",
+    path: "/",
+    icon: <Icon name="calendar-light" />,
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "create group",
+    path: "/dashboard/create-group",
+    icon: <PlusCircle size="24" strokeWidth="1.5px" color="#fff" />,
+  },
+];
 
 export const AppHeader = ({
   routeTitle,
@@ -38,7 +62,13 @@ export const AppHeader = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { updateUiStore } = useUiComponentStore();
   const pathname = useCurrentPath();
-  const { userName, isLoading } = useUser();
+  const {
+    userName,
+    isLoading,
+    hasUserCompletedKyc,
+    kycPercentage,
+    walletBalance,
+  } = useUser();
   const adminPathname = useConsolePath();
   const [isMobileSideNavOpen, setIsMobileSideNavOpen] =
     React.useState<boolean>(false);
@@ -89,15 +119,12 @@ export const AppHeader = ({
         initial={{ width: "0", display: "none" }}
         height="100vh"
         position="absolute"
-        top="2"
-        left="2"
-        mb="1em"
+        top="0"
+        left="0"
         zIndex="10000"
         px="1em"
         py="1em"
-        background="var(--vista-white)"
-        borderRadius="8px"
-        border="1px solid var(--outline)"
+        background="var(--main)"
         animate={
           isMobileSideNavOpen
             ? {
@@ -111,15 +138,162 @@ export const AppHeader = ({
       >
         <Box
           position="absolute"
-          top="2"
-          right="3"
+          top="4"
+          left="3"
+          rounded="full"
+          border="1px solid #fff"
+          height="36px"
+          width="36px"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
           onClick={() => setIsMobileSideNavOpen(false)}
-          _hover={{ cursor: "pointer", background: "var(--white-smoke)" }}
+          _hover={{ cursor: "pointer" }}
         >
-          <X size="22" color="var(--dark)" />
+          <X size="20" color="#fff" />
         </Box>
-        <Image src="/img/logo.svg" height="35px" />
-        <Flex gap=".8em" flexFlow="column" mt="4em" width="100%">
+        <Center>
+          <Image src="/img/logo-light.svg" height="35px" />
+        </Center>
+
+        <Center flexFlow="column" mt="1em" gap=".6em">
+          <Flex flexFlow="column" gap=".6em">
+            {isLoading ? (
+              <Skeleton
+                height="120px"
+                width="120px"
+                border="1px solid red"
+                startColor={skeleton.startColor}
+                endColor={skeleton.endColor}
+                borderRadius="100%"
+              />
+            ) : (
+              <CircleProgress
+                progress={kycPercentage}
+                size={150}
+                strokeWidth={5}
+                imageUrl={`${dicebear}?seed=${userName}&size=48&flip=true&backgroundColor=${randomBg}`}
+              />
+            )}
+            {!isLoading ? (
+              <Text
+                textAlign="center"
+                fontSize="16px"
+                color="var(--grey)"
+                fontWeight="400"
+                lineHeight="24px"
+              >
+                {userName || "Danielking"}
+              </Text>
+            ) : (
+              <Center>
+                <Skeleton
+                  startColor={skeleton.startColor}
+                  endColor={skeleton.endColor}
+                  height="14px"
+                  width="70%"
+                  borderRadius="6px"
+                />
+              </Center>
+            )}
+          </Flex>
+
+          {hasUserCompletedKyc ? (
+            <Badge
+              background="var(--white-fade-8)"
+              display="flex"
+              justifyContent="center"
+              gap=".6em"
+              height="37px"
+              width="158px"
+              borderRadius="30px"
+              alignItems="center"
+            >
+              <GradientIcon
+                weight="fill"
+                startColor="#2C9BF0"
+                endColor="#1CCFBD"
+                IconComponent={SealCheck}
+                size="18"
+              />
+              <Text
+                textTransform="capitalize"
+                fontSize="14px"
+                fontWeight="400"
+                bgClip="text"
+                bgGradient={MAIN_GRADIENT}
+              >
+                verified
+              </Text>
+            </Badge>
+          ) : null}
+          {!hasUserCompletedKyc && (
+            <Link to="/dashboard/settings">
+              <Badge
+                background="var(--white-fade-8)"
+                display="flex"
+                justifyContent="center"
+                gap=".6em"
+                height="37px"
+                width="158px"
+                borderRadius="30px"
+                alignItems="center"
+              >
+                <Text
+                  textTransform="capitalize"
+                  fontSize="14px"
+                  fontWeight="400"
+                  bgClip="text"
+                  bgGradient={MAIN_GRADIENT}
+                >
+                  Complete profile
+                </Text>
+              </Badge>
+            </Link>
+          )}
+          {kycPercentage !== 100 && (
+            <Box width="80%" border="0.2px solid var(--border-muted)" />
+          )}
+          <Flex flexFlow="column" gap=".1em">
+            <Text
+              textAlign="center"
+              fontSize="10px"
+              textTransform="capitalize"
+              bgClip="text"
+              bgGradient={MAIN_GRADIENT}
+            >
+              Wallet balance
+            </Text>
+            {isLoading ? (
+              <Skeleton
+                startColor={skeleton.startColor}
+                endColor={skeleton.endColor}
+                height="20px"
+                width="100%"
+                borderRadius="8px"
+              />
+            ) : (
+              <Text
+                fontFamily="var(--clash-grotesk-600)"
+                fontSize="22px"
+                lineHeight="27px"
+                bgGradient={MAIN_GRADIENT}
+                bgClip="text"
+              >
+                {walletBalance}
+              </Text>
+            )}
+          </Flex>
+        </Center>
+
+        <Flex
+          gap=".2em"
+          flexFlow="column"
+          mt="1.5em"
+          width="100%"
+          borderBottom="1px solid var(--border-muted)"
+          pb=".2em"
+        >
           {SIDEBAR_NAV_ITEMS.map((item, index) => (
             <List key={item.id}>
               <Link to={item.path}>
@@ -130,11 +304,11 @@ export const AppHeader = ({
                   px={{ "2xl": "1.4em", xl: "1em", lg: "1em", base: "1em" }}
                   height="54px"
                   borderRadius="8px"
-                  gap={{ "2xl": "1.4em", xl: ".6em", lg: "1em" }}
+                  gap="1em"
                   textTransform="capitalize"
-                  color="var(--dark)"
+                  color="#fff"
                   background={
-                    pathname === item.path ? "var(--white-smoke)" : ""
+                    pathname === item.path ? "var(--white-fade-8)" : ""
                   }
                   _hover={{
                     cursor: "pointer",
@@ -147,6 +321,56 @@ export const AppHeader = ({
                       : { x: -20, opacity: 0 }
                   }
                 >
+                  {item.icon}
+                  <Text
+                    fontSize="16px"
+                    fontWeight={pathname === item.path ? "400" : "300"}
+                    lineHeight="19px"
+                    whiteSpace="nowrap"
+                  >
+                    {item.name}
+                  </Text>
+                </MotionListItem>
+              </Link>
+            </List>
+          ))}
+        </Flex>
+
+        <Flex
+          gap=".2em"
+          flexFlow="column"
+          mt=".8em"
+          width="100%"
+          pb=".2em"
+        >
+          {MOBILE_FOOT_NAV_ITEMS.map((item, index) => (
+            <List key={item.id}>
+              <Link to={item.path}>
+                <MotionListItem
+                  listStyleType="none"
+                  display="flex"
+                  alignItems="center"
+                  px="1em"
+                  height="54px"
+                  borderRadius="8px"
+                  gap=".6em"
+                  textTransform="capitalize"
+                  color="#fff"
+                  background={
+                    pathname === item.path ? "var(--white-fade-8)" : ""
+                  }
+                  _hover={{
+                    cursor: "pointer",
+                    background: "var(--white-fade-8)",
+                  }}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={
+                    isMobileSideNavOpen
+                      ? { x: 0, opacity: 1, transition: { delay: index * 0.1 } }
+                      : { x: -20, opacity: 0 }
+                  }
+                >
+                  {item.icon}
                   <Text
                     fontSize="16px"
                     fontWeight={pathname === item.path ? "400" : "300"}
@@ -163,10 +387,10 @@ export const AppHeader = ({
 
         <HStack
           position="absolute"
-          bottom="10"
+          bottom="4"
           onClick={logout}
           _hover={{ cursor: "pointer" }}
-          px={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
+          px="1em"
         >
           <Icon name="logout" />
           <Text color="var(--grey)" fontWeight="300" fontSize="16px">
@@ -186,6 +410,11 @@ export const AppHeader = ({
         zIndex={{ lg: "10", md: "1", base: "-10" }}
         backdropFilter="blur(10px)"
         px={{ base: ".6em", "2xl": "2em", xl: "1em", lg: ".8em" }}
+        display={{
+          lg: "flex",
+          md: pathname === "/dashboard/milestones" ? "none" : "flex",
+          base: pathname === "/dashboard/milestones" ? "none" : "flex",
+        }}
       >
         <HStack gap=".4em">
           <Text
@@ -195,7 +424,7 @@ export const AppHeader = ({
           >
             {routeTitle}
           </Text>
-          {pathname === "/dashboard" && (
+          {["/dashboard", "/dashboard/milestones"].includes(pathname) && (
             <>
               {isLoading ? (
                 <Skeleton

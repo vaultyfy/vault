@@ -14,13 +14,20 @@ import { MetaData } from "@components/metadata";
 import { cookieOptions, TOKEN_KEY } from "@utils/constants";
 import { useToastContext } from "@hooks/context";
 import { setCookie } from "cookies-next";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { auth } from "@utils/endpoints";
 import { LoginResponse, Response } from "@utils/types";
+import { AppSearchParams } from "src/routes/dashboard/explore/$groupId";
+import { useUiComponentStore } from "@store/ui";
+import { Link } from "@components/link";
 
-export const LoginPage = () => {
+export interface AuthPageProps
+  extends Partial<Pick<AppSearchParams, "redirect" | "referrer">> {}
+
+export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
   const { openToast } = useToastContext();
   const navigate = useNavigate();
+  const { store } = useUiComponentStore();
 
   return (
     <>
@@ -58,7 +65,14 @@ export const LoginPage = () => {
                     ...cookieOptions,
                   });
                   openToast(response.message, "success");
-                  navigate({ to: "/dashboard" });
+                  navigate({
+                    to: redirect
+                      ? `${decodeURIComponent(redirect)}`
+                      : "/dashboard",
+                    search: {
+                      referrer: String(referrer),
+                    },
+                  });
                 } else {
                   openToast(response.message || "Login failed", "error");
                 }
@@ -74,7 +88,14 @@ export const LoginPage = () => {
           {(formik) => (
             <Form>
               <Flex flexFlow="column" gap="4em">
-                <Link to="/">
+                <Link
+                  to="/"
+                  search={{
+                    ui: store.ui,
+                    redirect: String(redirect),
+                    referrer: String(referrer),
+                  }}
+                >
                   <Image
                     src="/img/logo.svg"
                     alt="Vaultyfy logo"
@@ -106,7 +127,14 @@ export const LoginPage = () => {
                     placeholder="Password"
                   />
 
-                  <Link to="/auth/forgot-password">
+                  <Link
+                    to="/auth/forgot-password"
+                    search={{
+                      ui: store.ui,
+                      redirect: String(redirect),
+                      referrer: String(referrer),
+                    }}
+                  >
                     <Text
                       float="right"
                       color="var(--grey)"
@@ -149,7 +177,14 @@ export const LoginPage = () => {
                     textTransform="capitalize"
                   >
                     Don’t have an account?{" "}
-                    <Link to="/auth/signup">
+                    <Link
+                      to="/auth/signup"
+                      search={{
+                        ui: store.ui,
+                        redirect: String(redirect),
+                        referrer: String(referrer),
+                      }}
+                    >
                       <Box
                         cursor="pointer"
                         as="span"

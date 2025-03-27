@@ -1,35 +1,36 @@
-import React from "react";
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
-import { ToastProvider } from "@context/toast-provider";
-import { AuthProvider } from "@context/auth-provider";
-import {NuqsAdapter} from "nuqs/adapters/react"
+import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
+import { AuthContextValues } from "@context/auth-provider";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { UiComponents } from "@store/ui";
+import { DEFAULT_REDIRECT_URL } from "@utils/constants";
+import { AppSearchParams } from "./dashboard/explore/$groupId";
 
-const TanStackRouterDevtools =
-  process.env.NODE_ENV === "production"
-    ? () => null
-    : React.lazy(() =>
-        import("@tanstack/router-devtools").then((res) => ({
-          default: res.TanStackRouterDevtools,
-        })),
-      );
+export interface AppContext {
+  auth: AuthContextValues;
+}
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<AppContext>()({
   component: RootComponent,
+  // occasionally turn this partial return type of AppSearchParams
+  // for type-safety in the Link component
+  // just in dev mode though.. if not. production builds will fail
+  validateSearch: (
+    search: Record<string, keyof AppSearchParams>,
+  ): Partial<AppSearchParams> => {
+    const result: Partial<AppSearchParams> = {};
+    if (search.ui) result.ui = search.ui as UiComponents;
+    if (search.redirect) result.redirect = search.redirect;
+    if (search.referrer) result.referrer = search.referrer;
+
+    return result;
+  },
 });
 
 function RootComponent() {
   return (
     <>
-      <NuqsAdapter>
-        <ToastProvider>
-          <AuthProvider>
-            <Outlet />
-          </AuthProvider>
-        </ToastProvider>
-      </NuqsAdapter>
-      <React.Suspense>
-        <TanStackRouterDevtools position="bottom-right" />
-      </React.Suspense>
+      <Outlet />
+      <TanStackRouterDevtools position="bottom-right" />
     </>
   );
 }

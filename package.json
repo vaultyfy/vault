@@ -17,6 +17,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
+    "@tanstack/react-router-devtools": "^1.114.27",
     "@tanstack/router-plugin": "^1.95.0",
     "@types/node": "^22.10.5",
     "@types/react": "^18.3.3",
@@ -30,12 +31,10 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
-    "@badrap/bar-of-progress": "^0.2.2",
     "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/react": "^2.8.2",
     "@phosphor-icons/react": "^2.1.7",
     "@tanstack/react-router": "^1.95.0",
-    "@tanstack/router-devtools": "^1.95.0",
     "cookies-next": "^5.1.0",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",

@@ -1,21 +1,41 @@
-import { getUser } from "@queries/get-user";
+import { getGoals, getUser } from "@queries/get-user";
 import { swrOptions } from "@utils/constants";
 import { formatPrice } from "@utils/misc";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 export const useUser = () => {
   const key = "user";
   const { data, error, isLoading } = useSWR(key, () => getUser(), swrOptions);
 
-  const walletBalance = data?.payload?.my_wallet.balance;
+  const payload = data?.payload;
+  const walletBalance = payload?.my_wallet.balance;
 
   return {
-    data: data?.payload,
-    userName: data?.payload?.name?.split(" ")[0],
+    data: payload,
     error,
     isLoading,
+    userName: payload?.name?.split(" ")[0],
     walletBalance: formatPrice(walletBalance as number),
-    kycPercentage: Number(data?.payload?.Kycpercentage),
-    hasUserCompletedKyc: Number(data?.payload?.Kycpercentage) === 100,
+    kycPercentage: Number(payload?.Kycpercentage),
+    cyclesCompleted: payload?.completedCyclesCount,
+    hasUserCompletedKyc: Number(payload?.Kycpercentage) === 100,
+  };
+};
+
+export const useGoals = () => {
+  const key = "goals";
+  const { data, error, isLoading } = useSWR(key, () => getGoals(), swrOptions);
+
+  const getUpdatedGoalsList = () => mutate(key);
+  const payload = data?.payload;
+
+  return {
+    data: payload?.data,
+    error,
+    isLoading,
+    pageSize: payload?.pageSize,
+    mutate: getUpdatedGoalsList,
+    currentPage: payload?.currentPage,
+    count: payload?.total,
   };
 };

@@ -22,12 +22,14 @@ import React from "react";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { CreateGroupModal } from "@layouts/modal-layout";
 import { useUiComponentStore } from "@store/ui";
-import { useJoinedGroups, useSavingsTrend, useWallet } from "@hooks/swr";
+import { useJoinedGroups, useSavingsTrend, useUser, useWallet } from "@hooks/swr";
+import { Link } from "@components/link";
 
 export const Dashboard = () => {
   const { store, updateUiStore } = useUiComponentStore();
   const { isMobile } = useMobileScreens();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { cyclesCompleted, isLoading: loadingCycleCount } = useUser();
 
   React.useEffect(() => {
     if (store.ui === "create-group" && !isMobile) {
@@ -47,8 +49,8 @@ export const Dashboard = () => {
   } = useJoinedGroups();
   const { walletBalance, lastUpdated, isLoading, expectedReturns } =
     useWallet();
-
-  const { data } = useSavingsTrend();
+  // const { data } = useSavingsTrend();
+  //
 
   return (
     <>
@@ -86,18 +88,20 @@ export const Dashboard = () => {
             bgColor="var(--main)"
             loading={isLoading}
           />
-          <OverviewCard
-            cardIcon="trophy"
-            cardTitle="Rewards & milestones"
-            hasFilter={true}
-            hasProgress={true}
-            progressLevel={40}
-            progressColor="var(--main-gradient)"
-            iconBg="var(--overview-card-secondary)"
-            bgColor="var(--main)"
-            cycle={1}
-            loading={isLoading}
-          />
+          <Link to="/dashboard/milestones">
+            <OverviewCard
+              cardIcon="trophy"
+              cardTitle="Rewards & milestones"
+              hasFilter={true}
+              hasProgress={true}
+              progressLevel={40}
+              progressColor="var(--main-gradient)"
+              iconBg="var(--overview-card-secondary)"
+              bgColor="var(--main)"
+              cycle={cyclesCompleted ?? 0}
+              loading={loadingCycleCount}
+            />
+          </Link>
         </SimpleGrid>
         {count === 0 ? (
           <Center w="full" minH="500px" mt={4}>

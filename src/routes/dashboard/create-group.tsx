@@ -4,10 +4,12 @@ import { AppLayout } from "@layouts/app-layout";
 import { CreateGroupContent } from "@layouts/modal-layout";
 import { useNavigate } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
+import { requireAuth } from "@utils/route-guard";
 import React from "react";
 
 export const Route = createFileRoute("/dashboard/create-group")({
   component: RouteComponent,
+  beforeLoad: requireAuth()
 });
 
 function RouteComponent() {
