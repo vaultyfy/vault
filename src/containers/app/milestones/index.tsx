@@ -16,7 +16,7 @@ import { CircleProgress } from "@components/ui";
 import { MotionBox } from "@config/motion";
 import { useToastContext } from "@hooks/context";
 import { useMobileScreens } from "@hooks/mobile-screen";
-import { useGoals } from "@hooks/swr";
+import { useConsistencyStats, useGoals, useReferralStats } from "@hooks/swr";
 import { CreateGoalModal } from "@layouts/modal-layout";
 import { deleteGoal } from "@mutations/user";
 import { CaretLeft } from "@phosphor-icons/react";
@@ -180,6 +180,10 @@ export const Milestones = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const [state, setState] = React.useState<State>("idle");
   const [selectedGoal, setSelectedGoal] = React.useState<Goal>();
+  const { data: referrals } = useReferralStats();
+  const { data: consistency } = useConsistencyStats();
+
+  console.log("consitency", consistency);
 
   const handleGoalDeletion = async (goalId: string) => {
     if (!goalId) return;
@@ -238,23 +242,23 @@ export const Milestones = () => {
         >
           <Stack direction="column" gap="1em">
             <MilestoneItem
-              progress={73}
+              progress={Number(consistency?.progressPercentage) || 0}
               gradient="#59b0fC,#5f77d4"
               imageUrl="/img/award-blue.svg"
               title="consistency"
               description="Complete 3 full saving cycle & save N20,000 Charges on your next Pay-out"
-              badge="2/3 completed"
+              badge={`${consistency?.completedCyclesCount}/${consistency?.cyclesRemaining} completed`}
               hasBadge
               pb="3em"
             />
 
             <MilestoneItem
-              progress={73}
+              progress={Number(referrals?.referralPercentage) || 0}
               gradient="#695cf4,#9e4ffe"
               imageUrl="/img/award-purple.svg"
               title="referrals"
               description="Share a thrift group with 10 friends, and enjoy zero charges on your next pay-outs when they join!"
-              badge="1/11 completed"
+              badge={`${referrals?.joinedReferrals}/${referrals?.referralCount} completed`}
               hasBadge
               pb="3em"
             />
