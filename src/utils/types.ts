@@ -21,6 +21,19 @@ export type LoginResponse = {
   Kycpercentage: string;
 };
 
+export type ReferralStats = {
+  referralPercentage: number;
+  referralCount: number;
+  joinedReferrals: number;
+};
+
+export type ConsistencyStats = {
+  progressPercentage: number;
+  completedCyclesCount: number;
+  cyclesRemaining: number;
+  consistencyRewardEligible: boolean;
+};
+
 export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
@@ -47,11 +60,13 @@ export type Goal = {
   createdAT: string;
   updatedAT: string | null;
   owner: User;
-}
+};
 
-export type GoalsResponse = Response<Common & {
-  data: Goal[];
-}>;
+export type GoalsResponse = Response<
+  Common & {
+    data: Goal[];
+  }
+>;
 
 export type ReferalLinkResponse = {
   referalLink: string;

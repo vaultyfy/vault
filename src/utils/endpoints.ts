@@ -43,6 +43,8 @@ export const app = {
     allGoals: `${BASE_URL}/customer/all-my-goals`,
     updateGoal: `${BASE_URL}/customer/update-goal`,
     deleteGoal: `${BASE_URL}/customer/delete-goal`,
+    referrals: `${BASE_URL}/customer/referral/stats`,
+    consistency: `${BASE_URL}/customer/consistency/stats`
   },
   groups: {
     create: `${BASE_URL}/groups/create`,

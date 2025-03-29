@@ -36,7 +36,7 @@ const MOBILE_FOOT_NAV_ITEMS: SidenavItems[] = [
   {
     id: crypto.randomUUID(),
     name: "notification",
-    path: "/",
+    path: "/dashboard/notification",
     icon: <Icon name="bell-light" />,
   },
   {

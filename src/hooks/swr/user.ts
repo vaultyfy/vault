@@ -1,4 +1,4 @@
-import { getGoals, getUser } from "@queries/get-user";
+import { getConsistencyStats, getGoals, getReferralStats, getUser } from "@queries/get-user";
 import { swrOptions } from "@utils/constants";
 import { formatPrice } from "@utils/misc";
 import useSWR, { mutate } from "swr";
@@ -37,5 +37,33 @@ export const useGoals = () => {
     mutate: getUpdatedGoalsList,
     currentPage: payload?.currentPage,
     count: payload?.total,
+  };
+};
+
+export const useReferralStats = () => {
+  const key = "referral-stats";
+  const { data, error, isLoading } = useSWR(key, () => getReferralStats(), swrOptions);
+
+  const updateStats = () => mutate(key);
+
+  return {
+    data: data?.payload,
+    error,
+    isLoading,
+    mutate: updateStats,
+  };
+};
+
+export const useConsistencyStats = () => {
+  const key = "consistency-stats";
+  const { data, error, isLoading } = useSWR(key, () => getConsistencyStats(), swrOptions);
+
+  const updateStats = () => mutate(key);
+
+  return {
+    data: data?.payload,
+    error,
+    isLoading,
+    mutate: updateStats,
   };
 };
