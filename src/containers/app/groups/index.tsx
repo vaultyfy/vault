@@ -41,8 +41,10 @@ export const Groups = () => {
   const { user } = useAuthContext();
   const { isMobile } = useMobileScreens();
   const { data: joinedGroups, count, isLoading } = useJoinedGroups();
-  const { data: activeGroups, isLoading: isActiveGroupsLoading } = useMyGroupsWithStatus("Active");
-  const { data: completedGroups, isLoading: isCompletedGroupsLoading } = useMyGroupsWithStatus("Completed");
+  const { data: activeGroups, isLoading: isActiveGroupsLoading } =
+    useMyGroupsWithStatus("Active");
+  const { data: completedGroups, isLoading: isCompletedGroupsLoading } =
+    useMyGroupsWithStatus("Completed");
   const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
     undefined,
   );
@@ -73,9 +75,18 @@ export const Groups = () => {
     setActiveGroup(group);
   };
 
-  const contributionDates = activeGroup?.participants
-    .find((participant) => participant?.customer?.id === user?.id)
-    ?.contributionDates.map((date) => dayjs(date).format("DD-MMMM-YYYY"));
+  // current logged-in user in the participants array
+  const me = activeGroup?.participants.find(
+    (participant) => participant.customer?.id === user?.id,
+  );
+
+  const contributionDates = me?.contributionDates.map((date) =>
+    dayjs(date).format("DD-MMMM-YYYY"),
+  );
+  const missedContributionDates = me?.missedContributionDates.map((date) =>
+    dayjs(date).format("DD-MM-YYYY"),
+  );
+  const nextContributionDate = me?.nextContributionDate;
 
   const handleTabChange = (index: number) => {
     setTabIndex(index);
@@ -132,7 +143,11 @@ export const Groups = () => {
         </HStack>
 
         <Box width="full" mt="1em">
-          <Tabs variant="soft-rounded" index={tabIndex} onChange={handleTabChange}>
+          <Tabs
+            variant="soft-rounded"
+            index={tabIndex}
+            onChange={handleTabChange}
+          >
             <TabList
               gap={{ lg: ".6em", md: ".6em", base: ".4em" }}
               overflowX="auto"
@@ -337,23 +352,20 @@ export const Groups = () => {
             <PaymentCardSkeleton />
           ) : (
             <>
-              {dayjs().format("DD-MM-YYYY") === contributionDates?.[0] && (
+              {dayjs().format("DD-MM-YYYY") === nextContributionDate && (
                 <PaymentCard
-                  deadlineDate={dayjs(activeGroup?.startDate).format(
+                  deadlineDate={dayjs(nextContributionDate).format(
                     "DD-MMMM-YYYY",
                   )}
                   dateType="start-date"
                   amount={activeGroup?.contributionAmount}
-                  dayOfWeek={dayjs(activeGroup?.startDate).format("dddd")}
+                  dayOfWeek={dayjs(nextContributionDate).format("dddd")}
                   isActive
                   groupId={activeGroup?.groupID || ""}
-                  participantId={
-                    activeGroup?.participants.find(
-                      (participant) => participant?.customer?.id === user?.id,
-                    )?.participantID || ""
-                  }
+                  participantId={me?.participantID || ""}
                 />
               )}
+              {/* {dayjs().format("DD-MM-YYYY") === missedContributionDates?.[0]} */}
               {contributionDates?.map((contributionDate, index) => {
                 return (
                   <PaymentCard
