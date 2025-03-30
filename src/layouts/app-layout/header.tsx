@@ -65,6 +65,7 @@ export const AppHeader = ({
   const {
     userName,
     isLoading,
+    verified,
     hasUserCompletedKyc,
     kycPercentage,
     walletBalance,
@@ -198,7 +199,7 @@ export const AppHeader = ({
             )}
           </Flex>
 
-          {hasUserCompletedKyc ? (
+          {verified ? (
             <Badge
               background="var(--white-fade-8)"
               display="flex"
@@ -251,7 +252,7 @@ export const AppHeader = ({
               </Badge>
             </Link>
           )}
-          {kycPercentage !== 100 && (
+          {!verified && (
             <Box width="80%" border="0.2px solid var(--border-muted)" />
           )}
           <Flex flexFlow="column" gap=".1em">

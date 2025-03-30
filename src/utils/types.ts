@@ -34,6 +34,15 @@ export type ConsistencyStats = {
   consistencyRewardEligible: boolean;
 };
 
+export type RemainingContributions = {
+  contributions: {
+    group: string;
+    remaining: number;
+    frequency: ContributionFrequency;
+  }[];
+  grandTotal: number;
+};
+
 export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
@@ -120,6 +129,7 @@ export type User = {
   customerID: string;
   email: string;
   isVerified: boolean;
+  isFullyVerified: boolean;
   kycStatus: Record<string, any>;
   KycAction: null;
   Kycpercentage: number | string;
@@ -230,6 +240,7 @@ export type Participant = {
   group: string;
   customer: Customer;
   contributions: Contribution[];
+  missedContributionDates: string[];
 };
 
 export type Contribution = {

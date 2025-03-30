@@ -22,8 +22,15 @@ import React from "react";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { CreateGroupModal } from "@layouts/modal-layout";
 import { useUiComponentStore } from "@store/ui";
-import { useJoinedGroups, useSavingsTrend, useUser, useWallet } from "@hooks/swr";
+import {
+  useJoinedGroups,
+  useRemainingContributions,
+  useSavingsTrend,
+  useUser,
+  useWallet,
+} from "@hooks/swr";
 import { Link } from "@components/link";
+import { formatPrice } from "@utils/misc";
 
 export const Dashboard = () => {
   const { store, updateUiStore } = useUiComponentStore();
@@ -49,8 +56,8 @@ export const Dashboard = () => {
   } = useJoinedGroups();
   const { walletBalance, lastUpdated, isLoading, expectedReturns } =
     useWallet();
+  const { total } = useRemainingContributions();
   // const { data } = useSavingsTrend();
-  //
 
   return (
     <>
@@ -70,7 +77,7 @@ export const Dashboard = () => {
           <OverviewCard
             cardIcon="time-is-money"
             cardTitle="Remaining contribution"
-            amount={walletBalance}
+            amount={formatPrice(Number(total))}
             hasFilter={true}
             hasProgress={true}
             progressLevel={40}

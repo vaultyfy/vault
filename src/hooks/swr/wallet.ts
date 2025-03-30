@@ -1,7 +1,12 @@
-import { getExpectedReturns, getWallet } from "@queries/get-wallet";
+import {
+  getExpectedReturns,
+  getRemainingContributions,
+  getWallet,
+} from "@queries/get-wallet";
 import { swrOptions } from "@utils/constants";
 import useSWR from "swr";
 import dayjs from "dayjs";
+import { formatPrice } from "@utils/misc";
 
 export const useWallet = () => {
   const key = "wallet";
@@ -36,6 +41,22 @@ export const useExpectedReturns = () => {
 
   return {
     data: data?.payload?.expectedReturns,
+    error,
+    isLoading,
+  };
+};
+
+export const useRemainingContributions = () => {
+  const key = "remaining-contributions";
+  const { data, error, isLoading } = useSWR(
+    key,
+    () => getRemainingContributions(),
+    swrOptions,
+  );
+
+  return {
+    total: data?.payload?.grandTotal,
+    contributions: data?.payload?.contributions,
     error,
     isLoading,
   };

@@ -14,6 +14,7 @@ export const useUser = () => {
     data: payload,
     error,
     isLoading,
+    verified: payload?.isFullyVerified,
     userName: payload?.name?.split(" ")[0],
     walletBalance: formatPrice(walletBalance as number),
     kycPercentage: Number(payload?.Kycpercentage),
