@@ -41,8 +41,10 @@ export const Groups = () => {
   const { user } = useAuthContext();
   const { isMobile } = useMobileScreens();
   const { data: joinedGroups, count, isLoading } = useJoinedGroups();
-  const { data: activeGroups, isLoading: isActiveGroupsLoading } = useMyGroupsWithStatus("Active");
-  const { data: completedGroups, isLoading: isCompletedGroupsLoading } = useMyGroupsWithStatus("Completed");
+  const { data: activeGroups, isLoading: isActiveGroupsLoading } =
+    useMyGroupsWithStatus("Active");
+  const { data: completedGroups, isLoading: isCompletedGroupsLoading } =
+    useMyGroupsWithStatus("Completed");
   const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
     undefined,
   );
@@ -132,7 +134,11 @@ export const Groups = () => {
         </HStack>
 
         <Box width="full" mt="1em">
-          <Tabs variant="soft-rounded" index={tabIndex} onChange={handleTabChange}>
+          <Tabs
+            variant="soft-rounded"
+            index={tabIndex}
+            onChange={handleTabChange}
+          >
             <TabList
               gap={{ lg: ".6em", md: ".6em", base: ".4em" }}
               overflowX="auto"

@@ -332,3 +332,19 @@ export type UserPayload = {
   email: string;
   acceptTermsAndConditions: boolean;
 };
+
+export type Notification = {
+  id: number;
+  notificationID: `VAUTNOT${string}`;
+  date: string;
+  account: string;
+  message: string;
+  subject: string;
+  isRead: boolean;
+  readAt: string | null;
+  link: string | null;
+};
+
+export type NotificationPayload = Common & {
+  data: Notification[];
+};
