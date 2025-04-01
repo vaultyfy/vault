@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MetaData } from "@components/metadata";
 import { AppLayout } from "@layouts/app-layout";
-import NotificationPage from "@containers/app/notification";
+import MobileGroupCalendar from "@containers/app/calendar";
 
-export const Route = createFileRoute("/dashboard/notification")({
+export const Route = createFileRoute("/dashboard/calendar")({
   component: RouteComponent,
 });
 
@@ -12,11 +12,11 @@ function RouteComponent() {
     <>
       <MetaData
         url="vaultify.vercel.app"
-        pageTitle="Notification &mdash; Vaultify"
+        pageTitle="Calendar &mdash; Vaultify"
       />
 
-      <AppLayout routeTitle={""}>
-        <NotificationPage />
+      <AppLayout routeTitle={"Calendar"}>
+        <MobileGroupCalendar />
       </AppLayout>
     </>
   );
