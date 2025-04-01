@@ -21,6 +21,7 @@ import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardNotificationImport } from './routes/dashboard/notification'
 import { Route as DashboardMilestonesImport } from './routes/dashboard/milestones'
 import { Route as DashboardCreateGroupImport } from './routes/dashboard/create-group'
+import { Route as DashboardCalendarImport } from './routes/dashboard/calendar'
 import { Route as ConsoleRulesImport } from './routes/console/rules'
 import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
@@ -102,6 +103,12 @@ const DashboardMilestonesRoute = DashboardMilestonesImport.update({
 const DashboardCreateGroupRoute = DashboardCreateGroupImport.update({
   id: '/dashboard/create-group',
   path: '/dashboard/create-group',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardCalendarRoute = DashboardCalendarImport.update({
+  id: '/dashboard/calendar',
+  path: '/dashboard/calendar',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -299,6 +306,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConsoleRulesImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/calendar': {
+      id: '/dashboard/calendar'
+      path: '/dashboard/calendar'
+      fullPath: '/dashboard/calendar'
+      preLoaderRoute: typeof DashboardCalendarImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/create-group': {
       id: '/dashboard/create-group'
       path: '/dashboard/create-group'
@@ -474,6 +488,7 @@ export interface FileRoutesByFullPath {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/console/rules': typeof ConsoleRulesRoute
+  '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
@@ -508,6 +523,7 @@ export interface FileRoutesByTo {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/console/rules': typeof ConsoleRulesRoute
+  '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
@@ -543,6 +559,7 @@ export interface FileRoutesById {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/console/rules': typeof ConsoleRulesRoute
+  '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
@@ -579,6 +596,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/auth/signup'
     | '/console/rules'
+    | '/dashboard/calendar'
     | '/dashboard/create-group'
     | '/dashboard/milestones'
     | '/dashboard/notification'
@@ -612,6 +630,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/auth/signup'
     | '/console/rules'
+    | '/dashboard/calendar'
     | '/dashboard/create-group'
     | '/dashboard/milestones'
     | '/dashboard/notification'
@@ -645,6 +664,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/auth/signup'
     | '/console/rules'
+    | '/dashboard/calendar'
     | '/dashboard/create-group'
     | '/dashboard/milestones'
     | '/dashboard/notification'
@@ -680,6 +700,7 @@ export interface RootRouteChildren {
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSignupRoute: typeof AuthSignupRoute
   ConsoleRulesRoute: typeof ConsoleRulesRoute
+  DashboardCalendarRoute: typeof DashboardCalendarRoute
   DashboardCreateGroupRoute: typeof DashboardCreateGroupRoute
   DashboardMilestonesRoute: typeof DashboardMilestonesRoute
   DashboardNotificationRoute: typeof DashboardNotificationRoute
@@ -714,6 +735,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignupRoute: AuthSignupRoute,
   ConsoleRulesRoute: ConsoleRulesRoute,
+  DashboardCalendarRoute: DashboardCalendarRoute,
   DashboardCreateGroupRoute: DashboardCreateGroupRoute,
   DashboardMilestonesRoute: DashboardMilestonesRoute,
   DashboardNotificationRoute: DashboardNotificationRoute,
@@ -758,6 +780,7 @@ export const routeTree = rootRoute
         "/auth/reset-password",
         "/auth/signup",
         "/console/rules",
+        "/dashboard/calendar",
         "/dashboard/create-group",
         "/dashboard/milestones",
         "/dashboard/notification",
@@ -806,6 +829,9 @@ export const routeTree = rootRoute
     },
     "/console/rules": {
       "filePath": "console/rules.tsx"
+    },
+    "/dashboard/calendar": {
+      "filePath": "dashboard/calendar.tsx"
     },
     "/dashboard/create-group": {
       "filePath": "dashboard/create-group.tsx"

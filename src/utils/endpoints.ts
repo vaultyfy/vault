@@ -44,7 +44,11 @@ export const app = {
     updateGoal: `${BASE_URL}/customer/update-goal`,
     deleteGoal: `${BASE_URL}/customer/delete-goal`,
     referrals: `${BASE_URL}/customer/referral/stats`,
-    consistency: `${BASE_URL}/customer/consistency/stats`
+    consistency: `${BASE_URL}/customer/consistency/stats`,
+    customerNotification: `${BASE_URL}/customer/all-customer-notifications`,
+    markCustomerNotificationAsRead: `${BASE_URL}/customer/mark-as-read`,
+    markCustomerNotificationAsAllRead: `${BASE_URL}/customer/mark-all-as-read`,
+    markMultipleCustomerNotificationAsRead: `${BASE_URL}/customer/mark-multiple-as-read`,
   },
   groups: {
     create: `${BASE_URL}/groups/create`,

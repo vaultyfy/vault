@@ -1,6 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import { FileRouteTypes } from "../../routeTree.gen";
 import { AuthCarousel } from "./carousel";
 import { useCurrentPath } from "@hooks/current-path";

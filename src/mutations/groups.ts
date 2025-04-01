@@ -34,7 +34,8 @@ export const joinGroup = async (params: JoinGroupParams) => {
   if (!token) return;
 
   const url = new URL(`${app.groups.join}/${params.groupId}`);
-  params.referrerId && url.searchParams.append("referrer", String(params.referrerId));
+  params.referrerId &&
+    url.searchParams.append("referrer", String(params.referrerId));
 
   try {
     const request = await fetch(url.toString(), {

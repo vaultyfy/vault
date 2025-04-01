@@ -18,6 +18,7 @@ import React from "react";
 import { Filter } from "../filters";
 import { PROFILE_IMG } from "../overview/activities-table";
 import { Link } from "@tanstack/react-router";
+import { useFormik } from "formik";
 
 const HEADING = [
   "",
@@ -31,12 +32,26 @@ const HEADING = [
 ];
 
 export const ThriftGroupManagement = () => {
+  const formik = useFormik({
+    initialValues: {
+      fromDate: "",
+      toDate: "",
+      payOutCategory: "",
+      payOutValue: "",
+    },
+    onSubmit: async (values, { setSubmitting }) => {
+      // Handle form submission
+      setSubmitting(false);
+    },
+  });
+
   return (
     <VStack
       width={"100%"}
       gap={"40px"}
       alignItems={"flex-start"}
       justifyContent={"flex-start"}
+      border="2px solid black"
     >
       <Filter />
       <Box
