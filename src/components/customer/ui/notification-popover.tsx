@@ -186,8 +186,8 @@ export const NotificationPopover = () => {
           {hasUnreadNotifications && (
             <Box
               position="absolute"
-              top="6px"
-              right="6px"
+              top="12px"
+              right="14px"
               w="12px"
               h="12px"
               bg="red.500"
