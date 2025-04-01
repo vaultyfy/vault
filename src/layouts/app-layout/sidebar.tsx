@@ -20,7 +20,7 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { FileRouteTypes } from "src/routeTree.gen";
 import { useConsolePath, useCurrentPath } from "@hooks/current-path";
 import { CircleProgress } from "@components/ui";
-import { useUser } from "@hooks/swr";
+import { useUser, useWallet } from "@hooks/swr";
 import { dicebear, formatPrice, skeleton } from "@utils/misc";
 import { LogOut } from "lucide-react";
 import { useAuthContext } from "@hooks/context";
@@ -116,8 +116,9 @@ export const Sidebar = () => {
     kycPercentage,
     verified,
     isLoading,
-    walletBalance,
   } = useUser();
+
+  const {walletBalance} = useWallet()
 
   return (
     <Box
@@ -309,7 +310,7 @@ export const Sidebar = () => {
                 bgGradient={MAIN_GRADIENT}
                 bgClip="text"
               >
-                {formatPrice(Number(walletBalance))}
+                {formatPrice(walletBalance || 0)}
               </Text>
             )}
           </Flex>

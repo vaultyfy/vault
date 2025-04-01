@@ -77,7 +77,7 @@ export const Dashboard = () => {
           <OverviewCard
             cardIcon="time-is-money"
             cardTitle="Remaining contribution"
-            amount={formatPrice(Number(total))}
+            amount={total}
             hasFilter={true}
             hasProgress={true}
             progressLevel={40}
