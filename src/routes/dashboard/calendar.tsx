@@ -12,7 +12,7 @@ function RouteComponent() {
     <>
       <MetaData
         url="vaultify.vercel.app"
-        pageTitle="Notification &mdash; Vaultify"
+        pageTitle="Calendar &mdash; Vaultify"
       />
 
       <AppLayout routeTitle={"Calendar"}>

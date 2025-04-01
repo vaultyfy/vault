@@ -11,11 +11,7 @@ import {
   Center,
   Badge,
 } from "@chakra-ui/react";
-import {
-  CalendarPopover,
-  CalendarPopoverNew,
-  NotificationPopover,
-} from "@components/customer/ui";
+import { CalendarPopover, NotificationPopover } from "@components/customer/ui";
 import { AlignRight, CirclePlus } from "lucide-react";
 import { AppLayoutProps } from ".";
 import { CreateGroupModal } from "@layouts/modal-layout";
@@ -472,8 +468,7 @@ export const AppHeader = ({
               Create group
             </Button>
             <HStack columnGap="1rem">
-              {/* <CalendarPopover /> */}
-              <CalendarPopoverNew />
+              <CalendarPopover />
               <NotificationPopover />
             </HStack>
           </Flex>

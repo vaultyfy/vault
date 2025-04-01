@@ -29,7 +29,6 @@ export const FlexibleContributions = () => {
         py="3em"
         gap={{ lg: "8em", md: "6em", base: "2em" }}
         flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap-reverse" }}
-        border="2px solid black"
       >
         <MotionBox
           display={{ lg: "none", md: "none", base: "block" }}
