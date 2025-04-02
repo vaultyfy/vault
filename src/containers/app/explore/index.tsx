@@ -217,27 +217,29 @@ export const Explore = () => {
                   >
                     Apply
                   </Button>
-                  <Button
-                    type="button"
-                    width="107px"
-                    px="10px"
-                    py="8px"
-                    bgColor="var(--grey-200)"
-                    border="1px solid var(--input-outline)"
-                    fontFamily="var(--poppins)"
-                    fontWeight="medium"
-                    fontSize="11px"
-                    color="var(--text-1)"
-                    _hover={{ bgColor: "var(--grey-300)" }}
-                    _active={{ bgColor: "var(--grey-300)" }}
-                    _focus={{ bgColor: "var(--grey-300)" }}
-                    onClick={() => {
-                      formik.resetForm();
-                      handleClearFilters();
-                    }}
-                  >
-                    Clear
-                  </Button>
+                  {formik.dirty ? (
+                    <Button
+                      type="button"
+                      width="107px"
+                      px="10px"
+                      py="8px"
+                      bgColor="var(--grey-200)"
+                      border="1px solid var(--input-outline)"
+                      fontFamily="var(--poppins)"
+                      fontWeight="medium"
+                      fontSize="11px"
+                      color="var(--text-1)"
+                      _hover={{ bgColor: "var(--grey-300)" }}
+                      _active={{ bgColor: "var(--grey-300)" }}
+                      _focus={{ bgColor: "var(--grey-300)" }}
+                      onClick={() => {
+                        formik.resetForm();
+                        handleClearFilters();
+                      }}
+                    >
+                      Clear
+                    </Button>
+                  ) : null}
                 </Flex>
               );
             }}
