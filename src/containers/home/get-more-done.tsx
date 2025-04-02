@@ -3,12 +3,19 @@ import { SecondaryButton, SectionContainer } from "@components/ui";
 import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { textVariants } from "./hero";
 import { coinVariant } from "./financial-goals";
-import { useScroll, useSpring } from "motion/react";
+import { useNavigate } from "@tanstack/react-router";
 import React from "react";
 import { useMobileScreens } from "@hooks/mobile-screen";
 
 export const GetMoreDone = () => {
   const { isMobile } = useMobileScreens();
+
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate({ to: "/auth/login" });
+  };
+
 
   return (
     <>
@@ -81,7 +88,7 @@ export const GetMoreDone = () => {
                 </MotionText>
               </Flex>
 
-              <SecondaryButton text="Get Started" />
+              <SecondaryButton text="Get Started" onClick={handleGetStarted} />
             </Flex>
           </Box>
         </SectionContainer>
@@ -239,7 +246,7 @@ export const GetMoreDone = () => {
               </MotionBox>
             </HStack>
 
-            <SecondaryButton text="Get Started" variant="light" show="yes" />
+            <SecondaryButton text="Get Started" variant="light" show="yes" onClick={() => handleGetStarted()} />
           </Flex>
         </SectionContainer>
       </Box>

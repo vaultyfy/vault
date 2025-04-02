@@ -4,6 +4,7 @@ import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { useDomContentLoaded } from "@hooks/dom-content-loaded";
 import { useMediaQuery } from "react-responsive";
 import { People } from "./people";
+import {useNavigate} from "@tanstack/react-router";
 
 export const TRANSITION = {
   duration: 0.3,
@@ -76,6 +77,13 @@ export const Hero = () => {
   const { contentLoaded } = useDomContentLoaded();
 
   const animationControls = contentLoaded ? "visible" : "hidden";
+
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate({ to: "/auth/login" });
+  };
+
 
   return (
     <SectionContainer>
@@ -163,7 +171,7 @@ export const Hero = () => {
               your goals
             </MotionText>
 
-            <PrimaryButton text="get started" contentLoaded={contentLoaded} />
+            <PrimaryButton text="get started" contentLoaded={contentLoaded} onClick={handleGetStarted} />
           </Flex>
         </Box>
 
