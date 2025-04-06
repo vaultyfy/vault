@@ -21,7 +21,7 @@ interface PaymentCardProps extends Partial<ChakraProps> {
   amount?: number;
   dayOfWeek: string;
   deadlineDate?: string;
-  dateType?: "start-date" | "due-date";
+  dateType?: "start-date" | "due-date" | "missed-date";
   groupId: string;
   participantId: string;
 }
@@ -63,6 +63,17 @@ export const PaymentCard = ({
     }
   };
 
+  const getContributionDateType = (type: PaymentCardProps["dateType"]) => {
+    switch (type) {
+      case "due-date":
+        return "Due date";
+      case "start-date":
+        return "Start date";
+      case "missed-date":
+        return "Missed date";
+    }
+  };
+
   return (
     <Flex
       px="19px"
@@ -73,7 +84,7 @@ export const PaymentCard = ({
     >
       <Box w="max-content">
         <Text fontSize="14px" fontWeight="400" color="var(--grey)">
-          {dateType === "start-date" ? "Start date" : "Due date"}
+          {getContributionDateType(dateType)}
         </Text>
         <HStack spacing="7px">
           <Text

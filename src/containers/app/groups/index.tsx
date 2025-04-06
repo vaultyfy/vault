@@ -84,9 +84,12 @@ export const Groups = () => {
     dayjs(date).format("DD-MMMM-YYYY"),
   );
   const missedContributionDates = me?.missedContributionDates.map((date) =>
-    dayjs(date).format("DD-MM-YYYY"),
+    dayjs(date).format("DD-MMMM-YYYY"),
   );
   const nextContributionDate = me?.nextContributionDate;
+  const futureContributionDates = contributionDates?.filter(
+    (date) => dayjs(date) > dayjs(),
+  );
 
   const handleTabChange = (index: number) => {
     setTabIndex(index);
@@ -365,8 +368,25 @@ export const Groups = () => {
                   participantId={me?.participantID || ""}
                 />
               )}
-              {/* {dayjs().format("DD-MM-YYYY") === missedContributionDates?.[0]} */}
-              {contributionDates?.map((contributionDate, index) => {
+              {missedContributionDates &&
+                missedContributionDates?.length > 0 && (
+                  <>
+                    {missedContributionDates?.map((date) => {
+                      return (
+                        <PaymentCard
+                          deadlineDate={date}
+                          dateType="missed-date"
+                          amount={activeGroup?.contributionAmount}
+                          dayOfWeek={dayjs(date).format("dddd")}
+                          isActive
+                          groupId={activeGroup?.groupID || ""}
+                          participantId={me?.participantID || ""}
+                        />
+                      );
+                    })}
+                  </>
+                )}
+              {futureContributionDates?.map((contributionDate, index) => {
                 return (
                   <PaymentCard
                     key={index}
@@ -384,7 +404,9 @@ export const Groups = () => {
                       dayjs().format("DD-MMMM-YYYY") === contributionDate
                     }
                     roundedBottom={
-                      index === contributionDates?.length - 1 ? "10px" : ""
+                      index === futureContributionDates?.length - 1
+                        ? "10px"
+                        : ""
                     }
                   />
                 );
