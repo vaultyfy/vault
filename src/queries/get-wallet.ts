@@ -44,12 +44,19 @@ export const getExpectedReturns = async () => {
   }
 };
 
-export const getRemainingContributions = async () => {
+export type RemainingContributionsParams = {
+  filter?: "year" | "month"
+}
+
+export const getRemainingContributions = async (params: RemainingContributionsParams) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;
 
+  const url = new URL(app.customer.remainingContributions)
+  params.filter && url.searchParams.append("filterType", params.filter)
+
   try {
-    const request = await fetch(app.customer.remainingContributions, {
+    const request = await fetch(url.toString(), {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

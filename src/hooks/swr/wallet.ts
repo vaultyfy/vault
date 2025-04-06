@@ -2,6 +2,7 @@ import {
   getExpectedReturns,
   getRemainingContributions,
   getWallet,
+  RemainingContributionsParams,
 } from "@queries/get-wallet";
 import { swrOptions } from "@utils/constants";
 import useSWR from "swr";
@@ -26,7 +27,7 @@ export const useWallet = () => {
     expectedReturns,
     walletBalance: payload?.balance,
     lastUpdated: dayjs(payload?.updatedAT || payload?.createdAT).format(
-      "dd-mm-yyyy",
+      "DD-MM-YYYY",
     ),
   };
 };
@@ -46,11 +47,11 @@ export const useExpectedReturns = () => {
   };
 };
 
-export const useRemainingContributions = () => {
-  const key = "remaining-contributions";
+export const useRemainingContributions = (params: RemainingContributionsParams) => {
+  const key =["remaining-contributions", params.filter];
   const { data, error, isLoading } = useSWR(
     key,
-    () => getRemainingContributions(),
+    () => getRemainingContributions({ filter: params.filter }),
     swrOptions,
   );
 

@@ -16,10 +16,12 @@ import {
   ChakraProps,
 } from "@chakra-ui/react";
 import { Icon } from "@components/icon";
-import { CurrencyNgn } from "@phosphor-icons/react";
 import { ChevronDown } from "lucide-react";
 import { CustomProgress } from "@components/ui";
 import { formatPrice, skeleton } from "@utils/misc";
+import React, { SetStateAction } from "react";
+import { RemainingContributions } from "@utils/types";
+import { RemainingContributionsParams } from "@queries/get-wallet";
 
 interface OverviewCardProps extends Partial<ChakraProps> {
   bgColor?: string;
@@ -38,6 +40,8 @@ interface OverviewCardProps extends Partial<ChakraProps> {
   iconBg?: string;
   paidMonths?: number;
   loading?: boolean;
+  currentFilter?: string;
+  setCurrentFilter?: React.Dispatch<SetStateAction<RemainingContributionsParams["filter"]>>
 }
 
 export const OverviewCard = ({
@@ -45,7 +49,6 @@ export const OverviewCard = ({
   cardGradient,
   hasProgress,
   progressLevel,
-  progressColor,
   cardIcon,
   cardTitle,
   amount,
@@ -57,6 +60,8 @@ export const OverviewCard = ({
   iconBg,
   paidMonths,
   loading,
+  currentFilter,
+  setCurrentFilter
 }: OverviewCardProps) => {
   const isMilestonesCard = cardTitle
     .toLowerCase()
@@ -94,7 +99,7 @@ export const OverviewCard = ({
               >
                 <Icon name={cardIcon} />
               </Flex>
-              {hasFilter ? (
+              {hasFilter && (
                 <Menu>
                   <MenuButton
                     as={Button}
@@ -121,7 +126,7 @@ export const OverviewCard = ({
                     height="fit-content"
                     width={{ lg: "100px", md: "100px", base: "88px" }}
                   >
-                    month
+                    {currentFilter}
                   </MenuButton>
                   <MenuList
                     px="10px"
@@ -129,15 +134,22 @@ export const OverviewCard = ({
                     border="none"
                     bgColor="var(--overview-card-secondary)"
                   >
-                    <MenuItem bgColor="transparent" color="#ffffff">
-                      month
-                    </MenuItem>
-                    <MenuItem bgColor="transparent" color="#ffffff">
-                      year
-                    </MenuItem>
+                    {["month", "year"].map((value, index) => {
+                      return (
+                        <MenuItem
+                          key={index}
+                          bgColor="transparent"
+                          color="#ffffff"
+                          onClick={() => setCurrentFilter && setCurrentFilter(value as RemainingContributionsParams["filter"])}
+                        >
+                          {value}
+                        </MenuItem>
+                      );
+                    })}
                   </MenuList>
                 </Menu>
-              ) : (
+              )}
+              {paidDate && (
                 <Box
                   px={{ lg: "16px", md: "16px", base: "10px" }}
                   py="8px"
@@ -215,7 +227,7 @@ export const OverviewCard = ({
                   fontSize="16px"
                   fontFamily="var(--poppins)"
                 >
-                  cycle{cycle && cycle > 1 ? "s": ""} completed
+                  cycle{cycle && cycle > 1 ? "s" : ""} completed
                 </Text>
               </Text>
             )}

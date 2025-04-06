@@ -31,6 +31,7 @@ import {
 } from "@hooks/swr";
 import { Link } from "@components/link";
 import { formatPrice } from "@utils/misc";
+import { RemainingContributionsParams } from "@queries/get-wallet";
 
 export const Dashboard = () => {
   const { store, updateUiStore } = useUiComponentStore();
@@ -56,8 +57,10 @@ export const Dashboard = () => {
   } = useJoinedGroups();
   const { walletBalance, lastUpdated, isLoading, expectedReturns } =
     useWallet();
-  const { total } = useRemainingContributions();
   // const { data } = useSavingsTrend();
+  const [currentFilter, setCurrentFilter] =
+    React.useState<RemainingContributionsParams["filter"]>("month");
+  const { total, isLoading: loadingRemainingContribs } = useRemainingContributions({ filter: currentFilter });
 
   return (
     <>
@@ -84,7 +87,9 @@ export const Dashboard = () => {
             progressColor="var(--main-gradient)"
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
-            loading={isLoading}
+            loading={loadingRemainingContribs}
+            currentFilter={currentFilter}
+            setCurrentFilter={setCurrentFilter}
           />
           <OverviewCard
             cardIcon="piggy-bank"
@@ -94,12 +99,13 @@ export const Dashboard = () => {
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
             loading={isLoading}
+            currentFilter={currentFilter}
+            setCurrentFilter={setCurrentFilter}
           />
           <Link to="/dashboard/milestones">
             <OverviewCard
               cardIcon="trophy"
               cardTitle="Rewards & milestones"
-              hasFilter={true}
               hasProgress={true}
               progressLevel={40}
               progressColor="var(--main-gradient)"
