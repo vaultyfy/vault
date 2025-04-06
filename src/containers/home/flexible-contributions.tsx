@@ -3,6 +3,7 @@ import { SectionContainer } from "@components/ui";
 import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { textVariants } from "./hero";
 import { useMobileScreens } from "@hooks/mobile-screen";
+import { Link } from "@components/link";
 
 export const cashVariant = {
   hidden: { opacity: 0, y: 35 },
@@ -30,33 +31,35 @@ export const FlexibleContributions = () => {
         gap={{ lg: "8em", md: "6em", base: "2em" }}
         flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap-reverse" }}
       >
-        <MotionBox
-          display={{ lg: "none", md: "none", base: "block" }}
-          mx="auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.8 }}
-          variants={textVariants}
-          borderRadius="4px"
-          height="58px"
-          width="178px"
-          background="var(--primary)"
-        >
+        <Link to="/auth/login">
           <MotionBox
-            fontWeight="500"
-            fontSize="14px"
-            background="var(--main)"
-            color="var(--white-fade)"
-            as="button"
-            mt="-.3em"
-            height="100%"
-            width="100%"
+            display={{ lg: "none", md: "none", base: "block" }}
+            mx="auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.8 }}
+            variants={textVariants}
             borderRadius="4px"
-            ml="-.3em"
+            height="58px"
+            width="178px"
+            background="var(--primary)"
           >
-            Pick a saving cycle
+            <MotionBox
+              fontWeight="500"
+              fontSize="14px"
+              background="var(--main)"
+              color="var(--white-fade)"
+              as="button"
+              mt="-.3em"
+              height="100%"
+              width="100%"
+              borderRadius="4px"
+              ml="-.3em"
+            >
+              Pick a saving cycle
+            </MotionBox>
           </MotionBox>
-        </MotionBox>
+        </Link>
 
         <Box
           height={{ lg: "607px", base: "fit-content" }}
@@ -142,41 +145,42 @@ export const FlexibleContributions = () => {
               Choose a savings cycle that suits you — daily, weekly, or monthly.
             </MotionText>
           </Flex>
-
-          <MotionBox
-            display={{ lg: "block", md: "none", base: "none" }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={textVariants}
-            borderRadius="4px"
-            height="58px"
-            width="178px"
-            background="var(--primary)"
-            whileTap={{
-              marginLeft: ".5em",
-              marginTop: ".3em",
-              transition: {
-                duration: 0.3,
-                ease: "easeOut",
-              },
-            }}
-          >
+          <Link to="/auth/login">
             <MotionBox
-              fontWeight="500"
-              fontSize="14px"
-              background="var(--main)"
-              color="var(--white-fade)"
-              as="button"
-              mt="-.3em"
-              height="100%"
-              width="100%"
+              display={{ lg: "block", md: "none", base: "none" }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.8 }}
+              variants={textVariants}
               borderRadius="4px"
-              ml="-.3em"
+              height="58px"
+              width="178px"
+              background="var(--primary)"
+              whileTap={{
+                marginLeft: ".5em",
+                marginTop: ".3em",
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              }}
             >
-              Pick a saving cycle
+              <MotionBox
+                fontWeight="500"
+                fontSize="14px"
+                background="var(--main)"
+                color="var(--white-fade)"
+                as="button"
+                mt="-.3em"
+                height="100%"
+                width="100%"
+                borderRadius="4px"
+                ml="-.3em"
+              >
+                Pick a saving cycle
+              </MotionBox>
             </MotionBox>
-          </MotionBox>
+          </Link>
         </Box>
       </Flex>
     </SectionContainer>
