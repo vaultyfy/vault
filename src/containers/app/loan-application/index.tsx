@@ -1,11 +1,11 @@
-import { ProgressTabs } from "@components/loan-me/progress-tabs";
-import { Center, Box, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { FinancialDetails, LoanPurpose } from "@components/loan-me/form";
 import { Formik, Form } from "formik";
 import {
   LoanApplicationFormValues,
   loanApplicationSchema,
 } from "@utils/validators/loan-schema";
+import { ApplicationSuccess, ProgressTabs } from "@components/loan-me";
 
 const initialValues: LoanApplicationFormValues = {
   bank_statement: null,
@@ -32,8 +32,9 @@ export const LoanApplication = () => {
         >
           {(formik) => (
             <Form>
-              <LoanPurpose />
+              {/* <LoanPurpose /> */}
               {/* <FinancialDetails /> */}
+              <ApplicationSuccess />
             </Form>
           )}
         </Formik>
