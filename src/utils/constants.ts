@@ -1,5 +1,6 @@
 import { ModalLayoutProps } from "@components/ui";
 import { OptionsType } from "cookies-next";
+import { PaymentPlanEnum, LoanDurationEnum } from "./validators/loan-schema";
 
 export const MAIN_GRADIENT = "linear(to-r, #1CCFBD, #2C9BF0)";
 export const HEADER_API_KEY = {
@@ -99,3 +100,39 @@ export const borderGradientStyle_2 = {
     zIndex: -1,
   },
 };
+
+export const borderGradient = {
+  background: "var(--main-gradient)",
+  padding: "1px",
+  borderRadius: "10px",
+
+  "& > div": {
+    width: "100%",
+    height: "100%",
+    background: "#ffffff",
+    borderRadius: "10px",
+  },
+};
+
+export const loanAmounts: { value: string; label: string }[] = [
+  "N5,000",
+  "N50,000",
+  "N100,000",
+  "N200,000",
+].map((amount) => ({
+  label: amount,
+  value: amount.replaceAll(",", ""),
+}));
+
+export const paymentPlans = Object.values(PaymentPlanEnum).map((plan) => ({
+  label: plan.replace("_", " "),
+  value: plan,
+}));
+
+// Get loan durations using enum values
+export const loanDurations = Object.values(LoanDurationEnum).map(
+  (duration) => ({
+    label: duration.replace("_", " "),
+    value: duration,
+  }),
+);

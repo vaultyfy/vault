@@ -59,6 +59,12 @@ export const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
   },
   {
     id: crypto.randomUUID(),
+    icon: <Icon name="money-send-light" />,
+    name: "loan me",
+    path: "/dashboard/loan-me",
+  },
+  {
+    id: crypto.randomUUID(),
     icon: <Gear size="24" color="#fff" />,
     name: "settings",
     path: "/dashboard/settings",
