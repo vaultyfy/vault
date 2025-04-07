@@ -2,6 +2,7 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import { SectionContainer } from "@components/ui";
 import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { textVariants } from "./hero";
+import {useNavigate} from "@tanstack/react-router";
 
 interface SellingPointProps {
   icon: string;
@@ -41,6 +42,8 @@ const SELLING_POINTS = [
 ];
 
 const SellingPoint = ({ icon, text }: SellingPointProps) => {
+
+
   return (
     <MotionBox
       initial="hidden"
@@ -90,6 +93,12 @@ const SellingPoint = ({ icon, text }: SellingPointProps) => {
 };
 
 export const FinancialGoals = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate({ to: "/auth/login" });
+  };
+
   return (
     <SectionContainer>
       <Flex
@@ -185,6 +194,7 @@ export const FinancialGoals = () => {
                 width="100%"
                 borderRadius="4px"
                 ml="-.3em"
+                onClick={handleGetStarted}
               >
                 Start your journey
               </MotionBox>

@@ -3,6 +3,7 @@ import { SectionContainer } from "@components/ui";
 import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { textVariants } from "./hero";
 import { useMobileScreens } from "@hooks/mobile-screen";
+import {useNavigate} from "@tanstack/react-router";
 
 export const cashVariant = {
   hidden: { opacity: 0, y: 35 },
@@ -20,6 +21,11 @@ export const cashVariant = {
 
 export const FlexibleContributions = () => {
   const { isSmallViewPort } = useMobileScreens();
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate({ to: "/auth/login" });
+  };
 
   return (
     <SectionContainer>
@@ -173,6 +179,7 @@ export const FlexibleContributions = () => {
               width="100%"
               borderRadius="4px"
               ml="-.3em"
+              onClick={handleGetStarted}
             >
               Pick a saving cycle
             </MotionBox>

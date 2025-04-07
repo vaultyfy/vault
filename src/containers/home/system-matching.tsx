@@ -12,6 +12,7 @@ import { textVariants } from "./hero";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { cashVariant } from "./flexible-contributions";
 import { Marker } from "./map-pin";
+import {useNavigate} from "@tanstack/react-router";
 
 const personVariant = {
   hidden: { scale: 0, opacity: 0 },
@@ -24,6 +25,11 @@ const personVariant = {
 
 export const SystemMatching = () => {
   const { isMobile } = useMobileScreens();
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate({ to: "/auth/login" });
+  };
 
   return (
     <Box pt={{ lg: "15em", md: "13em", base: "10em" }}>
@@ -136,10 +142,10 @@ export const SystemMatching = () => {
 
                 {isMobile ? (
                   <Center>
-                    <PrimaryButton text="join now" />
+                    <PrimaryButton text="join now" onClick={handleGetStarted}/>
                   </Center>
                 ) : (
-                  <PrimaryButton text="join now" />
+                  <PrimaryButton text="join now" onClick={handleGetStarted} />
                 )}
               </MotionBox>
             </Box>
