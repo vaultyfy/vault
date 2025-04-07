@@ -55,7 +55,7 @@ export const WithdrawalModal = ({
 
   const customersBanks = myBanks?.map((bank) => ({
     value: bank.bankName,
-    label: bank.bankName,
+    label: `${bank.bankName} (${bank.accountNumber})`,
     accountName: bank.accountName,
     accountNumber: bank.accountNumber,
     // @ts-ignore
