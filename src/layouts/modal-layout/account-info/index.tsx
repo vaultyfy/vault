@@ -59,6 +59,7 @@ export const AccountInfoModal = ({
             const response = await request?.json();
             if (request?.ok) {
               mutate();
+              onClose();
               openToast(response?.message, "success");
             }
           } catch (error) {

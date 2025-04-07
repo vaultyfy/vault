@@ -29,9 +29,9 @@ export const addBank = async (payload: BankInfo) => {
 export const deleteBank = async (id: string) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token || !id) {
-    console.error("bankId or token is not available")
+    console.error("bankId or token is not available");
     return;
-  };
+  }
 
   try {
     const request = await fetch(`${app.customer.deleteBankDetails}/${id}`, {
@@ -52,13 +52,43 @@ export const deleteBank = async (id: string) => {
 export const updateBankInfo = async (bankId: string, payload: BankInfo) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token || !bankId) {
-    console.error("bankId or token is not available")
+    console.error("bankId or token is not available");
     return;
-  };
+  }
 
   try {
     const request = await fetch(`${app.customer.updateBankDetails}/${bankId}`, {
       method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        ...HEADER_API_KEY,
+      },
+      body: JSON.stringify({
+        ...payload,
+      }),
+    });
+
+    return request;
+  } catch (error) {
+    console.error(`${(error as Error).message}`);
+  }
+};
+
+export type WithdrawalPayload = {
+  amount: number;
+  bankCode: string;
+  accountName: string;
+  accountNumber: string;
+};
+
+export const withdrawFunds = async(payload: WithdrawalPayload)  => {
+  const token = getCookie(TOKEN_KEY, {...cookieOptions})
+  if (!token) return;
+
+  try {
+    const request = await fetch(app.customer.withdrawFunds, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

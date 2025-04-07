@@ -80,14 +80,16 @@ export const Dashboard = () => {
           columns={{ lg: 4, md: 2, base: 2 }}
           gap={{ lg: ".8em", md: ".6em", base: ".4em" }}
         >
-          <OverviewCard
-            cardIcon="calendar"
-            cardTitle="Wallet balance"
-            amount={walletBalance}
-            paidDate={lastUpdated}
-            cardGradient="var(--main-gradient)"
-            loading={isLoading}
-          />
+          <Link to="/dashboard/payments">
+            <OverviewCard
+              cardIcon="calendar"
+              cardTitle="Wallet balance"
+              amount={walletBalance}
+              paidDate={lastUpdated}
+              cardGradient="var(--main-gradient)"
+              loading={isLoading}
+            />
+          </Link>
           <OverviewCard
             cardIcon="time-is-money"
             cardTitle="Remaining contribution"
