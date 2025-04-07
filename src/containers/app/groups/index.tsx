@@ -22,8 +22,8 @@ import { useJoinedGroups } from "@hooks/swr";
 import { useMyGroupsWithStatus } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
 import { skeleton } from "@utils/misc";
-import { Group, GroupTypeFilter } from "@utils/types";
-import dayjs, { Dayjs } from "dayjs";
+import { Group } from "@utils/types";
+import dayjs from "dayjs";
 import React from "react";
 import slugify from "slugify";
 

@@ -1,10 +1,8 @@
 import { ModalLayout } from "@components/ui";
 import { CreateGroupContent } from "./components/create-group-content";
+import { BaseModalProps } from "@utils/constants";
 
-interface CreateGroupModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+interface CreateGroupModalProps extends BaseModalProps {}
 
 export const CreateGroupModal = ({
   isOpen,
