@@ -183,8 +183,6 @@ export const Milestones = () => {
   const { data: referrals } = useReferralStats();
   const { data: consistency } = useConsistencyStats();
 
-  console.log("consitency", consistency);
-
   const handleGoalDeletion = async (goalId: string) => {
     if (!goalId) return;
     const found = data?.find((goal) => goal.goalID === goalId);

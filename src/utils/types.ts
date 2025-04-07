@@ -41,6 +41,7 @@ export type RemainingContributions = {
     frequency: ContributionFrequency;
   }[];
   grandTotal: number;
+  grandTotalPercentage: number;
 };
 
 export interface SignupResponse extends Omit<Response, "payload"> {
