@@ -57,6 +57,7 @@ export const useRemainingContributions = (params: RemainingContributionsParams) 
 
   return {
     total: data?.payload?.grandTotal,
+    percentage: data?.payload?.grandTotalPercentage,
     contributions: data?.payload?.contributions,
     error,
     isLoading,

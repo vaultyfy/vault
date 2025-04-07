@@ -47,11 +47,10 @@ export const PaymentCard = ({
       const response: Response<PaymentResponse> = await request?.json();
       if (request?.ok) {
         openToast(response.message, "success");
-        typeof window !== "undefined" &&
-          window.open(
-            response.payload?.paymentResponse.data.authorization_url,
-            "_blank",
-          );
+        window.open(
+          response.payload?.paymentResponse.data.authorization_url,
+          "_blank",
+        );
       } else {
         openToast(response.message, "error");
       }

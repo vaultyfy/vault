@@ -80,6 +80,8 @@ export const Groups = () => {
     (participant) => participant.customer?.id === user?.id,
   );
 
+  console.log("user", user?.id)
+
   const contributionDates = me?.contributionDates.map((date) =>
     dayjs(date).format("DD-MMMM-YYYY"),
   );
@@ -91,6 +93,10 @@ export const Groups = () => {
     (date) => dayjs(date) > dayjs(),
   );
 
+  console.log("future dates", futureContributionDates)
+  console.log("contribution dates", contributionDates)
+  console.log("Me", me)
+
   const handleTabChange = (index: number) => {
     setTabIndex(index);
     if (index === 0 && joinedGroups?.length) {
@@ -101,7 +107,6 @@ export const Groups = () => {
       setActiveGroup(completedGroups[0]);
     }
   };
-
   return (
     <Flex
       as="section"
@@ -386,7 +391,7 @@ export const Groups = () => {
                     })}
                   </>
                 )}
-              {futureContributionDates?.map((contributionDate, index) => {
+              {contributionDates?.map((contributionDate, index) => {
                 return (
                   <PaymentCard
                     key={index}
@@ -404,7 +409,7 @@ export const Groups = () => {
                       dayjs().format("DD-MMMM-YYYY") === contributionDate
                     }
                     roundedBottom={
-                      index === futureContributionDates?.length - 1
+                      index === contributionDates?.length - 1
                         ? "10px"
                         : ""
                     }

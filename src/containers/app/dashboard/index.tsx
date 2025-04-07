@@ -23,14 +23,15 @@ import { useMobileScreens } from "@hooks/mobile-screen";
 import { CreateGroupModal } from "@layouts/modal-layout";
 import { useUiComponentStore } from "@store/ui";
 import {
+  useConsistencyStats,
   useJoinedGroups,
+  useReferralStats,
   useRemainingContributions,
   useSavingsTrend,
   useUser,
   useWallet,
 } from "@hooks/swr";
 import { Link } from "@components/link";
-import { formatPrice } from "@utils/misc";
 import { RemainingContributionsParams } from "@queries/get-wallet";
 
 export const Dashboard = () => {
@@ -38,6 +39,12 @@ export const Dashboard = () => {
   const { isMobile } = useMobileScreens();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { cyclesCompleted, isLoading: loadingCycleCount } = useUser();
+
+  const { data: referrals } = useReferralStats();
+  const { data: consistency } = useConsistencyStats();
+  const refPercentage = referrals?.referralPercentage;
+  const consistencyPercentage = consistency?.progressPercentage;
+  const milestonesProgress = Number(consistencyPercentage) + Number(refPercentage) / 2;
 
   React.useEffect(() => {
     if (store.ui === "create-group" && !isMobile) {
@@ -60,7 +67,11 @@ export const Dashboard = () => {
   // const { data } = useSavingsTrend();
   const [currentFilter, setCurrentFilter] =
     React.useState<RemainingContributionsParams["filter"]>("month");
-  const { total, isLoading: loadingRemainingContribs } = useRemainingContributions({ filter: currentFilter });
+  const {
+    total,
+    percentage,
+    isLoading: loadingRemainingContribs,
+  } = useRemainingContributions({ filter: currentFilter });
 
   return (
     <>
@@ -80,10 +91,10 @@ export const Dashboard = () => {
           <OverviewCard
             cardIcon="time-is-money"
             cardTitle="Remaining contribution"
-            amount={total}
+            amount={total || 0}
             hasFilter={true}
             hasProgress={true}
-            progressLevel={40}
+            progressLevel={percentage}
             progressColor="var(--main-gradient)"
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
@@ -107,7 +118,7 @@ export const Dashboard = () => {
               cardIcon="trophy"
               cardTitle="Rewards & milestones"
               hasProgress={true}
-              progressLevel={40}
+              progressLevel={milestonesProgress}
               progressColor="var(--main-gradient)"
               iconBg="var(--overview-card-secondary)"
               bgColor="var(--main)"
