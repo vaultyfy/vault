@@ -61,4 +61,11 @@ export const app = {
     pay: `${BASE_URL}/groups/makeContribution`,
     status: `${BASE_URL}/groups/all-myParticipatoryGroupswithStatusFilter`,
   },
+  loan: {
+    applyForLoan: `${BASE_URL}/loan/apply`,
+    allMyLoans: `${BASE_URL}/loan/all-my-loans`,
+    singleLoan: `${BASE_URL}/loan/one-loan`,
+    decideOnLoan: `${BASE_URL}/loan/decide-onAdjustedLoan`,
+    payBackLoan: `${BASE_URL}/loan/payBack-loan`,
+  },
 } as const;

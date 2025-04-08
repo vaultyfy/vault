@@ -12,7 +12,11 @@ import {
 import { SelectField } from "@components/form";
 import { loanDurations, paymentPlans } from "@utils/constants";
 
-export const LoanEligibilityContainer = () => {
+interface LoanEligibilityProps {
+  onClick: (status: "accept" | "reject") => void;
+}
+
+export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
   return (
     <Container>
       <Flex flexDirection="column" rowGap="10px" fontFamily="var(--poppins)">
@@ -122,14 +126,6 @@ export const LoanEligibilityContainer = () => {
           </Text>
           <HStack justifyContent="space-between" width="full" minHeight="53px">
             <Box width="164px">
-              {/* <SelectField
-                options={loanDurations}
-                defaultValue={loanDurations[0]}
-                isDisabled={true}
-                name="loan_duration"
-                color="var(--grey)"
-                caretColor="var(--text-1)"
-              /> */}
               <Select
                 width="full"
                 height="53px"
@@ -176,9 +172,7 @@ export const LoanEligibilityContainer = () => {
             _hover={{
               backgroundColor: "#F6F6F6",
             }}
-            // onClick={() => {
-            //   navigate({ to: "/dashboard/loan-me" });
-            // }}
+            onClick={() => onClick("reject")}
           >
             Reject offer
           </Button>
@@ -196,7 +190,7 @@ export const LoanEligibilityContainer = () => {
             _hover={{
               backgroundColor: "var(--main)",
             }}
-            // onClick={handleNext}
+            onClick={() => onClick("accept")}
           >
             Accept offer
           </Button>

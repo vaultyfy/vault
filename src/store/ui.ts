@@ -5,6 +5,9 @@ export type UiComponents =
   | "personal-info"
   | "payments-and-payouts"
   | "login-and-security"
+  | "loan-purpose"
+  | "financial-details"
+  | "eligibility-acceptance"
   | "";
 
 const uiComponentParser = createParser({

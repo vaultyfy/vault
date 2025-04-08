@@ -4,11 +4,16 @@ import { BankStatementDropzone } from "../bank-statement-dropzone";
 import { useRef } from "react";
 import { InputField } from "@components/form";
 import { useFormikContext } from "formik";
+import { useLoanStepFlow } from "@hooks/context";
 
 export const FinancialDetails = () => {
   const dropzoneRef = useRef<{ open: () => void }>(null);
   const formik = useFormikContext();
+  const { setActiveStep } = useLoanStepFlow();
 
+  const handleSubmit = () => {
+    formik.submitForm();
+  };
   return (
     <Container>
       <Flex
@@ -34,6 +39,7 @@ export const FinancialDetails = () => {
           radius="6px"
           labelColor="var(--grey)"
           placeholder="Business or Job"
+          my="0px"
         />
         <InputField
           name="annual_income"
@@ -41,6 +47,7 @@ export const FinancialDetails = () => {
           radius="6px"
           labelColor="var(--grey)"
           placeholder="N500,000"
+          my="0px"
         />
         <Divider width="full" backgroundColor="#8181816B" height="0.5px" />
         <HStack justifyContent="space-between" width="full">
@@ -55,10 +62,14 @@ export const FinancialDetails = () => {
             fontWeight="500"
             color="var(--main)"
             backgroundColor="#F6F6F6"
+            onClick={() => {
+              setActiveStep("loan-purpose");
+            }}
           >
             Back
           </Button>
           <Button
+            type="submit"
             width="87px"
             height="34px"
             rounded="36px"
@@ -69,6 +80,15 @@ export const FinancialDetails = () => {
             fontWeight="500"
             color="white"
             backgroundColor="var(--main)"
+            _hover={{
+              backgroundColor: "var(--main)",
+            }}
+            _focus={{
+              backgroundColor: "var(--main)",
+            }}
+            isLoading={formik.isSubmitting}
+            onClick={handleSubmit}
+            disabled={formik.isSubmitting || !formik.isValid}
           >
             Submit
           </Button>

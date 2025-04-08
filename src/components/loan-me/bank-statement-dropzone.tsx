@@ -15,7 +15,9 @@ interface BankStatementDropzoneProps {
 
 export const BankStatementDropzone = ({
   dropzoneRef,
-  fileType = { "image/*": [".png", ".jpeg", ".jpg", ".gif"] },
+  fileType = {
+    "application/*": [".pdf", ".docx", ".doc"],
+  },
   maxFileNumber = 1,
   name,
   onImageUpload,
