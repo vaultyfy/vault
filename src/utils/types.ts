@@ -186,14 +186,18 @@ export type Transaction = {
   transactionID: string;
   walletAddrress: string;
   amount: number;
-  type: "Credit" | string;
   status: "Successful" | string;
   createdAT: string;
   reference: string;
   description: string;
   metadata: Record<string, unknown>;
   customer: string;
+  type: "Credit" | "thrift" | "withdrawal" | "loan";
 };
+
+export type TransactionResponse = Response<Common & {
+  data: Transaction[]
+}>
 
 export type Group = {
   id: number;

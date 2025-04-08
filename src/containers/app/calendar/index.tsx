@@ -120,7 +120,7 @@ const MobileGroupCalendar = () => {
         width="100%"
         maxWidth="364px"
         height="208px"
-        border="1px solid #8181816B"
+        border="1px solid var(--border-muted)"
         roundedTop="10px"
       >
         {isActiveGroupsLoading ? (
@@ -282,7 +282,7 @@ const MobileGroupCalendar = () => {
 
       <Box
         px={"1em"}
-        border="1px solid #8181816B"
+        border="1px solid var(--border-muted)"
         mt="0.25rem"
         pt="0.25rem"
         height="fit-content"
