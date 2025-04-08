@@ -40,7 +40,6 @@ export const ReusableDropzone = forwardRef(
   ) => {
     const [field, meta, helpers] = useField(name); // Use Formik's useField hook
     const [uploading, setUploading] = useState(false);
-    const [uploadProgress, setUploadProgress] = useState(0);
     const [previews, setPreviews] = useState<string[]>([]);
     const { openToast } = useToastContext();
     // Prevent duplicate open calls
@@ -75,16 +74,16 @@ export const ReusableDropzone = forwardRef(
         handleFilePreview(acceptedFiles);
 
         // Simulate upload progress
-        const uploadInterval = setInterval(() => {
-          setUploadProgress((prev) => {
-            if (prev >= 100) {
-              clearInterval(uploadInterval);
-              setUploading(false);
-              return 100;
-            }
-            return prev + 10;
-          });
-        }, 500);
+        // const uploadInterval = setInterval(() => {
+        //   setUploadProgress((prev) => {
+        //     if (prev >= 100) {
+        //       clearInterval(uploadInterval);
+        //       setUploading(false);
+        //       return 100;
+        //     }
+        //     return prev + 10;
+        //   });
+        // }, 500);
       },
       onDropRejected: (rejections) => {
         const errorMessages = rejections
@@ -123,14 +122,12 @@ export const ReusableDropzone = forwardRef(
       transition: "border .24s ease-in-out",
     };
 
-    // const focusedStyle = { borderColor: "#2196f3" };
     const acceptStyle = { borderColor: "var(--primary)" };
     const rejectStyle = { borderColor: "var(--coral)" };
 
     const style = useMemo(
       () => ({
         ...baseStyle,
-        // ...(isFocused ? focusedStyle : {}),
         ...(isDragAccept ? acceptStyle : {}),
         ...(isDragReject ? rejectStyle : {}),
       }),
@@ -145,12 +142,13 @@ export const ReusableDropzone = forwardRef(
           height="100%"
         >
           <input {...getInputProps()} />
-          {!uploading && previews.length > 0 ? (
+          {previews.length > 0 ? (
             <Center width="100%" height="100%" position="relative">
               {previews.map((preview, index) => (
                 <Box
                   key={index}
                   display="inline-flex"
+                  width="100%"
                   maxWidth="100%"
                   maxHeight="100%"
                   overflow="hidden"

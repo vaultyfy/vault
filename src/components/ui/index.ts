@@ -9,4 +9,4 @@ export * from "./carousel";
 export * from "./chart";
 export * from "./modal";
 export * from "./gradient-container";
-export * from "./react-dropzone";
+export * from "./file-upload-zone";

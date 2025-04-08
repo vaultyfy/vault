@@ -1,5 +1,17 @@
 import * as Yup from "yup";
 
+const validateIncome = (value: string | undefined) => {
+  if (!value) return false;
+
+  // Check if value only contains numbers and commas (e.g., 50,000,000)
+  const isValidFormat = /^[0-9,]+$/.test(value);
+  if (!isValidFormat) return false;
+
+  // Remove commas and check if it converts to a valid number
+  const numericValue = Number(value.replace(/,/g, ""));
+  return !isNaN(numericValue) && numericValue >= 10000;
+};
+
 export const LoanDurationEnum = {
   ONE_MONTH: "One_Month",
   THREE_MONTHS: "Three_Months",
@@ -40,10 +52,9 @@ export const loanApplicationSchema = Yup.object().shape({
       (value) => {
         if (!value || !(value instanceof File)) return true;
         const acceptedTypes = [
-          "image/jpeg",
-          "image/jpg",
-          "image/png",
           "application/pdf",
+          "application/docx",
+          "application/doc",
         ];
         return acceptedTypes.includes(value.type);
       },
@@ -57,8 +68,11 @@ export const loanApplicationSchema = Yup.object().shape({
 
   amount: Yup.string()
     .required("Amount is required")
-    .min(1000, "Minimum loan amount is ₦1,000")
-    .typeError("Please enter a valid amount"),
+    .test(
+      "valid-income",
+      "Minimum annual income is ₦10,000 (numbers only)",
+      validateIncome,
+    ),
 
   loan_duration: Yup.string()
     .required("Loan duration is required")
@@ -89,13 +103,18 @@ export const loanApplicationSchema = Yup.object().shape({
 
   annual_income: Yup.string()
     .required("Annual income is required")
-    .min(10000, "Minimum annual income is ₦10,000")
-    .typeError("Please enter a valid number"),
+    .test(
+      "valid-income",
+      "Minimum annual income is ₦10,000 (numbers only)",
+      validateIncome,
+    ),
 });
 
 //this is to retreive the values of said keys in the enums
-type LoanDuration = (typeof LoanDurationEnum)[keyof typeof LoanDurationEnum];
-type PaymentPlan = (typeof PaymentPlanEnum)[keyof typeof PaymentPlanEnum];
+export type LoanDuration =
+  (typeof LoanDurationEnum)[keyof typeof LoanDurationEnum];
+export type PaymentPlan =
+  (typeof PaymentPlanEnum)[keyof typeof PaymentPlanEnum];
 type PaymentDuration =
   (typeof PaymentDurationEnum)[keyof typeof PaymentDurationEnum];
 

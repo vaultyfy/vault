@@ -14,8 +14,7 @@ export const Container = ({
 }: ContainerProps) => {
   return (
     <Box
-      width="full"
-      maxWidth={width}
+      width={{ base: "full", md: width }}
       py="15px"
       px="15px"
       rounded="10px"

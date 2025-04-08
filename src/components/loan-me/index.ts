@@ -6,3 +6,4 @@ export * from "./accept-offer";
 export * from "./progress-tabs";
 export * from "./reject-offer";
 export * from "./application-success";
+export * from "./loan-details";

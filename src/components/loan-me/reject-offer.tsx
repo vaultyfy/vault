@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { CustomCheckbox } from "./form";
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 
 export const rejectionReasons = [
   {
@@ -30,8 +31,14 @@ export const rejectionReasons = [
   },
 ];
 
-export const RejectOffer = () => {
+interface RejectOfferProps {
+  handleBack: () => void;
+}
+
+export const RejectOffer = ({ handleBack }: RejectOfferProps) => {
   const [selectedReasons, setSelectedReasons] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -84,9 +91,7 @@ export const RejectOffer = () => {
             _hover={{
               backgroundColor: "#F6F6F6",
             }}
-            // onClick={() => {
-            //   navigate({ to: "/dashboard/loan-me" });
-            // }}
+            onClick={handleBack}
           >
             Back
           </Button>
@@ -120,6 +125,10 @@ export const RejectOffer = () => {
               fontSize="12px"
               fontWeight="500"
               color="var(--dark)"
+              onClick={() => {
+                navigate({ to: "/dashboard/loan-me" });
+                setSelectedReasons(null); // my thought on this is that the skip would handle the decline and the the reason woult be an empty string
+              }}
             >
               Skip
             </Button>

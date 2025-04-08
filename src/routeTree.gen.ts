@@ -20,7 +20,6 @@ import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardNotificationImport } from './routes/dashboard/notification'
 import { Route as DashboardMilestonesImport } from './routes/dashboard/milestones'
-import { Route as DashboardLoanEligibilityImport } from './routes/dashboard/loan-eligibility'
 import { Route as DashboardLoanApplicationImport } from './routes/dashboard/loan-application'
 import { Route as DashboardCreateGroupImport } from './routes/dashboard/create-group'
 import { Route as DashboardCalendarImport } from './routes/dashboard/calendar'
@@ -100,12 +99,6 @@ const DashboardNotificationRoute = DashboardNotificationImport.update({
 const DashboardMilestonesRoute = DashboardMilestonesImport.update({
   id: '/dashboard/milestones',
   path: '/dashboard/milestones',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const DashboardLoanEligibilityRoute = DashboardLoanEligibilityImport.update({
-  id: '/dashboard/loan-eligibility',
-  path: '/dashboard/loan-eligibility',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -348,13 +341,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLoanApplicationImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard/loan-eligibility': {
-      id: '/dashboard/loan-eligibility'
-      path: '/dashboard/loan-eligibility'
-      fullPath: '/dashboard/loan-eligibility'
-      preLoaderRoute: typeof DashboardLoanEligibilityImport
-      parentRoute: typeof rootRoute
-    }
     '/dashboard/milestones': {
       id: '/dashboard/milestones'
       path: '/dashboard/milestones'
@@ -533,7 +519,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/loan-application': typeof DashboardLoanApplicationRoute
-  '/dashboard/loan-eligibility': typeof DashboardLoanEligibilityRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -571,7 +556,6 @@ export interface FileRoutesByTo {
   '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/loan-application': typeof DashboardLoanApplicationRoute
-  '/dashboard/loan-eligibility': typeof DashboardLoanEligibilityRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -610,7 +594,6 @@ export interface FileRoutesById {
   '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
   '/dashboard/loan-application': typeof DashboardLoanApplicationRoute
-  '/dashboard/loan-eligibility': typeof DashboardLoanEligibilityRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -650,7 +633,6 @@ export interface FileRouteTypes {
     | '/dashboard/calendar'
     | '/dashboard/create-group'
     | '/dashboard/loan-application'
-    | '/dashboard/loan-eligibility'
     | '/dashboard/milestones'
     | '/dashboard/notification'
     | '/dashboard/payments'
@@ -687,7 +669,6 @@ export interface FileRouteTypes {
     | '/dashboard/calendar'
     | '/dashboard/create-group'
     | '/dashboard/loan-application'
-    | '/dashboard/loan-eligibility'
     | '/dashboard/milestones'
     | '/dashboard/notification'
     | '/dashboard/payments'
@@ -724,7 +705,6 @@ export interface FileRouteTypes {
     | '/dashboard/calendar'
     | '/dashboard/create-group'
     | '/dashboard/loan-application'
-    | '/dashboard/loan-eligibility'
     | '/dashboard/milestones'
     | '/dashboard/notification'
     | '/dashboard/payments'
@@ -763,7 +743,6 @@ export interface RootRouteChildren {
   DashboardCalendarRoute: typeof DashboardCalendarRoute
   DashboardCreateGroupRoute: typeof DashboardCreateGroupRoute
   DashboardLoanApplicationRoute: typeof DashboardLoanApplicationRoute
-  DashboardLoanEligibilityRoute: typeof DashboardLoanEligibilityRoute
   DashboardMilestonesRoute: typeof DashboardMilestonesRoute
   DashboardNotificationRoute: typeof DashboardNotificationRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
@@ -801,7 +780,6 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardCalendarRoute: DashboardCalendarRoute,
   DashboardCreateGroupRoute: DashboardCreateGroupRoute,
   DashboardLoanApplicationRoute: DashboardLoanApplicationRoute,
-  DashboardLoanEligibilityRoute: DashboardLoanEligibilityRoute,
   DashboardMilestonesRoute: DashboardMilestonesRoute,
   DashboardNotificationRoute: DashboardNotificationRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
@@ -849,7 +827,6 @@ export const routeTree = rootRoute
         "/dashboard/calendar",
         "/dashboard/create-group",
         "/dashboard/loan-application",
-        "/dashboard/loan-eligibility",
         "/dashboard/milestones",
         "/dashboard/notification",
         "/dashboard/payments",
@@ -907,9 +884,6 @@ export const routeTree = rootRoute
     },
     "/dashboard/loan-application": {
       "filePath": "dashboard/loan-application.tsx"
-    },
-    "/dashboard/loan-eligibility": {
-      "filePath": "dashboard/loan-eligibility.tsx"
     },
     "/dashboard/milestones": {
       "filePath": "dashboard/milestones.tsx"

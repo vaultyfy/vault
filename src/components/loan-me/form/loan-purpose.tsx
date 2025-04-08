@@ -13,17 +13,51 @@ import { loanAmounts, paymentPlans, loanDurations } from "@utils/constants";
 import { LoanApplicationFormValues } from "@utils/validators/loan-schema";
 import { useFormikContext } from "formik";
 import { useNavigate } from "@tanstack/react-router";
+import { useLoanStepFlow } from "@hooks/context";
+import { calculatePaybackAmount, formatWithCommas } from "@utils/misc";
+import { format } from "path";
 
-export const LoanPurpose = () => {
+interface LoanPurposeProps {
+  onClick: () => void;
+}
+
+export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
   const formik = useFormikContext<LoanApplicationFormValues>();
   const navigate = useNavigate();
+  const { resetSteps } = useLoanStepFlow();
 
-  const { loan_purpose, amount, loan_duration, payment_plan } = formik.values;
+  const {
+    loan_purpose,
+    amount,
+    loan_duration,
+    payment_plan,
+    payment_duration,
+  } = formik.values;
+
+  const calculateAndFormatPaybackAmount = () => {
+    const loanAmount = parseInt(amount);
+    const paymentPlan = payment_plan;
+    const paymentDuration = payment_duration?.toString() || "";
+
+    const paybackAmount = calculatePaybackAmount(
+      loanAmount,
+      paymentPlan,
+      paymentDuration,
+    );
+
+    return formatWithCommas(paybackAmount.toString());
+  };
 
   const handleNext = () => {
     if (loan_purpose !== "" && amount !== "" && loan_duration && payment_plan) {
-      console.log("next");
+      console.log("i got clicked");
+      onClick();
     }
+  };
+
+  const handleBack = () => {
+    resetSteps();
+    navigate({ to: "/dashboard/loan-me" });
   };
 
   return (
@@ -86,7 +120,7 @@ export const LoanPurpose = () => {
               </Button>
             ))}
           </HStack>
-          <Flex
+          {/* <Flex
             width="full"
             height="57px"
             rounded="6px"
@@ -100,8 +134,17 @@ export const LoanPurpose = () => {
             px="19px"
             alignItems="center"
           >
-            {formik.values.amount}
-          </Flex>
+            N{formatWithCommas(formik.values.amount)}
+          </Flex> */}
+          <InputField
+            name="amount"
+            radius="6px"
+            placeholder={formik.values.amount ? "" : "N50,000"}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              formik.setFieldValue("amount", e.target.value)
+            }
+            my="0"
+          />
         </Flex>
         <Divider width="full" backgroundColor="#8181816B" height="0.5px" />
         <Flex width="100%" flexDirection="column" columnGap="10px">
@@ -146,7 +189,19 @@ export const LoanPurpose = () => {
                         backgroundColor: "transparent",
                       }
                 }
-                onClick={() => formik.setFieldValue("payment_plan", plan.value)}
+                onClick={() => {
+                  formik.setFieldValue("payment_plan", plan.value);
+                  if (
+                    formik.values.payment_plan === "Outright_Payment" &&
+                    formik.values.payment_duration !== null
+                  ) {
+                    formik.setFieldValue("payment_duration", null);
+                    formik.setFieldValue(
+                      "loan_duration",
+                      loanDurations[0].value,
+                    );
+                  }
+                }}
               >
                 {plan.label}
               </Button>
@@ -182,6 +237,12 @@ export const LoanPurpose = () => {
                     name="loan_duration"
                     color="var(--grey)"
                     caretColor="var(--text-1)"
+                    onChange={(selectedOption) => {
+                      formik.setFieldValue(
+                        "payment_duration",
+                        selectedOption.value,
+                      );
+                    }}
                   />
                 </Box>
                 <Flex flex="1" justifyContent="center">
@@ -191,7 +252,7 @@ export const LoanPurpose = () => {
                     fontWeight="600"
                     color="var(--dark)"
                   >
-                    N54,000
+                    {calculateAndFormatPaybackAmount()}
                   </Text>
                 </Flex>
               </HStack>
@@ -214,9 +275,7 @@ export const LoanPurpose = () => {
             _hover={{
               backgroundColor: "#F6F6F6",
             }}
-            onClick={() => {
-              navigate({ to: "/dashboard/loan-me" });
-            }}
+            onClick={handleBack}
           >
             Back
           </Button>

@@ -1,3 +1,5 @@
+import { LoanDuration, PaymentPlan } from "@utils/validators/loan-schema";
+
 export type Response<T = any> = {
   success: boolean;
   payload: T | null;
@@ -13,6 +15,17 @@ export type Common = {
 };
 
 export type GroupTypeFilter = "Active" | "Completed";
+
+export type LoanStep =
+  | "loan-purpose"
+  | "financial-details"
+  | "eligibility-acceptance";
+
+export const allLoanSteps: LoanStep[] = [
+  "loan-purpose",
+  "financial-details",
+  "eligibility-acceptance",
+];
 
 export type LoginResponse = {
   token: { token: string };
@@ -347,4 +360,78 @@ export type Notification = {
 
 export type NotificationPayload = Common & {
   data: Notification[];
+};
+
+export type LoanApplicationPayload = {
+  bankStatement: File;
+  loanPurpose: string;
+  amount: string;
+  loanDuration: LoanDuration;
+  paymentPlan: PaymentPlan;
+  spreadPaymentDuration: LoanDuration;
+  jobOrBusiness: string;
+  annualIncome: string;
+};
+
+type LoanStatus =
+  | "Approved"
+  | "Denied"
+  | "Disbursed"
+  | "Pending"
+  | "PaidBack"
+  | "Adjusted";
+
+type LoanApprovedType = "Oroginal" | "Adjusted";
+
+type LoanApprovedByType = {
+  id: number;
+  adminID: string;
+  name: string;
+  password: string;
+  email: string;
+  phoneNumber: string;
+  address: string;
+  profilePicture: string;
+  isVerified: boolean;
+  role: "Admin";
+  adminType: "Super_Admin" | "Invited_Admin ";
+  resetPasswordToken: string;
+  createdAT: string | Date;
+  updatedAT: string | Date;
+};
+
+export type LoanSinglePayload = {
+  id: number;
+  loanID: string;
+  loanPurpose: string;
+  loanDuration: string;
+  loanBalance: string;
+  createdAT: string;
+  loanApprovedAT: string | null;
+  loanDeclinedAT: string | null;
+  updatedAT: string | null;
+  loanDeclinedReason: string | null;
+  customer: Customer;
+  loanAdjustedAT: string | null;
+  loanApprovedType: LoanApprovedType;
+  approvedBy: string | null;
+  loanStatus: LoanStatus;
+  loancompletelyPaidBackAT: string | null;
+  loanDisbursedAT: string | null;
+  annualIncome: string;
+  amountPaid: string;
+  amount: string;
+  bankStatement: string;
+  nextPaymentDate: string;
+  paymentPlan: string;
+  spreadPaymentDuration: string | null;
+  hasPaidOffdebtCompletely: boolean;
+  payBackAmount: string;
+  disbursementAmount: string;
+  insuranceFee: string;
+  loanAdjustedBy: LoanApprovedByType;
+};
+
+export type LoanPayload = Common & {
+  data: LoanSinglePayload[];
 };

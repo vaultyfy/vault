@@ -121,7 +121,7 @@ export const loanAmounts: { value: string; label: string }[] = [
   "N200,000",
 ].map((amount) => ({
   label: amount,
-  value: amount.replaceAll(",", ""),
+  value: amount.replaceAll(",", "").replaceAll("N", ""),
 }));
 
 export const paymentPlans = Object.values(PaymentPlanEnum).map((plan) => ({

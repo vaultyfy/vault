@@ -29,9 +29,9 @@ export const addBank = async (payload: BankInfo) => {
 export const deleteBank = async (id: string) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token || !id) {
-    console.error("bankId or token is not available")
+    console.error("bankId or token is not available");
     return;
-  };
+  }
 
   try {
     const request = await fetch(`${app.customer.deleteBankDetails}/${id}`, {
@@ -52,9 +52,9 @@ export const deleteBank = async (id: string) => {
 export const updateBankInfo = async (bankId: string, payload: BankInfo) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token || !bankId) {
-    console.error("bankId or token is not available")
+    console.error("bankId or token is not available");
     return;
-  };
+  }
 
   try {
     const request = await fetch(`${app.customer.updateBankDetails}/${bankId}`, {
