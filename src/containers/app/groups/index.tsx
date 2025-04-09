@@ -22,8 +22,8 @@ import { useJoinedGroups } from "@hooks/swr";
 import { useMyGroupsWithStatus } from "@hooks/swr";
 import { Link } from "@tanstack/react-router";
 import { skeleton } from "@utils/misc";
-import { Group, GroupTypeFilter } from "@utils/types";
-import dayjs, { Dayjs } from "dayjs";
+import { Group } from "@utils/types";
+import dayjs from "dayjs";
 import React from "react";
 import slugify from "slugify";
 
@@ -75,9 +75,27 @@ export const Groups = () => {
     setActiveGroup(group);
   };
 
-  const contributionDates = activeGroup?.participants
-    .find((participant) => participant?.customer?.id === user?.id)
-    ?.contributionDates.map((date) => dayjs(date).format("DD-MMMM-YYYY"));
+  // current logged-in user in the participants array
+  const me = activeGroup?.participants.find(
+    (participant) => participant.customer?.id === user?.id,
+  );
+
+  console.log("user", user?.id)
+
+  const contributionDates = me?.contributionDates.map((date) =>
+    dayjs(date).format("DD-MMMM-YYYY"),
+  );
+  const missedContributionDates = me?.missedContributionDates.map((date) =>
+    dayjs(date).format("DD-MMMM-YYYY"),
+  );
+  const nextContributionDate = me?.nextContributionDate;
+  const futureContributionDates = contributionDates?.filter(
+    (date) => dayjs(date) > dayjs(),
+  );
+
+  console.log("future dates", futureContributionDates)
+  console.log("contribution dates", contributionDates)
+  console.log("Me", me)
 
   const handleTabChange = (index: number) => {
     setTabIndex(index);
@@ -89,7 +107,6 @@ export const Groups = () => {
       setActiveGroup(completedGroups[0]);
     }
   };
-
   return (
     <Flex
       as="section"
@@ -343,23 +360,37 @@ export const Groups = () => {
             <PaymentCardSkeleton />
           ) : (
             <>
-              {dayjs().format("DD-MM-YYYY") === contributionDates?.[0] && (
+              {dayjs().format("DD-MM-YYYY") === nextContributionDate && (
                 <PaymentCard
-                  deadlineDate={dayjs(activeGroup?.startDate).format(
+                  deadlineDate={dayjs(nextContributionDate).format(
                     "DD-MMMM-YYYY",
                   )}
                   dateType="start-date"
                   amount={activeGroup?.contributionAmount}
-                  dayOfWeek={dayjs(activeGroup?.startDate).format("dddd")}
+                  dayOfWeek={dayjs(nextContributionDate).format("dddd")}
                   isActive
                   groupId={activeGroup?.groupID || ""}
-                  participantId={
-                    activeGroup?.participants.find(
-                      (participant) => participant?.customer?.id === user?.id,
-                    )?.participantID || ""
-                  }
+                  participantId={me?.participantID || ""}
                 />
               )}
+              {missedContributionDates &&
+                missedContributionDates?.length > 0 && (
+                  <>
+                    {missedContributionDates?.map((date) => {
+                      return (
+                        <PaymentCard
+                          deadlineDate={date}
+                          dateType="missed-date"
+                          amount={activeGroup?.contributionAmount}
+                          dayOfWeek={dayjs(date).format("dddd")}
+                          isActive
+                          groupId={activeGroup?.groupID || ""}
+                          participantId={me?.participantID || ""}
+                        />
+                      );
+                    })}
+                  </>
+                )}
               {contributionDates?.map((contributionDate, index) => {
                 return (
                   <PaymentCard
@@ -378,7 +409,9 @@ export const Groups = () => {
                       dayjs().format("DD-MMMM-YYYY") === contributionDate
                     }
                     roundedBottom={
-                      index === contributionDates?.length - 1 ? "10px" : ""
+                      index === contributionDates?.length - 1
+                        ? "10px"
+                        : ""
                     }
                   />
                 );

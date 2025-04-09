@@ -9,13 +9,11 @@ import {
 import { schema } from "@utils/validators";
 import { Icon } from "@components/icon";
 import { XCircle } from "@phosphor-icons/react";
-import { ModalLayout } from "@components/ui";
-import { CONTRIBUTION_FREQUENCY } from "@utils/constants";
+import { ModalLayout, ModalLayoutProps } from "@components/ui";
+import { BaseModalProps, CONTRIBUTION_FREQUENCY } from "@utils/constants";
 import { parseISO } from "date-fns";
 
-interface ExploreFilterProps {
-  isOpen: boolean;
-  onClose: () => void;
+interface ExploreFilterProps extends BaseModalProps {
   handleSubmit: (
     values: typeof defaultValues,
     setSubmitting: (isSubmitting: boolean) => void,

@@ -16,6 +16,8 @@ export interface Option {
   code?: string;
   value: number | string;
   icon?: React.ReactElement;
+  accountNumber?: string;
+  accountName?: string;
 }
 
 interface SelectProps {
@@ -190,6 +192,7 @@ export const SelectField = ({
                   }),
                   option: (baseStyles, { isSelected }) => ({
                     ...baseStyles,
+                    cursor: "pointer",
                     color: isSelected ? "var(--dark)" : "",
                     background: isSelected ? "var(--grey-100)" : "",
                   }),

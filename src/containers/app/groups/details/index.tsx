@@ -72,7 +72,7 @@ export const GroupDetails = ({
 
   return (
     <Box width="100%" minH="100dvh">
-      {!loading ? (
+      {loading ? (
         <Skeleton
           height="20px"
           ml="1.5em"

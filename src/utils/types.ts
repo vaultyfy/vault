@@ -47,6 +47,16 @@ export type ConsistencyStats = {
   consistencyRewardEligible: boolean;
 };
 
+export type RemainingContributions = {
+  contributions: {
+    group: string;
+    remaining: number;
+    frequency: ContributionFrequency;
+  }[];
+  grandTotal: number;
+  grandTotalPercentage: number;
+};
+
 export interface SignupResponse extends Omit<Response, "payload"> {
   payload: User;
 }
@@ -133,6 +143,7 @@ export type User = {
   customerID: string;
   email: string;
   isVerified: boolean;
+  isFullyVerified: boolean;
   kycStatus: Record<string, any>;
   KycAction: null;
   Kycpercentage: number | string;
@@ -188,14 +199,20 @@ export type Transaction = {
   transactionID: string;
   walletAddrress: string;
   amount: number;
-  type: "Credit" | string;
   status: "Successful" | string;
   createdAT: string;
   reference: string;
   description: string;
   metadata: Record<string, unknown>;
   customer: string;
+  type: "Credit" | "thrift" | "withdrawal" | "loan";
 };
+
+export type TransactionResponse = Response<
+  Common & {
+    data: Transaction[];
+  }
+>;
 
 export type Group = {
   id: number;
@@ -243,6 +260,7 @@ export type Participant = {
   group: string;
   customer: Customer;
   contributions: Contribution[];
+  missedContributionDates: string[];
 };
 
 export type Contribution = {

@@ -105,6 +105,7 @@ export const CircleProgress = ({
           width={imgSize}
           height={imgSize}
           objectFit="cover"
+          borderRadius="100%"
         />
       </Box>
 

@@ -7,11 +7,12 @@ import { ArrowRight } from "@phosphor-icons/react";
 interface PrimaryBtnProps {
   text: string;
   contentLoaded?: boolean;
+  onClick?: () => void;
 }
 
 export const PrimaryButton = ({
   text,
-  contentLoaded = true,
+  contentLoaded = true,onClick,
 }: PrimaryBtnProps) => {
   const { isMobile, isTablet } = useMobileScreens();
 
@@ -39,6 +40,7 @@ export const PrimaryButton = ({
           : { opacity: 0 }
       }
       px=".4em"
+      onClick={onClick}
     >
       <MotionText
         ml="1em"
@@ -95,9 +97,10 @@ export const PrimaryButton = ({
 interface SecondaryBtnProps extends Pick<PrimaryBtnProps, "text"> {
   variant?: "light" | "dark";
   show?: "yes" | "no";
+  onClick?: () => void;
 }
 
-export const SecondaryButton = ({ text, variant, show }: SecondaryBtnProps) => {
+export const SecondaryButton = ({ text, variant, show,onClick }: SecondaryBtnProps) => {
   return (
     <MotionBox
       display={{ lg: "block", md: show || "none", base: show || "none" }}
@@ -129,6 +132,7 @@ export const SecondaryButton = ({ text, variant, show }: SecondaryBtnProps) => {
         width={{ lg: "100%", base: "178px", md: "178px" }}
         borderRadius="4px"
         ml="-.3em"
+        onClick={onClick}
       >
         {text}
       </MotionBox>

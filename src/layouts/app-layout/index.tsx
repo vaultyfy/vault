@@ -11,7 +11,6 @@ export interface AppLayoutProps extends Readonly<LayoutProps> {
 
 export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
   const currentPath = useCurrentPath();
-
   return (
     <Flex height="100vh" background="#fff">
       <Sidebar />

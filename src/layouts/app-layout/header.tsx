@@ -65,6 +65,7 @@ export const AppHeader = ({
   const {
     userName,
     isLoading,
+    verified,
     hasUserCompletedKyc,
     kycPercentage,
     walletBalance,
@@ -153,7 +154,7 @@ export const AppHeader = ({
           <X size="20" color="#fff" />
         </Box>
         <Center>
-          <Image src="/img/logo-light.svg" height="35px" />
+          <Image src="/img/logo-light.svg" height="30px" />
         </Center>
 
         <Center flexFlow="column" mt="1em" gap=".6em">
@@ -172,6 +173,7 @@ export const AppHeader = ({
                 progress={kycPercentage}
                 size={150}
                 strokeWidth={5}
+                imgSize="78%"
                 imageUrl={`${dicebear}?seed=${userName}&size=48&flip=true&backgroundColor=${randomBg}`}
               />
             )}
@@ -198,14 +200,15 @@ export const AppHeader = ({
             )}
           </Flex>
 
-          {hasUserCompletedKyc ? (
+          {verified ? (
             <Badge
               background="var(--white-fade-8)"
               display="flex"
               justifyContent="center"
               gap=".6em"
-              height="37px"
-              width="158px"
+              height="30px"
+              width="fit-content"
+              px="1em"
               borderRadius="30px"
               alignItems="center"
             >
@@ -218,7 +221,7 @@ export const AppHeader = ({
               />
               <Text
                 textTransform="capitalize"
-                fontSize="14px"
+                fontSize="12px"
                 fontWeight="400"
                 bgClip="text"
                 bgGradient={MAIN_GRADIENT}
@@ -234,8 +237,9 @@ export const AppHeader = ({
                 display="flex"
                 justifyContent="center"
                 gap=".6em"
-                height="37px"
-                width="158px"
+                height="30px"
+                width="fit-content"
+                px="1em"
                 borderRadius="30px"
                 alignItems="center"
               >
@@ -251,7 +255,7 @@ export const AppHeader = ({
               </Badge>
             </Link>
           )}
-          {kycPercentage !== 100 && (
+          {!verified && (
             <Box width="80%" border="0.2px solid var(--border-muted)" />
           )}
           <Flex flexFlow="column" gap=".1em">
@@ -275,7 +279,7 @@ export const AppHeader = ({
             ) : (
               <Text
                 fontFamily="var(--clash-grotesk-600)"
-                fontSize="22px"
+                fontSize="20px"
                 lineHeight="27px"
                 bgGradient={MAIN_GRADIENT}
                 bgClip="text"
@@ -289,7 +293,7 @@ export const AppHeader = ({
         <Flex
           gap=".2em"
           flexFlow="column"
-          mt="1.5em"
+          mt="1em"
           width="100%"
           borderBottom="1px solid var(--border-muted)"
           pb=".2em"
@@ -302,7 +306,7 @@ export const AppHeader = ({
                   display="flex"
                   alignItems="center"
                   px={{ "2xl": "1.4em", xl: "1em", lg: "1em", base: "1em" }}
-                  height="54px"
+                  height="50px"
                   borderRadius="8px"
                   gap="1em"
                   textTransform="capitalize"
@@ -323,7 +327,7 @@ export const AppHeader = ({
                 >
                   {item.icon}
                   <Text
-                    fontSize="16px"
+                    fontSize="14px"
                     fontWeight={pathname === item.path ? "400" : "300"}
                     lineHeight="19px"
                     whiteSpace="nowrap"
@@ -345,7 +349,7 @@ export const AppHeader = ({
                   display="flex"
                   alignItems="center"
                   px="1em"
-                  height="54px"
+                  height="50px"
                   borderRadius="8px"
                   gap=".6em"
                   textTransform="capitalize"
@@ -366,9 +370,8 @@ export const AppHeader = ({
                 >
                   {item.icon}
                   <Text
-                    fontSize="16px"
+                    fontSize="14px"
                     fontWeight={pathname === item.path ? "400" : "300"}
-                    lineHeight="19px"
                     whiteSpace="nowrap"
                   >
                     {item.name}

@@ -74,3 +74,33 @@ export const updateBankInfo = async (bankId: string, payload: BankInfo) => {
     console.error(`${(error as Error).message}`);
   }
 };
+
+export type WithdrawalPayload = {
+  amount: number;
+  bankCode: string;
+  accountName: string;
+  accountNumber: string;
+};
+
+export const withdrawFunds = async(payload: WithdrawalPayload)  => {
+  const token = getCookie(TOKEN_KEY, {...cookieOptions})
+  if (!token) return;
+
+  try {
+    const request = await fetch(app.customer.withdrawFunds, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        ...HEADER_API_KEY,
+      },
+      body: JSON.stringify({
+        ...payload,
+      }),
+    });
+
+    return request;
+  } catch (error) {
+    console.error(`${(error as Error).message}`);
+  }
+};

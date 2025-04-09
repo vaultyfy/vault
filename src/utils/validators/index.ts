@@ -9,8 +9,8 @@ import {
 
 import { createGroupSchema } from "./create-group";
 import { exploreFilterSchema } from "./explore-schemas";
-import { createGoalSchema } from "./goals";
 import { loanApplicationSchema } from "./loan-schema";
+import { createGoalSchema, withdrawalSchema } from "./goals";
 
 export const schema = {
   login: signInSchema,
@@ -23,4 +23,5 @@ export const schema = {
   adjustLoan: adjustLoanSchema,
   createGoal: createGoalSchema,
   loanApplication: loanApplicationSchema,
+  withdrawal: withdrawalSchema,
 };

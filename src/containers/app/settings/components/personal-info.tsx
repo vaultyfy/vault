@@ -19,8 +19,8 @@ import { mutate } from "swr";
 import { Formik, Form, Field, FieldProps } from "formik";
 import { useToastContext } from "@hooks/context";
 import { useNavigate } from "@tanstack/react-router";
-import { useUiComponentStore } from "@store/ui";
 import { SettingsHeader } from "./settings-header";
+import { usePremblyWidget } from "prembly-widget";
 
 type SafeUserPayload = Omit<UserPayload, "acceptTermsAndConditions">;
 type VerificationFields = "nin" | "bvn";
@@ -80,8 +80,8 @@ const verificationFields: VerificationDetail[] = [
 ];
 
 export const PersonalInfo = () => {
+  const { verifyKyc, isReady } = usePremblyWidget();
   const navigate = useNavigate();
-  const { updateUiStore } = useUiComponentStore();
   const { data: user } = useUser();
   const { openToast } = useToastContext();
   const [editModes, setEditModes] = React.useState<
@@ -183,6 +183,30 @@ export const PersonalInfo = () => {
 
   const handleNavigation = () => {
     navigate({ to: "/dashboard/settings" });
+  };
+
+  const handleFaceLiveliness = () => {
+    if (!isReady) {
+      openToast("Please wait...", "warning");
+      return;
+    }
+
+    verifyKyc({
+      merchant_key: "sandbox_pk_CzMPvCqy92CqWoVLL6wjSbMv6vMJoZFS67Lbaf5",
+      first_name: user?.name?.split(" ")[0] || "",
+      last_name: user?.name?.split(" ")[1] || "",
+      user_ref: "shsgjaa",
+      is_test: true,
+      email: user?.email || "",
+      config_id: "dc0d9900-8e9a-40a9-b9cf-40872cd7c667",
+      callback: (response) => {
+        if (response.status === "success") {
+          console.log("hafa naaaa");
+        } else {
+          console.log("Omo kilon suppp");
+        }
+      },
+    });
   };
 
   return (
@@ -401,7 +425,9 @@ export const PersonalInfo = () => {
                 </Box>
 
                 {item.svgPath && (
-                  <Image src={item.svgPath} alt={item.label} boxSize="24px" />
+                  <Box onClick={handleFaceLiveliness}>
+                    <Image src={item.svgPath} alt={item.label} boxSize="24px" />
+                  </Box>
                 )}
               </Flex>
             </Flex>

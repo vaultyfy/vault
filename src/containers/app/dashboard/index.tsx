@@ -22,14 +22,29 @@ import React from "react";
 import { useMobileScreens } from "@hooks/mobile-screen";
 import { CreateGroupModal } from "@layouts/modal-layout";
 import { useUiComponentStore } from "@store/ui";
-import { useJoinedGroups, useSavingsTrend, useUser, useWallet } from "@hooks/swr";
+import {
+  useConsistencyStats,
+  useJoinedGroups,
+  useReferralStats,
+  useRemainingContributions,
+  useSavingsTrend,
+  useUser,
+  useWallet,
+} from "@hooks/swr";
 import { Link } from "@components/link";
+import { RemainingContributionsParams } from "@queries/get-wallet";
 
 export const Dashboard = () => {
   const { store, updateUiStore } = useUiComponentStore();
   const { isMobile } = useMobileScreens();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { cyclesCompleted, isLoading: loadingCycleCount } = useUser();
+
+  const { data: referrals } = useReferralStats();
+  const { data: consistency } = useConsistencyStats();
+  const refPercentage = referrals?.referralPercentage;
+  const consistencyPercentage = consistency?.progressPercentage;
+  const milestonesProgress = Number(consistencyPercentage) + Number(refPercentage) / 2;
 
   React.useEffect(() => {
     if (store.ui === "create-group" && !isMobile) {
@@ -50,7 +65,13 @@ export const Dashboard = () => {
   const { walletBalance, lastUpdated, isLoading, expectedReturns } =
     useWallet();
   // const { data } = useSavingsTrend();
-  //
+  const [currentFilter, setCurrentFilter] =
+    React.useState<RemainingContributionsParams["filter"]>("month");
+  const {
+    total,
+    percentage,
+    isLoading: loadingRemainingContribs,
+  } = useRemainingContributions({ filter: currentFilter });
 
   return (
     <>
@@ -59,25 +80,29 @@ export const Dashboard = () => {
           columns={{ lg: 4, md: 2, base: 2 }}
           gap={{ lg: ".8em", md: ".6em", base: ".4em" }}
         >
-          <OverviewCard
-            cardIcon="calendar"
-            cardTitle="Wallet balance"
-            amount={walletBalance}
-            paidDate={lastUpdated}
-            cardGradient="var(--main-gradient)"
-            loading={isLoading}
-          />
+          <Link to="/dashboard/payments">
+            <OverviewCard
+              cardIcon="calendar"
+              cardTitle="Wallet balance"
+              amount={walletBalance}
+              paidDate={lastUpdated}
+              cardGradient="var(--main-gradient)"
+              loading={isLoading}
+            />
+          </Link>
           <OverviewCard
             cardIcon="time-is-money"
             cardTitle="Remaining contribution"
-            amount={walletBalance}
+            amount={total || 0}
             hasFilter={true}
             hasProgress={true}
-            progressLevel={40}
+            progressLevel={percentage}
             progressColor="var(--main-gradient)"
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
-            loading={isLoading}
+            loading={loadingRemainingContribs}
+            currentFilter={currentFilter}
+            setCurrentFilter={setCurrentFilter}
           />
           <OverviewCard
             cardIcon="piggy-bank"
@@ -87,14 +112,15 @@ export const Dashboard = () => {
             iconBg="var(--overview-card-secondary)"
             bgColor="var(--main)"
             loading={isLoading}
+            currentFilter={currentFilter}
+            setCurrentFilter={setCurrentFilter}
           />
           <Link to="/dashboard/milestones">
             <OverviewCard
               cardIcon="trophy"
               cardTitle="Rewards & milestones"
-              hasFilter={true}
               hasProgress={true}
-              progressLevel={40}
+              progressLevel={milestonesProgress}
               progressColor="var(--main-gradient)"
               iconBg="var(--overview-card-secondary)"
               bgColor="var(--main)"

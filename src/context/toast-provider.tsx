@@ -50,7 +50,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
                     : "var(--warn-25)"
             }`}
           >
-            <Flex alignItems="center" gap=".6em" position="relative">
+            <Flex gap=".6em" position="relative">
               {status === "error" ? (
                 <Ban size="20" color="var(--deep-blood)" />
               ) : status === "warning" ? (

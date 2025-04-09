@@ -49,6 +49,10 @@ export const app = {
     markCustomerNotificationAsRead: `${BASE_URL}/customer/mark-as-read`,
     markCustomerNotificationAsAllRead: `${BASE_URL}/customer/mark-all-as-read`,
     markMultipleCustomerNotificationAsRead: `${BASE_URL}/customer/mark-multiple-as-read`,
+    withdrawFunds: `${BASE_URL}/customer/withdrawFunds`,
+    finalizeWithdrawal: `${BASE_URL}/customer/finalizeWithdrawl`,
+    transactions: `${BASE_URL}/customer/all-my-transactions`,
+    transaction: `${BASE_URL}/customer/one-transaction`,
   },
   groups: {
     create: `${BASE_URL}/groups/create`,

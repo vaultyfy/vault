@@ -2,6 +2,7 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import { SectionContainer } from "@components/ui";
 import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { textVariants } from "./hero";
+import { Link } from "@components/link";
 
 interface SellingPointProps {
   icon: string;
@@ -156,39 +157,41 @@ export const FinancialGoals = () => {
               </MotionText>
             </Flex>
 
-            <MotionBox
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.8 }}
-              variants={textVariants}
-              borderRadius="4px"
-              height="58px"
-              width="178px"
-              background="var(--primary)"
-              whileTap={{
-                marginLeft: ".5em",
-                marginTop: ".3em",
-                transition: {
-                  duration: 0.3,
-                  ease: "easeOut",
-                },
-              }}
-            >
+            <Link to="/auth/login">
               <MotionBox
-                fontWeight="500"
-                fontSize="14px"
-                background="var(--white-fade)"
-                color="var(--main)"
-                as="button"
-                mt="-.3em"
-                height="100%"
-                width="100%"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.8 }}
+                variants={textVariants}
                 borderRadius="4px"
-                ml="-.3em"
+                height="58px"
+                width="178px"
+                background="var(--primary)"
+                whileTap={{
+                  marginLeft: ".5em",
+                  marginTop: ".3em",
+                  transition: {
+                    duration: 0.3,
+                    ease: "easeOut",
+                  },
+                }}
               >
-                Start your journey
+                <MotionBox
+                  fontWeight="500"
+                  fontSize="14px"
+                  background="var(--white-fade)"
+                  color="var(--main)"
+                  as="button"
+                  mt="-.3em"
+                  height="100%"
+                  width="100%"
+                  borderRadius="4px"
+                  ml="-.3em"
+                >
+                  Start your journey
+                </MotionBox>
               </MotionBox>
-            </MotionBox>
+            </Link>
 
             <MotionImage
               src="/img/time-is-money.svg"
