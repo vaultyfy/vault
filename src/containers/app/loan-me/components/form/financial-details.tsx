@@ -14,14 +14,10 @@ export const FinancialDetails = () => {
   const handleSubmit = () => {
     formik.submitForm();
   };
+
   return (
     <Container>
-      <Flex
-        fontFamily="var(--poppins)"
-        flexDirection="column"
-        rowGap="14px"
-        width="full"
-      >
+      <Flex flexDirection="column" rowGap="14px" width="full">
         <Text fontSize="20px" color="var(--main)" fontWeight="500">
           Financial details
         </Text>
@@ -32,7 +28,11 @@ export const FinancialDetails = () => {
             formik.setFieldValue("event_banner", file)
           }
         />
-        <Divider width="full" backgroundColor="#8181816B" height="0.5px" />
+        <Divider
+          width="full"
+          backgroundColor="var(--border-muted)"
+          height="0.5px"
+        />
         <InputField
           name="job_business"
           label="Job/Business"
@@ -49,7 +49,11 @@ export const FinancialDetails = () => {
           placeholder="N500,000"
           my="0px"
         />
-        <Divider width="full" backgroundColor="#8181816B" height="0.5px" />
+        <Divider
+          width="full"
+          backgroundColor="var(--border-muted)"
+          height="0.5px"
+        />
         <HStack justifyContent="space-between" width="full">
           <Button
             width="87px"
@@ -75,7 +79,6 @@ export const FinancialDetails = () => {
             rounded="36px"
             py="1rem"
             px="0.25rem"
-            fontFamily="var(--poppins)"
             fontSize="12px"
             fontWeight="500"
             color="white"
