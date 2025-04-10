@@ -183,6 +183,9 @@ export const SelectField = ({
                     boxShadow: "none",
                     borderRadius: "0",
                     background: "transparent",
+                    ":hover": {
+                      cursor: "pointer",
+                    },
                   }),
                   menu: (baseStyles) => ({
                     ...baseStyles,

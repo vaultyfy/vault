@@ -50,7 +50,7 @@ export const RejectOffer = ({ handleBack }: RejectOfferProps) => {
           {rejectionReasons.map((reason) => (
             <Box
               width="full"
-              borderBottom="0.5px solid #8181816B"
+              borderBottom="0.5px solid var(--border-muted)"
               height="79px"
               padding="1rem"
             >

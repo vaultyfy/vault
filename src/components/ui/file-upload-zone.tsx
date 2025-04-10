@@ -7,9 +7,8 @@ import React, {
 } from "react";
 import { useDropzone, Accept } from "react-dropzone";
 import { useField } from "formik";
-import { Box, Progress, Text, Image, Center } from "@chakra-ui/react";
+import { Box, Text, Image, Center } from "@chakra-ui/react";
 import { useToastContext } from "@hooks/context";
-// import { ParagraphText } from "./typography";
 
 interface ReactDropzoneProps {
   name: string;
@@ -38,8 +37,8 @@ export const ReusableDropzone = forwardRef(
     }: ReactDropzoneProps,
     ref,
   ) => {
-    const [field, meta, helpers] = useField(name); // Use Formik's useField hook
-    const [uploading, setUploading] = useState(false);
+    const [_field, meta, helpers] = useField(name);
+    const [_uploading, setUploading] = useState(false);
     const [previews, setPreviews] = useState<string[]>([]);
     const { openToast } = useToastContext();
     // Prevent duplicate open calls
@@ -62,7 +61,6 @@ export const ReusableDropzone = forwardRef(
       // isFocused,
       isDragAccept,
       isDragReject,
-      acceptedFiles,
     } = useDropzone({
       accept,
       multiple: multiple || false,
@@ -72,18 +70,6 @@ export const ReusableDropzone = forwardRef(
         helpers.setTouched(true);
         setUploading(true);
         handleFilePreview(acceptedFiles);
-
-        // Simulate upload progress
-        // const uploadInterval = setInterval(() => {
-        //   setUploadProgress((prev) => {
-        //     if (prev >= 100) {
-        //       clearInterval(uploadInterval);
-        //       setUploading(false);
-        //       return 100;
-        //     }
-        //     return prev + 10;
-        //   });
-        // }, 500);
       },
       onDropRejected: (rejections) => {
         const errorMessages = rejections
@@ -91,7 +77,7 @@ export const ReusableDropzone = forwardRef(
             errors.map((error) => `${file.name}: ${error.message}`),
           )
           .join("\n");
-        helpers.setError(errorMessages); // Update Formik field error
+        helpers.setError(errorMessages);
         openToast(errorMessages, "error");
         setUploading(false);
       },
@@ -152,6 +138,8 @@ export const ReusableDropzone = forwardRef(
                   maxWidth="100%"
                   maxHeight="100%"
                   overflow="hidden"
+                  px=".4em"
+                  fontSize="14px"
                 >
                   {preview.startsWith("blob:") ? (
                     <Image
@@ -178,9 +166,6 @@ export const ReusableDropzone = forwardRef(
           )}
         </Box>
 
-        {/* File Previews */}
-
-        {/* Error Feedback */}
         {meta.touched && meta.error && (
           <Text color="var(--coral)" mt={2} fontSize="sm">
             {meta.error}

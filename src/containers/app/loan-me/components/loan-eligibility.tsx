@@ -74,7 +74,11 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
             </Text>
           </HStack>
         </VStack>
-        <Divider width="full" backgroundColor="#8181816B" height="0.5px" />
+        <Divider
+          width="full"
+          backgroundColor="var(--border-muted)"
+          height="0.5px"
+        />
         <Flex width="100%" flexDirection="column" columnGap="10px">
           <Text fontWeight="500" fontSize="12px" color="var(--grey)">
             You will return
@@ -129,7 +133,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
               <Select
                 width="full"
                 height="53px"
-                border="0.5px solid #8181816B"
+                border="0.5px solid var(--border-muted)"
                 fontFamily="var(--poppins)"
                 fontSize="16px"
                 fontWeight="400"
@@ -156,7 +160,11 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
             </Flex>
           </HStack>
         </Flex>
-        <Divider width="full" backgroundColor="#8181816B" height="0.5px" />
+        <Divider
+          width="full"
+          backgroundColor="var(--border-muted)"
+          height="0.5px"
+        />
         <HStack justifyContent="space-between" width="full">
           <Button
             width="87px"
