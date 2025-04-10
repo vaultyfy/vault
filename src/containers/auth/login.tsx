@@ -65,19 +65,9 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
                     ...cookieOptions,
                   });
                   openToast(response.message, "success");
-                  if (redirect !== "undefined" || referrer !== "undefined") {
-                    navigate({
-                      to: redirect,
-                      search: {
-                        // @ts-ignore
-                        referrer: String(referrer),
-                      },
-                    });
-                  } else {
-                    navigate({
-                      to: "/dashboard",
-                    });
-                  }
+                  navigate({
+                    to: "/dashboard",
+                  });
                 } else {
                   openToast(response.message || "Login failed", "error");
                 }
