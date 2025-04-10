@@ -16,6 +16,8 @@ import {
   useDisclosure,
   Fade,
   IconButton,
+  Center,
+  Spinner,
 } from "@chakra-ui/react";
 import { NotificationContainer } from "./notification-container";
 import { Icon } from "@components/icon";
@@ -35,12 +37,23 @@ import {
 } from "@mutations/notification";
 import { Notification } from "@utils/types";
 import { useToastContext } from "@hooks/context";
+import slugify from "slugify";
 
 type GroupedNotifications = {
   [key: string]: Notification[];
 };
 
 const filterOptions = ["all_contribution", "recent", "older"];
+
+export const NOTIFICATION_TAB_ITEMS = [
+  "All Contributions",
+  "Recent",
+  "Older",
+].map((tab) => ({
+  name: tab,
+  slug: slugify(tab),
+  id: crypto.randomUUID(),
+}));
 
 export const NotificationPopover = () => {
   const { data: notifications, isLoading, error, mutate } = useNotifications();
@@ -53,7 +66,6 @@ export const NotificationPopover = () => {
     onClose: hideMarkAll,
   } = useDisclosure();
 
-  // Function to group notifications by human-readable date
   const groupNotificationsByDate = (
     notifications: Notification[],
   ): GroupedNotifications => {
@@ -103,21 +115,17 @@ export const NotificationPopover = () => {
       })
     : [];
 
-  // Group the filtered notifications by date
   const groupedNotifications = groupNotificationsByDate(filteredNotifications);
 
-  // Check if there are any unread notifications
   const hasUnreadNotifications = filteredNotifications?.some(
     (notification: Notification) => !notification.isRead,
   );
 
-  // Handle scroll for showing "Mark all as read" button
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
       const progress = (scrollTop / (scrollHeight - clientHeight)) * 100;
 
-      // Show "Mark all as read" button after scrolling 60%
       if (progress > 60 && hasUnreadNotifications) {
         showMarkAll();
       } else if (progress < 50) {
@@ -234,27 +242,44 @@ export const NotificationPopover = () => {
               },
             }}
           >
-            {/* Tabs for Filtering Notifications */}
             <Tabs
               variant="soft-rounded"
-              colorScheme="gray"
-              display="flex"
-              columnGap="0.3rem"
               onChange={(index) => {
                 setFilter(filterOptions[index]);
               }}
             >
-              <TabList px="20px" py="10px" rounded="3xl" cursor="pointer">
-                <Tab>All Contribution</Tab>
-                <Tab>Recent</Tab>
-                <Tab>Older</Tab>
+              <TabList
+                overflow="auto"
+                gap={{ lg: ".6em", md: ".6em", base: ".4em" }}
+              >
+                {NOTIFICATION_TAB_ITEMS.map((tab) => {
+                  return (
+                    <Tab
+                      _selected={{
+                        background: "var(--grey-100)",
+                      }}
+                      _hover={{
+                        background: "var(--grey-100)",
+                      }}
+                      transition="all .3s ease-in"
+                      px=".8em"
+                      py=".6em"
+                      fontSize={{ base: "12px", lg: "12px" }}
+                      fontWeight="500"
+                      whiteSpace="nowrap"
+                      key={tab.id}
+                    >
+                      {tab.name}
+                    </Tab>
+                  );
+                })}
               </TabList>
             </Tabs>
 
             {isLoading ? (
-              <Box textAlign="center" py={8}>
-                <Text color="gray.500">Loading notifications...</Text>
-              </Box>
+              <Center>
+                <Spinner size="sx" color="var(--grey)" />
+              </Center>
             ) : Object.keys(groupedNotifications).length === 0 ? (
               <Box textAlign="center" py={8}>
                 <Text color="gray.500">No notifications found</Text>
@@ -282,9 +307,8 @@ export const NotificationPopover = () => {
                           }
                         >
                           <Text
-                            fontFamily="Poppins"
-                            fontSize="16px"
-                            fontWeight="500"
+                            fontSize="14px"
+                            fontWeight="400"
                             color="#000000"
                           >
                             {notification.message}
@@ -292,7 +316,7 @@ export const NotificationPopover = () => {
                           <Text
                             fontFamily="var(--poppins)"
                             fontWeight="400"
-                            fontSize="14px"
+                            fontSize="12px"
                             color="#706E6E"
                           >
                             {notification.subject}
@@ -306,7 +330,6 @@ export const NotificationPopover = () => {
             )}
           </Box>
 
-          {/* Fixed "Mark all as read" button at the bottom */}
           <Fade in={isMarkAllVisible}>
             <Box
               position="fixed"
@@ -322,8 +345,7 @@ export const NotificationPopover = () => {
               <Button
                 onClick={handleMarkAllAsRead}
                 size="md"
-                colorScheme="blue"
-                fontWeight="medium"
+                fontWeight="400"
                 leftIcon={<Check size={18} />}
                 px={6}
                 borderRadius="full"
