@@ -4,3 +4,4 @@ export * from "./groups";
 export * from "./user";
 export * from "./kyc";
 export * from "./notification";
+export * from "./loan";

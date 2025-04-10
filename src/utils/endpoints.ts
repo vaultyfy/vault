@@ -50,7 +50,9 @@ export const app = {
     markCustomerNotificationAsAllRead: `${BASE_URL}/customer/mark-all-as-read`,
     markMultipleCustomerNotificationAsRead: `${BASE_URL}/customer/mark-multiple-as-read`,
     withdrawFunds: `${BASE_URL}/customer/withdrawFunds`,
-    finalizeWithdrawal: `${BASE_URL}/customer/finalizeWithdrawl`
+    finalizeWithdrawal: `${BASE_URL}/customer/finalizeWithdrawl`,
+    transactions: `${BASE_URL}/customer/all-my-transactions`,
+    transaction: `${BASE_URL}/customer/one-transaction`,
   },
   groups: {
     create: `${BASE_URL}/groups/create`,
@@ -62,5 +64,12 @@ export const app = {
     join: `${BASE_URL}/groups/joinGroup`,
     pay: `${BASE_URL}/groups/makeContribution`,
     status: `${BASE_URL}/groups/all-myParticipatoryGroupswithStatusFilter`,
+  },
+  loan: {
+    applyForLoan: `${BASE_URL}/loan/apply`,
+    allMyLoans: `${BASE_URL}/loan/all-my-loans`,
+    singleLoan: `${BASE_URL}/loan/one-loan`,
+    decideOnLoan: `${BASE_URL}/loan/decide-onAdjustedLoan`,
+    payBackLoan: `${BASE_URL}/loan/payBack-loan`,
   },
 } as const;
