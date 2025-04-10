@@ -9,13 +9,14 @@ import { routeTree } from "./routeTree.gen";
 import { NuqsAdapter } from "nuqs/adapters/react";
 import { ToastProvider } from "@context/toast-provider";
 import { useAuthContext } from "@hooks/context";
+import { LoanStepFlowProvider } from "@context/loan-tabs-provider";
 import React from "react";
 
 export const router = createRouter({
   routeTree,
   defaultPreload: "intent",
   context: {
-    auth: initialState
+    auth: initialState,
   },
 });
 
@@ -44,7 +45,9 @@ if (!rootElement.innerHTML) {
         <NuqsAdapter>
           <ToastProvider>
             <AuthProvider>
-              <App />
+              <LoanStepFlowProvider>
+                <App />
+              </LoanStepFlowProvider>
             </AuthProvider>
           </ToastProvider>
         </NuqsAdapter>

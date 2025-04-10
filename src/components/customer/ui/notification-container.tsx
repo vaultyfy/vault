@@ -29,7 +29,6 @@ export const NotificationContainer = ({
         },
       }}
       transition="all 0.2s"
-      borderLeft={!isUnread ? "1px solid #EAEAEA" : "3px solid #007AFF"}
     >
       {isUnread && (
         <IconButton
