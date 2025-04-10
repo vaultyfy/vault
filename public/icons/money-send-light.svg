@@ -1,7 +1,16 @@
+<<<<<<< HEAD
+<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.5 13.8853C9.5 14.8553 10.25 15.6353 11.17 15.6353H13.05C13.85 15.6353 14.5 14.9553 14.5 14.1053C14.5 13.1953 14.1 12.8653 13.51 12.6553L10.5 11.6053C9.91 11.3953 9.51001 11.0753 9.51001 10.1553C9.51001 9.3153 10.16 8.62531 10.96 8.62531H12.84C13.76 8.62531 14.51 9.40531 14.51 10.3753" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 7.63531V16.6353" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22 12.1353C22 17.6553 17.52 22.1353 12 22.1353C6.48 22.1353 2 17.6553 2 12.1353C2 6.61531 6.48 2.13531 12 2.13531" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22 6.13531V2.13531H18" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17 7.13531L22 2.13531" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+=======
 <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8.8125 12.0312C8.8125 12.88 9.46876 13.5625 10.2738 13.5625H11.9187C12.6187 13.5625 13.1875 12.9675 13.1875 12.2237C13.1875 11.4275 12.8375 11.1387 12.3213 10.955L9.6875 10.0362C9.17125 9.85246 8.82126 9.57246 8.82126 8.76746C8.82126 8.03246 9.38999 7.42871 10.09 7.42871H11.735C12.54 7.42871 13.1963 8.11121 13.1963 8.95996" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M11 6.5625V14.4375" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M19.75 10.5C19.75 15.33 15.83 19.25 11 19.25C6.17 19.25 2.25 15.33 2.25 10.5C2.25 5.67 6.17 1.75 11 1.75" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M19.75 5.25V1.75H16.25" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M15.375 6.125L19.75 1.75" stroke="#FDFFF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+>>>>>>> d5597e5336fe7102771406c528029718ef31ac88
 </svg>

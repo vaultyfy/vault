@@ -19,6 +19,7 @@ import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as DashboardPaymentsImport } from './routes/dashboard/payments'
 import { Route as DashboardNotificationImport } from './routes/dashboard/notification'
 import { Route as DashboardMilestonesImport } from './routes/dashboard/milestones'
+import { Route as DashboardLoanApplicationImport } from './routes/dashboard/loan-application'
 import { Route as DashboardCreateGroupImport } from './routes/dashboard/create-group'
 import { Route as DashboardCalendarImport } from './routes/dashboard/calendar'
 import { Route as AuthSignupImport } from './routes/auth/signup'
@@ -26,6 +27,7 @@ import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
 import { Route as DashboardSettingsIndexImport } from './routes/dashboard/settings/index'
+import { Route as DashboardLoanMeIndexImport } from './routes/dashboard/loan-me/index'
 import { Route as DashboardGroupsIndexImport } from './routes/dashboard/groups/index'
 import { Route as DashboardExploreIndexImport } from './routes/dashboard/explore/index'
 import { Route as DashboardSettingsPersonalInfoImport } from './routes/dashboard/settings/personal-info'
@@ -84,6 +86,12 @@ const DashboardMilestonesRoute = DashboardMilestonesImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DashboardLoanApplicationRoute = DashboardLoanApplicationImport.update({
+  id: '/dashboard/loan-application',
+  path: '/dashboard/loan-application',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DashboardCreateGroupRoute = DashboardCreateGroupImport.update({
   id: '/dashboard/create-group',
   path: '/dashboard/create-group',
@@ -123,6 +131,12 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
 const DashboardSettingsIndexRoute = DashboardSettingsIndexImport.update({
   id: '/dashboard/settings/',
   path: '/dashboard/settings/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardLoanMeIndexRoute = DashboardLoanMeIndexImport.update({
+  id: '/dashboard/loan-me/',
+  path: '/dashboard/loan-me/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -238,6 +252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardCreateGroupImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/loan-application': {
+      id: '/dashboard/loan-application'
+      path: '/dashboard/loan-application'
+      fullPath: '/dashboard/loan-application'
+      preLoaderRoute: typeof DashboardLoanApplicationImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/milestones': {
       id: '/dashboard/milestones'
       path: '/dashboard/milestones'
@@ -322,6 +343,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardGroupsIndexImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/loan-me/': {
+      id: '/dashboard/loan-me/'
+      path: '/dashboard/loan-me'
+      fullPath: '/dashboard/loan-me'
+      preLoaderRoute: typeof DashboardLoanMeIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/settings/': {
       id: '/dashboard/settings/'
       path: '/dashboard/settings'
@@ -344,6 +372,7 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
+  '/dashboard/loan-application': typeof DashboardLoanApplicationRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -356,6 +385,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings/personal-info': typeof DashboardSettingsPersonalInfoRoute
   '/dashboard/explore': typeof DashboardExploreIndexRoute
   '/dashboard/groups': typeof DashboardGroupsIndexRoute
+  '/dashboard/loan-me': typeof DashboardLoanMeIndexRoute
   '/dashboard/settings': typeof DashboardSettingsIndexRoute
 }
 
@@ -369,6 +399,7 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
+  '/dashboard/loan-application': typeof DashboardLoanApplicationRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -381,6 +412,7 @@ export interface FileRoutesByTo {
   '/dashboard/settings/personal-info': typeof DashboardSettingsPersonalInfoRoute
   '/dashboard/explore': typeof DashboardExploreIndexRoute
   '/dashboard/groups': typeof DashboardGroupsIndexRoute
+  '/dashboard/loan-me': typeof DashboardLoanMeIndexRoute
   '/dashboard/settings': typeof DashboardSettingsIndexRoute
 }
 
@@ -395,6 +427,7 @@ export interface FileRoutesById {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/calendar': typeof DashboardCalendarRoute
   '/dashboard/create-group': typeof DashboardCreateGroupRoute
+  '/dashboard/loan-application': typeof DashboardLoanApplicationRoute
   '/dashboard/milestones': typeof DashboardMilestonesRoute
   '/dashboard/notification': typeof DashboardNotificationRoute
   '/dashboard/payments': typeof DashboardPaymentsRoute
@@ -407,6 +440,7 @@ export interface FileRoutesById {
   '/dashboard/settings/personal-info': typeof DashboardSettingsPersonalInfoRoute
   '/dashboard/explore/': typeof DashboardExploreIndexRoute
   '/dashboard/groups/': typeof DashboardGroupsIndexRoute
+  '/dashboard/loan-me/': typeof DashboardLoanMeIndexRoute
   '/dashboard/settings/': typeof DashboardSettingsIndexRoute
 }
 
@@ -422,6 +456,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/calendar'
     | '/dashboard/create-group'
+    | '/dashboard/loan-application'
     | '/dashboard/milestones'
     | '/dashboard/notification'
     | '/dashboard/payments'
@@ -434,6 +469,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings/personal-info'
     | '/dashboard/explore'
     | '/dashboard/groups'
+    | '/dashboard/loan-me'
     | '/dashboard/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -446,6 +482,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/calendar'
     | '/dashboard/create-group'
+    | '/dashboard/loan-application'
     | '/dashboard/milestones'
     | '/dashboard/notification'
     | '/dashboard/payments'
@@ -458,6 +495,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings/personal-info'
     | '/dashboard/explore'
     | '/dashboard/groups'
+    | '/dashboard/loan-me'
     | '/dashboard/settings'
   id:
     | '__root__'
@@ -470,6 +508,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/calendar'
     | '/dashboard/create-group'
+    | '/dashboard/loan-application'
     | '/dashboard/milestones'
     | '/dashboard/notification'
     | '/dashboard/payments'
@@ -482,6 +521,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings/personal-info'
     | '/dashboard/explore/'
     | '/dashboard/groups/'
+    | '/dashboard/loan-me/'
     | '/dashboard/settings/'
   fileRoutesById: FileRoutesById
 }
@@ -496,6 +536,7 @@ export interface RootRouteChildren {
   AuthSignupRoute: typeof AuthSignupRoute
   DashboardCalendarRoute: typeof DashboardCalendarRoute
   DashboardCreateGroupRoute: typeof DashboardCreateGroupRoute
+  DashboardLoanApplicationRoute: typeof DashboardLoanApplicationRoute
   DashboardMilestonesRoute: typeof DashboardMilestonesRoute
   DashboardNotificationRoute: typeof DashboardNotificationRoute
   DashboardPaymentsRoute: typeof DashboardPaymentsRoute
@@ -508,6 +549,7 @@ export interface RootRouteChildren {
   DashboardSettingsPersonalInfoRoute: typeof DashboardSettingsPersonalInfoRoute
   DashboardExploreIndexRoute: typeof DashboardExploreIndexRoute
   DashboardGroupsIndexRoute: typeof DashboardGroupsIndexRoute
+  DashboardLoanMeIndexRoute: typeof DashboardLoanMeIndexRoute
   DashboardSettingsIndexRoute: typeof DashboardSettingsIndexRoute
 }
 
@@ -521,6 +563,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthSignupRoute: AuthSignupRoute,
   DashboardCalendarRoute: DashboardCalendarRoute,
   DashboardCreateGroupRoute: DashboardCreateGroupRoute,
+  DashboardLoanApplicationRoute: DashboardLoanApplicationRoute,
   DashboardMilestonesRoute: DashboardMilestonesRoute,
   DashboardNotificationRoute: DashboardNotificationRoute,
   DashboardPaymentsRoute: DashboardPaymentsRoute,
@@ -533,6 +576,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardSettingsPersonalInfoRoute: DashboardSettingsPersonalInfoRoute,
   DashboardExploreIndexRoute: DashboardExploreIndexRoute,
   DashboardGroupsIndexRoute: DashboardGroupsIndexRoute,
+  DashboardLoanMeIndexRoute: DashboardLoanMeIndexRoute,
   DashboardSettingsIndexRoute: DashboardSettingsIndexRoute,
 }
 
@@ -555,6 +599,7 @@ export const routeTree = rootRoute
         "/auth/signup",
         "/dashboard/calendar",
         "/dashboard/create-group",
+        "/dashboard/loan-application",
         "/dashboard/milestones",
         "/dashboard/notification",
         "/dashboard/payments",
@@ -567,6 +612,7 @@ export const routeTree = rootRoute
         "/dashboard/settings/personal-info",
         "/dashboard/explore/",
         "/dashboard/groups/",
+        "/dashboard/loan-me/",
         "/dashboard/settings/"
       ]
     },
@@ -596,6 +642,9 @@ export const routeTree = rootRoute
     },
     "/dashboard/create-group": {
       "filePath": "dashboard/create-group.tsx"
+    },
+    "/dashboard/loan-application": {
+      "filePath": "dashboard/loan-application.tsx"
     },
     "/dashboard/milestones": {
       "filePath": "dashboard/milestones.tsx"
@@ -632,6 +681,9 @@ export const routeTree = rootRoute
     },
     "/dashboard/groups/": {
       "filePath": "dashboard/groups/index.tsx"
+    },
+    "/dashboard/loan-me/": {
+      "filePath": "dashboard/loan-me/index.tsx"
     },
     "/dashboard/settings/": {
       "filePath": "dashboard/settings/index.tsx"

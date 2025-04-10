@@ -26,6 +26,7 @@ interface InputProps {
   radius?: string | number | {};
   boldLabel?: boolean;
   my?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputField = ({
@@ -41,6 +42,7 @@ export const InputField = ({
   labelSize,
   boldLabel = false,
   my,
+  onChange,
   ...props
 }: InputProps) => {
   const [field, meta] = useField(name);
@@ -116,6 +118,10 @@ export const InputField = ({
           onBlur={(e) => {
             setIsFocused(false);
             inputPropsWithStyle.onBlur?.(e);
+          }}
+          onChange={(e) => {
+            field.onChange(e);
+            onChange?.(e);
           }}
         />
 
