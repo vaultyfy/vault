@@ -15,7 +15,6 @@ import { useFormikContext } from "formik";
 import { useNavigate } from "@tanstack/react-router";
 import { useLoanStepFlow } from "@hooks/context";
 import { calculatePaybackAmount, formatWithCommas } from "@utils/misc";
-import { format } from "path";
 
 interface LoanPurposeProps {
   onClick: () => void;
@@ -91,9 +90,6 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
                 width="87px"
                 height="34px"
                 rounded="36px"
-                py="1rem"
-                px="0.25rem"
-                fontFamily="var(--poppins)"
                 fontSize="12px"
                 fontWeight="500"
                 color={
@@ -120,22 +116,6 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
               </Button>
             ))}
           </HStack>
-          {/* <Flex
-            width="full"
-            height="57px"
-            rounded="6px"
-            border="0.5px solid #8181816B"
-            backgroundColor="white"
-            fontFamily="var(--poppins)"
-            color="var(--grey)"
-            fontWeight="400"
-            fontSize="12px"
-            py="8px"
-            px="19px"
-            alignItems="center"
-          >
-            N{formatWithCommas(formik.values.amount)}
-          </Flex> */}
           <InputField
             name="amount"
             radius="6px"

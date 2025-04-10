@@ -1,14 +1,13 @@
 import * as React from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { FinancialDetails, LoanPurpose } from "@components/loan-me/form";
+import { FinancialDetails, LoanPurpose } from "../loan-me/components/form";
 import { Formik, Form } from "formik";
 import {
   LoanApplicationFormValues,
   loanApplicationSchema,
   LoanDuration,
-  PaymentPlan,
 } from "@utils/validators/loan-schema";
-import { ApplicationSuccess, ProgressTabs } from "@components/loan-me";
+import { ApplicationSuccess, ProgressTabs } from "../loan-me/components";
 import { useLoanStepFlow } from "@hooks/context";
 import { applyForLoan } from "@mutations/loan";
 import { LoanApplicationPayload, LoanStep } from "@utils/types";
@@ -17,7 +16,7 @@ import {
   LoanEligibilityContainer,
   RejectOffer,
   AcceptOffer,
-} from "@components/loan-me";
+} from "../loan-me/components";
 import { useLoan } from "@hooks/swr";
 import { useNavigate } from "@tanstack/react-router";
 
@@ -59,7 +58,8 @@ export const LoanApplication = () => {
     "accept" | "reject" | null
   >(null);
 
-  const [isApplicationSuccess, setIsApplicationSuccess] = React.useState(false);
+  const [isApplicationSuccessful, setIsApplicationSuccessful] =
+    React.useState(false);
 
   return (
     <Flex alignItems="center" width="full" flexDirection="column" py="1rem">
@@ -97,7 +97,7 @@ export const LoanApplication = () => {
               resetSteps();
               mutate();
               navigate({ to: "/dashboard/loan-me" });
-              setIsApplicationSuccess(true);
+              setIsApplicationSuccessful(true);
             } catch (error) {
               if (error instanceof Error) {
                 openToast(error.message, "error");
@@ -111,7 +111,7 @@ export const LoanApplication = () => {
             console.log(formik.values);
             return (
               <Form>
-                {isApplicationSuccess ? (
+                {isApplicationSuccessful ? (
                   <ApplicationSuccess />
                 ) : (
                   <Box>

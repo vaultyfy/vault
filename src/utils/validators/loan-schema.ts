@@ -31,20 +31,16 @@ export const PaymentDurationEnum = {
   ONE_YEAR: "One_Year",
 } as const;
 
-// Create array of enum values for validation
 const loanDurationOptions = Object.values(LoanDurationEnum);
 const paymentPlanOptions = Object.values(PaymentPlanEnum);
 const paymentDurationOptions = Object.values(PaymentDurationEnum);
 
-// Type for file validation
-
-// Main validation schema
 export const loanApplicationSchema = Yup.object().shape({
   bank_statement: Yup.mixed<File>()
     .nullable()
     .test("fileSize", "File size must be less than 10MB", (value) => {
       if (!value || !(value instanceof File)) return true;
-      return value.size <= 10 * 1024 * 1024; // 10MB in bytes
+      return value.size <= 10 * 1024 * 1024;
     })
     .test(
       "fileType",
