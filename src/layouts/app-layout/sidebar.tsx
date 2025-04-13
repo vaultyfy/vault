@@ -16,13 +16,12 @@ import { GradientIcon } from "@components/icon";
 import { Gear, SealCheck } from "@phosphor-icons/react";
 import { MAIN_GRADIENT, randomBg } from "@utils/constants";
 import { Icon } from "@components/icon";
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { FileRouteTypes } from "src/routeTree.gen";
 import { useConsolePath, useCurrentPath } from "@hooks/current-path";
 import { CircleProgress } from "@components/ui";
 import { useUser, useWallet } from "@hooks/swr";
 import { dicebear, formatPrice, skeleton } from "@utils/misc";
-import { LogOut } from "lucide-react";
 import { useAuthContext } from "@hooks/context";
 
 export type SidenavItems = {
@@ -59,7 +58,11 @@ export const SIDEBAR_NAV_ITEMS: SidenavItems[] = [
   },
   {
     id: crypto.randomUUID(),
+<<<<<<< HEAD
     icon: <Icon name="money-send-light" />,
+=======
+    icon: <Icon name="payouts" />,
+>>>>>>> faa66f5b540e86b04ec7c18b68e1409870a77f68
     name: "loan me",
     path: "/dashboard/loan-me",
   },
@@ -116,15 +119,10 @@ export const Sidebar = () => {
     path: item.path as FileRouteTypes["fullPaths"],
   }));
 
-  const {
-    userName,
-    hasUserCompletedKyc,
-    kycPercentage,
-    verified,
-    isLoading,
-  } = useUser();
+  const { userName, hasUserCompletedKyc, kycPercentage, verified, isLoading } =
+    useUser();
 
-  const {walletBalance} = useWallet()
+  const { walletBalance } = useWallet();
 
   return (
     <Box

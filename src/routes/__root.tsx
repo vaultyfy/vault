@@ -2,7 +2,6 @@ import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { AuthContextValues } from "@context/auth-provider";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { UiComponents } from "@store/ui";
-import { DEFAULT_REDIRECT_URL } from "@utils/constants";
 import { AppSearchParams } from "./dashboard/explore/$groupId";
 
 export interface AppContext {
