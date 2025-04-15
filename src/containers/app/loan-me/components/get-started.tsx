@@ -2,9 +2,13 @@ import { Box, Flex, Text, VStack, Button, Image } from "@chakra-ui/react";
 import { HeaderText } from "@components/typography";
 import { Icon } from "@components/icon";
 import { useNavigate } from "@tanstack/react-router";
+import { useLoanStepFlow } from "@hooks/context";
+
 
 export const GetStarted = () => {
   const navigate = useNavigate();
+
+  const { setActiveStep } = useLoanStepFlow();
   return (
     <Flex
       flexDirection={{ base: "column", md: "row" }}
@@ -52,6 +56,7 @@ export const GetStarted = () => {
           mt={{ base: "22px", md: 0 }}
           _hover={{ backgroundColor: "var(--main)" }}
           onClick={() => {
+            setActiveStep("loan-purpose");
             navigate({
               to: "/dashboard/loan-application",
               search: { ui: "loan-purpose" },

@@ -20,6 +20,8 @@ export const LoanStepFlowProvider: React.FC<{ children: React.ReactNode }> = ({
   const { store, updateUiStore } = useUiComponentStore();
   const activeStep = store.ui as LoanStep;
 
+  console.log(store, "active step");
+
   const [completedSteps, setCompletedSteps] = useState<LoanStep[]>([
     "loan-purpose",
   ]);
