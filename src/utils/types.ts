@@ -161,6 +161,8 @@ export type User = {
   rewardEligible: boolean;
   completedCyclesCount: number;
   consistencyRewardEligible: boolean;
+  nin?: string;
+  bvn?: string;
 };
 
 export type Customer = {

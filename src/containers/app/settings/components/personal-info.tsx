@@ -93,9 +93,7 @@ export const PersonalInfo = () => {
   const [tempValues, setTempValues] = React.useState<
     Record<VerificationFields, string>
   >({
-    // @ts-ignore
     nin: user?.nin || "",
-    // @ts-ignore
     bvn: user?.bvn || "",
   });
   const [isSaving, setIsSaving] = React.useState<
@@ -108,9 +106,7 @@ export const PersonalInfo = () => {
   React.useEffect(() => {
     if (user) {
       setTempValues({
-        // @ts-ignore
         nin: user.nin || "",
-        // @ts-ignore
         bvn: user.bvn || "",
       });
     }
