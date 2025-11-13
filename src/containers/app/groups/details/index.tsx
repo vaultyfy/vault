@@ -96,8 +96,7 @@ export const GroupDetails = ({
             fontSize={{ base: "16px", xl: "24px", lg: "20px" }}
             fontWeight="400"
             color="var(--text-1)"
-            _firstLetter={{ textTransform: "capitalize" }}
-          >
+            _firstLetter={{ textTransform: "capitalize" }}>
             {data?.name}
           </Text>
         </HStack>
@@ -110,8 +109,7 @@ export const GroupDetails = ({
             width="full"
             height="full"
             border="0.5px solid var(--border-muted)"
-            rounded="xl"
-          >
+            rounded="xl">
             <CardBody px="19px" py="23px" w="full">
               <Stack direction="column" gap=".8em">
                 <Flex width="full">
@@ -120,8 +118,7 @@ export const GroupDetails = ({
                       fontSize={{ base: "16px", xl: "18px", lg: "17px" }}
                       color="#000000"
                       fontWeight="500"
-                      textTransform="capitalize"
-                    >
+                      textTransform="capitalize">
                       {data?.name && data?.name?.length > 15
                         ? `${data?.name?.substring(0, 16)}...`
                         : data?.name}
@@ -132,13 +129,11 @@ export const GroupDetails = ({
                       py={1}
                       bg="var(--main)"
                       width="fit-content"
-                      alignItems="center"
-                    >
+                      alignItems="center">
                       <Text
                         fontSize={{ base: "12px", lg: "14px" }}
                         fontWeight=""
-                        color="white"
-                      >
+                        color="white">
                         {formatPrice(Number(data?.contributionAmount))}/
                         {data?.contributionFrequency}
                       </Text>
@@ -160,15 +155,13 @@ export const GroupDetails = ({
                         fontSize={{ base: "12px", lg: "14px" }}
                         fontWeight="medium"
                         color="var(--grey)"
-                        textAlign="end"
-                      >
+                        textAlign="end">
                         Pay-out
                       </Text>
                       <Text
                         fontSize={{ base: "16px", lg: "20px" }}
                         color="var(--main)"
-                        fontWeight="500"
-                      >
+                        fontWeight="500">
                         {formatPrice(Number(data?.payOutAmount))}
                       </Text>
                     </Box>
@@ -178,16 +171,14 @@ export const GroupDetails = ({
                         fontSize={{ base: "12px", lg: "14px" }}
                         fontWeight="400"
                         color="var(--grey)"
-                        textAlign="right"
-                      >
+                        textAlign="right">
                         Start date
                       </Text>
                       <Text
                         as="p"
                         fontSize={{ base: "14px", lg: "18px" }}
                         fontWeight="400"
-                        color="var(--dark)"
-                      >
+                        color="var(--dark)">
                         {dayjs(data?.startDate).format("DD MMM, YYYY")}
                       </Text>
                     </Box>
@@ -197,8 +188,7 @@ export const GroupDetails = ({
                   mt=".8em"
                   fontSize={{ base: "14px", lg: "16px" }}
                   fontWeight="400"
-                  color="var(--text-1)"
-                >
+                  color="var(--text-1)">
                   {data?.groupDescription}
                 </Text>
               </Stack>
@@ -218,13 +208,11 @@ export const GroupDetails = ({
               px="10px"
               py="21px"
               spacing="18px"
-              alignItems="stretch"
-            >
+              alignItems="stretch">
               <Text
                 fontFamily="var(--clash-grotesk-500)"
                 fontSize="21px"
-                fontWeight="medium"
-              >
+                fontWeight="medium">
                 Note
               </Text>
               <OrderedList spacing="18px">
@@ -232,8 +220,7 @@ export const GroupDetails = ({
                   <Text
                     fontFamily="var(--poppins)"
                     fontWeight="medium"
-                    fontSize={{ base: "14px", lg: "16px" }}
-                  >
+                    fontSize={{ base: "14px", lg: "16px" }}>
                     If a participant misses two payment deadlines, a 5% penalty
                     will be applied to their next contribution, and their payout
                     will be delayed by the same number of days, weeks, or months
@@ -244,8 +231,7 @@ export const GroupDetails = ({
                   <Text
                     fontFamily="var(--poppins)"
                     fontWeight="medium"
-                    fontSize={{ base: "14px", lg: "16px" }}
-                  >
+                    fontSize={{ base: "14px", lg: "16px" }}>
                     Missing three payment deadlines will result in a temporary
                     account suspension, preventing the user from joining or
                     creating new thrift groups until all outstanding
@@ -256,8 +242,7 @@ export const GroupDetails = ({
                   <Text
                     fontFamily="var(--poppins)"
                     fontWeight="medium"
-                    fontSize={{ base: "14px", lg: "16px" }}
-                  >
+                    fontSize={{ base: "14px", lg: "16px" }}>
                     If a participant misses two payment deadlines, a 5% penalty
                     will be applied to their next contribution, and their payout
                     will be delayed by the same number of days, weeks, or months
@@ -298,8 +283,7 @@ export const GroupDetails = ({
                     fontFamily: "var(--open-sans)",
                   },
                 }}
-                onChange={(e) => setApproval(e.target.checked)}
-              >
+                onChange={(e) => setApproval(e.target.checked)}>
                 Yes I understand
               </Checkbox>
             </VStack>
@@ -310,8 +294,7 @@ export const GroupDetails = ({
               sx={{
                 justifyContent: { base: "center", lg: "flex-end" },
               }}
-              mt="1.5rem"
-            >
+              mt="1.5rem">
               <Button
                 width={{ base: "158px", lg: "230px" }}
                 px="4px"
@@ -324,8 +307,7 @@ export const GroupDetails = ({
                 color="#ffffff"
                 _hover={{ bgColor: "var(--main)" }}
                 onClick={handleJoinGroup}
-                isLoading={state === "loading"}
-              >
+                isLoading={state === "loading"}>
                 Proceed to join
               </Button>
             </Flex>

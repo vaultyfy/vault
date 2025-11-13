@@ -34,8 +34,7 @@ export const ParagraphText = ({
       lineHeight="20px"
       textAlign={align || "left"}
       color={color || "var(--input-placeholder)"}
-      {...props}
-    >
+      {...props}>
       {value}{" "}
       <Box color={spanColor || "#000"} as="span" fontWeight="700">
         {spanText}

@@ -12,10 +12,7 @@ export const PaymentCardSkeleton = ({ count = 3 }) => {
           border="0.5px solid var(--border-muted)"
           justifyContent="space-between"
           mb="0px"
-          roundedBottom={
-            index === count - 1 ? "10px" : ""
-          }
-        >
+          roundedBottom={index === count - 1 ? "10px" : ""}>
           <Box w="max-content">
             <Skeleton
               startColor={skeleton.light.startColor}

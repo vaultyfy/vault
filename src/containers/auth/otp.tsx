@@ -112,15 +112,13 @@ export const OtpScreen = ({ redirect, referrer }: AuthPageProps) => {
       width={{ lg: "385px", md: "100%", base: "100%" }}
       height="fit-content"
       background="var(--pale-white)"
-      backdropFilter="blur(10px)"
-    >
+      backdropFilter="blur(10px)">
       <HeaderText value="Verify email" />
       <Text
         fontSize="16px"
         fontWeight="400"
         lineHeight="24px"
-        color="var(--dark)"
-      >
+        color="var(--dark)">
         We sent a mail to {email}, check your inbox
       </Text>
 
@@ -131,8 +129,7 @@ export const OtpScreen = ({ redirect, referrer }: AuthPageProps) => {
             placeholder=""
             isDisabled={state === "verifyingOtp"}
             value={pin.join("")}
-            onChange={onPinChange}
-          >
+            onChange={onPinChange}>
             {Array(6)
               .fill("")
               .map((_, index) => (
@@ -162,8 +159,7 @@ export const OtpScreen = ({ redirect, referrer }: AuthPageProps) => {
               as="span"
               color="var(--primary)"
               cursor="pointer"
-              onClick={resendOTP}
-            >
+              onClick={resendOTP}>
               Resend{" "}
               {state === "resendingOtp" && (
                 <Spinner color="var(--grey)" size="xs" ml={2} />

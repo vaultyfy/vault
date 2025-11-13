@@ -28,8 +28,7 @@ export const Analytics = () => {
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-        >
+          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
           <defs>
             <linearGradient id="colorGradient" x1="0" y1="0" x2="1" y2="0">
               <stop offset="1.7%" stopColor="var(--secondary)" />

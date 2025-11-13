@@ -142,8 +142,7 @@ export const DatePicker = ({
               onClick={onOpen}
               mt={2}
               height={height}
-              cursor="pointer"
-            >
+              cursor="pointer">
               {iconPlacement === "left" && inputField?.icon && inputField?.icon}
               <ParagraphText
                 value={
@@ -163,8 +162,7 @@ export const DatePicker = ({
             cursor="pointer"
             onClick={onOpen}
             textDecor={date ? "none" : "underline"}
-            color={date ? "gray.500" : "blue.500"}
-          >
+            color={date ? "gray.500" : "blue.500"}>
             {formattedDate}
           </Text>
         )}
@@ -185,8 +183,7 @@ export const DatePicker = ({
               justifyContent="space-between"
               alignItems="center"
               mb={2}
-              flex={1}
-            >
+              flex={1}>
               <IconButton
                 aria-label="Previous month"
                 icon={<CaretLeft color="#000" weight="bold" />}
@@ -246,8 +243,7 @@ export const DatePicker = ({
                 fontWeight="semibold"
                 fontSize={"13px"}
                 color="var(--grey)"
-                fontFamily="var(--maven-pro-500)"
-              >
+                fontFamily="var(--maven-pro-500)">
                 {day}
               </Text>
             ))}
@@ -256,7 +252,7 @@ export const DatePicker = ({
           <SimpleGrid columns={7} spacing={2} mb="16px">
             {generateDates(
               currentYear.getFullYear(),
-              currentMonth.getMonth(),
+              currentMonth.getMonth()
             ).map(({ date: d, isCurrentMonth, isPast }) => (
               <Button
                 key={d.toISOString()}
@@ -301,8 +297,7 @@ export const DatePicker = ({
                       : "var(--text-1)"
                 }
                 isDisabled={isPast}
-                onClick={() => handleDateChange(d)}
-              >
+                onClick={() => handleDateChange(d)}>
                 {d.getDate()}
               </Button>
             ))}
@@ -373,16 +368,14 @@ export const TimePicker = ({
           borderRadius="6px"
           bgColor="#fff"
           w="100%"
-          height={height}
-        >
+          height={height}>
           {icon && (
             <Box
               position="absolute"
               left="8px"
               pointerEvents="none"
               display="flex"
-              alignItems="center"
-            >
+              alignItems="center">
               {icon}
             </Box>
           )}
@@ -408,8 +401,7 @@ export const TimePicker = ({
               "&::-ms-expand": {
                 display: "none",
               },
-            }}
-          >
+            }}>
             {timeOptions.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}
@@ -440,8 +432,7 @@ export const TimePicker = ({
             "&::-ms-expand": {
               display: "none",
             },
-          }}
-        >
+          }}>
           {timeOptions.map((option, index) => (
             <option key={index} value={option?.value}>
               {option?.label}

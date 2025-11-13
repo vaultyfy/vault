@@ -40,8 +40,7 @@ export const StackedAvatars = ({
           fontSize="14px"
           fontWeight="bold"
           border="2px solid var(--grey)"
-          ml="-12px"
-        >
+          ml="-12px">
           <Text as="span" fontWeight="400" color="var(--grey)" fontSize="14px">
             {remainingCount}/{images.length}
           </Text>

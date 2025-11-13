@@ -30,7 +30,7 @@ export const Coins = () => {
   const scrollTransform = useTransform(
     scrollYProgress,
     [0, 0.5],
-    [-COIN_OFFSET, COIN_OFFSET],
+    [-COIN_OFFSET, COIN_OFFSET]
   );
 
   const { contentLoaded } = useDomContentLoaded();
@@ -40,8 +40,7 @@ export const Coins = () => {
     <MotionBox
       position="relative"
       height="600px"
-      backgroundImage="url(/img/lines.svg)"
-    >
+      backgroundImage="url(/img/lines.svg)">
       <MotionImage
         position="absolute"
         top="40%"

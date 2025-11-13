@@ -28,8 +28,7 @@ export const BankStatementDropzone = ({
         name={name}
         accept={fileType}
         maxFiles={maxFileNumber}
-        onImageUpload={onImageUpload}
-      >
+        onImageUpload={onImageUpload}>
         <Flex
           justifyContent="space-between"
           py="3px"
@@ -38,8 +37,7 @@ export const BankStatementDropzone = ({
           width="full"
           backgroundColor="#f6f6f6"
           alignItems="center"
-          cursor="pointer"
-        >
+          cursor="pointer">
           <Box width="fit-content" fontFamily="var(--poppins)">
             <Text fontWeight="400" fontSize="14px" color="var(--grey)">
               Bank statement

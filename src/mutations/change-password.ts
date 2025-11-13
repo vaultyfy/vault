@@ -16,11 +16,11 @@ export const changePassword = async (payload: PasswordPayload) => {
         ...HEADER_API_KEY,
       },
       body: JSON.stringify({
-        ...payload
-      })
+        ...payload,
+      }),
     });
 
-    return request
+    return request;
   } catch (error) {
     console.error(error);
   }

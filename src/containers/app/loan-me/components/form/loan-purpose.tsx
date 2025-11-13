@@ -50,7 +50,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
     const paybackAmount = calculatePaybackAmount(
       loanAmount,
       paymentPlan,
-      paymentDuration,
+      paymentDuration
     );
 
     return formatWithCommas(paybackAmount.toString());
@@ -86,8 +86,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
         spacing="14px"
         width="100%"
         alignItems="flex-start"
-        fontFamily="var(--poppins)"
-      >
+        fontFamily="var(--poppins)">
         <Text fontSize="20px" fontWeight="500" color="var(--main)">
           loan purpose & amount
         </Text>
@@ -135,8 +134,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
                       }
                     : { backgroundColor: "var(--accent-bg)" }
                 }
-                onClick={() => formik.setFieldValue("amount", amount.value)}
-              >
+                onClick={() => formik.setFieldValue("amount", amount.value)}>
                 {amount.label}
               </Button>
             ))}
@@ -164,8 +162,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
           <Tabs
             index={getActiveTabIndex()}
             variant="unstyled"
-            onChange={handleTabChange}
-          >
+            onChange={handleTabChange}>
             <TabList
               background="var(--accent-bg)"
               borderRadius="36px"
@@ -173,8 +170,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
               px="5px"
               py="3px"
               position="relative"
-              width="75%"
-            >
+              width="75%">
               <Box
                 position="absolute"
                 width={`${100 / paymentPlans.length}%`}
@@ -202,8 +198,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
                   }}
                   _hover={{
                     backgroundColor: "transparent",
-                  }}
-                >
+                  }}>
                   {plan.label}
                 </Tab>
               ))}
@@ -215,8 +210,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
                   fontSize="12px"
                   color="var(--grey)"
                   fontWeight="500"
-                  lineHeight="1.6em"
-                >
+                  lineHeight="1.6em">
                   Spread your loan over several months with a base interest rate
                   of
                   <Text as="span" color="var(--main)" mx="3px">
@@ -232,8 +226,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
                   justifyContent="space-between"
                   width="full"
                   alignItems="center"
-                  mt="10px"
-                >
+                  mt="10px">
                   <Box width="164px">
                     <SelectField
                       options={loanDurations}
@@ -245,7 +238,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
                       onChange={(selectedOption) => {
                         formik.setFieldValue(
                           "payment_duration",
-                          selectedOption.value,
+                          selectedOption.value
                         );
                       }}
                     />
@@ -255,8 +248,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
                       fontFamily="var(--clash_grotesk)"
                       fontSize="26px"
                       fontWeight="600"
-                      color="var(--dark)"
-                    >
+                      color="var(--dark)">
                       {calculateAndFormatPaybackAmount()}
                     </Text>
                   </Flex>
@@ -285,8 +277,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
             _hover={{
               backgroundColor: "#F6F6F6",
             }}
-            onClick={handleBack}
-          >
+            onClick={handleBack}>
             Back
           </Button>
           <Button
@@ -303,8 +294,7 @@ export const LoanPurpose = ({ onClick }: LoanPurposeProps) => {
             _hover={{
               backgroundColor: "var(--main)",
             }}
-            onClick={handleNext}
-          >
+            onClick={handleNext}>
             Next
           </Button>
         </HStack>

@@ -106,8 +106,7 @@ export const GroupCard = ({
           : {}
       }
       minW={{ base: "364px", xl: "435px" }}
-      px={{ lg: "1.2em", base: ".8em", md: ".6em" }}
-    >
+      px={{ lg: "1.2em", base: ".8em", md: ".6em" }}>
       <CardBody py="23px" px="0">
         <Flex w="full" h="full">
           <Flex
@@ -115,15 +114,13 @@ export const GroupCard = ({
             flexDirection="column"
             h="full"
             rowGap="15px"
-            justifyContent="space-between"
-          >
+            justifyContent="space-between">
             <Box w="full">
               <Text
                 fontSize={{ base: "16px", lg: "20px" }}
                 fontFamily="var(--poppins)"
                 color={hasGradient ? "#ffffff" : "#000000"}
-                textTransform="capitalize"
-              >
+                textTransform="capitalize">
                 {data?.name && data?.name?.length < 15
                   ? data?.name
                   : `${data?.name?.substring(0, 16)}...`}
@@ -136,14 +133,12 @@ export const GroupCard = ({
                   bg={
                     hasGradient ? "rgba(255, 255, 255, 0.2)" : "var(--grey-007)"
                   }
-                  alignItems="center"
-                >
+                  alignItems="center">
                   <Text
                     as="p"
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="medium"
-                    color={hasGradient ? "#ffffff" : "var(--text-1)"}
-                  >
+                    color={hasGradient ? "#ffffff" : "var(--text-1)"}>
                     {formatPrice(Number(data?.contributionAmount))}/
                     {data?.contributionFrequency}
                   </Text>
@@ -154,8 +149,7 @@ export const GroupCard = ({
               {avatars?.length === 0 ? (
                 <Text
                   fontSize="12px"
-                  color={hasGradient ? "#fff" : "var(--grey)"}
-                >
+                  color={hasGradient ? "#fff" : "var(--grey)"}>
                   {avatars?.length} members
                 </Text>
               ) : (
@@ -166,15 +160,13 @@ export const GroupCard = ({
               <Text
                 fontWeight="400"
                 fontSize={{ base: "12px", lg: "14px" }}
-                color={hasGradient ? "#ffffff" : "var(--grey)"}
-              >
+                color={hasGradient ? "#ffffff" : "var(--grey)"}>
                 Start date
               </Text>
               <Text
                 fontWeight="400"
                 fontSize={{ base: "14px", lg: "18px" }}
-                color={hasGradient ? "#ffffff" : "var(--text-1)"}
-              >
+                color={hasGradient ? "#ffffff" : "var(--text-1)"}>
                 {data?.startDate}
               </Text>
             </Box>
@@ -185,8 +177,7 @@ export const GroupCard = ({
             flex={1}
             w="full"
             h="full"
-            rowGap={{ lg: "15px", base: "22px" }}
-          >
+            rowGap={{ lg: "15px", base: "22px" }}>
             <Flex
               flexDirection="column"
               h="full"
@@ -194,8 +185,7 @@ export const GroupCard = ({
               w="full"
               flex={2}
               py="2px"
-              alignItems="flex-end"
-            >
+              alignItems="flex-end">
               <Button
                 bgColor={hasGradient ? "#ffffff" : "var(--main)"}
                 width="66px"
@@ -212,8 +202,7 @@ export const GroupCard = ({
                   background: hasGradient ? "#fff" : "var(--main)",
                 }}
                 onClick={() => onShare(String(data?.groupID))}
-                color={hasGradient ? "#4f4f4f" : "var(--text-2)"}
-              >
+                color={hasGradient ? "#4f4f4f" : "var(--text-2)"}>
                 Share
               </Button>
               <Box w="fit-content">
@@ -222,16 +211,14 @@ export const GroupCard = ({
                   fontSize={{ base: "12px", lg: "14px" }}
                   fontWeight="medium"
                   color={groupType === "suggested" ? "#fff" : "var(--grey)"}
-                  textAlign="end"
-                >
+                  textAlign="end">
                   Pay-out
                 </Text>
                 <Text
                   as="h5"
                   fontSize={{ base: "24px", lg: "28px" }}
                   color={hasGradient ? "#ffffff" : "var(--main)"}
-                  fontWeight="bold"
-                >
+                  fontWeight="bold">
                   {formatPrice(Number(data?.payOutAmount))}
                 </Text>
               </Box>
@@ -262,8 +249,7 @@ export const GroupCard = ({
               }}
               onClick={() =>
                 navigate({ to: `/dashboard/explore/${data?.groupID}` })
-              }
-            >
+              }>
               <Text color={groupType === "suggested" ? "#fff" : "var(--main)"}>
                 Join
               </Text>
@@ -273,8 +259,7 @@ export const GroupCard = ({
                 bg={hasGradient ? "var(--text-2)" : "var(--main)"}
                 display="flex"
                 justifyContent="center"
-                alignItems="center"
-              >
+                alignItems="center">
                 <ArrowRight
                   size={16}
                   color={hasGradient ? "var(--grey)" : "#ffffff"}

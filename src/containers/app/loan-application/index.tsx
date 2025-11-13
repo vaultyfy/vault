@@ -105,8 +105,7 @@ export const LoanApplication = () => {
             } finally {
               setSubmitting(false);
             }
-          }}
-        >
+          }}>
           {(formik) => {
             console.log(formik.values);
             return (

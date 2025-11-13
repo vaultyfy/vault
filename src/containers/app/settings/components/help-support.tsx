@@ -31,22 +31,19 @@ const HelpSupportCard = () => {
       height="100vh"
       overflowX="hidden"
       overflowY="auto"
-      px={{ base: "4", md: "8" }}
-    >
+      px={{ base: "4", md: "8" }}>
       <Flex
         direction={{ base: "column", md: "row" }}
         justify="space-between"
         align="flex-start"
         gap={{ base: "4", md: "8" }}
         wrap="wrap"
-        mt="10"
-      >
+        mt="10">
         <Box
           w={{ base: "100%", md: "45%" }}
           maxWidth="500px"
           p="4"
-          pt={{ base: "0", md: "2" }}
-        >
+          pt={{ base: "0", md: "2" }}>
           <Text fontSize="40px" fontWeight="600" color="var(--dark)" mt="-30px">
             Help & Support
           </Text>
@@ -55,8 +52,7 @@ const HelpSupportCard = () => {
             fontWeight="600"
             color="var(--dark)"
             mt="6"
-            mb={"2"}
-          >
+            mb={"2"}>
             FAQ
           </Text>
 
@@ -74,8 +70,7 @@ const HelpSupportCard = () => {
                 justify="space-between"
                 width="100%"
                 height={"100px"}
-                transition="0.3s"
-              >
+                transition="0.3s">
                 <Text fontSize="16px" fontWeight="medium">
                   {faq.question}
                 </Text>
@@ -97,8 +92,7 @@ const HelpSupportCard = () => {
             fontSize="24px"
             fontWeight="600"
             color="var(--btn-secondary)"
-            mb="4"
-          >
+            mb="4">
             Answers
           </Text>
           <Box
@@ -112,8 +106,7 @@ const HelpSupportCard = () => {
             boxShadow="lg"
             display="flex"
             flexDirection="column"
-            justifyContent="space-between"
-          >
+            justifyContent="space-between">
             <Text fontSize="16px" color="white">
               {faqs[selected].answer}
             </Text>
@@ -143,8 +136,7 @@ const HelpSupportCard = () => {
                 borderRadius={"36px"}
                 _hover={{ bg: "#102634" }}
                 _active={{ bg: "#102634" }}
-                _focus={{ boxShadow: "none" }}
-              >
+                _focus={{ boxShadow: "none" }}>
                 Contact us
               </Button>
             </Flex>

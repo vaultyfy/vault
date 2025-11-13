@@ -18,7 +18,7 @@ const COMPANY_ITEMS = ["About Us", "How it works", "Features", "Faq"].map(
   (item) => ({
     name: item,
     path: item.replaceAll(" ", "-"),
-  }),
+  })
 );
 
 const CONTACT_ITEMS = [
@@ -46,20 +46,17 @@ export const Footer = () => {
           justifyContent="space-between"
           flexWrap={{ lg: "nowrap", md: "wrap", base: "wrap" }}
           mb="5em"
-          gap="2em"
-        >
+          gap="2em">
           <SimpleGrid
             columns={{ lg: 3, md: 3, base: 2 }}
             gap="3em"
             color="#fff"
-            width={{ lg: "56%", base: "100%", md: "100%" }}
-          >
+            width={{ lg: "56%", base: "100%", md: "100%" }}>
             <Flex flexFlow="column" gap="1.2em">
               <Text
                 fontSize={{ lg: "20px", base: "16px", md: "16px" }}
                 fontWeight={{ lg: "500", md: "400", base: "400" }}
-                lineHeight="30px"
-              >
+                lineHeight="30px">
                 Company
               </Text>
               <Flex flexFlow="column" gap="1em">
@@ -68,8 +65,7 @@ export const Footer = () => {
                     <List key={index}>
                       <ListItem
                         fontSize={{ lg: "16px", md: "16px", base: "14px" }}
-                        fontWeight="300"
-                      >
+                        fontWeight="300">
                         {item.name}
                       </ListItem>
                     </List>
@@ -82,8 +78,7 @@ export const Footer = () => {
               <Text
                 fontSize={{ lg: "20px", base: "16px", md: "16px" }}
                 fontWeight={{ lg: "500", md: "400", base: "400" }}
-                lineHeight="30px"
-              >
+                lineHeight="30px">
                 Contact
               </Text>
               <Flex flexFlow="column" gap="1em">
@@ -93,8 +88,7 @@ export const Footer = () => {
                       <ListItem
                         fontWeight="300"
                         lineHeight="24px"
-                        fontSize={{ lg: "16px", md: "16px", base: "14px" }}
-                      >
+                        fontSize={{ lg: "16px", md: "16px", base: "14px" }}>
                         {item}
                       </ListItem>
                     </List>
@@ -107,8 +101,7 @@ export const Footer = () => {
               <Text
                 fontSize={{ lg: "20px", base: "16px", md: "16px" }}
                 fontWeight={{ lg: "500", md: "400", base: "400" }}
-                lineHeight="30px"
-              >
+                lineHeight="30px">
                 Address
               </Text>
               <Flex flexFlow="column" gap="1em">
@@ -116,8 +109,7 @@ export const Footer = () => {
                   <ListItem
                     fontWeight="300"
                     lineHeight="24px"
-                    fontSize={{ lg: "16px", md: "16px", base: "14px" }}
-                  >
+                    fontSize={{ lg: "16px", md: "16px", base: "14px" }}>
                     Lagos
                   </ListItem>
                 </List>
@@ -135,8 +127,7 @@ export const Footer = () => {
             py="1.6em"
             display="flex"
             flexFlow="column"
-            gap="1.6em"
-          >
+            gap="1.6em">
             <HStack justifyContent="space-between" alignItems="center">
               <HStack gap=".8em">
                 <Box
@@ -145,8 +136,7 @@ export const Footer = () => {
                   justifyContent="center"
                   alignItems="center"
                   borderRadius="100%"
-                  background="var(--white-fade)"
-                >
+                  background="var(--white-fade)">
                   <Image src="/favicon.svg" />
                 </Box>
 
@@ -155,8 +145,7 @@ export const Footer = () => {
                     fontWeight="500"
                     color="#fff"
                     fontSize="20px"
-                    lineHeight="30px"
-                  >
+                    lineHeight="30px">
                     Vaultify
                   </Text>
                   <Text color="#FFFFFFCC" fontSize="16px" fontWeight="400">
@@ -172,8 +161,7 @@ export const Footer = () => {
               fontSize={{ lg: "20px", md: "16px", base: "14px" }}
               fontWeight="400"
               lineHeight={{ lg: "30px", md: "26px", base: "21px" }}
-              color="#fff"
-            >
+              color="#fff">
               We just announced new feature that would help you increase your
               experience of using Vultifier!
             </Text>
@@ -189,13 +177,11 @@ export const Footer = () => {
           my={{ lg: "6em", base: "2em", md: "4em" }}
           display="flex"
           flexFlow="column"
-          gap={{ lg: "4em", base: "2em", md: "4em" }}
-        >
+          gap={{ lg: "4em", base: "2em", md: "4em" }}>
           <Flex justifyContent="space-between">
             <HStack
               gap={{ lg: "1.4em", md: "1em", base: ".6em" }}
-              alignItems="center"
-            >
+              alignItems="center">
               <Image
                 src="/img/vaulty-foot.svg"
                 boxSize={{ lg: "initial", md: "initial", base: "30px" }}
@@ -204,8 +190,7 @@ export const Footer = () => {
                 fontWeight="600"
                 fontSize={{ lg: "24px", md: "20px", base: "" }}
                 lineHeight={{ lg: "36px", base: "24px", md: "30px" }}
-                color="#fff"
-              >
+                color="#fff">
                 Vaultyfy, 2024.
               </Text>
             </HStack>
@@ -224,8 +209,7 @@ export const Footer = () => {
                     alignItems="center"
                     _hover={{
                       cursor: "pointer",
-                    }}
-                  >
+                    }}>
                     <Icon name={item.name} />
                   </Box>
                 );
@@ -238,8 +222,7 @@ export const Footer = () => {
               fontSize="14px"
               lineHeight="21px"
               fontWeight="400"
-              color="var(--text-secon)"
-            >
+              color="var(--text-secon)">
               At Vaultyfy, we are revolutionizing the way people save and
               achieve their financial goals. Rooted in the age-old tradition of
               communal thrift savings, we bring innovation, trust, and
@@ -254,8 +237,7 @@ export const Footer = () => {
               fontSize="14px"
               lineHeight="21px"
               fontWeight="400"
-              color="var(--text-secon)"
-            >
+              color="var(--text-secon)">
               Our mission is simple: to build a supportive, transparent, and
               reliable savings ecosystem where individuals and groups can thrive
               financially. Vaultyfy connects savers from diverse backgrounds,

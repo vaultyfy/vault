@@ -8,7 +8,7 @@ export const useLoan = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getAllLoan(),
-    swrOptions,
+    swrOptions
   );
 
   const loanDetails = data?.payload;

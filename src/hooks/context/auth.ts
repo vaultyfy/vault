@@ -6,7 +6,7 @@ export const useAuthContext = () => {
 
   if (context === null) {
     throw new Error(
-      "Auth context is missing. You probably forgot to wrap the component depending on toast in <AuthProvider />",
+      "Auth context is missing. You probably forgot to wrap the component depending on toast in <AuthProvider />"
     );
   }
 

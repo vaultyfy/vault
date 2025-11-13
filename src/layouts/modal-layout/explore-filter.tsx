@@ -16,7 +16,7 @@ import { parseISO } from "date-fns";
 interface ExploreFilterProps extends BaseModalProps {
   handleSubmit: (
     values: typeof defaultValues,
-    setSubmitting: (isSubmitting: boolean) => void,
+    setSubmitting: (isSubmitting: boolean) => void
   ) => Promise<void>;
   handleClearFilters: () => void;
   initialFilters?: typeof defaultValues;
@@ -72,8 +72,7 @@ export const ExploreFilter = ({
       size="full"
       px="4px"
       py="48px"
-      noCloseButton={true}
-    >
+      noCloseButton={true}>
       <Box w="full" h="90vh">
         <IconButton
           aria-label="close-modal"
@@ -99,8 +98,7 @@ export const ExploreFilter = ({
               }
             }, 600);
           }}
-          enableReinitialize={true}
-        >
+          enableReinitialize={true}>
           {(formik) => {
             return (
               <VStack as={Form} w="full" spacing="14px" alignItems="stretch">
@@ -170,8 +168,7 @@ export const ExploreFilter = ({
                       _hover={{ bgColor: "var(--main)" }}
                       _active={{ bgColor: "var(--main)" }}
                       _focus={{ bgColor: "var(--main)" }}
-                      isLoading={formik.isSubmitting}
-                    >
+                      isLoading={formik.isSubmitting}>
                       Apply
                     </Button>
                   </Box>
@@ -192,8 +189,7 @@ export const ExploreFilter = ({
                         _hover={{ bgColor: "var(--grey-300)" }}
                         _active={{ bgColor: "var(--grey-300)" }}
                         _focus={{ bgColor: "var(--grey-300)" }}
-                        onClick={handleClear}
-                      >
+                        onClick={handleClear}>
                         Clear
                       </Button>
                     </Box>

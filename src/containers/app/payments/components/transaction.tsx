@@ -29,8 +29,7 @@ export const Transaction = ({ transaction }: TransactionProps) => {
       display="flex"
       justifyContent="space-between"
       px="1.4em"
-      border="1px solid var(--border-muted)"
-    >
+      border="1px solid var(--border-muted)">
       <Stack direction="column">
         <Text color="var(--grey)" fontWeight="400" fontSize="14px">
           {getTransactionType(transaction.type)}

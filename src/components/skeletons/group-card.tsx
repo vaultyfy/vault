@@ -25,8 +25,7 @@ export const GroupCardSkeleton = ({ total = 3 }: { total?: number }) => {
             cursor="pointer"
             border="1px solid var(--outline)"
             boxShadow="none"
-            mb="10px"
-          >
+            mb="10px">
             <Box px=".6em" py="23px" w="full">
               <Stack direction="column" gap=".8em">
                 <Flex width="full" height="143px">
@@ -151,8 +150,7 @@ export const ExploreCardSkeleton = ({ count = 4 }) => {
           height="255px"
           rounded="xl"
           minW={{ base: "364px", xl: "435px" }}
-          bgColor="#fff"
-        >
+          bgColor="#fff">
           <CardBody py="23px" px="19px">
             <Flex w="full" h="full">
               {/* Left column */}
@@ -162,8 +160,7 @@ export const ExploreCardSkeleton = ({ count = 4 }) => {
                 px="8px"
                 h="full"
                 rowGap="15px"
-                justifyContent="space-between"
-              >
+                justifyContent="space-between">
                 {/* Group name area */}
                 <Box w="full">
                   <Skeleton
@@ -229,8 +226,7 @@ export const ExploreCardSkeleton = ({ count = 4 }) => {
                 flex={1}
                 w="full"
                 h="full"
-                rowGap={{ lg: "15px", base: "22px" }}
-              >
+                rowGap={{ lg: "15px", base: "22px" }}>
                 <Flex
                   flexDirection="column"
                   h="full"
@@ -238,8 +234,7 @@ export const ExploreCardSkeleton = ({ count = 4 }) => {
                   w="full"
                   flex={2}
                   py="2px"
-                  alignItems="flex-end"
-                >
+                  alignItems="flex-end">
                   {/* Share button */}
                   <Skeleton
                     startColor={skeleton.light.startColor}

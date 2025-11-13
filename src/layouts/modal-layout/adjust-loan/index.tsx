@@ -15,8 +15,7 @@ export const AdjustLoanModal = ({ isOpen, onClose }: AdjustLoanModalProps) => {
       title="Adjust Loan"
       size="xl"
       px="14px"
-      py="32px"
-    >
+      py="32px">
       <AdjustLoanContent />
     </ModalLayout>
   );

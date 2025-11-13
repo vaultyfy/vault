@@ -46,7 +46,7 @@ export const Groups = () => {
   const { data: completedGroups, isLoading: isCompletedGroupsLoading } =
     useMyGroupsWithStatus("Completed");
   const [activeGroup, setActiveGroup] = React.useState<Group | undefined>(
-    undefined,
+    undefined
   );
   const [isGroupPaymentCardsVisible, setIsGroupPaymentCardsVisible] =
     React.useState<boolean>(false);
@@ -77,25 +77,25 @@ export const Groups = () => {
 
   // current logged-in user in the participants array
   const me = activeGroup?.participants.find(
-    (participant) => participant.customer?.id === user?.id,
+    (participant) => participant.customer?.id === user?.id
   );
 
-  console.log("user", user?.id)
+  console.log("user", user?.id);
 
   const contributionDates = me?.contributionDates.map((date) =>
-    dayjs(date).format("DD-MMMM-YYYY"),
+    dayjs(date).format("DD-MMMM-YYYY")
   );
   const missedContributionDates = me?.missedContributionDates.map((date) =>
-    dayjs(date).format("DD-MMMM-YYYY"),
+    dayjs(date).format("DD-MMMM-YYYY")
   );
   const nextContributionDate = me?.nextContributionDate;
   const futureContributionDates = contributionDates?.filter(
-    (date) => dayjs(date) > dayjs(),
+    (date) => dayjs(date) > dayjs()
   );
 
-  console.log("future dates", futureContributionDates)
-  console.log("contribution dates", contributionDates)
-  console.log("Me", me)
+  console.log("future dates", futureContributionDates);
+  console.log("contribution dates", contributionDates);
+  console.log("Me", me);
 
   const handleTabChange = (index: number) => {
     setTabIndex(index);
@@ -113,24 +113,21 @@ export const Groups = () => {
       width="100%"
       minHeight="100vh"
       gap={{ lg: "1em", md: "1em", base: "2em" }}
-      flexWrap="wrap"
-    >
+      flexWrap="wrap">
       <Box
         width={{ base: "100%", md: "50%", lg: "50%" }}
         display={{
           lg: "block",
           md: "block",
           base: isGroupPaymentCardsVisible ? "none" : "block",
-        }}
-      >
+        }}>
         <HStack
           spacing="10px"
           rounded="10px"
           width="100%"
           p="10px"
           bgGradient="var(--main-gradient)"
-          maxHeight="99px"
-        >
+          maxHeight="99px">
           <Image
             src="/img/piggy-bank-up.svg"
             alt="piggy bank up icon"
@@ -139,8 +136,7 @@ export const Groups = () => {
           <Text
             fontWeight="400"
             fontSize={{ base: "14px", lg: "14px", xl: "16px", md: "14px" }}
-            color="var(--white-fade)"
-          >
+            color="var(--white-fade)">
             Complete{" "}
             <Text as="span" fontWeight="600">
               three contribution cycles
@@ -154,12 +150,10 @@ export const Groups = () => {
           <Tabs
             variant="soft-rounded"
             index={tabIndex}
-            onChange={handleTabChange}
-          >
+            onChange={handleTabChange}>
             <TabList
               gap={{ lg: ".6em", md: ".6em", base: ".4em" }}
-              overflowX="auto"
-            >
+              overflowX="auto">
               {GROUPS_TAB_ITEMS.map((tab) => {
                 return (
                   <Tab
@@ -175,8 +169,7 @@ export const Groups = () => {
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="500"
                     whiteSpace="nowrap"
-                    key={tab.id}
-                  >
+                    key={tab.id}>
                     {tab.name}
                   </Tab>
                 );
@@ -197,8 +190,7 @@ export const Groups = () => {
                           You have not joined any group. Find available ones{" "}
                           <Link
                             style={{ textDecoration: "underline" }}
-                            to="/dashboard/explore"
-                          >
+                            to="/dashboard/explore">
                             here
                           </Link>
                         </Text>
@@ -239,8 +231,7 @@ export const Groups = () => {
                           You don't have any active groups. Find available ones{" "}
                           <Link
                             style={{ textDecoration: "underline" }}
-                            to="/dashboard/explore"
-                          >
+                            to="/dashboard/explore">
                             here
                           </Link>
                         </Text>
@@ -316,8 +307,7 @@ export const Groups = () => {
           lg: "block",
           md: "block",
           base: isGroupPaymentCardsVisible ? "block" : "none",
-        }}
-      >
+        }}>
         {isLoading ? (
           <Skeleton
             width={{ lg: "220px", md: "80%" }}
@@ -332,8 +322,7 @@ export const Groups = () => {
             {isMobile && (
               <Box
                 onClick={() => setIsGroupPaymentCardsVisible(false)}
-                cursor="pointer"
-              >
+                cursor="pointer">
                 <Icon name="arrow-left" />
               </Box>
             )}
@@ -341,8 +330,7 @@ export const Groups = () => {
               fontFamily="var(--clash-grotesk-400)"
               fontWeight={{ base: "500", lg: "400" }}
               fontSize={{ base: "20px", lg: "24px" }}
-              color="var(--text-1)"
-            >
+              color="var(--text-1)">
               {activeGroup?.name}
             </Text>
           </HStack>
@@ -352,8 +340,7 @@ export const Groups = () => {
             width="full"
             roundedTop="10px"
             p="1rem"
-            border="0.5px solid var(--border-muted)"
-          >
+            border="0.5px solid var(--border-muted)">
             <Calendar />
           </Box>
           {isLoading ? (
@@ -363,7 +350,7 @@ export const Groups = () => {
               {dayjs().format("DD-MM-YYYY") === nextContributionDate && (
                 <PaymentCard
                   deadlineDate={dayjs(nextContributionDate).format(
-                    "DD-MMMM-YYYY",
+                    "DD-MMMM-YYYY"
                   )}
                   dateType="start-date"
                   amount={activeGroup?.contributionAmount}
@@ -400,7 +387,7 @@ export const Groups = () => {
                     groupId={activeGroup?.groupID || ""}
                     participantId={
                       activeGroup?.participants.find(
-                        (participant) => participant?.customer?.id === user?.id,
+                        (participant) => participant?.customer?.id === user?.id
                       )?.participantID || ""
                     }
                     amount={activeGroup?.contributionAmount}
@@ -409,9 +396,7 @@ export const Groups = () => {
                       dayjs().format("DD-MMMM-YYYY") === contributionDate
                     }
                     roundedBottom={
-                      index === contributionDates?.length - 1
-                        ? "10px"
-                        : ""
+                      index === contributionDates?.length - 1 ? "10px" : ""
                     }
                   />
                 );

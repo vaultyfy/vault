@@ -91,8 +91,7 @@ export const LoginSecurityCard = () => {
         borderRadius="8px"
         p={6}
         bg="white"
-        boxShadow="sm"
-      >
+        boxShadow="sm">
         {Object.keys(formik.values).map((field) => (
           <Box key={field} py={4}>
             <Text fontSize="14px" fontWeight="400" color="var(--grey)">
@@ -143,8 +142,7 @@ export const LoginSecurityCard = () => {
                   fontSize="18px"
                   fontWeight="400"
                   color="var(--dark)"
-                  flex="1"
-                >
+                  flex="1">
                   {field === "oldPassword" ? "************" : "******"}
                 </Text>
               )}
@@ -155,8 +153,7 @@ export const LoginSecurityCard = () => {
                 fontWeight="400"
                 bgGradient="var(--main-gradient)"
                 bgClip="text"
-                onClick={() => toggleEdit(field as keyof PasswordFields)}
-              >
+                onClick={() => toggleEdit(field as keyof PasswordFields)}>
                 {editMode[field] ? "Save" : "Edit"}
               </Button>
             </Flex>
@@ -174,8 +171,7 @@ export const LoginSecurityCard = () => {
           fontWeight="400"
           _hover={{ bg: "var(--main)" }}
           onClick={() => formik.handleSubmit()}
-          isLoading={formik.isSubmitting}
-        >
+          isLoading={formik.isSubmitting}>
           Save settings
         </Button>
       </Flex>

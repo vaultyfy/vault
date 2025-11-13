@@ -7,7 +7,7 @@ export const useNotifications = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getAllNotifications(),
-    swrOptions,
+    swrOptions
   );
 
   const payload = data?.payload;

@@ -134,5 +134,5 @@ export const loanDurations = Object.values(LoanDurationEnum).map(
   (duration) => ({
     label: duration.replace("_", " "),
     value: duration,
-  }),
+  })
 );

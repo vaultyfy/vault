@@ -101,14 +101,12 @@ export const AppHeader = ({
         top="0"
         zIndex="400"
         justifyContent="space-between"
-        background="var(--vista-white)"
-      >
+        background="var(--vista-white)">
         <HStack gap="1.4em">
           <Box
             transform="scale(1) rotate(-180deg)"
             onClick={() => setIsMobileSideNavOpen(true)}
-            _hover={{ cursor: "pointer" }}
-          >
+            _hover={{ cursor: "pointer" }}>
             <AlignRight size="30" color="var(--grey)" />
           </Box>
           <Image src="/img/logo.svg" boxSize="96px" />
@@ -135,8 +133,7 @@ export const AppHeader = ({
                 display: "block",
               }
             : { x: -20, opacity: 0, display: "none" }
-        }
-      >
+        }>
         <Box
           position="absolute"
           top="4"
@@ -149,8 +146,7 @@ export const AppHeader = ({
           justifyContent="center"
           alignItems="center"
           onClick={() => setIsMobileSideNavOpen(false)}
-          _hover={{ cursor: "pointer" }}
-        >
+          _hover={{ cursor: "pointer" }}>
           <X size="20" color="#fff" />
         </Box>
         <Center>
@@ -183,8 +179,7 @@ export const AppHeader = ({
                 fontSize="16px"
                 color="var(--grey)"
                 fontWeight="400"
-                lineHeight="24px"
-              >
+                lineHeight="24px">
                 {userName || "Danielking"}
               </Text>
             ) : (
@@ -210,8 +205,7 @@ export const AppHeader = ({
               width="fit-content"
               px="1em"
               borderRadius="30px"
-              alignItems="center"
-            >
+              alignItems="center">
               <GradientIcon
                 weight="fill"
                 startColor="#2C9BF0"
@@ -224,8 +218,7 @@ export const AppHeader = ({
                 fontSize="12px"
                 fontWeight="400"
                 bgClip="text"
-                bgGradient={MAIN_GRADIENT}
-              >
+                bgGradient={MAIN_GRADIENT}>
                 verified
               </Text>
             </Badge>
@@ -241,15 +234,13 @@ export const AppHeader = ({
                 width="fit-content"
                 px="1em"
                 borderRadius="30px"
-                alignItems="center"
-              >
+                alignItems="center">
                 <Text
                   textTransform="capitalize"
                   fontSize="14px"
                   fontWeight="400"
                   bgClip="text"
-                  bgGradient={MAIN_GRADIENT}
-                >
+                  bgGradient={MAIN_GRADIENT}>
                   Complete profile
                 </Text>
               </Badge>
@@ -264,8 +255,7 @@ export const AppHeader = ({
               fontSize="10px"
               textTransform="capitalize"
               bgClip="text"
-              bgGradient={MAIN_GRADIENT}
-            >
+              bgGradient={MAIN_GRADIENT}>
               Wallet balance
             </Text>
             {isLoading ? (
@@ -282,8 +272,7 @@ export const AppHeader = ({
                 fontSize="20px"
                 lineHeight="27px"
                 bgGradient={MAIN_GRADIENT}
-                bgClip="text"
-              >
+                bgClip="text">
                 {walletBalance}
               </Text>
             )}
@@ -296,8 +285,7 @@ export const AppHeader = ({
           mt="1em"
           width="100%"
           borderBottom="1px solid var(--border-muted)"
-          pb=".2em"
-        >
+          pb=".2em">
           {SIDEBAR_NAV_ITEMS.map((item, index) => (
             <List key={item.id}>
               <Link to={item.path}>
@@ -323,15 +311,13 @@ export const AppHeader = ({
                     isMobileSideNavOpen
                       ? { x: 0, opacity: 1, transition: { delay: index * 0.1 } }
                       : { x: -20, opacity: 0 }
-                  }
-                >
+                  }>
                   {item.icon}
                   <Text
                     fontSize="14px"
                     fontWeight={pathname === item.path ? "400" : "300"}
                     lineHeight="19px"
-                    whiteSpace="nowrap"
-                  >
+                    whiteSpace="nowrap">
                     {item.name}
                   </Text>
                 </MotionListItem>
@@ -366,14 +352,12 @@ export const AppHeader = ({
                     isMobileSideNavOpen
                       ? { x: 0, opacity: 1, transition: { delay: index * 0.1 } }
                       : { x: -20, opacity: 0 }
-                  }
-                >
+                  }>
                   {item.icon}
                   <Text
                     fontSize="14px"
                     fontWeight={pathname === item.path ? "400" : "300"}
-                    whiteSpace="nowrap"
-                  >
+                    whiteSpace="nowrap">
                     {item.name}
                   </Text>
                 </MotionListItem>
@@ -387,8 +371,7 @@ export const AppHeader = ({
           bottom="4"
           onClick={logout}
           _hover={{ cursor: "pointer" }}
-          px="1em"
-        >
+          px="1em">
           <Icon name="logout" />
           <Text color="var(--grey)" fontWeight="300" fontSize="16px">
             Log out
@@ -412,14 +395,12 @@ export const AppHeader = ({
             lg: "flex",
             md: pathname === "/dashboard/milestones" ? "none" : "flex",
             base: pathname === "/dashboard/milestones" ? "none" : "flex",
-          }}
-        >
+          }}>
           <HStack gap=".4em">
             <Text
               as="h2"
               fontWeight="500"
-              fontSize={{ base: "22px", lg: "32px" }}
-            >
+              fontSize={{ base: "22px", lg: "32px" }}>
               {routeTitle}
             </Text>
             {["/dashboard", "/dashboard/milestones"].includes(pathname) && (
@@ -438,8 +419,7 @@ export const AppHeader = ({
                     fontSize={{ base: "24px", lg: "32px" }}
                     bgGradient="var(--main-gradient)"
                     bgClip="text"
-                    fontFamily="var(--clash-grotesk-600)"
-                  >
+                    fontFamily="var(--clash-grotesk-600)">
                     {userName}
                   </Text>
                 )}
@@ -449,8 +429,7 @@ export const AppHeader = ({
           <Flex
             columnGap="1rem"
             alignItems="center"
-            display={{ base: "none", lg: "flex" }}
-          >
+            display={{ base: "none", lg: "flex" }}>
             <Button
               background="var(--btn-secondary-7)"
               width="180px"
@@ -466,8 +445,7 @@ export const AppHeader = ({
               _hover={{
                 background: "var(--btn-secondary-7)",
               }}
-              onClick={createGroup}
-            >
+              onClick={createGroup}>
               Create group
             </Button>
             <HStack columnGap="1rem">

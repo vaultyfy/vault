@@ -6,7 +6,7 @@ import { requireAuth } from "@utils/route-guard";
 
 export const Route = createFileRoute("/dashboard/groups/")({
   component: RouteComponent,
-  beforeLoad: requireAuth()
+  beforeLoad: requireAuth(),
 });
 
 function RouteComponent() {

@@ -67,7 +67,7 @@ export const NotificationPopover = () => {
   } = useDisclosure();
 
   const groupNotificationsByDate = (
-    notifications: Notification[],
+    notifications: Notification[]
   ): GroupedNotifications => {
     const grouped: GroupedNotifications = {};
 
@@ -103,7 +103,7 @@ export const NotificationPopover = () => {
 
         const daysAgo = differenceInDays(
           new Date(),
-          parseISO(notification.date),
+          parseISO(notification.date)
         );
         if (filter === "recent") {
           return daysAgo <= 2;
@@ -118,7 +118,7 @@ export const NotificationPopover = () => {
   const groupedNotifications = groupNotificationsByDate(filteredNotifications);
 
   const hasUnreadNotifications = filteredNotifications?.some(
-    (notification: Notification) => !notification.isRead,
+    (notification: Notification) => !notification.isRead
   );
 
   const handleScroll = useCallback(() => {
@@ -188,8 +188,7 @@ export const NotificationPopover = () => {
           _hover={{
             background: "var(--btn-secondary-7)",
           }}
-          position="relative"
-        >
+          position="relative">
           <Icon name="notification" />
           {hasUnreadNotifications && (
             <Box
@@ -212,8 +211,7 @@ export const NotificationPopover = () => {
         <PopoverHeader
           display="flex"
           justifyContent="space-between"
-          alignItems="center"
-        >
+          alignItems="center">
           Notifications
         </PopoverHeader>
         <PopoverBody px="14px" py="20px">
@@ -240,18 +238,15 @@ export const NotificationPopover = () => {
               "&::-webkit-scrollbar-thumb:hover": {
                 backgroundColor: "rgba(0, 0, 0, 0.3)",
               },
-            }}
-          >
+            }}>
             <Tabs
               variant="soft-rounded"
               onChange={(index) => {
                 setFilter(filterOptions[index]);
-              }}
-            >
+              }}>
               <TabList
                 overflow="auto"
-                gap={{ lg: ".6em", md: ".6em", base: ".4em" }}
-              >
+                gap={{ lg: ".6em", md: ".6em", base: ".4em" }}>
                 {NOTIFICATION_TAB_ITEMS.map((tab) => {
                   return (
                     <Tab
@@ -267,8 +262,7 @@ export const NotificationPopover = () => {
                       fontSize={{ base: "12px", lg: "12px" }}
                       fontWeight="500"
                       whiteSpace="nowrap"
-                      key={tab.id}
-                    >
+                      key={tab.id}>
                       {tab.name}
                     </Tab>
                   );
@@ -292,8 +286,7 @@ export const NotificationPopover = () => {
                       fontFamily="Poppins"
                       fontSize="16px"
                       fontWeight="400"
-                      color="#626262"
-                    >
+                      color="#626262">
                       {dateGroup}
                     </Text>
                     <VStack spacing="8px" mt="4px">
@@ -304,28 +297,25 @@ export const NotificationPopover = () => {
                           isUnread={!notification.isRead}
                           onMarkAsRead={() =>
                             handleMarkAsRead(notification.notificationID)
-                          }
-                        >
+                          }>
                           <Text
                             fontSize="14px"
                             fontWeight="400"
-                            color="#000000"
-                          >
+                            color="#000000">
                             {notification.message}
                           </Text>
                           <Text
                             fontFamily="var(--poppins)"
                             fontWeight="400"
                             fontSize="12px"
-                            color="#706E6E"
-                          >
+                            color="#706E6E">
                             {notification.subject}
                           </Text>
                         </NotificationContainer>
                       ))}
                     </VStack>
                   </Box>
-                ),
+                )
               )
             )}
           </Box>
@@ -340,16 +330,14 @@ export const NotificationPopover = () => {
               bg="white"
               boxShadow="md"
               borderRadius="full"
-              p={1}
-            >
+              p={1}>
               <Button
                 onClick={handleMarkAllAsRead}
                 size="md"
                 fontWeight="400"
                 leftIcon={<Check size={18} />}
                 px={6}
-                borderRadius="full"
-              >
+                borderRadius="full">
                 Mark all as read
               </Button>
             </Box>

@@ -15,8 +15,7 @@ export const GroupCalendarSkeleton = () => (
       alignItems="center"
       px="1em"
       border="2px solid black"
-      height="100%"
-    >
+      height="100%">
       <SkeletonCircle
         size="32px"
         startColor={skeleton.light.startColor}

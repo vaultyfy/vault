@@ -3,7 +3,6 @@ import { Button, ChakraProps } from "@chakra-ui/react";
 interface PrimaryBtnProps extends ChakraProps {
   value: string;
   loading: boolean;
-
 }
 
 export const PrimaryButton = ({
@@ -24,8 +23,7 @@ export const PrimaryButton = ({
       color="var(--white-fade)"
       width="100%"
       borderRadius="35px"
-      isLoading={loading}
-    >
+      isLoading={loading}>
       {value}
     </Button>
   );

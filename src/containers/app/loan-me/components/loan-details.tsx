@@ -64,8 +64,7 @@ export const LoanDetails = ({
       padding="10px"
       gap="10px"
       flexWrap="wrap"
-      fontFamily="var(--poppins)"
-    >
+      fontFamily="var(--poppins)">
       <GradientContainer>
         <HStack
           height="full"
@@ -76,21 +75,18 @@ export const LoanDetails = ({
           px="1.15em"
           gap="22px"
           flexDirection={{ base: "column", lg: "row" }}
-          background="#ffffff"
-        >
+          background="#ffffff">
           <VStack
             alignItems="flex-start"
             columnGap="15px"
             flex="1"
             height="full"
-            width="full"
-          >
+            width="full">
             <Text
               fontFamily="var(--poppins)"
               fontWeight="500"
               fontSize="20px"
-              color="var(--main)"
-            >
+              color="var(--main)">
               Loan summary
             </Text>
             <Box width="full">
@@ -98,16 +94,14 @@ export const LoanDetails = ({
                 fontFamily="var(--poppins)"
                 fontWeight="400"
                 fontSize={{ base: "14px", lg: "16px" }}
-                color="#2A2A2A"
-              >
+                color="#2A2A2A">
                 Amount paid:
               </Text>
               <Text
                 fontFamily="var(--clash-grotesk)"
                 fontWeight="600"
                 fontSize="26px"
-                color="var(--dark)"
-              >
+                color="var(--dark)">
                 {formatPrice(Number(loanDetails.amountPaid))}
               </Text>
             </Box>
@@ -116,8 +110,7 @@ export const LoanDetails = ({
                 color="#2A2A2A"
                 fontFamily="var(--poppins)"
                 fontWeight="400"
-                fontSize="14px"
-              >
+                fontSize="14px">
                 Balance to be paid
               </Text>
               <Text
@@ -125,8 +118,7 @@ export const LoanDetails = ({
                 backgroundClip="text"
                 fontFamily="var(--clash-grotesk)"
                 fontWeight="600"
-                fontSize="26px"
-              >
+                fontSize="26px">
                 {formatPrice(Number(loanDetails.loanBalance))}
               </Text>
             </Box>
@@ -136,8 +128,7 @@ export const LoanDetails = ({
             alignItems="flex-start"
             justifyContent="space-between"
             height="full"
-            width="full"
-          >
+            width="full">
             <Text color="#000000" fontSize="14px" fontWeight="400">
               You can make all balance payment at once to avoid further interest
               increase now, this helps you build a good credit score
@@ -157,8 +148,7 @@ export const LoanDetails = ({
               color="#ffffff"
               _hover={{
                 bg: "var(--main)",
-              }}
-            >
+              }}>
               Pay now
               <Box
                 boxSize="35px"
@@ -166,8 +156,7 @@ export const LoanDetails = ({
                 bg="#ffffff"
                 display="flex"
                 justifyContent="center"
-                alignItems="center"
-              >
+                alignItems="center">
                 <ArrowRight size={16} color="var(--main)" weight="bold" />
               </Box>
             </Button>
@@ -182,15 +171,13 @@ export const LoanDetails = ({
           px="1.15em"
           alignItems="flex-start"
           justifyContent="space-between"
-          borderRadius="10px"
-        >
+          borderRadius="10px">
           <VStack justifyContent="space-between" width="full">
             <Text
               fontSize="14px"
               fontWeight="400"
               color="var(--grey)"
-              width="full"
-            >
+              width="full">
               Next pay date
             </Text>
             <HStack width="full">
@@ -198,8 +185,7 @@ export const LoanDetails = ({
                 background="var(--main-gradient)"
                 backgroundClip="text"
                 fontSize={{ base: "34px", lg: "44px" }}
-                fontWeight="300"
-              >
+                fontWeight="300">
                 {formatDate(loanDetails.nextPaymentDate).day}
               </Text>
               <Box>
@@ -228,8 +214,7 @@ export const LoanDetails = ({
               color="#ffffff"
               _hover={{
                 bg: "var(--main)",
-              }}
-            >
+              }}>
               Pay now
               <Box
                 boxSize="35px"
@@ -237,8 +222,7 @@ export const LoanDetails = ({
                 bg="#ffffff"
                 display="flex"
                 justifyContent="center"
-                alignItems="center"
-              >
+                alignItems="center">
                 <ArrowRight size={16} color="var(--main)" weight="bold" />
               </Box>
             </Button>
@@ -253,8 +237,7 @@ export const LoanDetails = ({
           py="1.3em"
           px="1.15em"
           alignItems="flex-start"
-          borderRadius="10px"
-        >
+          borderRadius="10px">
           <VStack spacing="11px" width="full">
             <Text fontSize="14px" fontWeight="400" color="var(--gray)">
               Loan details

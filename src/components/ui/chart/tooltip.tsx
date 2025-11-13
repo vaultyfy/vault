@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react";
 
 interface ChartTooltipProps {
   active?: boolean;
@@ -19,8 +19,7 @@ export const ChartTooltip = ({ active, payload }: ChartTooltipProps) => {
           minW="80px"
           transform="translateX(-50%)"
           boxShadow="lg"
-          filter="drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))"
-        >
+          filter="drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))">
           {`${payload[0].value / 1000}k`}
         </Box>
       </Box>

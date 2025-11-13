@@ -7,7 +7,7 @@ export const useBanks = () => {
   const { data, error, isLoading } = useSWR(
     "bank-list",
     () => getAllBanks(),
-    swrOptions,
+    swrOptions
   );
 
   const transformed =
@@ -30,11 +30,11 @@ export const useMyBanks = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getUserBanks(),
-    swrOptions,
+    swrOptions
   );
 
-  const payload = data?.payload
-  const refreshBankList = () => mutate(key)
+  const payload = data?.payload;
+  const refreshBankList = () => mutate(key);
 
   return {
     data: payload?.data,

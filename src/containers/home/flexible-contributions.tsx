@@ -29,8 +29,7 @@ export const FlexibleContributions = () => {
         mt={{ lg: "6em", base: "3em", md: "4em" }}
         py="3em"
         gap={{ lg: "8em", md: "6em", base: "2em" }}
-        flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap-reverse" }}
-      >
+        flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap-reverse" }}>
         <Link to="/auth/login">
           <MotionBox
             display={{ lg: "none", md: "none", base: "block" }}
@@ -42,8 +41,7 @@ export const FlexibleContributions = () => {
             borderRadius="4px"
             height="58px"
             width="178px"
-            background="var(--primary)"
-          >
+            background="var(--primary)">
             <MotionBox
               fontWeight="500"
               fontSize="14px"
@@ -54,8 +52,7 @@ export const FlexibleContributions = () => {
               height="100%"
               width="100%"
               borderRadius="4px"
-              ml="-.3em"
-            >
+              ml="-.3em">
               Pick a saving cycle
             </MotionBox>
           </MotionBox>
@@ -66,8 +63,7 @@ export const FlexibleContributions = () => {
           width={{ lg: "60%", base: "100%", md: "60%" }}
           position="relative"
           display="flex"
-          justifyContent="center"
-        >
+          justifyContent="center">
           <MotionImage
             src="/img/cash-bundle.svg"
             initial={{ opacity: 0 }}
@@ -99,8 +95,7 @@ export const FlexibleContributions = () => {
           gap="2em"
           mx={{ base: "auto", md: "", lg: "initial" }}
           textAlign={{ base: "center", md: "left", lg: "left" }}
-          width={{ xl: "40%", lg: "60%", base: "100%", md: "60%" }}
-        >
+          width={{ xl: "40%", lg: "60%", base: "100%", md: "60%" }}>
           <Flex gap=".4em" flexFlow="column">
             <MotionText
               fontFamily="var(--clash-grotesk-600)"
@@ -110,8 +105,7 @@ export const FlexibleContributions = () => {
               initial="hidden"
               variants={textVariants}
               custom={0.3}
-              viewport={{ once: true, amount: 0.5 }}
-            >
+              viewport={{ once: true, amount: 0.5 }}>
               <MotionText
                 as="span"
                 position="relative"
@@ -126,8 +120,7 @@ export const FlexibleContributions = () => {
                     "linear-gradient(104.4deg, #1CCFBD 1.7%, #2C9BF0 105.41%)",
                   maskImage: "linear-gradient(to right, black 100%)",
                   WebkitMaskImage: "linear-gradient(to right, black 100%)",
-                }}
-              >
+                }}>
                 Flexible
               </MotionText>{" "}
               Contribution Plans
@@ -140,8 +133,7 @@ export const FlexibleContributions = () => {
               variants={textVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-            >
+              viewport={{ once: true, amount: 0.3 }}>
               Choose a savings cycle that suits you — daily, weekly, or monthly.
             </MotionText>
           </Flex>
@@ -163,8 +155,7 @@ export const FlexibleContributions = () => {
                   duration: 0.3,
                   ease: "easeOut",
                 },
-              }}
-            >
+              }}>
               <MotionBox
                 fontWeight="500"
                 fontSize="14px"
@@ -175,8 +166,7 @@ export const FlexibleContributions = () => {
                 height="100%"
                 width="100%"
                 borderRadius="4px"
-                ml="-.3em"
-              >
+                ml="-.3em">
                 Pick a saving cycle
               </MotionBox>
             </MotionBox>

@@ -44,7 +44,8 @@ export const Dashboard = () => {
   const { data: consistency } = useConsistencyStats();
   const refPercentage = referrals?.referralPercentage;
   const consistencyPercentage = consistency?.progressPercentage;
-  const milestonesProgress = Number(consistencyPercentage) + Number(refPercentage) / 2;
+  const milestonesProgress =
+    Number(consistencyPercentage) + Number(refPercentage) / 2;
 
   React.useEffect(() => {
     if (store.ui === "create-group" && !isMobile) {
@@ -78,8 +79,7 @@ export const Dashboard = () => {
       <Box width="100%" minH="100dvh">
         <SimpleGrid
           columns={{ lg: 4, md: 2, base: 2 }}
-          gap={{ lg: ".8em", md: ".6em", base: ".4em" }}
-        >
+          gap={{ lg: ".8em", md: ".6em", base: ".4em" }}>
           <Link to="/dashboard/payments">
             <OverviewCard
               cardIcon="calendar"
@@ -135,8 +135,7 @@ export const Dashboard = () => {
               fontSize={{ xl: "46px", lg: "40px", md: "40px", base: "32px" }}
               fontFamily="var(--clash-grotesk-600)"
               color="var(--border-muted)"
-              textAlign="center"
-            >
+              textAlign="center">
               Start your savings journey
             </Text>
           </Center>
@@ -145,8 +144,7 @@ export const Dashboard = () => {
             gap="10px"
             w="100%"
             direction={{ base: "column", lg: "row" }}
-            mt={4}
-          >
+            mt={4}>
             <Box
               width={{ base: "100%", lg: "40%" }}
               boxShadow="var(--table-shadow)"
@@ -157,22 +155,19 @@ export const Dashboard = () => {
                 lg: "none",
                 md: "none",
                 base: "0.5px solid var(--border-muted)",
-              }}
-            >
+              }}>
               <Box w="full">
                 <Text
                   as="h5"
                   fontFamily="var(--clash-grotesk-500)"
                   fontSize={{ base: "16px", lg: "24px" }}
-                  color="var(--dark)"
-                >
+                  color="var(--dark)">
                   Analytics
                 </Text>
                 <Text
                   fontFamily="var(--clash-grotesk-500)"
                   fontSize={{ base: "12px", lg: "14px" }}
-                  color="#000000E60"
-                >
+                  color="#000000E60">
                   Saving trends
                 </Text>
               </Box>
@@ -182,8 +177,7 @@ export const Dashboard = () => {
                     fontSize={{ base: "14px", lg: "16px" }}
                     fontWeight="600"
                     color="var(--dark)"
-                    textTransform="uppercase"
-                  >
+                    textTransform="uppercase">
                     Naira
                   </Text>
                   <Menu autoSelect={false}>
@@ -202,8 +196,7 @@ export const Dashboard = () => {
                       }}
                       _active={{
                         background: "none",
-                      }}
-                    >
+                      }}>
                       Month
                     </MenuButton>
                     <MenuList px=".4em" py=".4em">
@@ -212,8 +205,7 @@ export const Dashboard = () => {
                           background: "var(--grey-100)",
                         }}
                         transition="all .3s ease-out"
-                        borderRadius="4px"
-                      >
+                        borderRadius="4px">
                         Month
                       </MenuItem>
                       <MenuItem
@@ -221,8 +213,7 @@ export const Dashboard = () => {
                           background: "var(--fade-border)",
                         }}
                         transition="all .3s ease-out"
-                        borderRadius="4px"
-                      >
+                        borderRadius="4px">
                         Year
                       </MenuItem>
                     </MenuList>
@@ -238,16 +229,14 @@ export const Dashboard = () => {
               p="18px"
               minH="480px"
               rounded="lg"
-              boxShadow="var(--table-shadow)"
-            >
+              boxShadow="var(--table-shadow)">
               <HStack w="full" justifyContent="space-between">
                 <Text
                   as="h5"
                   fontFamily={"var(--clash-grotesk-500)"}
                   fontSize={{ base: "16px", lg: "24px" }}
                   lineHeight="19px"
-                  color="var(--dark)"
-                >
+                  color="var(--dark)">
                   Activities
                 </Text>
               </HStack>

@@ -69,8 +69,7 @@ export const CreateGroupContent = ({
 
           setSubmitting(false);
         }, 600);
-      }}
-    >
+      }}>
       {(formik) => {
         return (
           <Form>
@@ -80,8 +79,7 @@ export const CreateGroupContent = ({
                 width="100%"
                 py={2}
                 alignItems="center"
-                gap=".2em"
-              >
+                gap=".2em">
                 <IconButton
                   aria-label="Back button"
                   icon={<Icon name="arrow-left" />}
@@ -95,8 +93,7 @@ export const CreateGroupContent = ({
                   fontFamily="var(--clash-grotesk-500)"
                   fontWeight="500"
                   color="var(--text-1)"
-                  textTransform="capitalize"
-                >
+                  textTransform="capitalize">
                   Create group
                 </Text>
               </HStack>
@@ -104,8 +101,7 @@ export const CreateGroupContent = ({
                 flexDirection={{ base: "column", md: "row" }}
                 gap="8px"
                 width="100%"
-                alignItems="stretch"
-              >
+                alignItems="stretch">
                 <Box flex={1}>
                   <InputField
                     name="name"
@@ -174,8 +170,7 @@ export const CreateGroupContent = ({
               <HStack
                 spacing="8px"
                 w="full"
-                flexWrap={{ base: "wrap", md: "nowrap" }}
-              >
+                flexWrap={{ base: "wrap", md: "nowrap" }}>
                 <Box width={{ base: "100%", md: "33.33%" }}>
                   <SelectField
                     name="contributionFrequency"
@@ -247,23 +242,20 @@ export const CreateGroupContent = ({
             <Flex
               justifyContent="space-between"
               h="fit-content"
-              alignItems="end"
-            >
+              alignItems="end">
               <Box>
                 <Text
                   as="span"
                   fontSize="14px"
                   fontWeight="normal"
-                  color="var(--grey)"
-                >
+                  color="var(--grey)">
                   Pay-out
                 </Text>
                 <Text
                   fontSize="24px"
                   lineHeight="19px"
                   color="var(--main)"
-                  fontWeight="semibold"
-                >
+                  fontWeight="semibold">
                   N100,000
                 </Text>
               </Box>
@@ -280,8 +272,7 @@ export const CreateGroupContent = ({
                 color="var(--white-fade)"
                 width="230px"
                 borderRadius="35px"
-                isLoading={formik.isSubmitting}
-              >
+                isLoading={formik.isSubmitting}>
                 Submit request
               </Button>
             </Flex>

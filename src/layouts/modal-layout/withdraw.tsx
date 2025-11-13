@@ -41,7 +41,7 @@ export const WithdrawalModal = ({
   const formikRef = React.useRef(null);
   const { data: myBanks } = useMyBanks();
   const { data: banks } = useBanks();
-  const [selectedBank, setSelectedBank] = React.useState<Option>()
+  const [selectedBank, setSelectedBank] = React.useState<Option>();
   const { openToast } = useToastContext();
 
   const bankCodesMap: Record<string, string> = {};
@@ -49,7 +49,7 @@ export const WithdrawalModal = ({
     bankCodesMap[bank.name] = bank.code;
   });
 
-  console.log("bankCodesMap", bankCodesMap)
+  console.log("bankCodesMap", bankCodesMap);
 
   const customersBanks = myBanks?.map((bank) => ({
     value: bank.bankName,
@@ -117,8 +117,7 @@ export const WithdrawalModal = ({
                       ? "var(--main)"
                       : "var(--progress-accent-bg)",
                 }}
-                onClick={() => setDefaultWithdrawalAmount(item)}
-              >
+                onClick={() => setDefaultWithdrawalAmount(item)}>
                 {formatPrice(item.amount)}
               </Button>
             );
@@ -139,19 +138,18 @@ export const WithdrawalModal = ({
               amount: values.amount,
               accountName: selectedBank?.accountName || "",
               accountNumber: selectedBank?.accountNumber || "",
-              bankCode: selectedBank?.code || ""
-            })
-            const response:Response = await request?.json()
+              bankCode: selectedBank?.code || "",
+            });
+            const response: Response = await request?.json();
             if (request?.ok) {
-              openToast(response.message, "success")
+              openToast(response.message, "success");
               onClose();
             } else {
-              openToast(response.message, "error")
+              openToast(response.message, "error");
             }
             setSubmitting(false);
           }, 600);
-        }}
-      >
+        }}>
         {(formik) => {
           return (
             <Form>
@@ -180,13 +178,11 @@ export const WithdrawalModal = ({
                 mt="1em"
                 borderRadius="10px"
                 py=".3em"
-                px=".3em"
-              >
+                px=".3em">
                 <Text
                   fontSize="14px"
                   fontWeight="400"
-                  color="var(--white-fade)"
-                >
+                  color="var(--white-fade)">
                   Withdrawal process may take up to 2hrs, depending on your bank
                   network. if you did not receive your funds in 2hrs kindly
                   reach out to your bank. Thank you.
@@ -238,8 +234,7 @@ export const WithdrawalModal = ({
               <HStack
                 mt=".8em"
                 justifyContent="space-between"
-                alignItems="center"
-              >
+                alignItems="center">
                 <Stack direction="column" gap="1em">
                   <Text fontSize="13px" color="var(--grey)" mt=".8em">
                     After 5% charges deductions, you'll receive:
@@ -265,8 +260,7 @@ export const WithdrawalModal = ({
                     cursor: "not-allowed",
                   }}
                   isLoading={formik.isSubmitting}
-                  type="submit"
-                >
+                  type="submit">
                   Withdraw
                 </Button>
               </HStack>

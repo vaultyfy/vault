@@ -30,8 +30,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
           alignItems="flex-start"
           width="full"
           height="119px"
-          justifyContent="space-between"
-        >
+          justifyContent="space-between">
           <HStack justifyContent="space-between" width="full">
             <Text fontSize="14px" color="var(--dark)" fontWeight="500">
               Loan
@@ -40,8 +39,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
               fontSize="20px"
               color="var(--dark)"
               fontWeight="600"
-              fontFamily="var(--clash-grotesk)"
-            >
+              fontFamily="var(--clash-grotesk)">
               N50,000
             </Text>
           </HStack>
@@ -53,8 +51,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
               fontSize="20px"
               color="var(--dark)"
               fontWeight="600"
-              fontFamily="var(--clash-grotesk)"
-            >
+              fontFamily="var(--clash-grotesk)">
               -N750
             </Text>
           </HStack>
@@ -68,8 +65,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
               fontWeight="600"
               fontFamily="var(--clash-grotesk)"
               background="var(--main-gradient)"
-              backgroundClip="text"
-            >
+              backgroundClip="text">
               N49,250
             </Text>
           </HStack>
@@ -89,8 +85,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
             py="3px"
             px="5px"
             rounded="36px"
-            width="fit-content"
-          >
+            width="fit-content">
             {paymentPlans.map((plan) => (
               <Button
                 key={plan.value}
@@ -106,8 +101,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
                 backgroundColor="var(--main)"
                 _hover={{
                   backgroundColor: "var(--main)",
-                }}
-              >
+                }}>
                 {plan.label}
               </Button>
             ))}
@@ -116,8 +110,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
             fontSize="12px"
             color="var(--grey)"
             fontWeight="500"
-            lineHeight="1.6em"
-          >
+            lineHeight="1.6em">
             Spread your loan over several months with a base interest rate of
             <Text as="span" color="var(--main)" mx="3px">
               8% per month
@@ -138,8 +131,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
                 fontSize="16px"
                 fontWeight="400"
                 color="var(--grey)"
-                disabled
-              >
+                disabled>
                 <option defaultValue={loanDurations[0].value}>
                   {loanDurations[0].label}
                 </option>
@@ -153,8 +145,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
                 fontFamily="var(--clash_grotesk)"
                 fontSize="26px"
                 fontWeight="600"
-                color="var(--dark)"
-              >
+                color="var(--dark)">
                 N54,000
               </Text>
             </Flex>
@@ -180,8 +171,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
             _hover={{
               backgroundColor: "#F6F6F6",
             }}
-            onClick={() => onClick("reject")}
-          >
+            onClick={() => onClick("reject")}>
             Reject offer
           </Button>
           <Button
@@ -198,8 +188,7 @@ export const LoanEligibilityContainer = ({ onClick }: LoanEligibilityProps) => {
             _hover={{
               backgroundColor: "var(--main)",
             }}
-            onClick={() => onClick("accept")}
-          >
+            onClick={() => onClick("accept")}>
             Accept offer
           </Button>
         </HStack>

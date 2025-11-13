@@ -56,8 +56,7 @@ export const Faq = () => {
           <Flex
             justifyContent="space-between"
             gap={{ lg: "4em", md: "2em", base: "1em" }}
-            flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap" }}
-          >
+            flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap" }}>
             <MotionBox
               display="flex"
               flexFlow={{ lg: "column", md: "column", base: "row" }}
@@ -65,8 +64,7 @@ export const Faq = () => {
               whiteSpace={{ base: "normal", md: "normal", lg: "normal" }}
               gap="1em"
               width={{ lg: "50%", md: "50%", base: "100%" }}
-              pb={{ base: "1em", md: "0", lg: "0" }}
-            >
+              pb={{ base: "1em", md: "0", lg: "0" }}>
               {FAQS.map((question) => (
                 <MotionBox
                   background={
@@ -102,8 +100,7 @@ export const Faq = () => {
                     activeQuestion?.id === question.id
                       ? { ease: "easeOut", type: "spring" }
                       : {}
-                  }
-                >
+                  }>
                   <HStack gap="1em">
                     {activeQuestion?.id === question.id ? (
                       <Star weight="fill" color="var(--main)" size="20" />
@@ -112,8 +109,7 @@ export const Faq = () => {
                       fontSize={{ lg: "18px", md: "16px", base: "14px" }}
                       width={{ lg: "340px", base: "200px", md: "80%" }}
                       lineHeight={{ lg: "27px", md: "22px", base: "20px" }}
-                      fontWeight="400"
-                    >
+                      fontWeight="400">
                       {question.question}
                     </Text>
                   </HStack>
@@ -128,8 +124,7 @@ export const Faq = () => {
               bgGradient="linear-gradient(104.4deg, #1ccfbd 1.7%, #2c9bf0 105.41%)"
               display="flex"
               justifyContent="center"
-              alignItems="center"
-            >
+              alignItems="center">
               <Box
                 height={{ lg: "98%", md: "98%", base: "98%" }}
                 width="98%"
@@ -140,8 +135,7 @@ export const Faq = () => {
                 display="flex"
                 flexFlow="column"
                 gap="2em"
-                position="relative"
-              >
+                position="relative">
                 <MotionText
                   initial="hidden"
                   whileInView="visible"
@@ -152,8 +146,7 @@ export const Faq = () => {
                   fontWeight="400"
                   lineHeight={{ lg: "27px", base: "23px", md: "22px" }}
                   fontSize={{ lg: "18px", base: "14px", md: "14px" }}
-                  color="var(--white-fade)"
-                >
+                  color="var(--white-fade)">
                   {activeQuestion?.answer || FAQS[0].answer}
                 </MotionText>
 

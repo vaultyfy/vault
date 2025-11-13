@@ -92,7 +92,7 @@ const getMonthsFromDuration = (duration: string): number => {
 export const calculatePaybackAmount = (
   amount: number,
   paymentPlan: string,
-  spreadDuration?: string,
+  spreadDuration?: string
 ): number => {
   // For one-time payment, apply only base interest
   if (paymentPlan === PaymentPlanEnum.OUTRIGHT) {

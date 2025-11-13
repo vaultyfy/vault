@@ -38,7 +38,7 @@ export const CustomCheckbox = ({
       isChecked,
       onChange,
       ...rest,
-    },
+    }
   );
 
   return (
@@ -50,8 +50,7 @@ export const CustomCheckbox = ({
       cursor="pointer"
       userSelect="none"
       justifyContent="space-between"
-      {...rest}
-    >
+      {...rest}>
       <input {...getInputProps()} hidden />
 
       {/* Checkbox visual */}
@@ -67,8 +66,7 @@ export const CustomCheckbox = ({
           borderColor: "green.500",
         }}
         boxSize="24px"
-        {...getCheckboxProps(checkboxProps)}
-      >
+        {...getCheckboxProps(checkboxProps)}>
         {state.isChecked && <Check size={14} color="var(--text-1)" />}
       </Flex>
 
@@ -76,8 +74,7 @@ export const CustomCheckbox = ({
       <Text
         color={state.isChecked ? "green.700" : "gray.700"}
         fontWeight={state.isChecked ? "semibold" : "normal"}
-        {...getLabelProps(labelProps)}
-      >
+        {...getLabelProps(labelProps)}>
         {label}
       </Text>
     </chakra.label>

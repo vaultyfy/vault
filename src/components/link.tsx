@@ -4,8 +4,8 @@ export const Link = (props: LinkProps) => {
   const cleanSearchParams = props.search
     ? Object.fromEntries(
         Object.entries(props.search).filter(
-          ([_, value]) => value !== "undefined" && value !== "",
-        ),
+          ([_, value]) => value !== "undefined" && value !== ""
+        )
       )
     : props.search;
 

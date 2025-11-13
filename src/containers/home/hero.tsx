@@ -4,7 +4,7 @@ import { MotionBox, MotionImage, MotionText } from "@config/motion";
 import { useDomContentLoaded } from "@hooks/dom-content-loaded";
 import { useMediaQuery } from "react-responsive";
 import { People } from "./people";
-import {useNavigate} from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 export const TRANSITION = {
   duration: 0.3,
@@ -84,22 +84,19 @@ export const Hero = () => {
     navigate({ to: "/auth/login" });
   };
 
-
   return (
     <SectionContainer>
       <Flex
         position="relative"
         mt={{ xl: "12rem", lg: "5em", md: "1rem", base: "1rem" }}
         justifyContent="space-between"
-        flexWrap={{ base: "wrap", md: "wrap", lg: "nowrap" }}
-      >
+        flexWrap={{ base: "wrap", md: "wrap", lg: "nowrap" }}>
         <Box width={{ md: "100%", lg: "50%" }}>
           <Flex
             fontFamily="var(--clash-grotesk-700)"
             fontSize={{ xl: "80px", lg: "70px", md: "70px", base: "48px" }}
             textTransform="uppercase"
-            flexFlow="column"
-          >
+            flexFlow="column">
             <Flex>
               <Box
                 lineHeight={{
@@ -107,14 +104,12 @@ export const Hero = () => {
                   xl: "90px",
                   lg: "initial",
                   md: "70px",
-                }}
-              >
+                }}>
                 <MotionText
                   initial="hidden"
                   animate={animationControls}
                   custom={0.4}
-                  variants={textVariants}
-                >
+                  variants={textVariants}>
                   Your
                 </MotionText>
                 <MotionText
@@ -124,8 +119,7 @@ export const Hero = () => {
                   animate={animationControls}
                   whileHover="hover"
                   variants={goalsVariants}
-                  cursor="pointer"
-                >
+                  cursor="pointer">
                   goals
                 </MotionText>
               </Box>
@@ -149,8 +143,7 @@ export const Hero = () => {
               initial="hidden"
               animate={animationControls}
               custom={0.8}
-              variants={textVariants}
-            >
+              variants={textVariants}>
               your turn
             </MotionText>
           </Flex>
@@ -164,14 +157,17 @@ export const Hero = () => {
               initial="hidden"
               animate={animationControls}
               custom={0.9}
-              variants={textVariants}
-            >
+              variants={textVariants}>
               Join verified thrift savings groups, contribute securely, and
               receive payouts in rotation. Transparent, reliable, and built for
               your goals
             </MotionText>
 
-            <PrimaryButton text="get started" contentLoaded={contentLoaded} onClick={handleGetStarted} />
+            <PrimaryButton
+              text="get started"
+              contentLoaded={contentLoaded}
+              onClick={handleGetStarted}
+            />
           </Flex>
         </Box>
 

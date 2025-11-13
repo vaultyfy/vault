@@ -28,8 +28,7 @@ export const NotificationContainer = ({
           opacity: !isUnread ? 0 : 0.8,
         },
       }}
-      transition="all 0.2s"
-    >
+      transition="all 0.2s">
       {isUnread && (
         <IconButton
           aria-label="Mark as read"
@@ -53,8 +52,7 @@ export const NotificationContainer = ({
         color="#B4B4B4"
         display="block"
         textAlign="right"
-        mt={2}
-      >
+        mt={2}>
         {time}
       </Text>
     </Box>

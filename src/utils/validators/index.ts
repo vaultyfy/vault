@@ -24,5 +24,5 @@ export const schema = {
   createGoal: createGoalSchema,
   loanApplication: loanApplicationSchema,
   withdrawal: withdrawalSchema,
-  bankAccount: bankAccountSchema
+  bankAccount: bankAccountSchema,
 };

@@ -100,15 +100,13 @@ export const FilterInput = ({
           pl="2.5rem"
           bgColor="#ffffff"
           width="auto"
-          height={height}
-        >
+          height={height}>
           <Text
             color="#575757"
             fontSize="11px"
             borderRight="none"
             fontWeight="medium"
-            whiteSpace="nowrap"
-          >
+            whiteSpace="nowrap">
             {title}
           </Text>
         </InputLeftAddon>
@@ -240,8 +238,7 @@ export const FilterDatePicker = ({
         isOpen={isOpen}
         onClose={onClose}
         initialFocusRef={initialFocusRef}
-        placement="bottom-start"
-      >
+        placement="bottom-start">
         <PopoverTrigger>
           <InputGroup>
             {icon && (
@@ -257,15 +254,13 @@ export const FilterDatePicker = ({
               pl="2.5rem"
               bgColor="#ffffff"
               width="auto"
-              height={height}
-            >
+              height={height}>
               <Text
                 color="#575757"
                 fontSize="11px"
                 borderRight="none"
                 fontWeight="400"
-                whiteSpace="nowrap"
-              >
+                whiteSpace="nowrap">
                 {title}
               </Text>
             </InputLeftAddon>
@@ -305,8 +300,7 @@ export const FilterDatePicker = ({
                 justifyContent="space-between"
                 alignItems="center"
                 mb={2}
-                flex={1}
-              >
+                flex={1}>
                 <IconButton
                   aria-label="Previous month"
                   icon={<CaretLeft color="#000" weight="bold" />}
@@ -366,8 +360,7 @@ export const FilterDatePicker = ({
                   fontWeight="semibold"
                   fontSize={"13px"}
                   color="var(--grey)"
-                  fontFamily="var(--maven-pro-500)"
-                >
+                  fontFamily="var(--maven-pro-500)">
                   {day}
                 </Text>
               ))}
@@ -375,7 +368,7 @@ export const FilterDatePicker = ({
             <SimpleGrid columns={7} spacing={2} mb="16px">
               {generateDates(
                 currentYear.getFullYear(),
-                currentMonth.getMonth(),
+                currentMonth.getMonth()
               ).map(({ date: d, isCurrentMonth, isPast }) => (
                 <Button
                   key={d.toISOString()}
@@ -420,8 +413,7 @@ export const FilterDatePicker = ({
                         : "var(--text-1)"
                   }
                   isDisabled={isPast}
-                  onClick={() => handleDateChange(d)}
-                >
+                  onClick={() => handleDateChange(d)}>
                   {d.getDate()}
                 </Button>
               ))}
@@ -512,8 +504,7 @@ export const FilterSelectField = ({
           fontSize={labelSize || "11px"}
           fontWeight={fontWeight || "medium"}
           color={labelColor || "#575757"}
-          mb="0.5em"
-        >
+          mb="0.5em">
           {label}{" "}
           {labelInfo && (
             <Text as="span" color="var(--deep-blood)">
@@ -539,15 +530,13 @@ export const FilterSelectField = ({
               pl="2.5rem"
               bgColor="#ffffff"
               width="auto"
-              height={height}
-            >
+              height={height}>
               <Text
                 color="#575757"
                 fontSize="11px"
                 borderRight="none"
                 fontWeight="medium"
-                whiteSpace="nowrap"
-              >
+                whiteSpace="nowrap">
                 {title}
               </Text>
             </InputLeftAddon>
@@ -590,8 +579,7 @@ export const FilterSelectField = ({
                   fontSize={fontSize}
                   fontWeight="500"
                   color={color || "var(--text-primary)"}
-                  _hover={{ bg: "var(--grey-100)" }}
-                >
+                  _hover={{ bg: "var(--grey-100)" }}>
                   {option.label}
                 </Button>
               ))}

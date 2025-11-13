@@ -30,16 +30,14 @@ export const CustomProgress = ({
           height={size}
           viewBox={`0 0 ${size} ${size}`}
           position="absolute"
-          transform="rotate(110deg)"
-        >
+          transform="rotate(110deg)">
           <defs>
             <linearGradient
               id="progressGradient"
               x1="0%"
               y1="0%"
               x2="100%"
-              y2="0%"
-            >
+              y2="0%">
               <stop offset="0%" style={{ stopColor: "#1ccfbd" }} />
               <stop offset="100%" style={{ stopColor: "#2c9bf0" }} />
             </linearGradient>
@@ -85,8 +83,7 @@ export const CustomProgress = ({
       height={height}
       bg="var(--grey-sec)"
       borderRadius={borderRadius}
-      overflow="hidden"
-    >
+      overflow="hidden">
       <motion.div
         initial={{ width: "0%" }}
         animate={{ width: `${value}%` }}

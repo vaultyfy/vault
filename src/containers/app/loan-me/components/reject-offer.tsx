@@ -52,8 +52,7 @@ export const RejectOffer = ({ handleBack }: RejectOfferProps) => {
               width="full"
               borderBottom="0.5px solid var(--border-muted)"
               height="79px"
-              padding="1rem"
-            >
+              padding="1rem">
               <CustomCheckbox
                 key={reason.value}
                 label={reason.label}
@@ -91,8 +90,7 @@ export const RejectOffer = ({ handleBack }: RejectOfferProps) => {
             _hover={{
               backgroundColor: "#F6F6F6",
             }}
-            onClick={handleBack}
-          >
+            onClick={handleBack}>
             Back
           </Button>
           <HStack>
@@ -128,8 +126,7 @@ export const RejectOffer = ({ handleBack }: RejectOfferProps) => {
               onClick={() => {
                 navigate({ to: "/dashboard/loan-me" });
                 setSelectedReasons(null); // my thought on this is that the skip would handle the decline and the the reason woult be an empty string
-              }}
-            >
+              }}>
               Skip
             </Button>
           </HStack>

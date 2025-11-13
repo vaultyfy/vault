@@ -78,8 +78,7 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
 
               setSubmitting(false);
             }, 600);
-          }}
-        >
+          }}>
           {(formik) => (
             <Form>
               <Flex flexFlow="column" gap="4em">
@@ -89,8 +88,7 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
                     ui: store.ui,
                     redirect: String(redirect),
                     referrer: String(referrer),
-                  }}
-                >
+                  }}>
                   <Image
                     src="/img/logo.svg"
                     alt="Vaultyfy logo"
@@ -108,8 +106,7 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
                       fontSize="16px"
                       color="var(--dark)"
                       lineHeight="18px"
-                      fontWeight="400"
-                    >
+                      fontWeight="400">
                       Enter your details to login to your account.
                     </Text>
                     f
@@ -128,8 +125,7 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
                       ui: store.ui,
                       redirect: String(redirect),
                       referrer: String(referrer),
-                    }}
-                  >
+                    }}>
                     <Text
                       float="right"
                       color="var(--grey)"
@@ -139,8 +135,7 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
                       mt="-1em"
                       py=".6em"
                       fontSize="14px"
-                      textDecoration="underline"
-                    >
+                      textDecoration="underline">
                       Forgot password?
                     </Text>
                   </Link>
@@ -158,8 +153,7 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
                     color="var(--white-fade)"
                     width="100%"
                     borderRadius="35px"
-                    isLoading={formik.isSubmitting}
-                  >
+                    isLoading={formik.isSubmitting}>
                     Sign in
                   </Button>
 
@@ -169,8 +163,7 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
                     color="var(--dark)"
                     py=".4em"
                     fontSize={{ lg: "16px", md: "16px", base: "14px" }}
-                    textTransform="capitalize"
-                  >
+                    textTransform="capitalize">
                     Don’t have an account?{" "}
                     <Link
                       to="/auth/signup"
@@ -178,14 +171,12 @@ export const LoginPage = ({ redirect, referrer }: AuthPageProps) => {
                         ui: store.ui,
                         redirect: String(redirect),
                         referrer: String(referrer),
-                      }}
-                    >
+                      }}>
                       <Box
                         cursor="pointer"
                         as="span"
                         color="var(--primary)"
-                        fontWeight="400"
-                      >
+                        fontWeight="400">
                         Sign up
                       </Box>
                     </Link>

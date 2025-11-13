@@ -17,8 +17,7 @@ export const SectionTitle = ({ title }: { title: string }) => {
       initial="hidden"
       viewport={{ once: true, amount: 0.5 }}
       textAlign={{ lg: "left", md: "left", base: "center" }}
-      fontSize={{ xl: "70px", lg: "58px", md: "45px", base: "48px" }}
-    >
+      fontSize={{ xl: "70px", lg: "58px", md: "45px", base: "48px" }}>
       {title}
     </MotionText>
   );

@@ -10,8 +10,7 @@ export const LoanDetailsSkeleton = () => {
       padding="10px"
       gap="10px"
       flexWrap="wrap"
-      fontFamily="var(--poppins)"
-    >
+      fontFamily="var(--poppins)">
       {/* Loan Summary Card Skeleton */}
       <GradientContainer>
         <Box
@@ -19,21 +18,18 @@ export const LoanDetailsSkeleton = () => {
           height={{ base: "fit-content", md: "238px" }}
           borderRadius="10px"
           p="1.15em"
-          background="#ffffff"
-        >
+          background="#ffffff">
           <Flex
             height="full"
             width="full"
             gap="22px"
-            flexDirection={{ base: "column", lg: "row" }}
-          >
+            flexDirection={{ base: "column", lg: "row" }}>
             <Stack
               alignItems="flex-start"
               gap="15px"
               flex="1"
               height="full"
-              width="full"
-            >
+              width="full">
               <Skeleton
                 height="24px"
                 width="150px"
@@ -80,8 +76,7 @@ export const LoanDetailsSkeleton = () => {
               alignItems="flex-start"
               justifyContent="space-between"
               height="full"
-              width="full"
-            >
+              width="full">
               <Skeleton
                 height="60px"
                 width="full"
@@ -107,13 +102,11 @@ export const LoanDetailsSkeleton = () => {
           height={{ base: "173px", lg: "238px" }}
           p="1.15em"
           borderRadius="10px"
-          background="#ffffff"
-        >
+          background="#ffffff">
           <Stack
             height="full"
             justifyContent="space-between"
-            alignItems="flex-start"
-          >
+            alignItems="flex-start">
             <Box width="full">
               <Skeleton
                 height="14px"
@@ -165,13 +158,11 @@ export const LoanDetailsSkeleton = () => {
           height="238px"
           p="1.15em"
           borderRadius="10px"
-          background="#ffffff"
-        >
+          background="#ffffff">
           <Stack
             height="full"
             justifyContent="space-between"
-            alignItems="flex-start"
-          >
+            alignItems="flex-start">
             <Stack spacing="11px" width="full">
               <Skeleton
                 height="14px"

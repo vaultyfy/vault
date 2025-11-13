@@ -66,7 +66,7 @@ export const Settings = () => {
   const { isMobile } = useMobileScreens();
   const { store, updateUiStore } = useUiComponentStore();
   const [activeSetting, setActiveSetting] = React.useState<Setting>(
-    SETTINGS[0],
+    SETTINGS[0]
   );
   const navigate = useNavigate();
 
@@ -91,13 +91,11 @@ export const Settings = () => {
       overflowY="auto"
       flexWrap="wrap"
       gap={{ xl: "1em", lg: ".6em", md: ".6em", base: "1em" }}
-      px={{ xl: "1em", base: ".4rem", lg: ".2rem" }}
-    >
+      px={{ xl: "1em", base: ".4rem", lg: ".2rem" }}>
       <Stack
         direction="column"
         gap="1em"
-        width={{ lg: "48%", md: "48%", base: "100%" }}
-      >
+        width={{ lg: "48%", md: "48%", base: "100%" }}>
         {SETTINGS.map((setting) => {
           const currentSetting =
             activeSetting.id === setting.id || store.ui === setting.slug;
@@ -117,8 +115,7 @@ export const Settings = () => {
       </Stack>
       <Box
         width={{ lg: "50%", base: "100%", md: "50%" }}
-        display={{ base: "none", md: "block" }}
-      >
+        display={{ base: "none", md: "block" }}>
         {activeSetting.component}
       </Box>
     </Flex>

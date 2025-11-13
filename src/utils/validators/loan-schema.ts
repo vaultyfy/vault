@@ -53,7 +53,7 @@ export const loanApplicationSchema = Yup.object().shape({
           "application/doc",
         ];
         return acceptedTypes.includes(value.type);
-      },
+      }
     )
     .required("Bank statement is required"),
 
@@ -67,7 +67,7 @@ export const loanApplicationSchema = Yup.object().shape({
     .test(
       "valid-income",
       "Minimum annual income is ₦10,000 (numbers only)",
-      validateIncome,
+      validateIncome
     ),
 
   loan_duration: Yup.string()
@@ -87,7 +87,7 @@ export const loanApplicationSchema = Yup.object().shape({
           .required("Payment duration is required for spread payments")
           .oneOf(
             paymentDurationOptions,
-            "Please select a valid payment duration",
+            "Please select a valid payment duration"
           ),
       otherwise: (schema) => schema.nullable(),
     }),
@@ -102,7 +102,7 @@ export const loanApplicationSchema = Yup.object().shape({
     .test(
       "valid-income",
       "Minimum annual income is ₦10,000 (numbers only)",
-      validateIncome,
+      validateIncome
     ),
 });
 

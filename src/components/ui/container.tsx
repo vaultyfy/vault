@@ -13,8 +13,7 @@ export const SectionContainer = ({
         lg: "97%",
         xl: "1200px",
       }}
-      px="0"
-    >
+      px="0">
       {children}
     </Container>
   );

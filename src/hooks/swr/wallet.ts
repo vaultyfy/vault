@@ -27,7 +27,7 @@ export const useWallet = () => {
     expectedReturns,
     walletBalance: payload?.balance,
     lastUpdated: dayjs(payload?.updatedAT || payload?.createdAT).format(
-      "DD-MM-YYYY",
+      "DD-MM-YYYY"
     ),
   };
 };
@@ -37,7 +37,7 @@ export const useExpectedReturns = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getExpectedReturns(),
-    swrOptions,
+    swrOptions
   );
 
   return {
@@ -47,12 +47,14 @@ export const useExpectedReturns = () => {
   };
 };
 
-export const useRemainingContributions = (params: RemainingContributionsParams) => {
-  const key =["remaining-contributions", params.filter];
+export const useRemainingContributions = (
+  params: RemainingContributionsParams
+) => {
+  const key = ["remaining-contributions", params.filter];
   const { data, error, isLoading } = useSWR(
     key,
     () => getRemainingContributions({ filter: params.filter }),
-    swrOptions,
+    swrOptions
   );
 
   return {
