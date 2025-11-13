@@ -148,7 +148,7 @@ export const SelectField = ({
                 {...field}
                 {...props}
                 isMulti={multi === "yes"}
-                value={options.find((opt) => opt.value === value)}
+                value={options?.find((opt) => opt.value === value)}
                 instanceId={id}
                 onChange={handleChange}
                 menuPortalTarget={document.body}

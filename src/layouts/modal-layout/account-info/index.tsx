@@ -7,6 +7,7 @@ import { Text, Button, Image, Box } from "@chakra-ui/react";
 import { addBank, updateBankInfo } from "@mutations/banks";
 import { useToastContext } from "@hooks/context";
 import { useBanks, useMyBanks } from "@hooks/swr";
+import { schema } from "@utils/validators";
 
 interface AccountInfoModalProps extends BaseModalProps {
   accountInfo?: UserBankAccount;
@@ -48,6 +49,7 @@ export const AccountInfoModal = ({
           accountNumber: accountInfo?.accountNumber || "",
           bankName: accountInfo?.bankName || "",
         }}
+        validationSchema={schema.bankAccount}
         onSubmit={async (values) => {
           try {
             const request = accountInfo

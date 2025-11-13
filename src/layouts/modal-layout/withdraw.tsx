@@ -9,13 +9,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { InputField, Option, SelectField } from "@components/form";
-import { Icon } from "@components/icon";
 import { ModalLayout } from "@components/ui";
 import { useToastContext } from "@hooks/context";
 import { useBanks, useMyBanks } from "@hooks/swr";
 import { withdrawFunds } from "@mutations/banks";
 import { BaseModalProps } from "@utils/constants";
-import { app } from "@utils/endpoints";
 import { formatPrice } from "@utils/misc";
 import { Response } from "@utils/types";
 import { schema } from "@utils/validators";
@@ -46,23 +44,22 @@ export const WithdrawalModal = ({
   const [selectedBank, setSelectedBank] = React.useState<Option>()
   const { openToast } = useToastContext();
 
-  const bankCodesMap = {};
+  const bankCodesMap: Record<string, string> = {};
   banks.forEach((bank) => {
-    // your wahala too much, TS. I know ah!
-    // @ts-ignore
     bankCodesMap[bank.name] = bank.code;
   });
+
+  console.log("bankCodesMap", bankCodesMap)
 
   const customersBanks = myBanks?.map((bank) => ({
     value: bank.bankName,
     label: `${bank.bankName} (${bank.accountNumber})`,
     accountName: bank.accountName,
     accountNumber: bank.accountNumber,
-    // @ts-ignore
-    code: bankCodesMap[bank.bankName] || "",
+    code: bankCodesMap[bank.bankName],
     icon: (
       <Image
-        src={banks.find((b) => b.name === bank.bankName)?.logo || ""}
+        src={banks?.find((b) => b.name === bank.bankName)?.logo || ""}
         boxSize="20px"
         alt={bank.bankName}
         borderRadius="6px"
@@ -170,7 +167,7 @@ export const WithdrawalModal = ({
                   options={customersBanks as Option[]}
                   outlineColor="var(--outline)"
                   height="55px"
-                  placeholder="GTBank"
+                  placeholder={customersBanks?.[0].value}
                   fontSize="16px"
                   fontWeight="400"
                   menuWidth="100%"
