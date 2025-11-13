@@ -53,6 +53,7 @@ export const LoanApplication = () => {
     }
   }, []);
 
+
   const { openToast } = useToastContext();
   const [acceptanceStatus, setAcceptanceStatus] = React.useState<
     "accept" | "reject" | null
@@ -107,7 +108,6 @@ export const LoanApplication = () => {
             }
           }}>
           {(formik) => {
-            console.log(formik.values);
             return (
               <Form>
                 {isApplicationSuccessful ? (

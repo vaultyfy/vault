@@ -5,6 +5,7 @@ import { LoanDetailsSkeleton } from "@components/skeletons";
 
 export const Loan = () => {
   const { data, isLoading } = useLoan();
+
   return (
     <Box
       as="section"
@@ -14,10 +15,10 @@ export const Loan = () => {
       flexWrap="wrap">
       {isLoading ? (
         <LoanDetailsSkeleton />
-      ) : !data ? (
-        <GetStarted />
-      ) : (
+      ) : data ? (
         <LoanDetails loanDetails={data} />
+      ) : (
+        <GetStarted />
       )}
     </Box>
   );

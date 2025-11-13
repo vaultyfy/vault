@@ -2,13 +2,9 @@ import { Box, Flex, Text, VStack, Button, Image } from "@chakra-ui/react";
 import { HeaderText } from "@components/typography";
 import { Icon } from "@components/icon";
 import { useNavigate } from "@tanstack/react-router";
-import { useLoanStepFlow } from "@hooks/context";
-
 
 export const GetStarted = () => {
   const navigate = useNavigate();
-
-  const { setActiveStep } = useLoanStepFlow();
   return (
     <Flex
       flexDirection={{ base: "column", md: "row" }}
@@ -18,13 +14,15 @@ export const GetStarted = () => {
       px="1.15em"
       backgroundColor="var(--progress-accent-bg)"
       gap="1.35em"
-      borderRadius="10px">
+      borderRadius="10px"
+    >
       <VStack
         flex="1"
         order={{ base: 2, md: 1 }}
         height="full"
         alignItems="flex-start"
-        justifyContent="space-between">
+        justifyContent="space-between"
+      >
         <Box width="100%">
           <HeaderText
             value="Apply for a loan with ease"
@@ -35,7 +33,8 @@ export const GetStarted = () => {
             fontFamily="var(--poppins)"
             fontWeight="400"
             fontSize={{ base: "14px", lg: "16px" }}
-            color="#2A2A2A">
+            color="#2A2A2A"
+          >
             We conduct thorough due diligence to verify your details and tailor
             the best loan options for you. Plus, if you have a strong thrift
             history on Vaultyfy, you may qualify for lower interest charges
@@ -53,12 +52,12 @@ export const GetStarted = () => {
           mt={{ base: "22px", md: 0 }}
           _hover={{ backgroundColor: "var(--main)" }}
           onClick={() => {
-            setActiveStep("loan-purpose");
             navigate({
               to: "/dashboard/loan-application",
               search: { ui: "loan-purpose" },
             });
-          }}>
+          }}
+        >
           get started
         </Button>
       </VStack>
@@ -66,7 +65,8 @@ export const GetStarted = () => {
         width="128px"
         height="full"
         order={{ base: 1, md: 2 }}
-        alignItems="center">
+        alignItems="center"
+      >
         <Image
           src="/img/loan-img.svg"
           alt="loan"
