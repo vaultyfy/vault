@@ -22,6 +22,12 @@ export const CONTRIBUTION_FREQUENCY = Array.from([
   value: frequency,
 }));
 
+type EnvKeys = "VITE_PROD_URL" | "VITE_STAGING_URL" | "VITE_API_KEY";
+
+export const getEnv = (key: EnvKeys): string => {
+  return import.meta.env[key] as string;
+};
+
 export interface BaseModalProps
   extends Pick<ModalLayoutProps, "isOpen" | "onClose"> {}
 

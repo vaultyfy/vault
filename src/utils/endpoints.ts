@@ -1,4 +1,9 @@
-export const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { getEnv } from "./constants";
+
+export const BASE_URL =
+  import.meta.env.MODE === "production"
+    ? getEnv("VITE_PROD_URL")
+    : getEnv("VITE_STAGING_URL");
 
 export const auth = {
   customer: {
