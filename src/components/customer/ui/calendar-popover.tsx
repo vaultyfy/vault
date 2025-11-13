@@ -133,8 +133,7 @@ export const CalendarPopover = () => {
         alignItems="center"
         _hover={{
           background: "var(--btn-secondary-7)",
-        }}
-      >
+        }}>
         <Icon name="calendar-2" />
       </Button>
     );
@@ -153,8 +152,7 @@ export const CalendarPopover = () => {
           _hover={{
             background: "var(--btn-secondary-7)",
           }}
-          disabled={isActiveGroupsLoading}
-        >
+          disabled={isActiveGroupsLoading}>
           <Icon name="calendar-2" />
         </Button>
       </PopoverTrigger>
@@ -167,8 +165,7 @@ export const CalendarPopover = () => {
             variants={headerVariants}
             initial="exit"
             animate="enter"
-            exit="exit"
-          >
+            exit="exit">
             <PopoverHeader borderBottom="none">
               <Flex justifyContent="space-between" alignItems="center" px="1em">
                 <IconButton
@@ -186,15 +183,13 @@ export const CalendarPopover = () => {
                   variants={containerVariants}
                   initial={direction === "left" ? "exitRight" : "exitLeft"}
                   animate="enter"
-                  key={currentGroup.groupID}
-                >
+                  key={currentGroup.groupID}>
                   <VStack spacing={2}>
                     <Text
                       fontSize={"20px"}
                       fontWeight="medium"
                       textTransform={"capitalize"}
-                      color="#000000"
-                    >
+                      color="#000000">
                       {currentGroup.name}
                     </Text>
                     <Text
@@ -203,8 +198,7 @@ export const CalendarPopover = () => {
                       color="#ffffff"
                       px={5}
                       rounded="3xl"
-                      bgColor={"var(--main)"}
-                    >
+                      bgColor={"var(--main)"}>
                       {formatPrice(currentGroup.contributionAmount)}/
                       {getFrequencyText(currentGroup.contributionFrequency)}
                     </Text>
@@ -234,16 +228,14 @@ export const CalendarPopover = () => {
             variants={containerVariants}
             initial={direction === "left" ? "exitRight" : "exitLeft"}
             animate="enter"
-            key={`${currentGroup.groupID}-details`}
-          >
+            key={`${currentGroup.groupID}-details`}>
             <Flex columnGap={4} w="full" px="1em">
               <Box flex="1">
                 <Text
                   as="span"
                   fontSize="14px"
                   fontWeight={"normal"}
-                  color="var(--grey)"
-                >
+                  color="var(--grey)">
                   Due date
                 </Text>
                 <HStack spacing={2}>
@@ -253,12 +245,11 @@ export const CalendarPopover = () => {
                     fontSize={"44px"}
                     fontWeight={"light"}
                     bgClip="text"
-                    bgGradient={"var(--main-gradient)"}
-                  >
+                    bgGradient={"var(--main-gradient)"}>
                     {currentParticipant?.nextContributionDate
                       ? format(
                           parseISO(currentParticipant.nextContributionDate),
-                          "dd",
+                          "dd"
                         )
                       : "--"}
                   </Text>
@@ -268,12 +259,11 @@ export const CalendarPopover = () => {
                       fontFamily="var(--poppins)"
                       fontSize={"18px"}
                       fontWeight={"medium"}
-                      color="#000"
-                    >
+                      color="#000">
                       {currentParticipant?.nextContributionDate
                         ? format(
                             parseISO(currentParticipant.nextContributionDate),
-                            "MMMM - yyyy",
+                            "MMMM - yyyy"
                           )
                         : "No date set"}
                     </Text>
@@ -282,12 +272,11 @@ export const CalendarPopover = () => {
                       fontFamily="var(--poppins)"
                       fontSize={"14px"}
                       fontWeight={"normal"}
-                      color="var(--grey)"
-                    >
+                      color="var(--grey)">
                       {currentParticipant?.nextContributionDate
                         ? format(
                             parseISO(currentParticipant.nextContributionDate),
-                            "EEEE",
+                            "EEEE"
                           )
                         : "--"}
                     </Text>
@@ -300,8 +289,7 @@ export const CalendarPopover = () => {
                   color="#000"
                   textAlign={"right"}
                   fontFamily="var(--poppins)"
-                  fontWeight={"medium"}
-                >
+                  fontWeight={"medium"}>
                   {formatPrice(currentGroup.payOutAmount)}
                 </Text>
                 <Button
@@ -311,8 +299,7 @@ export const CalendarPopover = () => {
                   rounded="3xl"
                   bgGradient="var(--main-gradient)"
                   _hover={{ bgGradient: "var(--main-gradient)" }}
-                  color="#fff"
-                >
+                  color="#fff">
                   Pay now
                 </Button>
               </VStack>
@@ -322,8 +309,7 @@ export const CalendarPopover = () => {
             px={"1em"}
             borderTop="2px solid var(--main)"
             mt={"1rem"}
-            pt={"1rem"}
-          >
+            pt={"1rem"}>
             <Calendar
             // contributionDates={
             //   currentParticipant?.contributionDates?.map((date) =>

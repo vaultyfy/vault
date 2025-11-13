@@ -64,8 +64,7 @@ const SellingPoint = ({ icon, text }: SellingPointProps) => {
       background="var(--pale-blue)"
       gap="1em"
       py="1.4em"
-      px=".8em"
-    >
+      px=".8em">
       <Box
         width={{ lg: "66px", md: "66px", base: "60px" }}
         height={{ lg: "58px", md: "58px", base: "50px" }}
@@ -73,16 +72,14 @@ const SellingPoint = ({ icon, text }: SellingPointProps) => {
         background="var(--main)"
         display="flex"
         justifyContent="center"
-        alignItems="center"
-      >
+        alignItems="center">
         <Image src={icon} />
       </Box>
       <Box width="100%">
         <Text
           fontSize={{ lg: "18px", md: "16px", base: "15px" }}
           color="var(--dark)"
-          fontWeight="400"
-        >
+          fontWeight="400">
           {text}
         </Text>
       </Box>
@@ -97,8 +94,7 @@ export const FinancialGoals = () => {
         justifyContent="space-between"
         gap={{ xl: "4em", lg: "1.6em", md: "3em", base: "3em" }}
         flexWrap={{ lg: "nowrap", base: "wrap" }}
-        mt={{ lg: "", md: "", base: "2.6em" }}
-      >
+        mt={{ lg: "", md: "", base: "2.6em" }}>
         <Box
           width={{ lg: "60%", base: "100%" }}
           height={{ lg: "550px", md: "550px", base: "400px" }}
@@ -106,8 +102,7 @@ export const FinancialGoals = () => {
           bgGradient="linear-gradient(104.4deg, #1ccfbd 1.7%, #2c9bf0 105.41%)"
           display="flex"
           justifyContent="center"
-          alignItems="center"
-        >
+          alignItems="center">
           <Box
             height={{ lg: "98%", md: "98%", base: "98%" }}
             width="98%"
@@ -118,8 +113,7 @@ export const FinancialGoals = () => {
             display="flex"
             flexFlow="column"
             gap="2em"
-            position="relative"
-          >
+            position="relative">
             <Flex flexFlow="column" gap=".8rem">
               <MotionText
                 initial="hidden"
@@ -135,8 +129,7 @@ export const FinancialGoals = () => {
                   base: "46px",
                 }}
                 fontFamily="var(--clash-grotesk-600)"
-                color="#fff"
-              >
+                color="#fff">
                 Reach your financial goals in short time
               </MotionText>
 
@@ -150,8 +143,7 @@ export const FinancialGoals = () => {
                 fontWeight="500"
                 lineHeight={{ lg: "30px", base: "24px", md: "30px" }}
                 fontSize={{ lg: "20px", base: "16px", md: "20px" }}
-                color="#fff"
-              >
+                color="#fff">
                 Get matched with the right thrift team and achieve your
                 financial goals faster through seamless group savings
               </MotionText>
@@ -174,8 +166,7 @@ export const FinancialGoals = () => {
                     duration: 0.3,
                     ease: "easeOut",
                   },
-                }}
-              >
+                }}>
                 <MotionBox
                   fontWeight="500"
                   fontSize="14px"
@@ -186,8 +177,7 @@ export const FinancialGoals = () => {
                   height="100%"
                   width="100%"
                   borderRadius="4px"
-                  ml="-.3em"
-                >
+                  ml="-.3em">
                   Start your journey
                 </MotionBox>
               </MotionBox>
@@ -214,8 +204,7 @@ export const FinancialGoals = () => {
           gap={{ lg: "1.4rem", base: "1rem" }}
           alignItems="center"
           justifyContent="center"
-          mx="auto"
-        >
+          mx="auto">
           {SELLING_POINTS.map((point, index) => (
             <SellingPoint key={index} icon={point.icon} text={point.text} />
           ))}

@@ -49,19 +49,16 @@ export const Header = () => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            mt={{ lg: "2rem", md: "0" }}
-          >
+            mt={{ lg: "2rem", md: "0" }}>
             <HStack
               position="relative"
               gap={{ lg: "2rem", md: "1rem", base: "1rem" }}
               alignItems="center"
-              zIndex="2"
-            >
+              zIndex="2">
               <Box
                 onClick={() => openMenu(true)}
                 _hover={{ cursor: "pointer" }}
-                display={{ lg: "none", md: "none", base: "block" }}
-              >
+                display={{ lg: "none", md: "none", base: "block" }}>
                 <Icon name="menu" />
               </Box>
 
@@ -74,8 +71,7 @@ export const Header = () => {
                 display={{ base: "none", md: "flex", lg: "flex" }}
                 justifyContent="space-between"
                 alignItems="center"
-                gap="2rem"
-              >
+                gap="2rem">
                 {NAV_ITEMS.map((item) => {
                   return (
                     <List key={item.id} as="a" href={item.href}>
@@ -85,8 +81,7 @@ export const Header = () => {
                         fontWeight="500"
                         _hover={{
                           cursor: "pointer",
-                        }}
-                      >
+                        }}>
                         {item.name}
                       </ListItem>
                     </List>

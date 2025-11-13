@@ -219,8 +219,7 @@ export const PersonalInfo = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmitUserInfo}
-        enableReinitialize
-      >
+        enableReinitialize>
         {({ isSubmitting }) => (
           <Form>
             <Box
@@ -228,8 +227,7 @@ export const PersonalInfo = () => {
               borderRadius="6px"
               px={{ lg: "1em", base: ".4em", md: ".6em" }}
               width="100%"
-              mb={4}
-            >
+              mb={4}>
               {userInfoFields.map((item, index) => (
                 <Box key={index}>
                   <Flex
@@ -237,15 +235,13 @@ export const PersonalInfo = () => {
                     py="1.4em"
                     justify="space-between"
                     align="center"
-                    borderRadius="6px"
-                  >
+                    borderRadius="6px">
                     <Flex align="center" gap={3} width="100%">
                       <Box flex="1">
                         <Text
                           fontSize="14px"
                           fontWeight="400"
-                          color="var(--grey)"
-                        >
+                          color="var(--grey)">
                           {item.label}
                         </Text>
                         <Field name={item.field}>
@@ -286,8 +282,7 @@ export const PersonalInfo = () => {
                   _hover={{
                     cursor: "pointer",
                     background: "var(--main)",
-                  }}
-                >
+                  }}>
                   Update Info
                 </Button>
               </Flex>
@@ -300,8 +295,7 @@ export const PersonalInfo = () => {
         border="0.5px solid var(--border-muted)"
         borderRadius="6px"
         px={{ lg: "1em", base: ".4em", md: ".6em" }}
-        width="100%"
-      >
+        width="100%">
         {verificationFields.map((item, index) => (
           <Box key={index}>
             <Flex
@@ -312,8 +306,7 @@ export const PersonalInfo = () => {
               borderRadius="6px"
               transition="all .3s ease-out"
               _hover={{ bg: "var(--grey-100)" }}
-              cursor="pointer"
-            >
+              cursor="pointer">
               <Flex align="center" gap={3} width="100%">
                 <Box flex="1">
                   <Text fontSize="14px" fontWeight="400" color="var(--grey)">
@@ -341,8 +334,9 @@ export const PersonalInfo = () => {
                       // @ts-ignore
                       fontSize={user?.[item.field] ? "18px" : "14px"}
                       // @ts-ignore
-                      color={user?.[item.field] ? "var(--dark)" : "var(--grey)"}
-                    >
+                      color={
+                        user?.[item.field] ? "var(--dark)" : "var(--grey)"
+                      }>
                       {/* @ts-ignore */}
                       {user?.[item.field] || "Not provided"}
                     </Text>
@@ -360,16 +354,14 @@ export const PersonalInfo = () => {
                     fontSize="14px"
                     color="gray.500"
                     onClick={() => handleEditToggle(item.field)}
-                    cursor="pointer"
-                  >
+                    cursor="pointer">
                     Cancel
                   </Text>
                   <Text
                     fontSize="14px"
                     color="var(--btn-secondary)"
                     onClick={() => handleVerificationUpdate(item.field)}
-                    cursor="pointer"
-                  >
+                    cursor="pointer">
                     {isSaving[item.field] ? "Saving..." : "Save"}
                   </Text>
                 </Flex>
@@ -378,8 +370,7 @@ export const PersonalInfo = () => {
                   fontSize="14px"
                   color="var(--btn-secondary)"
                   cursor="pointer"
-                  onClick={() => handleEditToggle(item.field)}
-                >
+                  onClick={() => handleEditToggle(item.field)}>
                   Edit
                 </Text>
               )}
@@ -395,8 +386,7 @@ export const PersonalInfo = () => {
               py="1.4em"
               justify="space-between"
               align="center"
-              borderRadius="6px"
-            >
+              borderRadius="6px">
               <Flex align="center" gap={3} width="100%">
                 <Box flex="1">
                   <Text fontSize="14px" fontWeight="400" color="var(--grey)">
@@ -418,8 +408,7 @@ export const PersonalInfo = () => {
                     lineHeight="26px"
                     textAlign="center"
                     textTransform="capitalize"
-                    mt=".6em"
-                  >
+                    mt=".6em">
                     {item.status}
                   </Badge>
                 </Box>

@@ -16,7 +16,6 @@ export const GetMoreDone = () => {
     navigate({ to: "/auth/login" });
   };
 
-
   return (
     <>
       <MotionBox
@@ -35,8 +34,7 @@ export const GetMoreDone = () => {
           opacity: 0.8,
           top: 0,
           left: 0,
-        }}
-      >
+        }}>
         <SectionContainer>
           <Box
             alignItems="center"
@@ -49,9 +47,8 @@ export const GetMoreDone = () => {
             px={{ lg: "1.6em", md: "1.6em", base: "1.4em" }}
             py={{ lg: "1.2em", base: "1.2em", md: "1.2em" }}
             backdropFilter="blur(7px)"
-            flexWrap={{ lg: "nowrap", md: "wrap", base: "wrap" }}
-          >
-            <MotionImage src="/img/video.svg" width={{lg: "60%"}} />
+            flexWrap={{ lg: "nowrap", md: "wrap", base: "wrap" }}>
+            <MotionImage src="/img/video.svg" width={{ lg: "60%" }} />
 
             <Flex flexFlow="column" gap="2em">
               <Flex flexFlow="column" gap=".8em">
@@ -68,8 +65,7 @@ export const GetMoreDone = () => {
                   initial="hidden"
                   variants={textVariants}
                   custom={0.3}
-                  viewport={{ once: true, amount: 0.5 }}
-                >
+                  viewport={{ once: true, amount: 0.5 }}>
                   Get more done!
                 </MotionText>
 
@@ -81,8 +77,7 @@ export const GetMoreDone = () => {
                   variants={textVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                >
+                  viewport={{ once: true, amount: 0.3 }}>
                   Learn how to be a part of vaultyfy thrift platform in a few
                   steps
                 </MotionText>
@@ -97,8 +92,7 @@ export const GetMoreDone = () => {
       <Box
         height={{ lg: "588px", md: "100%", base: "100%" }}
         background="var(--main)"
-        position="relative"
-      >
+        position="relative">
         <MotionImage
           src="/img/lock.svg"
           position="absolute"
@@ -117,8 +111,7 @@ export const GetMoreDone = () => {
             flexFlow="column"
             alignItems="center"
             py="4em"
-            gap="3em"
-          >
+            gap="3em">
             <MotionText
               color="#fff"
               fontFamily="var(--clash-grotesk-600)"
@@ -129,8 +122,7 @@ export const GetMoreDone = () => {
               variants={textVariants}
               custom={0.3}
               textAlign="center"
-              viewport={{ once: true, amount: 0.5 }}
-            >
+              viewport={{ once: true, amount: 0.5 }}>
               Safe and Secure Platform
             </MotionText>
 
@@ -138,8 +130,7 @@ export const GetMoreDone = () => {
               justifyContent="space-between"
               px={{ lg: "0", md: "", base: "3em" }}
               gap={{ xl: "5em", lg: "1.6em", md: "2em", base: "2em" }}
-              flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap" }}
-            >
+              flexWrap={{ lg: "nowrap", md: "nowrap", base: "wrap" }}>
               <MotionBox
                 _before={{
                   content: "''",
@@ -182,8 +173,7 @@ export const GetMoreDone = () => {
                   base: "rotate(0deg)",
                   md: "rotate(-2deg)",
                 }}
-                mt={{ lg: "3em", md: "3em", base: "0" }}
-              >
+                mt={{ lg: "3em", md: "3em", base: "0" }}>
                 We use industry-standard encryption to keep your data and
                 savings secure
               </MotionBox>
@@ -202,8 +192,7 @@ export const GetMoreDone = () => {
                 py="1em"
                 fontSize={{ xl: "20px", lg: "18px", md: "14px", base: "18px" }}
                 lineHeight={{ lg: "30px", md: "24px", base: "20px" }}
-                fontWeight={{ xl: "500", lg: "400", md: "400", base: "400" }}
-              >
+                fontWeight={{ xl: "500", lg: "400", md: "400", base: "400" }}>
                 Your money is protected with secure payment gateways and
                 transparency
               </MotionBox>
@@ -239,14 +228,18 @@ export const GetMoreDone = () => {
                     bounce: 0.3,
                   },
                 }}
-                viewport={{ once: true, amount: 0.4 }}
-              >
+                viewport={{ once: true, amount: 0.4 }}>
                 Verified groups and trusted members ensure a safe saving
                 experience
               </MotionBox>
             </HStack>
 
-            <SecondaryButton text="Get Started" variant="light" show="yes" onClick={() => handleGetStarted()} />
+            <SecondaryButton
+              text="Get Started"
+              variant="light"
+              show="yes"
+              onClick={() => handleGetStarted()}
+            />
           </Flex>
         </SectionContainer>
       </Box>

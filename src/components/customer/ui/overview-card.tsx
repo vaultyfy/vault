@@ -41,7 +41,9 @@ interface OverviewCardProps extends Partial<ChakraProps> {
   paidMonths?: number;
   loading?: boolean;
   currentFilter?: string;
-  setCurrentFilter?: React.Dispatch<SetStateAction<RemainingContributionsParams["filter"]>>
+  setCurrentFilter?: React.Dispatch<
+    SetStateAction<RemainingContributionsParams["filter"]>
+  >;
 }
 
 export const OverviewCard = ({
@@ -61,7 +63,7 @@ export const OverviewCard = ({
   paidMonths,
   loading,
   currentFilter,
-  setCurrentFilter
+  setCurrentFilter,
 }: OverviewCardProps) => {
   const isMilestonesCard = cardTitle
     .toLowerCase()
@@ -73,18 +75,15 @@ export const OverviewCard = ({
       bgGradient={cardGradient}
       width={width || "100%"}
       height={height || "100%"}
-      rounded={"lg"}
-    >
+      rounded={"lg"}>
       <CardBody
         py={{ lg: "1em", md: ".8em", base: ".4em" }}
-        px={{ lg: "1em", md: "1em", base: ".6em" }}
-      >
+        px={{ lg: "1em", md: "1em", base: ".6em" }}>
         <VStack
           justifyContent="space-between"
           alignItems="stretch"
           height="100%"
-          gap={{ lg: "", md: "", base: "2em" }}
-        >
+          gap={{ lg: "", md: "", base: "2em" }}>
           <Stack direction="column">
             <HStack justifyContent="space-between">
               <Flex
@@ -95,8 +94,7 @@ export const OverviewCard = ({
                 bgColor={iconBg || "transparent"}
                 justifyContent="center"
                 alignItems="center"
-                shadow={!iconBg ? "lg" : undefined}
-              >
+                shadow={!iconBg ? "lg" : undefined}>
                 <Icon name={cardIcon} />
               </Flex>
               {hasFilter && (
@@ -124,24 +122,26 @@ export const OverviewCard = ({
                     fontWeight="500"
                     fontSize={{ lg: "14px", md: "14px", base: "12px" }}
                     height="fit-content"
-                    width={{ lg: "100px", md: "100px", base: "88px" }}
-                  >
+                    width={{ lg: "100px", md: "100px", base: "88px" }}>
                     {currentFilter}
                   </MenuButton>
                   <MenuList
                     px="10px"
                     py="8px"
                     border="none"
-                    bgColor="var(--overview-card-secondary)"
-                  >
+                    bgColor="var(--overview-card-secondary)">
                     {["month", "year"].map((value, index) => {
                       return (
                         <MenuItem
                           key={index}
                           bgColor="transparent"
                           color="#ffffff"
-                          onClick={() => setCurrentFilter && setCurrentFilter(value as RemainingContributionsParams["filter"])}
-                        >
+                          onClick={() =>
+                            setCurrentFilter &&
+                            setCurrentFilter(
+                              value as RemainingContributionsParams["filter"]
+                            )
+                          }>
                           {value}
                         </MenuItem>
                       );
@@ -155,15 +155,13 @@ export const OverviewCard = ({
                   py="8px"
                   rounded="20px"
                   bgColor={cardGradient || "transparent"}
-                  shadow={"lg"}
-                >
+                  shadow={"lg"}>
                   <Text
                     fontWeight="500"
                     whiteSpace="nowrap"
                     fontSize={{ lg: "12px", md: "12px", base: "10px" }}
                     lineHeight="17px"
-                    color="#fff"
-                  >
+                    color="#fff">
                     Paid | {paidDate}
                   </Text>
                 </Box>
@@ -180,8 +178,7 @@ export const OverviewCard = ({
                     bgColor="var(--overview-card-secondary)"
                     py={1}
                     px={4}
-                    rounded={"10px"}
-                  >
+                    rounded={"10px"}>
                     <Text fontSize="12px" color="#fff" fontWeight="500">
                       {paidMonths} | 12
                     </Text>
@@ -217,16 +214,14 @@ export const OverviewCard = ({
               <Text
                 fontSize="28px"
                 fontWeight="700"
-                fontFamily="var(--clash-grotesk-700)"
-              >
+                fontFamily="var(--clash-grotesk-700)">
                 {cycle}
                 <Text
                   pl=".4em"
                   as="span"
                   fontWeight="300"
                   fontSize="16px"
-                  fontFamily="var(--poppins)"
-                >
+                  fontFamily="var(--poppins)">
                   cycle{cycle && cycle > 1 ? "s" : ""} completed
                 </Text>
               </Text>

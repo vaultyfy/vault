@@ -68,8 +68,7 @@ export default function Signup({ redirect, referrer }: AuthPageProps) {
             } finally {
               setSubmitting(false);
             }
-          }}
-        >
+          }}>
           {(formik) => (
             <Form>
               <Flex flexFlow="column" gap="4em" position="relative">
@@ -79,8 +78,7 @@ export default function Signup({ redirect, referrer }: AuthPageProps) {
                     ui: store.ui,
                     redirect: String(redirect),
                     referrer: String(referrer),
-                  }}
-                >
+                  }}>
                   <Image
                     src="/img/logo.svg"
                     alt="Vaultyfy logo"
@@ -96,8 +94,7 @@ export default function Signup({ redirect, referrer }: AuthPageProps) {
                       fontSize="16px"
                       color="var(--dark)"
                       lineHeight="18px"
-                      fontWeight="400"
-                    >
+                      fontWeight="400">
                       Enter your details to create an account.
                     </Text>
                   </Stack>
@@ -126,8 +123,7 @@ export default function Signup({ redirect, referrer }: AuthPageProps) {
                     color="var(--white-fade)"
                     width="100%"
                     borderRadius="35px"
-                    isLoading={formik.isSubmitting}
-                  >
+                    isLoading={formik.isSubmitting}>
                     Sign Up
                   </Button>
 
@@ -136,8 +132,7 @@ export default function Signup({ redirect, referrer }: AuthPageProps) {
                     fontWeight="400"
                     color="var(--dark)"
                     py=".4em"
-                    fontSize={{ lg: "16px", md: "16px", base: "14px" }}
-                  >
+                    fontSize={{ lg: "16px", md: "16px", base: "14px" }}>
                     Already have an account?{" "}
                     <Link
                       to="/auth/login"
@@ -145,14 +140,12 @@ export default function Signup({ redirect, referrer }: AuthPageProps) {
                         ui: store.ui,
                         redirect: String(redirect),
                         referrer: String(referrer),
-                      }}
-                    >
+                      }}>
                       <Box
                         cursor="pointer"
                         as="span"
                         color="var(--primary)"
-                        fontWeight="400"
-                      >
+                        fontWeight="400">
                         Sign in
                       </Box>
                     </Link>

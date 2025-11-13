@@ -41,7 +41,7 @@ export const AuthCarousel = ({ currentRoute }: AuthCarouselProps) => {
   return (
     <>
       {["/auth/reset-password", "/auth/forgot-password"].includes(
-        String(currentRoute),
+        String(currentRoute)
       ) ? null : (
         <>
           <Box
@@ -55,16 +55,14 @@ export const AuthCarousel = ({ currentRoute }: AuthCarouselProps) => {
             }}
             overflow="hidden"
             background="var(--main)"
-            borderRadius={isSmallViewPort ? "0" : "22px"}
-          >
+            borderRadius={isSmallViewPort ? "0" : "22px"}>
             <Box
               ref={emblaRef}
               overflow="hidden"
               backgroundImage="/img/auth/coins.png"
               backgroundRepeat="no-repeat"
               backgroundSize="contain"
-              backgroundPosition="center"
-            >
+              backgroundPosition="center">
               <Box style={{ display: "flex" }}>
                 {SLIDES.map((slide, index) => (
                   <Box key={index} flex="0 0 100%" minWidth="0">
@@ -117,21 +115,18 @@ export const AuthCarousel = ({ currentRoute }: AuthCarouselProps) => {
                           lg: "80%",
                           md: "80%",
                           base: "80%",
-                        }}
-                      >
+                        }}>
                         <Text
                           fontSize={{ lg: "34px", md: "28px", base: "24px" }}
                           lineHeight={{ lg: "34px", md: "28px", base: "24px" }}
-                          fontFamily="var(--clash-grotesk-600)"
-                        >
+                          fontFamily="var(--clash-grotesk-600)">
                           {slide.heading}
                         </Text>
                         <Text
                           py=".1em"
                           fontWeight="400"
                           fontSize={{ lg: "20px", md: "18px", base: "16px" }}
-                          lineHeight={{ lg: "30px", md: "28px", base: "24px" }}
-                        >
+                          lineHeight={{ lg: "30px", md: "28px", base: "24px" }}>
                           {slide.description}
                         </Text>
                       </Box>
@@ -149,8 +144,7 @@ export const AuthCarousel = ({ currentRoute }: AuthCarouselProps) => {
               transform="translateX(-50%)"
               flexFlow="column"
               gap="2em"
-              alignItems="center"
-            >
+              alignItems="center">
               <Flex gap=".2em">
                 {SLIDES.map((_, index) => (
                   <Box
@@ -180,8 +174,7 @@ export const AuthCarousel = ({ currentRoute }: AuthCarouselProps) => {
                     _hover={{ background: "#fff" }}
                     textTransform="capitalize"
                     fontWeight="500"
-                    fontSize="14px"
-                  >
+                    fontSize="14px">
                     continue
                   </Button>
                 </Link>

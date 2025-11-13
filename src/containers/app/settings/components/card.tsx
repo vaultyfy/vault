@@ -34,16 +34,14 @@ export const SettingCard = ({
             }
           : "transparent"
       }
-      onClick={() => onClick(id)}
-    >
+      onClick={() => onClick(id)}>
       <Icon name={iconName} />
       <Stack direction="column" gap="0">
         <Text
           textTransform="capitalize"
           fontSize="18px"
           fontWeight="500"
-          color={"#222222"}
-        >
+          color={"#222222"}>
           {title}
         </Text>
         <Text fontSize="14px" fontWeight={400} color="#717171">

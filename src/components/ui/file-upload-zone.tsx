@@ -35,7 +35,7 @@ export const ReusableDropzone = forwardRef(
       multiple,
       onImageUpload,
     }: ReactDropzoneProps,
-    ref,
+    ref
   ) => {
     const [_field, meta, helpers] = useField(name);
     const [_uploading, setUploading] = useState(false);
@@ -46,7 +46,7 @@ export const ReusableDropzone = forwardRef(
 
     const handleFilePreview = (files: File[]) => {
       const previewUrls = files.map((file) =>
-        file.type.startsWith("image/") ? URL.createObjectURL(file) : file.name,
+        file.type.startsWith("image/") ? URL.createObjectURL(file) : file.name
       );
       setPreviews(previewUrls);
       if (onImageUpload) onImageUpload(files);
@@ -74,7 +74,7 @@ export const ReusableDropzone = forwardRef(
       onDropRejected: (rejections) => {
         const errorMessages = rejections
           .flatMap(({ file, errors }) =>
-            errors.map((error) => `${file.name}: ${error.message}`),
+            errors.map((error) => `${file.name}: ${error.message}`)
           )
           .join("\n");
         helpers.setError(errorMessages);
@@ -117,7 +117,7 @@ export const ReusableDropzone = forwardRef(
         ...(isDragAccept ? acceptStyle : {}),
         ...(isDragReject ? rejectStyle : {}),
       }),
-      [isDragAccept, isDragReject],
+      [isDragAccept, isDragReject]
     );
 
     return (
@@ -125,8 +125,7 @@ export const ReusableDropzone = forwardRef(
         <Box
           {...getRootProps({ style: style as any })}
           className={isDragReject ? "shake" : ""}
-          height="100%"
-        >
+          height="100%">
           <input {...getInputProps()} />
           {previews.length > 0 ? (
             <Center width="100%" height="100%" position="relative">
@@ -139,8 +138,7 @@ export const ReusableDropzone = forwardRef(
                   maxHeight="100%"
                   overflow="hidden"
                   px=".4em"
-                  fontSize="14px"
-                >
+                  fontSize="14px">
                   {preview.startsWith("blob:") ? (
                     <Image
                       src={preview}
@@ -173,5 +171,5 @@ export const ReusableDropzone = forwardRef(
         )}
       </Box>
     );
-  },
+  }
 );

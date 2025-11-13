@@ -16,7 +16,7 @@ export const exploreFilterSchema = Yup.object().shape({
   interval: Yup.string()
     .oneOf(
       ["Daily", "Weekly", "Monthly", "Yearly", "Three_Months", "Six_Months"],
-      "valid intervals are Daily, Weekly, Monthly, Yearly",
+      "valid intervals are Daily, Weekly, Monthly, Yearly"
     )
     .notRequired(),
 });

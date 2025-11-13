@@ -12,8 +12,7 @@ export const AdjustLoanContent = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={schema.adjustLoan}
-      onSubmit={(values, { setSubmitting }) => {}}
-    >
+      onSubmit={(values, { setSubmitting }) => {}}>
       {(formik) => {
         return (
           <Form>
@@ -22,8 +21,7 @@ export const AdjustLoanContent = () => {
                 width={"100%"}
                 height={"120px"}
                 borderBottom="0.5px solid var(--border-muted)"
-                paddingY={"10px"}
-              >
+                paddingY={"10px"}>
                 <InputField
                   name="approvableAmount"
                   label="Approvable amount"
@@ -42,8 +40,7 @@ export const AdjustLoanContent = () => {
                   padding="3px 5px"
                   borderRadius={"36px"}
                   justifyContent={"space-evenly"}
-                  alignItems={"center"}
-                >
+                  alignItems={"center"}>
                   <Text
                     width="124px"
                     height="34px"
@@ -56,8 +53,7 @@ export const AdjustLoanContent = () => {
                     borderRadius={"39px"}
                     display="flex"
                     justifyContent={"center"}
-                    alignItems={"center"}
-                  >
+                    alignItems={"center"}>
                     Spread payment
                   </Text>
                   <Text
@@ -72,8 +68,7 @@ export const AdjustLoanContent = () => {
                     borderRadius={"39px"}
                     display="flex"
                     justifyContent={"center"}
-                    alignItems={"center"}
-                  >
+                    alignItems={"center"}>
                     Outright payment
                   </Text>
                 </HStack>
@@ -82,14 +77,12 @@ export const AdjustLoanContent = () => {
                   gap="15px"
                   height={"130px"}
                   borderBottom="0.5px solid var(--border-muted)"
-                  paddingY={"10px"}
-                >
+                  paddingY={"10px"}>
                   <Text
                     color="var(--grey)"
                     fontWeight={"500"}
                     fontSize={"12px"}
-                    lineHeight={"19px"}
-                  >
+                    lineHeight={"19px"}>
                     Spread your loan over several months with a base interest
                     rate of{" "}
                     <Text as="span" color={"var(--main)"}>
@@ -105,8 +98,7 @@ export const AdjustLoanContent = () => {
                     height="53px"
                     width={"100%"}
                     justifyContent={"space-between"}
-                    alignItems={"center"}
-                  >
+                    alignItems={"center"}>
                     <Text
                       height={"53px"}
                       width="164px"
@@ -117,8 +109,7 @@ export const AdjustLoanContent = () => {
                       alignItems={"center"}
                       justifyContent={"center"}
                       fontWeight={"400"}
-                      fontSize={"16px"}
-                    >
+                      fontSize={"16px"}>
                       3 months
                     </Text>
                     <Text
@@ -130,8 +121,7 @@ export const AdjustLoanContent = () => {
                       justifyContent={"center"}
                       fontWeight={"600"}
                       fontSize={"26px"}
-                      color={"var(--main)"}
-                    >
+                      color={"var(--main)"}>
                       N54,000
                     </Text>
                   </HStack>

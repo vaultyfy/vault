@@ -14,7 +14,7 @@ export const Route = createRootRouteWithContext<AppContext>()({
   // for type-safety in the Link component
   // just in dev mode though.. if not. production builds will fail
   validateSearch: (
-    search: Record<string, keyof AppSearchParams>,
+    search: Record<string, keyof AppSearchParams>
   ): Partial<AppSearchParams> => {
     const result: Partial<AppSearchParams> = {};
     if (search.ui) result.ui = search.ui as UiComponents;

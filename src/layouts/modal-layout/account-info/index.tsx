@@ -7,6 +7,7 @@ import { Text, Button, Image, Box } from "@chakra-ui/react";
 import { addBank, updateBankInfo } from "@mutations/banks";
 import { useToastContext } from "@hooks/context";
 import { useBanks, useMyBanks } from "@hooks/swr";
+import { schema } from "@utils/validators";
 
 interface AccountInfoModalProps extends BaseModalProps {
   accountInfo?: UserBankAccount;
@@ -40,14 +41,14 @@ export const AccountInfoModal = ({
       isOpen={isOpen}
       onClose={onClose}
       title="Add bank info"
-      size="md"
-    >
+      size="md">
       <Formik
         initialValues={{
           accountName: accountInfo?.accountName || "",
           accountNumber: accountInfo?.accountNumber || "",
           bankName: accountInfo?.bankName || "",
         }}
+        validationSchema={schema.bankAccount}
         onSubmit={async (values) => {
           try {
             const request = accountInfo
@@ -65,8 +66,7 @@ export const AccountInfoModal = ({
           } catch (error) {
             console.error(error);
           }
-        }}
-      >
+        }}>
         {(formik) => (
           <Box mt="-1.4em" mb="1em">
             <Form>
@@ -118,8 +118,7 @@ export const AccountInfoModal = ({
                 borderRadius="36px"
                 fontWeight="400"
                 _hover={{ bg: "var(--main)" }}
-                isLoading={formik.isSubmitting}
-              >
+                isLoading={formik.isSubmitting}>
                 {accountInfo ? "Save settings" : "Add bank"}
               </Button>
             </Form>

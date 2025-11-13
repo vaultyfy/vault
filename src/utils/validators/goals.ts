@@ -8,5 +8,5 @@ export const createGoalSchema = Yup.object().shape({
 
 export const withdrawalSchema = Yup.object().shape({
   amount: Yup.number().required("How much do you want to withdraw?"),
-  accountName: Yup.string().required("Please select a bank!")
-})
+  accountName: Yup.string().required("Please select a bank!"),
+});

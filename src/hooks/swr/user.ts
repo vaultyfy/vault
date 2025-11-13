@@ -52,7 +52,7 @@ export const useReferralStats = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getReferralStats(),
-    swrOptions,
+    swrOptions
   );
 
   const updateStats = () => mutate(key);
@@ -70,7 +70,7 @@ export const useConsistencyStats = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getConsistencyStats(),
-    swrOptions,
+    swrOptions
   );
 
   const updateStats = () => mutate(key);
@@ -88,11 +88,11 @@ export const useTransactions = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getTransactions(),
-    swrOptions,
+    swrOptions
   );
 
   const updateTransactions = () => mutate(key);
-  const payload = data?.payload
+  const payload = data?.payload;
   return {
     error,
     isLoading,
@@ -104,13 +104,16 @@ export const useTransactions = () => {
   };
 };
 
-
 export const useTransaction = (id: string) => {
-  const key = ["transaction", id]
-  const {data, error, isLoading} = useSWR(key, () => getTransaction(id), swrOptions)
+  const key = ["transaction", id];
+  const { data, error, isLoading } = useSWR(
+    key,
+    () => getTransaction(id),
+    swrOptions
+  );
   return {
     error,
     isLoading,
-    data: data?.payload
-  }
-}
+    data: data?.payload,
+  };
+};

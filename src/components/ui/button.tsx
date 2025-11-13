@@ -12,7 +12,8 @@ interface PrimaryBtnProps {
 
 export const PrimaryButton = ({
   text,
-  contentLoaded = true,onClick,
+  contentLoaded = true,
+  onClick,
 }: PrimaryBtnProps) => {
   const { isMobile, isTablet } = useMobileScreens();
 
@@ -40,8 +41,7 @@ export const PrimaryButton = ({
           : { opacity: 0 }
       }
       px=".4em"
-      onClick={onClick}
-    >
+      onClick={onClick}>
       <MotionText
         ml="1em"
         initial={{ x: -20, opacity: 0 }}
@@ -56,8 +56,7 @@ export const PrimaryButton = ({
                 },
               }
             : { x: -20, opacity: 0 }
-        }
-      >
+        }>
         {text}
       </MotionText>
       <MotionBox
@@ -83,8 +82,7 @@ export const PrimaryButton = ({
         whileHover={{
           x: 5,
           transition: { duration: 0.2 },
-        }}
-      >
+        }}>
         <ArrowRight
           color="var(--white-fade)"
           size={isMobile ? "18" : isTablet ? "20" : "38"}
@@ -100,7 +98,12 @@ interface SecondaryBtnProps extends Pick<PrimaryBtnProps, "text"> {
   onClick?: () => void;
 }
 
-export const SecondaryButton = ({ text, variant, show,onClick }: SecondaryBtnProps) => {
+export const SecondaryButton = ({
+  text,
+  variant,
+  show,
+  onClick,
+}: SecondaryBtnProps) => {
   return (
     <MotionBox
       display={{ lg: "block", md: show || "none", base: show || "none" }}
@@ -119,8 +122,7 @@ export const SecondaryButton = ({ text, variant, show,onClick }: SecondaryBtnPro
           duration: 0.3,
           ease: "easeOut",
         },
-      }}
-    >
+      }}>
       <MotionBox
         fontWeight="500"
         fontSize="14px"
@@ -132,8 +134,7 @@ export const SecondaryButton = ({ text, variant, show,onClick }: SecondaryBtnPro
         width={{ lg: "100%", base: "178px", md: "178px" }}
         borderRadius="4px"
         ml="-.3em"
-        onClick={onClick}
-      >
+        onClick={onClick}>
         {text}
       </MotionBox>
     </MotionBox>

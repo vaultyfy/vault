@@ -68,8 +68,7 @@ export const FinancialDetails = () => {
             backgroundColor="#F6F6F6"
             onClick={() => {
               setActiveStep("loan-purpose");
-            }}
-          >
+            }}>
             Back
           </Button>
           <Button
@@ -91,8 +90,7 @@ export const FinancialDetails = () => {
             }}
             isLoading={formik.isSubmitting}
             onClick={handleSubmit}
-            disabled={formik.isSubmitting || !formik.isValid}
-          >
+            disabled={formik.isSubmitting || !formik.isValid}>
             Submit
           </Button>
         </HStack>

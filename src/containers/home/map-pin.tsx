@@ -7,8 +7,7 @@ export const Marker = () => {
       position="absolute"
       bottom="16%"
       left="27%"
-      _hover={{ cursor: "pointer" }}
-    >
+      _hover={{ cursor: "pointer" }}>
       <MapPin color="var(--map-pin)" size="35" weight="fill" />
     </MotionBox>
   );

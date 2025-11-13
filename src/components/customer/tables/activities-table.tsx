@@ -38,8 +38,7 @@ export const ActivitiesTable = ({ data, loading }: ActivitiesTableProps) => {
                 key={index}
                 fontWeight="400"
                 textTransform="none"
-                fontFamily="var(--clash-grotesk-400)"
-              >
+                fontFamily="var(--clash-grotesk-400)">
                 {heading}
               </Th>
             );
@@ -62,7 +61,7 @@ export const ActivitiesTable = ({ data, loading }: ActivitiesTableProps) => {
                 }) || [];
 
               const currentUserParticipant = group?.participants.find(
-                (participant) => participant?.customer?.id === user?.id,
+                (participant) => participant?.customer?.id === user?.id
               );
               const userPosition = currentUserParticipant?.position || "N/A";
 
@@ -79,24 +78,21 @@ export const ActivitiesTable = ({ data, loading }: ActivitiesTableProps) => {
                     <Text
                       fontWeight="400"
                       color="var(--dark)"
-                      fontSize={{ base: "14px", lg: "14px" }}
-                    >
+                      fontSize={{ base: "14px", lg: "14px" }}>
                       {group?.name}
                     </Text>
                   </Td>
                   <Td textAlign="center">
                     <Text
                       fontWeight="400"
-                      fontSize={{ base: "14px", lg: "18px" }}
-                    >
+                      fontSize={{ base: "14px", lg: "18px" }}>
                       {group.joinedParticipantsCount}
                     </Text>
                   </Td>
                   <Td textAlign="center">
                     <Text
                       fontWeight="400"
-                      fontSize={{ base: "14px", lg: "16px" }}
-                    >
+                      fontSize={{ base: "14px", lg: "16px" }}>
                       {userPosition}
                     </Text>
                   </Td>

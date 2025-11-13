@@ -19,8 +19,7 @@ export const Container = ({
       px="15px"
       rounded="10px"
       background="#ffffff"
-      shadow="md"
-    >
+      shadow="md">
       {children}
     </Box>
   );

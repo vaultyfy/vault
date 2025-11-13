@@ -27,8 +27,7 @@ const SuccessModal = ({
         px="1em"
         py="1.4em"
         textAlign="center"
-        maxW="400px"
-      >
+        maxW="400px">
         <Stack direction="column">
           <Center>
             <Image
@@ -42,8 +41,7 @@ const SuccessModal = ({
           <Text
             fontSize="20px"
             color="var(--dark)"
-            fontFamily="var(--clash-grotesk-500)"
-          >
+            fontFamily="var(--clash-grotesk-500)">
             Successful
           </Text>
         </Stack>
@@ -67,8 +65,7 @@ const SuccessModal = ({
               _active={{ bg: "#102634" }}
               _focus={{ boxShadow: "none" }}
               onClick={onClose}
-              fontWeight="400"
-            >
+              fontWeight="400">
               Got It
             </Button>
           </Center>

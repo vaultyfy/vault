@@ -82,8 +82,8 @@ export type WithdrawalPayload = {
   accountNumber: string;
 };
 
-export const withdrawFunds = async(payload: WithdrawalPayload)  => {
-  const token = getCookie(TOKEN_KEY, {...cookieOptions})
+export const withdrawFunds = async (payload: WithdrawalPayload) => {
+  const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;
 
   try {

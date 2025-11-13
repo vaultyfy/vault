@@ -80,7 +80,7 @@ const MobileGroupCalendar = () => {
 
   const isPaymentDate = isSameDay(
     currentDate,
-    currentParticipant?.nextContributionDate,
+    currentParticipant?.nextContributionDate
   );
 
   const handlePrevClick = () => {
@@ -121,8 +121,7 @@ const MobileGroupCalendar = () => {
         maxWidth="364px"
         height="208px"
         border="1px solid var(--border-muted)"
-        roundedTop="10px"
-      >
+        roundedTop="10px">
         {isActiveGroupsLoading ? (
           <GroupCalendarSkeleton />
         ) : (
@@ -132,8 +131,7 @@ const MobileGroupCalendar = () => {
               variants={headerVariants}
               initial="exit"
               animate="enter"
-              exit="exit"
-            >
+              exit="exit">
               <Flex justifyContent="space-between" alignItems="center" px="1em">
                 <IconButton
                   aria-label="Previous saving groups"
@@ -149,15 +147,13 @@ const MobileGroupCalendar = () => {
                   variants={containerVariants}
                   initial={direction === "left" ? "exitRight" : "exitLeft"}
                   animate="enter"
-                  key={currentGroup.groupID}
-                >
+                  key={currentGroup.groupID}>
                   <VStack spacing={2}>
                     <Text
                       fontSize={"20px"}
                       fontWeight="medium"
                       textTransform={"capitalize"}
-                      color="#000000"
-                    >
+                      color="#000000">
                       {currentGroup.name}
                     </Text>
                     <Text
@@ -166,8 +162,7 @@ const MobileGroupCalendar = () => {
                       color="#ffffff"
                       px={5}
                       rounded="3xl"
-                      bgColor={"var(--main)"}
-                    >
+                      bgColor={"var(--main)"}>
                       {formatPrice(currentGroup.contributionAmount)}/
                       {getFrequencyText(currentGroup.contributionFrequency)}
                     </Text>
@@ -189,16 +184,14 @@ const MobileGroupCalendar = () => {
               variants={containerVariants}
               initial={direction === "left" ? "exitRight" : "exitLeft"}
               animate="enter"
-              key={`${currentGroup.groupID}-details`}
-            >
+              key={`${currentGroup.groupID}-details`}>
               <Flex columnGap={4} w="full" px="1em" mt="1.25rem">
                 <Box flex="1">
                   <Text
                     as="span"
                     fontSize="14px"
                     fontWeight={"normal"}
-                    color="var(--grey)"
-                  >
+                    color="var(--grey)">
                     Due date
                   </Text>
                   <HStack spacing={2}>
@@ -208,12 +201,11 @@ const MobileGroupCalendar = () => {
                       fontSize={"44px"}
                       fontWeight={"light"}
                       bgClip="text"
-                      bgGradient={"var(--main-gradient)"}
-                    >
+                      bgGradient={"var(--main-gradient)"}>
                       {currentParticipant?.nextContributionDate
                         ? format(
                             parseISO(currentParticipant.nextContributionDate),
-                            "dd",
+                            "dd"
                           )
                         : "--"}
                     </Text>
@@ -224,12 +216,11 @@ const MobileGroupCalendar = () => {
                         fontFamily="var(--poppins)"
                         fontSize={"18px"}
                         fontWeight={"medium"}
-                        color="#000"
-                      >
+                        color="#000">
                         {currentParticipant?.nextContributionDate
                           ? format(
                               parseISO(currentParticipant.nextContributionDate),
-                              "MMMM - yyyy",
+                              "MMMM - yyyy"
                             )
                           : "No date set"}
                       </Text>
@@ -238,12 +229,11 @@ const MobileGroupCalendar = () => {
                         fontFamily="var(--poppins)"
                         fontSize={"14px"}
                         fontWeight={"normal"}
-                        color="var(--grey)"
-                      >
+                        color="var(--grey)">
                         {currentParticipant?.nextContributionDate
                           ? format(
                               parseISO(currentParticipant.nextContributionDate),
-                              "EEEE",
+                              "EEEE"
                             )
                           : "--"}
                       </Text>
@@ -256,8 +246,7 @@ const MobileGroupCalendar = () => {
                     color="#000"
                     textAlign={"right"}
                     fontFamily="var(--poppins)"
-                    fontWeight={"medium"}
-                  >
+                    fontWeight={"medium"}>
                     {formatPrice(currentGroup.payOutAmount)}
                   </Text>
                   <Button
@@ -269,8 +258,7 @@ const MobileGroupCalendar = () => {
                       isPaymentDate ? "var(--main-gradient)" : "var(--grey)"
                     }
                     _hover={{ bgGradient: "var(--main-gradient)" }}
-                    color={isPaymentDate ? "#fff" : "var(--text-grey-200)"}
-                  >
+                    color={isPaymentDate ? "#fff" : "var(--text-grey-200)"}>
                     Pay now
                   </Button>
                 </VStack>
@@ -287,8 +275,7 @@ const MobileGroupCalendar = () => {
         pt="0.25rem"
         height="fit-content"
         maxWidth="364px"
-        roundedBottom="10px"
-      >
+        roundedBottom="10px">
         <Calendar
         //   contributionDates={
         //     currentParticipant?.contributionDates?.map((date) =>

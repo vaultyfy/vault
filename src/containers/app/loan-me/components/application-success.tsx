@@ -8,14 +8,12 @@ export const ApplicationSuccess = () => {
       maxWidth="389px"
       backgroundColor="#ffffff"
       py="1.1rem"
-      px="1.75rem"
-    >
+      px="1.75rem">
       <Flex
         flexDirection="column"
         rowGap="20px"
         width="full"
-        alignItems="center"
-      >
+        alignItems="center">
         <Image
           src="/img/application_success.svg"
           alt="application successful"
@@ -25,8 +23,7 @@ export const ApplicationSuccess = () => {
           fontFamily="var(--clash-grotesk)"
           fontWeight="500"
           fontSize={{ base: "18px", md: "24px" }}
-          color="#0E0E0E"
-        >
+          color="#0E0E0E">
           Successful
         </Text>
         <Text
@@ -34,8 +31,7 @@ export const ApplicationSuccess = () => {
           fontSize={{ base: "14px", md: "16px" }}
           fontWeight="400"
           textAlign="center"
-          color="var(--dark)"
-        >
+          color="var(--dark)">
           We are reviewing your financial details and credit history, kindly
           check your inbox for update from vultyfy loan
         </Text>

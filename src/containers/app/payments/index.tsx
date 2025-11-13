@@ -18,8 +18,7 @@ export const Payments = () => {
     <>
       <Box
         border="1px solid red"
-        width={{ xl: "60%", lg: "70%", md: "70%", base: "100%" }}
-      >
+        width={{ xl: "60%", lg: "70%", md: "70%", base: "100%" }}>
         <HStack justifyContent="space-between">
           <Stack direction="column">
             <Text fontSize="14px" fontWeight="500">
@@ -38,9 +37,8 @@ export const Payments = () => {
             borderRadius="36px"
             onClick={onOpen}
             _hover={{
-              background: "var(--main)"
-            }}
-          >
+              background: "var(--main)",
+            }}>
             Cash out
           </Button>
         </HStack>

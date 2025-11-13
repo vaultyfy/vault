@@ -112,8 +112,7 @@ export const SelectField = ({
             fontSize={labelSize || "14px"}
             lineHeight="20px"
             fontWeight="500"
-            color={labelColor || "var(--grey)"}
-          >
+            color={labelColor || "var(--grey)"}>
             {label}{" "}
             {labelInfo && (
               <Text as="span" color="var(--deep-blood)">
@@ -128,8 +127,7 @@ export const SelectField = ({
             borderRadius={radius || "8px"}
             border={noBorder ? "none" : `1px solid ${outlineColor || "#ccc"}`}
             bg={background || "#fff"}
-            overflow="hidden"
-          >
+            overflow="hidden">
             {icon && (
               <Box
                 display="flex"
@@ -138,8 +136,7 @@ export const SelectField = ({
                 width="20px"
                 height={height || "20px"}
                 bg={background || "#f5f5f5"}
-                ml="12px"
-              >
+                ml="12px">
                 {icon}
               </Box>
             )}
@@ -148,7 +145,7 @@ export const SelectField = ({
                 {...field}
                 {...props}
                 isMulti={multi === "yes"}
-                value={options.find((opt) => opt.value === value)}
+                value={options?.find((opt) => opt.value === value)}
                 instanceId={id}
                 onChange={handleChange}
                 menuPortalTarget={document.body}

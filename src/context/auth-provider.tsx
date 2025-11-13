@@ -37,7 +37,7 @@ export const initialState: AuthContextValues = {
 
 const authReducer = (
   state: AuthContextValues,
-  action: Actions,
+  action: Actions
 ): AuthContextValues => {
   switch (action.type) {
     case "SET_USER":

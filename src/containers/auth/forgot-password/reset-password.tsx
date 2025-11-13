@@ -64,8 +64,7 @@ export const ResetPassword = () => {
               }
               setSubmitting(false);
             }, 600);
-          }}
-        >
+          }}>
           {(formik) => (
             <Form>
               <Flex flexFlow="column" gap="4em">
@@ -85,8 +84,7 @@ export const ResetPassword = () => {
                     <Text
                       textAlign="center"
                       fontSize="34px"
-                      fontFamily="var(--clash-grotesk-600)"
-                    >
+                      fontFamily="var(--clash-grotesk-600)">
                       Reset password
                     </Text>
                     <Text
@@ -94,8 +92,7 @@ export const ResetPassword = () => {
                       color="var(--dark)"
                       lineHeight="18px"
                       fontWeight="400"
-                      textAlign="center"
-                    >
+                      textAlign="center">
                       Enter new password
                     </Text>
                   </Stack>

@@ -36,10 +36,7 @@ export const CONTRIBUTION_FREQUENCY = Array.from([
   value: frequency,
 }));
 
-const calculatePayout = (
-  contributionAmount: number,
-  participants: number,
-) => {
+const calculatePayout = (contributionAmount: number, participants: number) => {
   if (!contributionAmount || !participants) return 0;
   return contributionAmount * participants;
 };
@@ -78,7 +75,7 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
               mutate();
               onClose();
             } else {
-              openToast(response.message, "error")
+              openToast(response.message, "error");
             }
           } catch (error) {
             console.error(error);
@@ -86,19 +83,18 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
 
           setSubmitting(false);
         }, 600);
-      }}
-    >
+      }}>
       {(formik) => {
         const payout = React.useMemo(
           () =>
             calculatePayout(
               formik.values.contributionAmount,
-              formik.values.numberOfparticipantsAvailable,
+              formik.values.numberOfparticipantsAvailable
             ),
           [
             formik.values.contributionAmount,
             formik.values.numberOfparticipantsAvailable,
-          ],
+          ]
         );
 
         return (
@@ -109,8 +105,7 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
                 width="100%"
                 py={2}
                 alignItems="center"
-                gap=".2em"
-              >
+                gap=".2em">
                 <IconButton
                   aria-label="Back button"
                   icon={<Icon name="arrow-left" />}
@@ -124,8 +119,7 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
                   fontFamily="var(--clash-grotesk-500)"
                   fontWeight="500"
                   color="var(--text-1)"
-                  textTransform="capitalize"
-                >
+                  textTransform="capitalize">
                   Create group
                 </Text>
               </HStack>
@@ -133,8 +127,7 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
                 flexDirection={{ base: "column", md: "row" }}
                 gap="8px"
                 width="100%"
-                alignItems="stretch"
-              >
+                alignItems="stretch">
                 <Box flex={1}>
                   <InputField
                     name="name"
@@ -203,8 +196,7 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
               <HStack
                 spacing="8px"
                 w="full"
-                flexWrap={{ base: "wrap", md: "nowrap" }}
-              >
+                flexWrap={{ base: "wrap", md: "nowrap" }}>
                 <Box width={{ base: "100%", md: "33.33%" }}>
                   <SelectField
                     name="contributionFrequency"
@@ -276,23 +268,20 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
             <Flex
               justifyContent="space-between"
               h="fit-content"
-              alignItems="end"
-            >
+              alignItems="end">
               <Box>
                 <Text
                   as="span"
                   fontSize="14px"
                   fontWeight="normal"
-                  color="var(--grey)"
-                >
+                  color="var(--grey)">
                   Pay-out
                 </Text>
                 <Text
                   fontSize="24px"
                   lineHeight="19px"
                   color="var(--main)"
-                  fontWeight="semibold"
-                >
+                  fontWeight="semibold">
                   {formatPrice(payout)}
                 </Text>
               </Box>
@@ -309,8 +298,7 @@ export const CreateGroupContent = ({ onClose }: { onClose: () => void }) => {
                 color="var(--white-fade)"
                 width="230px"
                 borderRadius="35px"
-                isLoading={formik.isSubmitting}
-              >
+                isLoading={formik.isSubmitting}>
                 Submit request
               </Button>
             </Flex>

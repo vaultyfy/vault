@@ -48,7 +48,7 @@ export const Explore = () => {
 
   const handleSubmit = async (
     values: typeof initialValues,
-    setSubmitting: (isSubmitting: boolean) => void,
+    setSubmitting: (isSubmitting: boolean) => void
   ) => {
     setSubmitting(true);
 
@@ -80,8 +80,7 @@ export const Explore = () => {
       <Text
         color="var(--text-1)"
         mb="0.5rem"
-        fontSize={{ lg: "24px", md: "20px", base: "18px" }}
-      >
+        fontSize={{ lg: "24px", md: "20px", base: "18px" }}>
         Suggested for you
       </Text>
       <Box
@@ -94,8 +93,7 @@ export const Explore = () => {
         gap=".6em"
         _hover={{
           cursor: "grab",
-        }}
-      >
+        }}>
         {isLoading ? (
           <ExploreCardSkeleton />
         ) : (
@@ -121,13 +119,11 @@ export const Explore = () => {
         alignItems="center"
         sx={
           isMobile ? { display: "flex", justifyContent: "space-between" } : {}
-        }
-      >
+        }>
         <Text
           color="var(--text-1)"
           fontWeight="400"
-          fontSize={{ lg: "24px", md: "20px", base: "18px" }}
-        >
+          fontSize={{ lg: "24px", md: "20px", base: "18px" }}>
           More Groups
         </Text>
         {!isMobile ? (
@@ -144,8 +140,7 @@ export const Explore = () => {
                   setSubmitting(false);
                 }
               }, 600);
-            }}
-          >
+            }}>
             {(formik) => {
               return (
                 <Flex
@@ -155,8 +150,7 @@ export const Explore = () => {
                   rounded="5px"
                   background="var(--grey-100)"
                   alignItems="center"
-                  gap="0.5em"
-                >
+                  gap="0.5em">
                   <Box flex={1}>
                     <FilterInput
                       name="members"
@@ -213,8 +207,7 @@ export const Explore = () => {
                     _hover={{ bgColor: "var(--main)" }}
                     _active={{ bgColor: "var(--main)" }}
                     _focus={{ bgColor: "var(--main)" }}
-                    isLoading={formik.isSubmitting}
-                  >
+                    isLoading={formik.isSubmitting}>
                     Apply
                   </Button>
                   {formik.dirty ? (
@@ -235,8 +228,7 @@ export const Explore = () => {
                       onClick={() => {
                         formik.resetForm();
                         handleClearFilters();
-                      }}
-                    >
+                      }}>
                       Clear
                     </Button>
                   ) : null}
@@ -260,8 +252,7 @@ export const Explore = () => {
         rowGap="24px"
         columnGap="27px"
         width="100%"
-        mt="17px"
-      >
+        mt="17px">
         {isLoading || isFiltering ? (
           <ExploreCardSkeleton />
         ) : (

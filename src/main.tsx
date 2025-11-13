@@ -52,6 +52,6 @@ if (!rootElement.innerHTML) {
           </ToastProvider>
         </NuqsAdapter>
       </ChakraProvider>
-    </HelmetProvider>,
+    </HelmetProvider>
   );
 }

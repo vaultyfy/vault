@@ -89,8 +89,7 @@ export const InputField = ({
           fontSize={labelSize || { base: "12px", md: "14px" }}
           lineHeight="20px"
           fontWeight="500"
-          color={labelColor || "var(--grey)"}
-        >
+          color={labelColor || "var(--grey)"}>
           {label}
         </FormLabel>
       )}
@@ -143,8 +142,7 @@ export const InputField = ({
             fontSize="16px"
             lineHeight="19px"
             fontWeight="400"
-            zIndex="1"
-          >
+            zIndex="1">
             {placeholder}
           </Box>
         )}
@@ -187,8 +185,7 @@ export const TextAreaField = ({
           fontSize={labelSize || { base: "12px", lg: "16px" }}
           lineHeight="22px"
           fontWeight="400"
-          color={labelColor || "var(--grey)"}
-        >
+          color={labelColor || "var(--grey)"}>
           {label}
         </FormLabel>
 

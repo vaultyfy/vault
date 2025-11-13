@@ -38,7 +38,7 @@ export const ninVerification = async (nin: string) => {
       body: JSON.stringify({ nin }),
     });
 
-    return request
+    return request;
   } catch (error) {
     console.error(error);
   }

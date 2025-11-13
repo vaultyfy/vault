@@ -67,16 +67,14 @@ export const ModalLayout = ({
         "2xl": size || "4xl",
       }}
       isCentered
-      closeOnOverlayClick={autoClose}
-    >
+      closeOnOverlayClick={autoClose}>
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent
         background={background || "#fff"}
         borderRadius={noRadius ? "none" : radius || "16px"}
         py={noCloseButton ? "0em" : py}
         height="fit-content"
-        px={px || "1.4em"}
-      >
+        px={px || "1.4em"}>
         {!title ? null : (
           <ModalHeader
             color="var(--modal-title)"
@@ -85,8 +83,7 @@ export const ModalLayout = ({
             fontSize="20px"
             lineHeight="20px"
             textTransform="capitalize"
-            px={noCloseButton ? ".4em" : ".8em"}
-          >
+            px={noCloseButton ? ".4em" : ".8em"}>
             {title}
             <Text
               as="span"
@@ -95,8 +92,7 @@ export const ModalLayout = ({
               fontSize="12px"
               lineHeight="15px"
               colorScheme="(--gray-3)"
-              fontFamily="var(--urbanist)"
-            >
+              fontFamily="var(--urbanist)">
               {subTitle}
             </Text>
           </ModalHeader>

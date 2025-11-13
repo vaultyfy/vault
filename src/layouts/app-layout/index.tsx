@@ -24,13 +24,17 @@ export const AppLayout = ({ children, routeTitle }: AppLayoutProps) => {
         }}
         overflowY="auto"
         height="100vh"
-        pb="1em"
-      >
+        pb="1em">
         <AppHeader routeTitle={routeTitle} />
         <Box
           pt={{ xl: "1.4em", lg: "1em", md: "-.6em", base: "-1em" }}
-          px={{ base: ".6em", "2xl": "2em", xl: "1em", md: ".4em", lg: ".8em" }}
-        >
+          px={{
+            base: ".6em",
+            "2xl": "2em",
+            xl: "1em",
+            md: ".4em",
+            lg: ".8em",
+          }}>
           {children}
         </Box>
       </Box>

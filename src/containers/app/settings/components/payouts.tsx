@@ -70,8 +70,7 @@ export const PaymentsPayouts = () => {
     <>
       <Box
         width={{ lg: "482px", md: "100%" }}
-        height={{ lg: "100%", md: "100vh", base: "100vh" }}
-      >
+        height={{ lg: "100%", md: "100vh", base: "100vh" }}>
         <SettingsHeader
           title="Payment & Payouts"
           handleNavigation={handleNavigation}
@@ -94,8 +93,7 @@ export const PaymentsPayouts = () => {
                     borderRadius="8px"
                     p={4}
                     bg="white"
-                    boxShadow="sm"
-                  >
+                    boxShadow="sm">
                     <Flex justifySelf="flex-end" gap=".8em">
                       <HStack
                         _hover={{
@@ -104,15 +102,13 @@ export const PaymentsPayouts = () => {
                         gap=".2em"
                         justifySelf="flex-end"
                         alignItems="center"
-                        onClick={() => editBankInfo(bank.bankID)}
-                      >
+                        onClick={() => editBankInfo(bank.bankID)}>
                         <PencilLine size="18" color="var(--main)" />
                         <Text
                           fontSize="14px"
                           fontWeight="400"
                           color="var(--main)"
-                          pt=".125em"
-                        >
+                          pt=".125em">
                           Edit
                         </Text>
                       </HStack>
@@ -124,8 +120,7 @@ export const PaymentsPayouts = () => {
                         _hover={{
                           cursor: "pointer",
                         }}
-                        onClick={() => removePaymentMethod(bank.bankID)}
-                      >
+                        onClick={() => removePaymentMethod(bank.bankID)}>
                         {state === "deleting" &&
                         selectedBank?.bankID === bank.bankID ? (
                           <Spinner size="xs" color="var(--grey)" />
@@ -136,8 +131,7 @@ export const PaymentsPayouts = () => {
                           fontSize="14px"
                           fontWeight="400"
                           color="var(--main)"
-                          pt=".18em"
-                        >
+                          pt=".18em">
                           {state === "deleting" && selectedBank?.id === bank.id
                             ? "Removing..."
                             : "Remove"}
@@ -150,15 +144,13 @@ export const PaymentsPayouts = () => {
                         <Text
                           fontSize="14px"
                           fontWeight="400"
-                          color="var(--grey)"
-                        >
+                          color="var(--grey)">
                           Account name
                         </Text>
                         <Text
                           fontSize="18px"
                           fontWeight="400"
-                          color="var(--dark)"
-                        >
+                          color="var(--dark)">
                           {bank.accountName}
                         </Text>
                       </Stack>
@@ -167,15 +159,13 @@ export const PaymentsPayouts = () => {
                         <Text
                           fontSize="14px"
                           fontWeight="400"
-                          color="var(--grey)"
-                        >
+                          color="var(--grey)">
                           Bank account number
                         </Text>
                         <Text
                           fontSize="18px"
                           fontWeight="400"
-                          color="var(--dark)"
-                        >
+                          color="var(--dark)">
                           {bank.accountNumber}
                         </Text>
                       </Stack>
@@ -184,15 +174,13 @@ export const PaymentsPayouts = () => {
                         <Text
                           fontSize="14px"
                           color="var(--grey)"
-                          fontWeight="400"
-                        >
+                          fontWeight="400">
                           Bank name
                         </Text>
                         <Text
                           fontSize="18px"
                           fontWeight="400"
-                          color="var(--dark)"
-                        >
+                          color="var(--dark)">
                           {bank.bankName}
                         </Text>
                       </Stack>
@@ -218,8 +206,7 @@ export const PaymentsPayouts = () => {
               onClick={onOpen}
               _hover={{
                 background: "var(--grey-100)",
-              }}
-            >
+              }}>
               Add payment method
             </Button>
           </>

@@ -1,6 +1,11 @@
 import { app } from "@utils/endpoints";
 import { cookieOptions, HEADER_API_KEY, TOKEN_KEY } from "@utils/constants";
-import { ExpectedReturns, RemainingContributions, Response, Wallet } from "@utils/types";
+import {
+  ExpectedReturns,
+  RemainingContributions,
+  Response,
+  Wallet,
+} from "@utils/types";
 import { getCookie } from "cookies-next";
 
 export const getWallet = async () => {
@@ -45,15 +50,17 @@ export const getExpectedReturns = async () => {
 };
 
 export type RemainingContributionsParams = {
-  filter?: "year" | "month"
-}
+  filter?: "year" | "month";
+};
 
-export const getRemainingContributions = async (params: RemainingContributionsParams) => {
+export const getRemainingContributions = async (
+  params: RemainingContributionsParams
+) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;
 
-  const url = new URL(app.customer.remainingContributions)
-  params.filter && url.searchParams.append("filterType", params.filter)
+  const url = new URL(app.customer.remainingContributions);
+  params.filter && url.searchParams.append("filterType", params.filter);
 
   try {
     const request = await fetch(url.toString(), {
@@ -70,4 +77,4 @@ export const getRemainingContributions = async (params: RemainingContributionsPa
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }
-}
+};

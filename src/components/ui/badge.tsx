@@ -58,8 +58,7 @@ export const Status = ({
       onClick={onClick}
       _hover={{
         cursor: "pointer",
-      }}
-    >
+      }}>
       {dot && (
         <Box
           my="auto"
@@ -78,8 +77,7 @@ export const Status = ({
         fontFamily="var(--inter)"
         my="auto"
         pr=".2em"
-        textTransform="capitalize"
-      >
+        textTransform="capitalize">
         {statusText?.includes("_")
           ? statusText?.replaceAll("_", " ").toLowerCase()
           : statusText}

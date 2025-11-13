@@ -10,7 +10,7 @@ export type RouteGuardOptions = {
 };
 
 export const requireAuth = (
-  options: Omit<RouteGuardOptions, "context" | "location"> = {},
+  options: Omit<RouteGuardOptions, "context" | "location"> = {}
 ) => {
   return ({ context, location }: Omit<RouteGuardOptions, "redirectUrl">) => {
     const redirectUrl = options.redirectUrl || DEFAULT_REDIRECT_URL;

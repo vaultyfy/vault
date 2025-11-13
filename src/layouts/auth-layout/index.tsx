@@ -47,7 +47,7 @@ export const AuthLayout = ({ children, currentRoute }: AuthLayoutProps) => {
         position="relative"
         width={{
           lg: ["/auth/forgot-password", "/auth/reset-password"].includes(
-            String(currentRoute),
+            String(currentRoute)
           )
             ? "100%"
             : "60%",
@@ -57,8 +57,7 @@ export const AuthLayout = ({ children, currentRoute }: AuthLayoutProps) => {
         height={{ lg: "100vh", base: "96vh", md: "98vh" }}
         display="flex"
         justifyContent="center"
-        alignItems={{ lg: "center", md: "center", base: "start" }}
-      >
+        alignItems={{ lg: "center", md: "center", base: "start" }}>
         {children}
         <Box
           left="0"
@@ -66,15 +65,13 @@ export const AuthLayout = ({ children, currentRoute }: AuthLayoutProps) => {
           bottom={{ lg: "20", md: "20", base: "10" }}
           position="absolute"
           display="flex"
-          justifyContent="center"
-        >
+          justifyContent="center">
           <Text
             fontSize="14px"
             width={{ lg: "300px", md: "100%", base: "100%" }}
             whiteSpace="wrap"
             textAlign="center"
-            color="var(--dark)"
-          >
+            color="var(--dark)">
             By signing up you have agreed to our{" "}
             <Text as="span" color="var(--primary)">
               terms of services

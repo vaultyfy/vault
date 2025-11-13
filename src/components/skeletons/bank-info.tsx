@@ -8,8 +8,7 @@ export const BankInfoSkeleton = () => {
       p={4}
       width="100%"
       border="1px solid var(--outline)"
-      borderRadius="8px"
-    >
+      borderRadius="8px">
       <Flex justifySelf="flex-end" gap=".8em">
         {Array.from({ length: 2 }).map((_, index) => {
           return (

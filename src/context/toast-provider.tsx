@@ -14,7 +14,7 @@ export type ToastContextValues = {
 };
 
 export const ToastContext = React.createContext<ToastContextValues | null>(
-  null,
+  null
 );
 
 export const ToastProvider = ({ children }: ToastProviderProps) => {
@@ -48,8 +48,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
                   : status === "info"
                     ? "var(--info-25)"
                     : "var(--warn-25)"
-            }`}
-          >
+            }`}>
             <Flex gap=".6em" position="relative">
               {status === "error" ? (
                 <Ban size="20" color="var(--deep-blood)" />
@@ -69,8 +68,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
                       ? "var(--danger-700)"
                       : "var(--warn-500)"
                 }
-                fontSize="16px"
-              >
+                fontSize="16px">
                 {message}
               </Text>
 

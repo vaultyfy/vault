@@ -86,16 +86,14 @@ const Step = ({
           bounce: 0.2,
         },
       }}
-      viewport={{ once: true, amount: 0.8 }}
-    >
+      viewport={{ once: true, amount: 0.8 }}>
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
         boxSize="48px"
         borderRadius="100%"
-        background="var(--main)"
-      >
+        background="var(--main)">
         <Icon name={icon} />
       </Box>
 
@@ -121,8 +119,7 @@ export const HowItWorks = () => {
         alignItems="center"
         mt={{ lg: "6em", base: "3em", md: "4em" }}
         gap={{ lg: "8em", md: "6em", base: "2em" }}
-        flexWrap={{ lg: "nowrap", md: "wrap", base: "wrap" }}
-      >
+        flexWrap={{ lg: "nowrap", md: "wrap", base: "wrap" }}>
         <Flex gap="1.2em" flexFlow="column" mx="auto">
           <Flex flexFlow="column" gap=".8em">
             <MotionText
@@ -133,8 +130,7 @@ export const HowItWorks = () => {
               initial="hidden"
               variants={textVariants}
               custom={0.3}
-              viewport={{ once: true, amount: 0.5 }}
-            >
+              viewport={{ once: true, amount: 0.5 }}>
               How it works
             </MotionText>
 
@@ -146,21 +142,19 @@ export const HowItWorks = () => {
               variants={textVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-            >
+              viewport={{ once: true, amount: 0.3 }}>
               Learn how to be a part of vaultyfy thrift platform in a few steps
             </MotionText>
           </Flex>
 
           <MotionBox
             bgGradient="var(--main-gradient)"
-            height={{lg: "480px", md: "480px", base: "440px"}}
+            height={{ lg: "480px", md: "480px", base: "440px" }}
             borderRadius="25px"
             display="flex"
             justifyContent="center"
             alignItems="center"
-            position="relative"
-          >
+            position="relative">
             <MotionImage
               position="absolute"
               bottom="0"
@@ -179,14 +173,12 @@ export const HowItWorks = () => {
 
         <Box
           position="relative"
-          display={{ lg: "block", md: "none", base: "none" }}
-        >
+          display={{ lg: "block", md: "none", base: "none" }}>
           <MotionImage src="/img/path.svg" />
 
           <Flex
             flexFlow={{ lg: "column", md: "column", base: "row" }}
-            justifyContent="space-between"
-          >
+            justifyContent="space-between">
             <Step
               x={0}
               y={40}

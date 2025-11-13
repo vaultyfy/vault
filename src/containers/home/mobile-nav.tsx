@@ -47,8 +47,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
       display="flex"
       flexDirection="column"
       py="1.4em"
-      background="var(--white-fade)"
-    >
+      background="var(--white-fade)">
       <Box
         _hover={{
           cursor: "pointer",
@@ -63,8 +62,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
         mb="1rem"
         position="absolute"
         left="6"
-        top="4"
-      >
+        top="4">
         <X color="var(--main)" size="18" />
       </Box>
       <List>
@@ -88,8 +86,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
               _hover={{
                 cursor: "pointer",
               }}
-              onClick={onClose}
-            >
+              onClick={onClose}>
               {item.name}
             </ListItem>
           ))}
@@ -109,8 +106,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
               color="var(--dark)"
               _hover={{
                 cursor: "pointer",
-              }}
-            >
+              }}>
               login
             </ListItem>
           </Link>

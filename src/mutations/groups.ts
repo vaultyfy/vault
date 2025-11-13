@@ -74,7 +74,7 @@ export const makeContribution = async (params: ContributionParams) => {
           "Content-Type": "application/json",
           ...HEADER_API_KEY,
         },
-      },
+      }
     );
     return request;
   } catch (error) {

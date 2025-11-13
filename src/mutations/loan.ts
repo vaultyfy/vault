@@ -41,7 +41,7 @@ type LoanDecisionPayload = {
 
 export const decideOnLoan = async (
   payload: LoanDecisionPayload,
-  loanID: string,
+  loanID: string
 ) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;

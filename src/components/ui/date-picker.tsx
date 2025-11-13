@@ -146,7 +146,7 @@ export const DatePicker = ({
 
   const handleMonthChange = (selectedOption: { value: number }) => {
     setCurrentMonth(
-      new Date(currentMonth.getFullYear(), selectedOption.value, 1),
+      new Date(currentMonth.getFullYear(), selectedOption.value, 1)
     );
   };
 
@@ -162,7 +162,7 @@ export const DatePicker = ({
 
   const years = Array.from(
     { length: 11 },
-    (_, i) => new Date().getFullYear() + i,
+    (_, i) => new Date().getFullYear() + i
   );
 
   const monthOptions = months.map((month, index) => ({
@@ -180,14 +180,12 @@ export const DatePicker = ({
       isOpen={isOpen}
       onClose={() => setIsOpen(false)}
       initialFocusRef={initialFocusRef}
-      placement="bottom-start"
-    >
+      placement="bottom-start">
       <PopoverTrigger>
         <Flex
           alignItems="center"
           cursor="pointer"
-          onClick={() => setIsOpen(true)}
-        >
+          onClick={() => setIsOpen(true)}>
           <Text
             whiteSpace="nowrap"
             fontSize={{
@@ -198,8 +196,7 @@ export const DatePicker = ({
               base: "13px",
             }}
             fontWeight="500"
-            mr={2}
-          >
+            mr={2}>
             {date
               ? dayjs(date).format("YYYY-MM-DD")
               : dayjs(new Date()).format("YYYY-MM-DD")}
@@ -215,8 +212,7 @@ export const DatePicker = ({
           mt=".2em"
           justifyContent="center"
           alignItems="center"
-          alignContent="center"
-        >
+          alignContent="center">
           <FormControl width={{ lg: "55%", md: "100%", base: "100%" }}>
             <CustomSelect
               options={monthOptions}
@@ -245,8 +241,7 @@ export const DatePicker = ({
                 textAlign="center"
                 color="#252525"
                 fontSize="12px"
-                fontWeight="400"
-              >
+                fontWeight="400">
                 {day}
               </Text>
             ))}
@@ -255,7 +250,7 @@ export const DatePicker = ({
           <SimpleGrid columns={7} spacing={2} mb="1em">
             {generateDates(
               currentMonth.getFullYear(),
-              currentMonth.getMonth(),
+              currentMonth.getMonth()
             ).map(({ date: d, isCurrentMonth }, index) => (
               <Box
                 as="button"
@@ -279,8 +274,7 @@ export const DatePicker = ({
                   date && dayjs(d).isSame(date, "day") ? "#fff" : "#252525"
                 }
                 opacity={isCurrentMonth ? 1 : 0.5}
-                ref={index === 0 ? initialFocusRef : undefined}
-              >
+                ref={index === 0 ? initialFocusRef : undefined}>
                 {d.getDate()}
               </Box>
             ))}

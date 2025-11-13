@@ -25,15 +25,13 @@ export const Carousel = ({
       className="embla__viewport"
       ref={emblaRef}
       overflow="hidden"
-      width="100%"
-    >
+      width="100%">
       <Flex className="embla__container" w="full">
         {React.Children.map(children, (child, index) => (
           <Box
             key={index}
             className={`embla__slide ${className}`}
-            scrollSnapAlign="start"
-          >
+            scrollSnapAlign="start">
             {child}
           </Box>
         ))}

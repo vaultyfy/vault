@@ -1,10 +1,16 @@
 import { cookieOptions, HEADER_API_KEY, TOKEN_KEY } from "@utils/constants";
 import { app, auth } from "@utils/endpoints";
-import { ConsistencyStats, GoalsResponse, ReferralStats, Response, User } from "@utils/types";
+import {
+  ConsistencyStats,
+  GoalsResponse,
+  ReferralStats,
+  Response,
+  User,
+} from "@utils/types";
 import { getCookie } from "cookies-next";
 
 export const getUser = async () => {
-  const token = getCookie(TOKEN_KEY, { ...cookieOptions })
+  const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;
   try {
     const request = await fetch(auth.customer.profile, {
@@ -36,8 +42,8 @@ export const getGoals = async () => {
       },
     });
 
-    const response: GoalsResponse = await request.json()
-    return response
+    const response: GoalsResponse = await request.json();
+    return response;
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }
@@ -57,12 +63,12 @@ export const getReferralStats = async () => {
       },
     });
 
-    const response: Response<ReferralStats> = await request.json()
-    return response
+    const response: Response<ReferralStats> = await request.json();
+    return response;
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }
-}
+};
 
 export const getConsistencyStats = async () => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
@@ -78,9 +84,9 @@ export const getConsistencyStats = async () => {
       },
     });
 
-    const response: Response<ConsistencyStats> = await request.json()
-    return response
+    const response: Response<ConsistencyStats> = await request.json();
+    return response;
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }
-}
+};

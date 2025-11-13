@@ -67,8 +67,7 @@ const MilestoneItem = ({
       gap={{ lg: "1em", base: ".1em" }}
       flexDirection="column"
       borderBottom={noBottomBorder ? "none" : "0.5px solid var(--border-muted)"}
-      {...props}
-    >
+      {...props}>
       <Flex alignItems="center" gap={{ lg: "1em", base: ".6em" }}>
         <Box>
           <CircleProgress
@@ -89,8 +88,7 @@ const MilestoneItem = ({
               fontWeight="500"
               color="var(--dark)"
               textTransform="capitalize"
-              fontSize={{ lg: "20px", md: "18px", base: "18px" }}
-            >
+              fontSize={{ lg: "20px", md: "18px", base: "18px" }}>
               {title}
             </Text>
             {hasBadge && (
@@ -105,8 +103,7 @@ const MilestoneItem = ({
                 justifyContent="center"
                 alignItems="center"
                 textTransform="none"
-                background="var(--overview-card-secondary)"
-              >
+                background="var(--overview-card-secondary)">
                 {badge}
               </Badge>
             )}
@@ -123,20 +120,17 @@ const MilestoneItem = ({
                   _hover={{
                     background: "var(--main-gradient)",
                   }}
-                  onClick={onOpen && onOpen}
-                >
+                  onClick={onOpen && onOpen}>
                   Set goals
                 </Button>
                 {goalsCount > 0 && (
                   <MotionBox
                     whileTap={{ scale: 0.95 }}
                     cursor="pointer"
-                    onClick={() => setIsExpanded(!isExpanded)}
-                  >
+                    onClick={() => setIsExpanded(!isExpanded)}>
                     <MotionBox
                       animate={{ rotate: isExpanded ? 180 : -90 }}
-                      transition={{ duration: 0.3 }}
-                    >
+                      transition={{ duration: 0.3 }}>
                       <CaretLeft size={18} />
                     </MotionBox>
                   </MotionBox>
@@ -149,8 +143,7 @@ const MilestoneItem = ({
             fontSize={{ lg: "16px", md: "16px", base: "14px" }}
             color="#2a2a2a"
             fontWeight="300"
-            lineHeight={{ lg: "30px", md: "30px", base: "25px" }}
-          >
+            lineHeight={{ lg: "30px", md: "30px", base: "25px" }}>
             {description}
           </Text>
         </Box>
@@ -163,8 +156,7 @@ const MilestoneItem = ({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            style={{ overflow: "hidden" }}
-          >
+            style={{ overflow: "hidden" }}>
             {children}
           </MotionBox>
         )}
@@ -211,13 +203,11 @@ export const Milestones = () => {
         direction="column"
         gap=".8em"
         mt={{ lg: "-1em", base: "1em" }}
-        width={{ xl: "45%", lg: "55%", md: "66%", base: "100%" }}
-      >
+        width={{ xl: "45%", lg: "55%", md: "66%", base: "100%" }}>
         <HStack gap=".1em">
           <Box
             onClick={() => navigate({ to: ".." })}
-            _hover={{ cursor: "pointer" }}
-          >
+            _hover={{ cursor: "pointer" }}>
             <CaretLeft size="18" />
           </Box>
           <Text
@@ -225,8 +215,7 @@ export const Milestones = () => {
             color="var(--dark)"
             textTransform="capitalize"
             fontFamily="var(--clash-grotesk-400)"
-            fontSize={{ base: "16px", xl: "24px", lg: "20px" }}
-          >
+            fontSize={{ base: "16px", xl: "24px", lg: "20px" }}>
             milestones & rewards
           </Text>
         </HStack>
@@ -236,8 +225,7 @@ export const Milestones = () => {
           borderRadius="10px"
           height="fit-content"
           py="1em"
-          px={{ lg: "1.2em", base: ".6em", md: ".8em" }}
-        >
+          px={{ lg: "1.2em", base: ".6em", md: ".8em" }}>
           <Stack direction="column" gap="1em">
             <MilestoneItem
               progress={Number(consistency?.progressPercentage) || 0}
@@ -270,8 +258,7 @@ export const Milestones = () => {
               hasGoals={true}
               noBottomBorder
               goalsCount={count}
-              description="Set a goal for the month, year or week"
-            >
+              description="Set a goal for the month, year or week">
               {isLoading ? (
                 <GoalsSkeleton />
               ) : (
@@ -279,21 +266,18 @@ export const Milestones = () => {
                   pt="1em"
                   gap="1em"
                   flexDirection="column"
-                  px={{ lg: "1.2em", base: ".6em", md: ".8em" }}
-                >
+                  px={{ lg: "1.2em", base: ".6em", md: ".8em" }}>
                   {data?.map((goal, index) => (
                     <HStack
                       justifyContent="space-between"
                       key={goal.goalID}
-                      pb={index === data?.length - 1 ? "2em" : ""}
-                    >
+                      pb={index === data?.length - 1 ? "2em" : ""}>
                       <Stack direction="column">
                         <Text
                           fontSize="12px"
                           fontWeight="400"
                           color="var(-dark)"
-                          textAlign="center"
-                        >
+                          textAlign="center">
                           {goal?.name}
                         </Text>
                         <Badge
@@ -307,8 +291,7 @@ export const Milestones = () => {
                           textAlign="center"
                           display="flex"
                           alignItems="center"
-                          justifyContent="center"
-                        >
+                          justifyContent="center">
                           {goal.duration}
                         </Badge>
                       </Stack>
@@ -318,15 +301,13 @@ export const Milestones = () => {
                           <Text
                             fontSize="14px"
                             color="var(--grey)"
-                            textAlign="right"
-                          >
+                            textAlign="right">
                             Target
                           </Text>
                           <Text
                             color="var(--dark)"
                             fontWeight="400"
-                            fontSize="18px"
-                          >
+                            fontSize="18px">
                             {formatPrice(Number(goal.target))}
                           </Text>
                         </Stack>

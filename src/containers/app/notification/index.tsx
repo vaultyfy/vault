@@ -72,7 +72,7 @@ export default function NotificationPage() {
 
   // Function to group notifications by human-readable date
   const groupNotificationsByDate = (
-    notifications: Notification[],
+    notifications: Notification[]
   ): GroupedNotifications => {
     const grouped: GroupedNotifications = {};
 
@@ -109,7 +109,7 @@ export default function NotificationPage() {
 
         const daysAgo = differenceInDays(
           new Date(),
-          parseISO(notification.date),
+          parseISO(notification.date)
         );
         if (filter === "recent") {
           return daysAgo <= 2;
@@ -126,7 +126,7 @@ export default function NotificationPage() {
 
   // Check if there are any unread notifications
   const hasUnreadNotifications = filteredNotifications.some(
-    (notification: Notification) => !notification.isRead,
+    (notification: Notification) => !notification.isRead
   );
 
   // Handle scroll for progress and showing "Mark all as read" button
@@ -195,15 +195,13 @@ export default function NotificationPage() {
         maxW="md"
         mx="auto"
         overflowX="hidden"
-        position="relative"
-      >
+        position="relative">
         <Flex
           alignItems="center"
           justifyContent="space-between"
           px={4}
           gap={4}
-          py={3}
-        >
+          py={3}>
           <Text fontSize="28px" fontWeight={500} color="#1c1c1c">
             Notification
           </Text>
@@ -219,8 +217,7 @@ export default function NotificationPage() {
               px={4}
               py={1.5}
               h="39px"
-              textTransform="capitalize"
-            >
+              textTransform="capitalize">
               {filter.replaceAll("_", " ")}
               <Box
                 as={ChevronDown}
@@ -243,8 +240,7 @@ export default function NotificationPage() {
                 boxShadow="lg"
                 zIndex={10}
                 border="1px"
-                borderColor="gray.100"
-              >
+                borderColor="gray.100">
                 <Box py={1}>
                   {filterOptions.map((option) => (
                     <Button
@@ -262,8 +258,7 @@ export default function NotificationPage() {
                       h="auto"
                       minH="unset"
                       variant="ghost"
-                      textTransform="capitalize"
-                    >
+                      textTransform="capitalize">
                       {option.replace("_", " ")}
                     </Button>
                   ))}
@@ -303,8 +298,7 @@ export default function NotificationPage() {
               background: "#EAEAEA",
               borderRadius: "24px",
             },
-          }}
-        >
+          }}>
           {isLoading ? (
             <Flex alignItems="center" justifyContent="center" h="40">
               <Text color="gray.500">Loading notifications...</Text>
@@ -325,8 +319,7 @@ export default function NotificationPage() {
                       textTransform="capitalize"
                       letterSpacing="wide"
                       mb="8px"
-                      mt={4}
-                    >
+                      mt={4}>
                       {dateGroup}
                     </Heading>
                     {notifications.map((notification: Notification) => (
@@ -352,8 +345,7 @@ export default function NotificationPage() {
                             ? "0.5px solid #EAEAEA"
                             : "3px solid #007AFF"
                         }
-                        mb={3}
-                      >
+                        mb={3}>
                         {!notification.isRead && (
                           <IconButton
                             aria-label="Mark as read"
@@ -376,16 +368,14 @@ export default function NotificationPage() {
                           fontSize="14px"
                           fontWeight={400}
                           mb={2}
-                          color="#000000"
-                        >
+                          color="#000000">
                           {notification.message}
                         </Text>
                         <Text
                           fontSize="14px"
                           fontWeight={400}
                           color="#706E6E"
-                          mb={2}
-                        >
+                          mb={2}>
                           {notification.subject}
                         </Text>
                         <Text
@@ -393,14 +383,13 @@ export default function NotificationPage() {
                           fontWeight={600}
                           color="#B4B4B4"
                           display="block"
-                          textAlign="right"
-                        >
+                          textAlign="right">
                           {format(parseISO(notification.date), "h:mm a")}
                         </Text>
                       </Box>
                     ))}
                   </Box>
-                ),
+                )
               )}
             </VStack>
           )}
@@ -417,8 +406,7 @@ export default function NotificationPage() {
             bg="white"
             boxShadow="md"
             borderRadius="full"
-            p={1}
-          >
+            p={1}>
             <Button
               onClick={handleMarkAllAsRead}
               size="md"
@@ -426,8 +414,7 @@ export default function NotificationPage() {
               fontWeight="medium"
               leftIcon={<Check size={18} />}
               px={6}
-              borderRadius="full"
-            >
+              borderRadius="full">
               Mark all as read
             </Button>
           </Box>

@@ -11,7 +11,7 @@ export const GOAL_DURATIONS = ["6 months", "1 month", "5 months"].map(
   (value) => ({
     value,
     label: value,
-  }),
+  })
 );
 
 export const CreateGoalModal = ({
@@ -49,8 +49,7 @@ export const CreateGoalModal = ({
 
             setSubmitting(false);
           }, 600);
-        }}
-      >
+        }}>
         {(formik) => (
           <Form>
             <Button
@@ -67,8 +66,7 @@ export const CreateGoalModal = ({
               color="#706E6E"
               textDecor="underline"
               isLoading={formik.isSubmitting}
-              loadingText="Setting goal..."
-            >
+              loadingText="Setting goal...">
               Done
             </Button>
 
@@ -76,14 +74,12 @@ export const CreateGoalModal = ({
               <HStack
                 gap=".3em"
                 alignItems="center"
-                width={{ lg: "50%", md: "50%", base: "60%" }}
-              >
+                width={{ lg: "50%", md: "50%", base: "60%" }}>
                 <Text
                   fontWeight="400"
                   textTransform="capitalize"
                   color="#706E6E"
-                  fontSize="14px"
-                >
+                  fontSize="14px">
                   duration
                 </Text>
                 <SelectField

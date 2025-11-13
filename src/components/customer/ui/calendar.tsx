@@ -67,8 +67,7 @@ export const Calendar = ({ width }: CalendarProps) => {
           justifyContent="space-between"
           alignItems="center"
           mb={2}
-          flex={1}
-        >
+          flex={1}>
           <IconButton
             aria-label="Previous month"
             icon={<CaretLeft color="#000" weight="bold" />}
@@ -128,8 +127,7 @@ export const Calendar = ({ width }: CalendarProps) => {
             fontWeight="semibold"
             fontSize={"13px"}
             color="var(--grey)"
-            fontFamily="var(--maven-pro-500)"
-          >
+            fontFamily="var(--maven-pro-500)">
             {day}
           </Text>
         ))}
@@ -176,8 +174,7 @@ export const Calendar = ({ width }: CalendarProps) => {
                       : "var(--text-1)"
                 }
                 opacity={isPast ? 0.5 : 1}
-                position="relative"
-              >
+                position="relative">
                 <Text
                   fontSize="13px"
                   fontFamily="var(--poppins)"
@@ -186,13 +183,12 @@ export const Calendar = ({ width }: CalendarProps) => {
                   left="50%"
                   transform="translate(-50%, -50%)"
                   margin="0"
-                  lineHeight="1"
-                >
+                  lineHeight="1">
                   {d.getDate()}
                 </Text>
               </Flex>
             );
-          },
+          }
         )}
       </SimpleGrid>
     </Box>

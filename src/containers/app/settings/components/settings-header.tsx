@@ -15,8 +15,7 @@ export const SettingsHeader = ({
       spacing="2px"
       alignItems="center"
       mb={4}
-      mt={{ base: "4px", md: "0" }}
-    >
+      mt={{ base: "4px", md: "0" }}>
       <IconButton
         variant="ghost"
         display={{ base: "block", md: "none" }}
@@ -29,8 +28,7 @@ export const SettingsHeader = ({
       <Text
         fontSize="24px"
         fontWeight={{ base: "500", md: "400" }}
-        color="var(--dark)"
-      >
+        color="var(--dark)">
         {title}
       </Text>
     </HStack>

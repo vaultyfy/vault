@@ -51,7 +51,7 @@ export const LoanStepFlowProvider: React.FC<{ children: React.ReactNode }> = ({
       completeStep,
       resetSteps,
     }),
-    [activeStep, completedSteps],
+    [activeStep, completedSteps]
   );
 
   return (

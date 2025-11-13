@@ -49,7 +49,7 @@ export const PaymentCard = ({
         openToast(response.message, "success");
         window.open(
           response.payload?.paymentResponse.data.authorization_url,
-          "_blank",
+          "_blank"
         );
       } else {
         openToast(response.message, "error");
@@ -79,8 +79,7 @@ export const PaymentCard = ({
       py="23px"
       border="0.5px solid var(--border-muted)"
       justifyContent="space-between"
-      {...props}
-    >
+      {...props}>
       <Box w="max-content">
         <Text fontSize="14px" fontWeight="400" color="var(--grey)">
           {getContributionDateType(dateType)}
@@ -92,23 +91,20 @@ export const PaymentCard = ({
             fontSize={{ base: "34px", lg: "44px" }}
             color={!isActive ? "var(--grey)" : undefined}
             bgGradient={isActive ? "var(--main-gradient)" : undefined}
-            bgClip={isActive ? "text" : undefined}
-          >
+            bgClip={isActive ? "text" : undefined}>
             {dateArray?.[0] || 23}
           </Text>
           <Flex flexDirection="column" alignContent="center">
             <Text
               fontWeight="400"
               fontSize={{ base: "14px", xl: "18px", lg: "14px" }}
-              color="var(--text-1)"
-            >
+              color="var(--text-1)">
               {`${dateArray?.[1]} - ${dateArray?.[2]}` || "November - 2025"}
             </Text>
             <Text
               fontWeight="400"
               fontSize={{ base: "14px", lg: "16px" }}
-              color="var(--grey)"
-            >
+              color="var(--grey)">
               {dayOfWeek}
             </Text>
           </Flex>
@@ -119,8 +115,7 @@ export const PaymentCard = ({
           <Text
             color="var(--main)"
             fontWeight="500"
-            fontSize={{ base: "16px", lg: "20px" }}
-          >
+            fontSize={{ base: "16px", lg: "20px" }}>
             {formatPrice(amount) || "100,000"}
           </Text>
         )}
@@ -143,8 +138,7 @@ export const PaymentCard = ({
             _hover={{
               bg: "transparent",
             }}
-            opacity="0.3"
-          >
+            opacity="0.3">
             Pay now
             <Box
               boxSize="39px"
@@ -154,8 +148,7 @@ export const PaymentCard = ({
               justifyContent="center"
               alignItems="center"
               border="2px solid white"
-              opacity="0.3"
-            >
+              opacity="0.3">
               <ArrowRight size={16} color="#ffffff" weight="bold" />
             </Box>
           </Button>
@@ -171,8 +164,7 @@ export const PaymentCard = ({
             rounded="full"
             width="112px"
             isLoading={state === "loading"}
-            onClick={payNow}
-          >
+            onClick={payNow}>
             Pay now
           </Button>
         )}

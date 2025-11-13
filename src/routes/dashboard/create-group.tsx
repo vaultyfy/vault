@@ -9,7 +9,7 @@ import React from "react";
 
 export const Route = createFileRoute("/dashboard/create-group")({
   component: RouteComponent,
-  beforeLoad: requireAuth()
+  beforeLoad: requireAuth(),
 });
 
 function RouteComponent() {

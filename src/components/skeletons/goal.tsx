@@ -1,10 +1,4 @@
-import {
-  Box,
-  HStack,
-  Skeleton,
-  Stack,
-  Flex
-} from "@chakra-ui/react";
+import { Box, HStack, Skeleton, Stack, Flex } from "@chakra-ui/react";
 import { skeleton } from "@utils/misc";
 
 export const GoalsSkeleton = () => {
@@ -12,14 +6,12 @@ export const GoalsSkeleton = () => {
     <Flex
       flexDirection="column"
       gap="1em"
-      px={{ lg: "1.2em", base: ".6em", md: ".8em" }}
-    >
+      px={{ lg: "1.2em", base: ".6em", md: ".8em" }}>
       {Array.from({ length: 3 }).map((_, index) => (
         <HStack
           key={index}
           justifyContent="space-between"
-          pb={index === 2 ? "2em" : ""}
-        >
+          pb={index === 2 ? "2em" : ""}>
           <Stack direction="column" gap="0.5em">
             <Skeleton
               width="100px"

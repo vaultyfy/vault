@@ -17,8 +17,7 @@ export const CreateGroupModal = ({
       title="Create Group"
       size="xl"
       px="14px"
-      py="32px"
-    >
+      py="32px">
       <CreateGroupContent closeModal={onClose} />
     </ModalLayout>
   );

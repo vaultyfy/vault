@@ -102,7 +102,7 @@ export const filterGroups = async ({
           Authorization: `Bearer ${token}`,
           ...HEADER_API_KEY,
         },
-      },
+      }
     );
 
     const response: Response<UserGroups> = await request.json();

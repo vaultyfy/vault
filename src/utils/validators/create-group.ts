@@ -22,7 +22,7 @@ export const createGroupSchema = Yup.object().shape({
   contributionFrequency: Yup.string()
     .oneOf(
       CONTRIBUTION_FREQUENCY.map((freq) => freq.value),
-      "Invalid frequency",
+      "Invalid frequency"
     )
     .required("Contribution frequency is required"),
 
@@ -43,4 +43,12 @@ export const createGroupSchema = Yup.object().shape({
     .integer("Must be an integer")
     .positive("Must be greater than 0")
     .required("Number of contributors is required"),
+});
+
+export const bankAccountSchema = Yup.object().shape({
+  accountName: Yup.string().required("Name on your account cannot be blank"),
+  bankName: Yup.string().required("Please select a bank"),
+  accountNumber: Yup.string()
+    .matches(/^\d{10}$/, "Account number must be exactly 10 digits")
+    .required("Please provide your acount number."),
 });

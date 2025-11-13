@@ -50,7 +50,7 @@ export const setGoal = async (payload: GoalPayload) => {
       }),
     });
 
-    return request
+    return request;
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }
@@ -60,7 +60,7 @@ export const updateGoal = async (goalId: string, payload: GoalPayload) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;
   if (!goalId) {
-    console.log("goalId is missing")
+    console.log("goalId is missing");
     return;
   }
 
@@ -77,7 +77,7 @@ export const updateGoal = async (goalId: string, payload: GoalPayload) => {
       }),
     });
 
-    return request
+    return request;
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }
@@ -87,7 +87,7 @@ export const deleteGoal = async (goalId: string) => {
   const token = getCookie(TOKEN_KEY, { ...cookieOptions });
   if (!token) return;
   if (!goalId) {
-    console.log("goalId is missing")
+    console.log("goalId is missing");
     return;
   }
 
@@ -101,7 +101,7 @@ export const deleteGoal = async (goalId: string) => {
       },
     });
 
-    return request
+    return request;
   } catch (error) {
     console.error(`${(error as Error).message}`);
   }

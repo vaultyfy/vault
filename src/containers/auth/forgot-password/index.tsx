@@ -56,21 +56,20 @@ export const ForgotPassword = ({ redirect, referrer }: AuthPageProps) => {
                   localStorage.setItem("email", values.email);
                   openToast(
                     response.message || "Check your email for the OTP",
-                    "success",
+                    "success"
                   );
                 } else {
                   openToast(
                     response.message ||
                       "Something went wrong. Please try again!",
-                    "error",
+                    "error"
                   );
                 }
               } catch (error) {
                 openToast("An error occurred. Please try again.", "error");
               }
               setSubmitting(false);
-            }}
-          >
+            }}>
             {(formik) => (
               <Form>
                 <Flex flexFlow="column" gap="4em">
@@ -80,8 +79,7 @@ export const ForgotPassword = ({ redirect, referrer }: AuthPageProps) => {
                       ui: store.ui,
                       redirect: String(redirect),
                       referrer: String(referrer),
-                    }}
-                  >
+                    }}>
                     <Image
                       src="/img/logo.svg"
                       alt="Vaultyfy logo"
@@ -94,16 +92,14 @@ export const ForgotPassword = ({ redirect, referrer }: AuthPageProps) => {
                     <Stack direction="column" gap="0">
                       <Text
                         fontSize="34px"
-                        fontFamily="var(--clash-grotesk-600)"
-                      >
+                        fontFamily="var(--clash-grotesk-600)">
                         Forgot password
                       </Text>
                       <Text
                         fontSize="16px"
                         color="var(--dark)"
                         lineHeight="18px"
-                        fontWeight="400"
-                      >
+                        fontWeight="400">
                         Enter the email you registered with
                       </Text>
                       f
@@ -123,8 +119,7 @@ export const ForgotPassword = ({ redirect, referrer }: AuthPageProps) => {
                       color="var(--white-fade)"
                       width="100%"
                       borderRadius="35px"
-                      isLoading={formik.isSubmitting}
-                    >
+                      isLoading={formik.isSubmitting}>
                       Send reset link
                     </Button>
                   </Box>

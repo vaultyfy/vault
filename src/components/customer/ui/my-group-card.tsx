@@ -49,8 +49,7 @@ export const MyGroupCard = ({
       bg={bgColor || "#ffffff"}
       _hover={{ cursor: "pointer" }}
       {...props}
-      onClick={() => setActiveGroup(data)}
-    >
+      onClick={() => setActiveGroup(data)}>
       <CardBody px={{ lg: "1em", md: ".8em", base: ".6em" }} py="23px" w="full">
         {acceptanceStatus && (
           <Box mb="3rem">
@@ -66,8 +65,7 @@ export const MyGroupCard = ({
                 fontFamily="var(--poppins)"
                 color={"#000000"}
                 fontWeight="medium"
-                textTransform="capitalize"
-              >
+                textTransform="capitalize">
                 {groupData?.name}
               </Text>
               <HStack spacing="3px" mt="2px">
@@ -75,15 +73,13 @@ export const MyGroupCard = ({
                   py={1}
                   rounded="full"
                   bg="var(--grey-007)"
-                  px={{ lg: ".8em", base: ".4em", md: ".6em" }}
-                >
+                  px={{ lg: ".8em", base: ".4em", md: ".6em" }}>
                   <Text
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="400"
                     color="var(--main)"
                     whiteSpace="nowrap"
-                    textTransform="lowercase"
-                  >
+                    textTransform="lowercase">
                     {formatPrice(Number(groupData?.contributionAmount))}/
                     {groupData?.contributionFrequency}
                   </Text>
@@ -94,8 +90,7 @@ export const MyGroupCard = ({
                   rounded="full"
                   py={1}
                   bg="var(--grey-007)"
-                  alignItems="center"
-                >
+                  alignItems="center">
                   <RefreshCcw
                     size={16}
                     strokeWidth={2.5}
@@ -104,8 +99,7 @@ export const MyGroupCard = ({
                   <Text
                     fontSize={{ base: "12px", lg: "14px" }}
                     fontWeight="400"
-                    color="var(--main)"
-                  >
+                    color="var(--main)">
                     {groupData?.numberOfcircle}
                   </Text>
                 </HStack>
@@ -127,16 +121,14 @@ export const MyGroupCard = ({
                   fontSize={{ base: "12px", lg: "14px" }}
                   fontWeight="400"
                   color="var(--grey)"
-                  textAlign="end"
-                >
+                  textAlign="end">
                   Pay-out
                 </Text>
 
                 <Text
                   fontSize={{ base: "16px", lg: "20px" }}
                   color="var(--main)"
-                  fontWeight="500"
-                >
+                  fontWeight="500">
                   {formatPrice(Number(groupData?.payOutAmount))}
                 </Text>
               </Box>
@@ -146,15 +138,13 @@ export const MyGroupCard = ({
                   fontSize={{ base: "12px", lg: "14px" }}
                   fontWeight="400"
                   color="var(--grey)"
-                  textAlign="end"
-                >
+                  textAlign="end">
                   End date
                 </Text>
                 <Text
                   fontSize={{ base: "14px", lg: "18px" }}
                   fontWeight="400"
-                  color="var(--dark)"
-                >
+                  color="var(--dark)">
                   {groupData?.endDate}
                 </Text>
               </Box>
@@ -163,8 +153,7 @@ export const MyGroupCard = ({
           <Text
             fontSize={{ base: "14px", lg: "16px" }}
             fontWeight="400"
-            color="var(--dark)"
-          >
+            color="var(--dark)">
             {groupData?.groupDescription}
           </Text>
         </Stack>

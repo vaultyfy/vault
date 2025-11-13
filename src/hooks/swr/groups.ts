@@ -17,7 +17,7 @@ export const useJoinedGroups = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getJoinedGroups(),
-    swrOptions,
+    swrOptions
   );
 
   const payload = data?.payload;
@@ -39,7 +39,7 @@ export const useAllGroups = () => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getAllGroups(),
-    swrOptions,
+    swrOptions
   );
 
   const payload = data?.payload;
@@ -61,7 +61,7 @@ export const useFilteredGroups = (filter: FilterGroupProps) => {
   const { data, error, isLoading } = useSWR(
     key,
     () => filterGroups(filter),
-    swrOptions,
+    swrOptions
   );
 
   const payload = data?.payload;
@@ -81,7 +81,7 @@ export const useGroup = (groupId: string) => {
   const { data, error, isLoading } = useSWR(
     key,
     () => getGroup(groupId),
-    swrOptions,
+    swrOptions
   );
 
   return {

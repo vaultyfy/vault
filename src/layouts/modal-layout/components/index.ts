@@ -1,1 +1,1 @@
-export * from "./create-group-content"
+export * from "./create-group-content";

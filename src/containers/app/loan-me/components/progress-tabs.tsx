@@ -11,7 +11,7 @@ const stepToIndex: Record<LoanStep, number> = {
 
 const indexToStep = (index: number): LoanStep =>
   (Object.keys(stepToIndex) as LoanStep[]).find(
-    (key) => stepToIndex[key] === index,
+    (key) => stepToIndex[key] === index
   ) as LoanStep;
 
 export const ProgressTabs = () => {
@@ -26,7 +26,7 @@ export const ProgressTabs = () => {
     if (tabsRef.current && isMobile) {
       const tabList = tabsRef.current.querySelector("[role='tablist']");
       const activeTab = tabsRef.current.querySelector(
-        `[data-index="${activeIndex}"]`,
+        `[data-index="${activeIndex}"]`
       );
 
       if (tabList && activeTab) {
@@ -54,8 +54,7 @@ export const ProgressTabs = () => {
       width={{ base: "full", md: "fit-content" }}
       mx="auto"
       ref={tabsRef}
-      overflowX={isMobile ? "auto" : "visible"}
-    >
+      overflowX={isMobile ? "auto" : "visible"}>
       <Tabs
         variant="unstyled"
         index={activeIndex}
@@ -67,14 +66,12 @@ export const ProgressTabs = () => {
           } else {
             return;
           }
-        }}
-      >
+        }}>
         <TabList
           display="flex"
           width="100%"
           gap="5rem"
-          justifyContent={stepAlignment[activeStep] ?? "flex-start"}
-        >
+          justifyContent={stepAlignment[activeStep] ?? "flex-start"}>
           {/* Tab 1 - step_1 */}
           <Tab
             maxWidth="280px"
@@ -158,8 +155,7 @@ export const ProgressTabs = () => {
                       zIndex: 0,
                     },
                   }),
-            }}
-          >
+            }}>
             Loan purpose & amount
           </Tab>
 
@@ -247,8 +243,7 @@ export const ProgressTabs = () => {
                       zIndex: 0,
                     },
                   }),
-            }}
-          >
+            }}>
             Financial details
           </Tab>
 
@@ -313,8 +308,7 @@ export const ProgressTabs = () => {
                     },
                   }
                 : {}),
-            }}
-          >
+            }}>
             Eligibility & acceptances
           </Tab>
         </TabList>

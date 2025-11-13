@@ -11,8 +11,7 @@ export const Loan = () => {
       width="100%"
       minHeight="100vh"
       gap={{ lg: "1em", md: "1em", base: "2em" }}
-      flexWrap="wrap"
-    >
+      flexWrap="wrap">
       {isLoading ? (
         <LoanDetailsSkeleton />
       ) : !data ? (

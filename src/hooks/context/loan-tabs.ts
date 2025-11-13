@@ -9,7 +9,7 @@ export const useLoanStepFlow = (): LoanStepFlowContextType => {
   const context = React.useContext(LoanStepFlowContext);
   if (!context)
     throw new Error(
-      "useLoanStepFlow must be used within a LoanStepFlowProvider",
+      "useLoanStepFlow must be used within a LoanStepFlowProvider"
     );
   return context;
 };

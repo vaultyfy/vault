@@ -30,8 +30,7 @@ export const SystemMatching = () => {
       <Box
         className="map"
         height={{ xl: "900px", lg: "630px", md: "500px", base: "700px" }}
-        position="relative"
-      >
+        position="relative">
         <Marker />
         <HStack justifyContent="center" alignItems="center">
           <MotionImage
@@ -65,8 +64,7 @@ export const SystemMatching = () => {
               gap="1.4em"
               height="100%"
               mt={{ lg: "-12em", base: "-10em" }}
-              width={{ lg: "50%", base: "100%" }}
-            >
+              width={{ lg: "50%", base: "100%" }}>
               <SectionTitle title="smart matching system" />
 
               <MotionBox
@@ -91,13 +89,11 @@ export const SystemMatching = () => {
                 px={{ lg: "1.2em", md: ".6em", base: ".8em" }}
                 flexFlow="column"
                 display="flex"
-                gap={{ lg: "2em", base: "1em", md: "2em" }}
-              >
+                gap={{ lg: "2em", base: "1em", md: "2em" }}>
                 <HStack
                   justifyContent={{ lg: "space-between", base: "center" }}
                   gap={{ lg: "2em", md: ".6em", base: ".8em" }}
-                  flexFlow={{ lg: "row", md: "row", base: "column" }}
-                >
+                  flexFlow={{ lg: "row", md: "row", base: "column" }}>
                   <AvatarGroup>
                     {[
                       "/img/person-3.svg",
@@ -127,8 +123,7 @@ export const SystemMatching = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.4 }}
-                    textAlign={{ lg: "left", md: "left", base: "center" }}
-                  >
+                    textAlign={{ lg: "left", md: "left", base: "center" }}>
                     Our platform matches you with a thrift group that fits your
                     savings goals
                   </MotionText>
@@ -153,8 +148,7 @@ export const SystemMatching = () => {
                 lg: "2%",
                 md: "-5%",
                 base: "19%",
-              }}
-            >
+              }}>
               <MotionImage
                 src="/img/person-7.svg"
                 position="absolute"

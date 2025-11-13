@@ -130,8 +130,7 @@ export const Sidebar = () => {
         lg: "20%",
       }}
       borderRight={isConsoleRoute ? "2px solid var(--dark-6)" : ""}
-      display={{ lg: "block", md: "none", base: "none" }}
-    >
+      display={{ lg: "block", md: "none", base: "none" }}>
       <Link to="/">
         <Center mt="1em">
           <Image
@@ -168,15 +167,13 @@ export const Sidebar = () => {
                       "& svg": {
                         filter: "brightness(2)",
                       },
-                    }}
-                  >
+                    }}>
                     {item.icon}
                     <Text
                       lineHeight="19px"
                       whiteSpace="nowrap"
                       fontSize="14px"
-                      fontWeight={pathname === item.path ? "500" : "400"}
-                    >
+                      fontWeight={pathname === item.path ? "500" : "400"}>
                       {item.name}
                     </Text>
                   </ListItem>
@@ -211,8 +208,7 @@ export const Sidebar = () => {
                 fontSize="16px"
                 color="var(--grey)"
                 fontWeight="400"
-                lineHeight="24px"
-              >
+                lineHeight="24px">
                 {userName || "Danielking"}
               </Text>
             ) : (
@@ -237,8 +233,7 @@ export const Sidebar = () => {
               height="37px"
               width="158px"
               borderRadius="30px"
-              alignItems="center"
-            >
+              alignItems="center">
               <GradientIcon
                 weight="fill"
                 startColor="#2C9BF0"
@@ -251,8 +246,7 @@ export const Sidebar = () => {
                 fontSize="14px"
                 fontWeight="400"
                 bgClip="text"
-                bgGradient={MAIN_GRADIENT}
-              >
+                bgGradient={MAIN_GRADIENT}>
                 verified
               </Text>
             </Badge>
@@ -267,15 +261,13 @@ export const Sidebar = () => {
                 height="37px"
                 width="158px"
                 borderRadius="30px"
-                alignItems="center"
-              >
+                alignItems="center">
                 <Text
                   textTransform="capitalize"
                   fontSize="14px"
                   fontWeight="400"
                   bgClip="text"
-                  bgGradient={MAIN_GRADIENT}
-                >
+                  bgGradient={MAIN_GRADIENT}>
                   Complete profile
                 </Text>
               </Badge>
@@ -290,8 +282,7 @@ export const Sidebar = () => {
               fontSize="10px"
               textTransform="capitalize"
               bgClip="text"
-              bgGradient={MAIN_GRADIENT}
-            >
+              bgGradient={MAIN_GRADIENT}>
               Wallet balance
             </Text>
             {isLoading ? (
@@ -308,8 +299,7 @@ export const Sidebar = () => {
                 fontSize="22px"
                 lineHeight="27px"
                 bgGradient={MAIN_GRADIENT}
-                bgClip="text"
-              >
+                bgClip="text">
                 {formatPrice(walletBalance || 0)}
               </Text>
             )}
@@ -336,15 +326,13 @@ export const Sidebar = () => {
                     _hover={{
                       cursor: "pointer",
                       background: "var(--white-fade-8)",
-                    }}
-                  >
+                    }}>
                     {item.icon}
                     <Text
                       fontSize="16px"
                       fontWeight={pathname === item.path ? "500" : "400"}
                       lineHeight="19px"
-                      whiteSpace="nowrap"
-                    >
+                      whiteSpace="nowrap">
                       {item.name}
                     </Text>
                   </ListItem>
@@ -356,8 +344,7 @@ export const Sidebar = () => {
               mt="4em"
               _hover={{ cursor: "pointer" }}
               onClick={logout}
-              px={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}
-            >
+              px={{ "2xl": "1.4em", xl: "1em", lg: "1em" }}>
               <Icon name="logout" />
               <Text color="var(--grey)" fontWeight="400" fontSize="16px">
                 Log out

@@ -34,8 +34,7 @@ export const UserMenu = () => {
         }}
         _active={{
           background: "var(--white-fade)",
-        }}
-      >
+        }}>
         <Avatar
           ml="-.4rem"
           boxSize={{ lg: "35px", md: "30px", base: "30px" }}
@@ -51,8 +50,7 @@ export const UserMenu = () => {
         background="var(--text-2)"
         display="flex"
         flexFlow="column"
-        gap=".6rem"
-      >
+        gap=".6rem">
         {!user && !currentPath.includes("/dashboard") && (
           <Link to={isSmallViewPort ? "/auth" : "/auth/login"}>
             <MenuItem
@@ -66,8 +64,7 @@ export const UserMenu = () => {
                 background: "var(--main)",
               }}
               fontWeight="normal"
-              fontSize="12px"
-            >
+              fontSize="12px">
               login
             </MenuItem>
           </Link>
@@ -85,8 +82,7 @@ export const UserMenu = () => {
                 background: "#fff",
               }}
               fontWeight="normal"
-              fontSize="12px"
-            >
+              fontSize="12px">
               <Text className="main-accent">dashboard</Text>
             </MenuItem>
           </Link>
@@ -105,8 +101,7 @@ export const UserMenu = () => {
             fontWeight="normal"
             fontSize="12px"
             className="main-accent"
-            onClick={logout}
-          >
+            onClick={logout}>
             Logout
           </MenuItem>
         )}
